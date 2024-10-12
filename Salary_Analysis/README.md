@@ -16,6 +16,8 @@ I selected this dataset and project because I am passionate about understanding 
 
 Additionally, salary analysis is highly relevant in both organizational and personal contexts, helping individuals and companies make informed decisions regarding career paths, salary expectations, and workforce management.
 
+![Salary Dashboard](Salary%20Dashboard.png)
+
 ## Key Insights Learned
 
 Through this project, I have learned to apply various SQL techniques to explore and analyze data, uncovering meaningful patterns and relationships. Specifically, I gained experience in:
@@ -26,12 +28,6 @@ Through this project, I have learned to apply various SQL techniques to explore 
 
 The analysis provides valuable insights that could help organizations understand salary trends and make informed decisions regarding employee compensation.
 
-## Dataset Source
-
-The dataset used in this project was obtained from Kaggle and can be accessed using the following link:
-
-[Salary Data - Kaggle](https://www.kaggle.com/datasets/mohithsairamreddy/salary-data)
-
 This dataset contains a variety of fields including:
 
 - **Age**: Age of the employee.
@@ -41,15 +37,4 @@ This dataset contains a variety of fields including:
 - **Years of Experience**: The number of years of experience the employee has.
 - **Salary**: The annual salary of the employee.
 
-## How to Use
-
-To explore the data or perform analysis on this dataset:
-
-1. Clone this repository.
-2. Load the dataset into a PostgreSQL database.
-3. Run the SQL queries provided to gain insights into the data.
-4. Customize the queries to explore additional insights based on your interests.
-
-## License
-
-This project is licensed under the MIT License. Feel free to explore and modify the code as you see fit!
+[Explore my Tableau Public profile for full interactive visualizations.](https://public.tableau.com/app/profile/nha.alvarado/viz/SalaryDashboard_17287044754010/SalaryDashboard?publish=yes)
