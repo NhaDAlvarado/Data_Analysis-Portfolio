@@ -1,7 +1,7 @@
 CREATE TABLE airbnb_listings (
-    id INT PRIMARY KEY,
+    id BIGINT PRIMARY KEY,
     name VARCHAR(255),
-    host_id INT,
+    host_id BIGINT,
     host_name VARCHAR(255),
     neighbourhood_group VARCHAR(255),
     neighbourhood VARCHAR(255),
@@ -16,3 +16,13 @@ CREATE TABLE airbnb_listings (
     calculated_host_listings_count INT,
     availability_365 INT
 );
+
+ALTER TABLE airbnb_listings ADD COLUMN license VARCHAR(255);
+ALTER TABLE airbnb_listings ADD COLUMN number_of_reviews_ltm INT;
+
+ALTER TABLE airbnb_listings
+ALTER COLUMN license TYPE TEXT;
+
+select * from airbnb_listings
+
+
