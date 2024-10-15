@@ -11,12 +11,27 @@ from airbnb_listings
 group by neighbourhood;
 
 -- 3.Which room type is the most common in each neighborhood?
-select * from airbnb_listings
-
+select neighbourhood, room_type, count(room_type) as count_rooms
+from airbnb_listings
+group by neighbourhood,room_type
+order by neighbourhood, count_rooms desc; 
 
 -- 4.What is the distribution of room types across the entire city?
+select room_type, 
+	round(100.0*count(room_type)/ (select count(room_type) from airbnb_listings),2) as room_type_percentage
+from airbnb_listings
+group by room_type;
+
 -- 5.What are the top 10 most expensive neighborhoods based on average price?
+select neighbourhood, round(avg(price),2) as avg_price
+from airbnb_listings
+group by neighbourhood 
+order by avg_price desc
+limit 10;
+
 -- 6.What is the average number of reviews per month for listings by neighborhood?
+
+
 -- 7.How many listings does each host manage?
 -- 8.Which hosts have the highest number of listings?
 -- 9.What is the distribution of listings' availability over the next 365 days?
