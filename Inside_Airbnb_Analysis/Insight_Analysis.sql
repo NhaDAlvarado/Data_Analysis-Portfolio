@@ -30,13 +30,75 @@ order by avg_price desc
 limit 10;
 
 -- 6.What is the average number of reviews per month for listings by neighborhood?
-
+select neighbourhood, round(avg(reviews_per_month),2) as avg_reviews
+from airbnb_listings
+group by neighbourhood;
 
 -- 7.How many listings does each host manage?
+select host_name, count(*) as num_of_listings 
+from airbnb_listings
+group by host_name
+order by num_of_listings desc;
+
 -- 8.Which hosts have the highest number of listings?
+select host_name, count(*) as num_of_listings 
+from airbnb_listings
+group by host_name
+order by num_of_listings desc
+limit 1 ;
+
 -- 9.What is the distribution of listings' availability over the next 365 days?
+with month_availability as (
+	select *,
+		case when availability_365 = 0 then 'fully booked'
+			when availability_365 between 1 and 31 then '0-1 month'
+			when availability_365 between 31 and 61 then '1-2 months'
+			when availability_365 between 61 and 91 then '2-3 months'
+			when availability_365 between 91 and 121 then '3-4 months'
+			when availability_365 between 121 and 151 then '4-5 months'
+			when availability_365 between 151 and 181 then '5-6 months'
+			when availability_365 between 181 and 211 then '6-7 months'
+			when availability_365 between 211 and 241 then '7-8 months'
+			when availability_365 between 241 and 271 then '8-9 months'
+			when availability_365 between 271 and 301 then '9-10 months'
+			when availability_365 between 301 and 331 then '10-11 months'
+			else '11-12 months'
+		end as month_available	
+	from airbnb_listings
+)
+select month_available,
+	round(100.0*count(id)/(select count(*) from airbnb_listings),2) as percentage
+from month_availability
+group by month_available;
+
 -- 10.What percentage of listings are fully booked (0 availability) for the next 365 days?
+with month_availability as (
+	select *,
+		case when availability_365 = 0 then 'fully booked'
+			when availability_365 between 1 and 31 then '0-1 month'
+			when availability_365 between 31 and 61 then '1-2 months'
+			when availability_365 between 61 and 91 then '2-3 months'
+			when availability_365 between 91 and 121 then '3-4 months'
+			when availability_365 between 121 and 151 then '4-5 months'
+			when availability_365 between 151 and 181 then '5-6 months'
+			when availability_365 between 181 and 211 then '6-7 months'
+			when availability_365 between 211 and 241 then '7-8 months'
+			when availability_365 between 241 and 271 then '8-9 months'
+			when availability_365 between 271 and 301 then '9-10 months'
+			when availability_365 between 301 and 331 then '10-11 months'
+			else '11-12 months'
+		end as month_available	
+	from airbnb_listings
+)
+select month_available,
+	round(100.0*count(id)/(select count(*) from airbnb_listings),2) as percentage
+from month_availability
+where month_available =  'fully booked' 
+group by month_available
+
 -- 11.What is the average minimum number of nights required by room type?
+
+
 -- 12.Which hosts have listings with the highest review counts?
 -- 13.What is the correlation between price and the number of reviews?
 -- 14.How does price vary with the availability of listings (based on availability_365)?
