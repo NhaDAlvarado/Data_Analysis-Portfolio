@@ -113,6 +113,10 @@ select corr(price, number_of_reviews) as price_reviews_correlation
 from airbnb_listings
 where price > 0 and number_of_reviews > 0;
 
+/*The correlation is near 0, it suggests there is little to no linear relationship 
+between price and the number of reviews
+*/
+
 -- 14.How does price vary with the availability of listings (based on availability_365)?
 with month_availability as (
 	select *,
@@ -132,10 +136,31 @@ with month_availability as (
 		end as month_available	
 	from airbnb_listings
 )
+select round(avg(price),2) as avg_price, month_available
+from month_availability
+group by month_available
+order by avg_price;
 
 -- 15.Which neighborhoods have the highest number of listings with price = 0?
+select neighbourhood, count (*) as num_of_listings
+from airbnb_listings
+where price = 0
+group by neighbourhood
+order by num_of_listings desc;
+
 -- 16.How has the number of reviews changed over time for listings?
+select date_trunc('month', last_review) as review_month,
+    count(*) as total_reviews
+from airbnb_listings
+where last_review is not null
+group by review_month
+order by review_month;
+
 -- 17.What is the average price of listings by room type?
+select room_type, round(avg(price)) as avg_price
+from airbnb_listings
+group by room_type;
+
 -- 18.What are the top 5 neighborhoods with the highest availability for the next year?
 -- 19.Which neighborhoods have the lowest average number of reviews?
 -- 20.What is the average price of listings for hosts with multiple listings?
