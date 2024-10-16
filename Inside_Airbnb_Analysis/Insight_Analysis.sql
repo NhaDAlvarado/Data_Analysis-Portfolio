@@ -162,8 +162,26 @@ from airbnb_listings
 group by room_type;
 
 -- 18.What are the top 5 neighborhoods with the highest availability for the next year?
+select neighbourhood, round(avg(availability_365)) as avg_availability
+from airbnb_listings
+group by neighbourhood
+order by avg_availability desc
+limit 5;
+
 -- 19.Which neighborhoods have the lowest average number of reviews?
+select neighbourhood, round(avg(number_of_reviews),2) as avg_num_reviews
+from airbnb_listings
+group by neighbourhood
+order by avg_num_reviews
+limit 1;
+
 -- 20.What is the average price of listings for hosts with multiple listings?
+select host_name, round(avg(price),2) as avg_price
+from airbnb_listings
+group by host_name
+having count(*) > 1
+order by avg_price;
+
 -- 21.What are the top 10 most-reviewed listings?
 -- 22.How does the price differ between neighborhoods with high and low review counts?
 -- 23.Which room type generates the highest average monthly reviews?
