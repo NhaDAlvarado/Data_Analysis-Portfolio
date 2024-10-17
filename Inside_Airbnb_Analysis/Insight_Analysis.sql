@@ -215,20 +215,26 @@ from airbnb_listings
 where price > 500;
 
 -- 26.What are the top 5 neighborhoods with the highest host engagement (measured by multiple listings)?
-with num_listings_per_host_in_neighbor as (
-	select neighbourhood, host_name, count(*) as num_listings
-	from airbnb_listings
-	group by neighbourhood, host_name
-	order by neighbourhood, host_name
-)
 select neighbourhood, 
-sum(case when num_listings >1 then 1 else 0 end) as num_of_host_have_nultiple_listings
-from num_listings_per_host_in_neighbor
+sum(case when calculated_host_listings_count > 1 then 1 else 0 end) as engagement_host
+from airbnb_listings
 group by neighbourhood
-order by num_of_host_have_nultiple_listings desc
+order by  engagement_host desc
 limit 5;
 
 -- 27.How many listings have received reviews in the past 30 days?
--- 28.What is the most common review score for listings with high availability?
--- 29.Which listings have not received any reviews?
--- 30.What is the average price for listings with reviews in the past year?
+select count(name) as num_of_listings_receive_review
+from airbnb_listings
+where last_review >= cast('2024-09-03' as date) - INTERVAL '30 days';
+
+-- 28.Which listings have not received any reviews?
+select name, number_of_reviews
+from airbnb_listings
+where number_of_reviews = 0;
+
+-- 29.What is the average price for listings with reviews in the past year?
+select round(avg(price),2) as avg_price
+from airbnb_listings
+where number_of_reviews >0 
+	and last_review is not null 
+	and last_review >= cast('2024-09-03' as date) - INTERVAL '365 days';
