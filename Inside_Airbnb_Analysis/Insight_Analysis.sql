@@ -183,9 +183,27 @@ having count(*) > 1
 order by avg_price;
 
 -- 21.What are the top 10 most-reviewed listings?
+select name, sum(number_of_reviews) as total_reviews 
+from airbnb_listings
+group by name
+order by total_reviews  desc
+limit 10;
+
 -- 22.How does the price differ between neighborhoods with high and low review counts?
+select neighbourhood, sum(number_of_reviews) as total_reviews, 
+	round(avg(price),2) as avg_price
+from airbnb_listings
+group by neighbourhood
+order by total_reviews;
+
 -- 23.Which room type generates the highest average monthly reviews?
+select room_type, sum(reviews_per_month) as total_reviews
+from airbnb_listings
+group by room_type
+order by total_reviews desc;
+
 -- 24.What percentage of listings are available for more than 300 days a year?
+select * from airbnb_listings
 -- 25.What is the average review count for listings priced above $500 per night?
 -- 26.What are the top 5 neighborhoods with the highest host engagement (measured by multiple listings)?
 -- 27.How many listings have received reviews in the past 30 days?
