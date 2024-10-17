@@ -203,9 +203,31 @@ group by room_type
 order by total_reviews desc;
 
 -- 24.What percentage of listings are available for more than 300 days a year?
-select * from airbnb_listings
+select round(
+	100.0*sum(case when availability_365 > 300 then 1 else 0 end)
+	/(select count(*) from airbnb_listings)
+	,2) as percentage
+from airbnb_listings;
+
 -- 25.What is the average review count for listings priced above $500 per night?
+select round(avg(number_of_reviews),2) as avg_review_count
+from airbnb_listings
+where price > 500;
+
 -- 26.What are the top 5 neighborhoods with the highest host engagement (measured by multiple listings)?
+with num_listings_per_host_in_neighbor as (
+	select neighbourhood, host_name, count(*) as num_listings
+	from airbnb_listings
+	group by neighbourhood, host_name
+	order by neighbourhood, host_name
+)
+select neighbourhood, 
+sum(case when num_listings >1 then 1 else 0 end) as num_of_host_have_nultiple_listings
+from num_listings_per_host_in_neighbor
+group by neighbourhood
+order by num_of_host_have_nultiple_listings desc
+limit 5;
+
 -- 27.How many listings have received reviews in the past 30 days?
 -- 28.What is the most common review score for listings with high availability?
 -- 29.Which listings have not received any reviews?
