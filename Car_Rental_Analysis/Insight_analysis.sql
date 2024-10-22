@@ -1,7 +1,22 @@
 -- 1.What is the average daily rental rate by vehicle type?
+select vehicle_type, round(avg(rate_daily),2) as avg_rate_daily  
+from carrentaldata
+group by vehicle_type;
+
 -- 2.Which city has the highest number of rental trips?
+select sum(rentertripstaken) as num_of_renter, location_city 
+from carrentaldata
+group by location_city
+order by num_of_renter desc; 
+
 -- 3.What is the average rating of vehicles based on fuel type (electric, hybrid, gasoline)?
+select fueltype, round(avg(rating),2) as avg_rating
+from carrentaldata
+group by fueltype;
+
 -- 4.How does the number of renter trips correlate with the number of reviews?
+select * from carrentaldata
+
 -- 5.What is the distribution of rental rates across different vehicle makes and models?
 -- 6.Which location has the highest concentration of electric vehicles?
 -- 7.How do the average ratings compare between SUVs and cars?
