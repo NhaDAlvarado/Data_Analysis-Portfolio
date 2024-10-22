@@ -15,11 +15,34 @@ from carrentaldata
 group by fueltype;
 
 -- 4.How does the number of renter trips correlate with the number of reviews?
-select * from carrentaldata
+select corr (renterTripsTaken, reviewCount) as correlation
+from carrentaldata;
+/* the correlation between renterTripsTaken and reviewCount is 0.99 close to 1, 
+it suggests that vehicles with more trips taken by renters tend to also have more reviews.
+*/
 
 -- 5.What is the distribution of rental rates across different vehicle makes and models?
+with running_sum_by_make_and_model as (
+	select vehicle_make, vehicle_model, 
+	sum(rate_daily) as num_of_rating,
+	sum(rate_daily) over (partition by vehicle_make, vehicle_model) as running_sum
+	from carrentaldata
+	group by vehicle_make, vehicle_model, rate_daily
+)
+select vehicle_make,vehicle_model, num_of_rating,running_sum,
+round(100.0*num_of_rating/running_sum,2) as dis_percentage
+from running_sum_by_make_and_model;
+
 -- 6.Which location has the highest concentration of electric vehicles?
+select count(fueltype) as num_of_electric_vehicles, location_city 
+from carrentaldata
+where fueltype = 'ELECTRIC'
+group by location_city
+order by num_of_vehicles desc;
+
 -- 7.How do the average ratings compare between SUVs and cars?
+-- select * from carrentaldata
+
 -- 8.What is the average vehicle age for each vehicle type?
 -- 9.Which owners have the highest number of renter trips?
 -- 10.What is the relationship between vehicle year and rental price?
