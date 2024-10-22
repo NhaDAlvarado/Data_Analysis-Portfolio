@@ -38,15 +38,33 @@ select count(fueltype) as num_of_electric_vehicles, location_city
 from carrentaldata
 where fueltype = 'ELECTRIC'
 group by location_city
-order by num_of_vehicles desc;
+order by num_of_electric_vehicles desc;
 
 -- 7.How do the average ratings compare between SUVs and cars?
--- select * from carrentaldata
+select vehicle_type, round(avg(rating),2) as avg_rating  
+from carrentaldata
+where vehicle_type in ('car', 'suv')
+group by vehicle_type;
 
 -- 8.What is the average vehicle age for each vehicle type?
+select round(avg(extract(year from current_date) - vehicle_year),2) as avg_vehicle_age, vehicle_type
+from carrentaldata
+group by vehicle_type;
+
 -- 9.Which owners have the highest number of renter trips?
--- 10.What is the relationship between vehicle year and rental price?
+select owner_id, count(*) as num_of_renter_trips
+from carrentaldata
+group by owner_id
+order by num_of_renter_trips desc;
+
+-- 10.What is the relationship between vehicle year and daily rental rate?
+select corr(vehicle_year, rate_daily) as correlation
+from carrentaldata
+/*A result close to 0 indicates little to no correlation.*/
+
 -- 11.Which state has the highest number of car rentals?
+-- select * from carrentaldata
+
 -- 12.What are the top 5 most rented vehicle models in each state?
 -- 13.What is the average daily rate of vehicles in the top 5 highest-rated cities?
 -- 14.How does the rental rate vary across different vehicle types by state?
