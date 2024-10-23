@@ -59,14 +59,34 @@ order by num_of_renter_trips desc;
 
 -- 10.What is the relationship between vehicle year and daily rental rate?
 select corr(vehicle_year, rate_daily) as correlation
-from carrentaldata
+from carrentaldata;
 /*A result close to 0 indicates little to no correlation.*/
 
 -- 11.Which state has the highest number of car rentals?
--- select * from carrentaldata
+select location_state, count(*) as num_of_car_rental
+from carrentaldata
+group by location_state
+order by num_of_car_rental desc;
 
 -- 12.What are the top 5 most rented vehicle models in each state?
+with count_num_vehicle as (
+	select location_state, vehicle_model, 
+	count(vehicle_model) as num_of_vehicle
+	from carrentaldata
+	group by location_state, vehicle_model
+),
+ranking as (
+	select location_state, vehicle_model, num_of_vehicle,
+	dense_rank() over (partition by location_state order by num_of_vehicle desc) as ranking
+	from count_num_vehicle
+)
+select location_state, vehicle_model, num_of_vehicle, ranking
+from ranking
+where ranking <= 5
+
 -- 13.What is the average daily rate of vehicles in the top 5 highest-rated cities?
+-- select * from carrentaldata
+
 -- 14.How does the rental rate vary across different vehicle types by state?
 -- 15.What is the trend in vehicle rating by rental trips taken?
 -- 16.Which vehicle types are the most popular for long-term rentals (based on total trips taken)?
