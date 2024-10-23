@@ -82,14 +82,41 @@ ranking as (
 )
 select location_state, vehicle_model, num_of_vehicle, ranking
 from ranking
-where ranking <= 5
+where ranking <= 5;
 
 -- 13.What is the average daily rate of vehicles in the top 5 highest-rated cities?
--- select * from carrentaldata
+with top_5_highest_rated as (
+	select round(avg(rating),2) as avg_rating, 
+	sum(rate_daily) as sum_rate_daily, location_state
+	from carrentaldata
+	group by location_state
+	order by avg_rating desc
+	limit 5
+)
+select round(avg(sum_rate_daily)) as avg_daily_rate
+from top_5_highest_rated;
 
 -- 14.How does the rental rate vary across different vehicle types by state?
+select location_state, vehicle_type, round(avg(rate_daily),2) as average_rental_rate
+from carrentaldata
+group by location_state, vehicle_type
+order by location_state, vehicle_type;
+
 -- 15.What is the trend in vehicle rating by rental trips taken?
+select case when renterTripsTaken between 0 and 10 then '0-10'
+        when renterTripsTaken between 11 and 20 then '11-20'
+        when renterTripsTaken between 21 and 30 then '21-30'
+        when renterTripsTaken between 31 and 50 then '31-50'
+        else '50+' 
+    end as rental_trip_range,
+    round(avg(rating),2) as average_rating
+from carrentaldata
+group by rental_trip_range
+order by rental_trip_range;
+
 -- 16.Which vehicle types are the most popular for long-term rentals (based on total trips taken)?
+-- select * from carrentaldata
+
 -- 17.How does vehicle age impact customer ratings?
 -- 18.What is the geographical distribution of hybrid vehicles?
 -- 19.What is the most common fuel type for vehicles with the highest ratings?
