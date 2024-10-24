@@ -115,10 +115,27 @@ group by rental_trip_range
 order by rental_trip_range;
 
 -- 16.Which vehicle types are the most popular for long-term rentals (based on total trips taken)?
--- select * from carrentaldata
+select vehicle_type, sum(rentertripstaken) as total_trips_taken
+from carrentaldata
+group by vehicle_type
+order by total_trips_taken desc;
 
 -- 17.How does vehicle age impact customer ratings?
+select case 
+		when (extract(year from current_date) - vehicle_year) between 1 and 6 then '1 to 5 years old'
+		when (extract(year from current_date) - vehicle_year) between 6 and 11 then '6 to 10 years old'
+		when (extract(year from current_date) - vehicle_year) between 11 and 16 then '11 to 15 years old'
+		when (extract(year from current_date) - vehicle_year) between 16 and 21 then '16 to 20 years old'
+		else '20+'
+	end as car_age_groups,
+	round(avg(rating),2) as avg_rating
+from carrentaldata
+group by car_age_groups
+order by avg_rating;
+
 -- 18.What is the geographical distribution of hybrid vehicles?
+-- select * from carrentaldata
+
 -- 19.What is the most common fuel type for vehicles with the highest ratings?
 -- 20. What is the average number of reviews for each city?
 -- 21.What is the average rental rate for each fuel type across different cities?
