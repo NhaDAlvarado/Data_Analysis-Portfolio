@@ -134,11 +134,29 @@ group by car_age_groups
 order by avg_rating;
 
 -- 18.What is the geographical distribution of hybrid vehicles?
--- select * from carrentaldata
+select location_state, count(fueltype) as num_hybrid_vehicles,
+	round(
+	(100.0* count(fueltype)
+	/(select count(*) from carrentaldata where fueltype = 'HYBRID'))
+	,2) as percentage
+from carrentaldata
+where fueltype = 'HYBRID'
+group by location_state;
 
 -- 19.What is the most common fuel type for vehicles with the highest ratings?
+select fueltype, count(fueltype) as num_vehicle, round(avg(rating),2) as avg_rating
+from carrentaldata
+group by fueltype
+order by num_vehicle desc;
+
 -- 20. What is the average number of reviews for each city?
+select location_city, round(avg(reviewcount)) as avg_reviewcount 
+from carrentaldata
+group by location_city
+
 -- 21.What is the average rental rate for each fuel type across different cities?
+-- select * from carrentaldata
+
 -- 22.How does the number of reviews affect the average rental rate for vehicles?
 -- 23.Which city has the highest average rental rate for electric vehicles?
 -- 24.What percentage of the total fleet are electric, hybrid, and gasoline vehicles?
