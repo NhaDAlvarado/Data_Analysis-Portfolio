@@ -152,17 +152,55 @@ order by num_vehicle desc;
 -- 20. What is the average number of reviews for each city?
 select location_city, round(avg(reviewcount)) as avg_reviewcount 
 from carrentaldata
-group by location_city
+group by location_city;
 
 -- 21.What is the average rental rate for each fuel type across different cities?
--- select * from carrentaldata
+select location_city, fueltype, round(avg(rating),2) as avg_rating
+from carrentaldata
+group by location_city, fueltype
+order by location_city;
 
 -- 22.How does the number of reviews affect the average rental rate for vehicles?
+select case 
+        when reviewCount between 0 and 10 then '0-10'
+        when reviewCount between 11 and 20 then '11-20'
+        when reviewCount between 21 and 50 then '21-50'
+        else '50+' 
+    end as review_count_range,
+    round(avg(rate_daily),2) as average_rental_rate
+from carrentaldata
+group by review_count_range
+order by review_count_range;
+
 -- 23.Which city has the highest average rental rate for electric vehicles?
+select location_city, round(avg(rate_daily),2) as avg_rental_rate
+from carrentaldata
+where fueltype = 'ELECTRIC'
+group by location_city
+order by avg_rental_rate desc;
+
 -- 24.What percentage of the total fleet are electric, hybrid, and gasoline vehicles?
+select fueltype,
+	round(100.0* count(fueltype)/(select count(*) from carrentaldata),2) as percentage
+from carrentaldata
+group by fueltype; 
+
 -- 25.Which vehicle models have the highest ratings and how do their rental rates compare?
+select vehicle_model, round(avg(rating),2) as avg_rating, round(avg(rate_daily),2) as avg_rental_rate
+from carrentaldata
+group by vehicle_model
+having avg(rating) is not null
+order by avg_rating desc;
+
 -- 26.What is the average number of trips taken per owner?
+select owner_id, round(avg(rentertripstaken)) as avg_trips_taken
+from carrentaldata
+group by owner_id
+order by avg_trips_taken desc
+
 -- 27.How does the rental rate vary based on the location's latitude and longitude (proximity to major urban areas)?
+-- select * from carrentaldata
+
 -- 28.What is the distribution of vehicle models by state and how does this impact rental rates?
 -- 29.How does customer rating vary by state and vehicle type?
 -- 30.What is the most common vehicle make in the top 10 cities by number of rentals?
