@@ -246,13 +246,33 @@ from carrentaldata
 where location_city in 
 	(select location_city from top_10 where city_rank <=10)
 group by vehicle_make
-order by num_vehicles desc
+order by num_vehicles desc;
 
 -- 31.What is the relationship between the vehicle’s daily rate and the total number of trips taken?
--- select * from carrentaldata
+select corr(rate_daily, rentertripstaken) as correlation 
+from carrentaldata;
+/* A correlation result of -0.1 suggests a very weak negative relationship 
+between the vehicle's daily rate (rate_daily) and the total number of trips 
+taken (renterTripsTaken). This means that, on average, higher rental rates
+might slightly reduce the number of trips taken, but the effect is minimal 
+and likely insignificant.
+*/
 
 -- 32.How many vehicles have a daily rate higher than the average in their respective city?
+with avg_rate_daily as (
+	select location_city, rate_daily,
+	round(avg(rate_daily) over (partition by location_city),2) as avg_daily_rate
+	from carrentaldata
+)
+select location_city, count(*) as num_vehicles
+from avg_rate_daily
+where rate_daily > avg_daily_rate
+group by location_city
+order by num_vehicles desc;
+
 -- 33.What is the median rental rate for vehicles in each airport city?
+-- select * from carrentaldata
+
 -- 34.Which vehicle make has the highest average rental rate?
 -- 35.What are the top 10 most rented vehicles in terms of number of trips?
 -- 36.How does the rental rate vary for vehicles with high reviews (greater than 50 reviews)?
