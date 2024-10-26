@@ -229,10 +229,28 @@ from count_num_vehicle
 order by location_state, percentage_in_state desc;
 
 -- 29.How does customer rating vary by state and vehicle type?
--- select * from carrentaldata
+select location_state, vehicle_type, round(avg(rating),2) as avg_rating 
+from carrentaldata
+group by location_state, vehicle_type
+order by location_state, avg_rating desc; 
 
 -- 30.What is the most common vehicle make in the top 10 cities by number of rentals?
+with top_10 as (
+	select location_city, sum(rentertripstaken) as num_trips,
+	row_number() over (order by sum(rentertripstaken) desc) as city_rank
+	from carrentaldata
+	group by location_city
+)
+select vehicle_make, count(vehicle_make) as num_vehicles
+from carrentaldata
+where location_city in 
+	(select location_city from top_10 where city_rank <=10)
+group by vehicle_make
+order by num_vehicles desc
+
 -- 31.What is the relationship between the vehicle’s daily rate and the total number of trips taken?
+-- select * from carrentaldata
+
 -- 32.How many vehicles have a daily rate higher than the average in their respective city?
 -- 33.What is the median rental rate for vehicles in each airport city?
 -- 34.Which vehicle make has the highest average rental rate?
