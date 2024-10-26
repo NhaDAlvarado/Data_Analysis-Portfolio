@@ -196,13 +196,41 @@ order by avg_rating desc;
 select owner_id, round(avg(rentertripstaken)) as avg_trips_taken
 from carrentaldata
 group by owner_id
-order by avg_trips_taken desc
+order by avg_trips_taken desc;
 
 -- 27.How does the rental rate vary based on the location's latitude and longitude (proximity to major urban areas)?
--- select * from carrentaldata
+select case 
+        when location_latitude between 33 and 35 then 'Southern Region'
+        when location_latitude between 36 and 40 then 'Central Region'
+        when location_latitude between 41 and 43 then 'Northern Region'
+        else 'Other' 
+    end as latitude_region,
+    case 
+        when location_longitude between -124 and -120 then 'West Coast'
+        when location_longitude between -119 and -90 then 'Central US'
+        when location_longitude between -89 and -75 then 'East Coast'
+        else 'Other' 
+    end as longitude_region,
+    round(avg(rate_daily), 2) as average_rental_rate
+from carrentaldata
+group by latitude_region, longitude_region
+order by average_rental_rate desc;
 
 -- 28.What is the distribution of vehicle models by state and how does this impact rental rates?
+with count_num_vehicle as (
+	select vehicle_model, location_state, round(avg(rate_daily),2) as avg_rental_rate, count(vehicle_model) as num_of_vehicle,
+		count(vehicle_model) over (partition by location_state) as num_vehicle_by_state
+	from carrentaldata
+	group by vehicle_model, location_state
+)
+select vehicle_model, location_state, avg_rental_rate, num_of_vehicle,
+round(100.0*num_of_vehicle/num_vehicle_by_state,2) as percentage_in_state
+from count_num_vehicle
+order by location_state, percentage_in_state desc;
+
 -- 29.How does customer rating vary by state and vehicle type?
+-- select * from carrentaldata
+
 -- 30.What is the most common vehicle make in the top 10 cities by number of rentals?
 -- 31.What is the relationship between the vehicle’s daily rate and the total number of trips taken?
 -- 32.How many vehicles have a daily rate higher than the average in their respective city?
