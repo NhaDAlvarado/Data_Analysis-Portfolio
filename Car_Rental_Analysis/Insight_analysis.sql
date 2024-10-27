@@ -289,11 +289,44 @@ group by vehicle_make
 order by num_of_trips desc; 
 
 -- 36.How does the rental rate vary for vehicles with high reviews (greater than 50 reviews)?
--- select * from carrentaldata
+select vehicle_make, round(avg(rate_daily), 2) as avg_rental_rate
+from carrentaldata
+where reviewCount > 50
+group by vehicle_make
+order by avg_rental_rate desc;
 
 -- 37.What is the average rental rate in cities with over 1000 total rentals?
+with cities_over_1000_rentals as (
+	select location_city ,sum(rentertripstaken) as num_of_trips
+	from carrentaldata
+	group by location_city
+	having sum(rentertripstaken) >1000
+)
+select location_city, round(avg(rate_daily),2) as avg_rate
+from carrentaldata
+where location_city in (select location_city from cities_over_1000_rentals)
+group by location_city
+order by avg_rate desc;
+
 -- 38.Which vehicle year range (e.g., 2010-2015, 2016-2020) is the most popular in terms of trips taken?
+select case 
+		when vehicle_year between 1955 and 1965 then '1955-1964'
+		when vehicle_year between 1965 and 1975 then '1965-1974'
+		when vehicle_year between 1975 and 1985 then '1975-1984'
+		when vehicle_year between 1985 and 1995 then '1985-1994'
+		when vehicle_year between 1995 and 2005 then '1995-2004'
+		when vehicle_year between 2005 and 2015 then '2005-2014'
+		when vehicle_year between 2015 and 2020 then '2015-2020'
+	end as year_range,
+sum(rentertripstaken) as num_trips_taken
+from carrentaldata
+group by year_range
+order by num_trips_taken desc 
+
 -- 39.What is the most popular vehicle type in locations with the highest customer satisfaction ratings?
+-- select * from carrentaldata
+
+
 -- 40.How do customer ratings compare between rural and urban locations (using latitude and longitude data)?
 -- 41.What is the relationship between vehicle age and total number of trips taken?
 -- 42.How does the average rental rate compare between cities with low and high numbers of electric vehicles?
