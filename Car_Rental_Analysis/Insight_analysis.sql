@@ -271,11 +271,26 @@ group by location_city
 order by num_vehicles desc;
 
 -- 33.What is the median rental rate for vehicles in each airport city?
--- select * from carrentaldata
+select airportcity, 
+	percentile_cont(0.5) within group (order by rate_daily) as median
+from carrentaldata
+group by airportcity;
 
 -- 34.Which vehicle make has the highest average rental rate?
+select vehicle_make, round(avg(rate_daily),2) as avg_daily_rate
+from carrentaldata
+group by vehicle_make
+order by avg_daily_rate desc;
+
 -- 35.What are the top 10 most rented vehicles in terms of number of trips?
+select vehicle_make, sum(rentertripstaken) as num_of_trips
+from carrentaldata
+group by vehicle_make
+order by num_of_trips desc; 
+
 -- 36.How does the rental rate vary for vehicles with high reviews (greater than 50 reviews)?
+-- select * from carrentaldata
+
 -- 37.What is the average rental rate in cities with over 1000 total rentals?
 -- 38.Which vehicle year range (e.g., 2010-2015, 2016-2020) is the most popular in terms of trips taken?
 -- 39.What is the most popular vehicle type in locations with the highest customer satisfaction ratings?
