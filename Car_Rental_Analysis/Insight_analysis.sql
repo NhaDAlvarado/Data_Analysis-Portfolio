@@ -321,14 +321,34 @@ select case
 sum(rentertripstaken) as num_trips_taken
 from carrentaldata
 group by year_range
-order by num_trips_taken desc 
+order by num_trips_taken desc; 
 
 -- 39.What is the most popular vehicle type in locations with the highest customer satisfaction ratings?
--- select * from carrentaldata
-
+with locatons_with_highest_satisfaction as (
+	select location_city, round(avg(rating),2) as avg_rating
+	from carrentaldata
+	group by location_city
+	having avg(rating) =5 
+)
+select vehicle_type, count(vehicle_type) as num_vehicle
+from carrentaldata
+where location_city in (select location_city from locatons_with_highest_satisfaction)
+group by vehicle_type
+order by num_vehicle desc;
 
 -- 40.How do customer ratings compare between rural and urban locations (using latitude and longitude data)?
+select case 
+		when (location_latitude between 34 and 42 and location_longitude between -118 and -74) then 'Urban'
+        else 'Rural'
+    end as location_type,
+    round(avg(rating), 2) as avg_rating
+from carrentaldata
+where rating is not null
+group by location_type;
+
 -- 41.What is the relationship between vehicle age and total number of trips taken?
+-- select * from carrentaldata
+
 -- 42.How does the average rental rate compare between cities with low and high numbers of electric vehicles?
 -- 43.Which fuel type has the highest number of reviews on average?
 -- 44.What is the correlation between vehicle make and customer satisfaction (rating)?
