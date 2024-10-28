@@ -381,14 +381,36 @@ select city_category, round(avg(rate_daily),2) as avg_rental_rate
 from carrentaldata as c
 join city_categories as e
 on c.location_city = e.location_city
-group by city_category 
+group by city_category; 
 
 -- 43.Which fuel type has the highest number of reviews on average?
--- select * from carrentaldata
+select fueltype, round(sum(reviewcount)/count(fueltype),2) as avg_num_review
+from carrentaldata
+group by fueltype
+order by avg_num_review desc;
 
 -- 44.What is the correlation between vehicle make and customer satisfaction (rating)?
+select vehicle_make, round(avg(rating),2) as avg_rating
+from carrentaldata 
+group by vehicle_make
+order by avg_rating desc; 
+
 -- 45.Which vehicle models are most frequently rented in the top 5 most populated states?
+with top_5_populated as (
+	select location_state, sum(rentertripstaken) as total_trips,
+		row_number() over (order by sum(rentertripstaken) desc) as ranking
+	from carrentaldata
+	group by location_state
+)
+select vehicle_model, sum(rentertripstaken) as total_trips
+from carrentaldata
+where location_state in (select location_state from top_5_populated where ranking <=5)
+group by vehicle_model
+order by total_trips desc; 
+
 -- 46.How many unique vehicle owners are there in each state?
+-- select * from carrentaldata
+
 -- 47.How does the average rental rate vary across vehicle makes within the same state?
 -- 48.What is the most common vehicle year in each city?
 -- 49.How does the average rental rate change based on the number of reviews a vehicle has received?
