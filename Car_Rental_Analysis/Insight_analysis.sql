@@ -347,10 +347,45 @@ where rating is not null
 group by location_type;
 
 -- 41.What is the relationship between vehicle age and total number of trips taken?
--- select * from carrentaldata
+select case 
+		when (extract(year from current_date) - vehicle_year) between 1 and 6 then '1 to 5 years old'
+		when (extract(year from current_date) - vehicle_year) between 6 and 11 then '6 to 10 years old'
+		when (extract(year from current_date) - vehicle_year) between 11 and 16 then '11 to 15 years old'
+		when (extract(year from current_date) - vehicle_year) between 16 and 21 then '16 to 20 years old'
+		else '20+'
+	end as car_age_groups,
+	sum(rentertripstaken) as num_of_trips
+from carrentaldata
+group by car_age_groups
+order by num_of_trips desc ;
 
 -- 42.How does the average rental rate compare between cities with low and high numbers of electric vehicles?
+with electric_type as (
+	select location_city, 
+		count(*) as num_vehicle
+	from carrentaldata
+	where fueltype = 'ELECTRIC'
+	group by location_city
+),
+city_categories as (
+	select location_city, num_vehicle,
+	case when num_vehicle >= (
+		select percentile_cont(0.8) within group (order by num_vehicle) 
+		from electric_type
+		) then 'High Electric Vehicle City'
+		else 'Low Electric Vehicle City'
+	end as city_category
+	from electric_type 
+)	
+select city_category, round(avg(rate_daily),2) as avg_rental_rate
+from carrentaldata as c
+join city_categories as e
+on c.location_city = e.location_city
+group by city_category 
+
 -- 43.Which fuel type has the highest number of reviews on average?
+-- select * from carrentaldata
+
 -- 44.What is the correlation between vehicle make and customer satisfaction (rating)?
 -- 45.Which vehicle models are most frequently rented in the top 5 most populated states?
 -- 46.How many unique vehicle owners are there in each state?
