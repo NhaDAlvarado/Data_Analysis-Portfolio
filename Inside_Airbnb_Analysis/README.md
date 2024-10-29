@@ -53,3 +53,5 @@ The dataset is sourced from the [Inside Airbnb website](https://insideairbnb.com
 ## Conclusion
 
 By the end of this project, I will have gained a deep understanding of the Airbnb market in San Francisco. The combination of SQL for data extraction and Tableau for visualization will enable me to communicate complex insights effectively. This project will enhance my proficiency in data querying and dashboard creation, key skills for any data-driven role.
+
+[Explore my Tableau Public profile for full interactive visualizations.](https://public.tableau.com/app/profile/nha.alvarado/viz/InsideAirbnbDashboard/AirbnbSFDashboard)
