@@ -14,6 +14,10 @@ This project was chosen for several key reasons:
 2. **SQL and Tableau Proficiency**: This project offers the opportunity to apply and showcase my SQL querying skills for data extraction and cleaning. Additionally, I will use **Tableau** to build interactive dashboards that provide an engaging way to present insights.
 3. **Practical Insights**: The analysis will allow us to explore neighborhood-level impacts, pricing strategies, and availability trends, all of which are relevant to property owners, renters, and policymakers.
 
+## How dashboard look like
+
+![Inside Airbnb Dashboard](Airbnb%20SF%20Dashboard.png)
+
 ## What Will I Learn?
 
 In this project, I will:
