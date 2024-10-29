@@ -409,9 +409,33 @@ group by vehicle_model
 order by total_trips desc; 
 
 -- 46.How many unique vehicle owners are there in each state?
--- select * from carrentaldata
+select location_state, count(distinct owner_id) as num_of_owner
+from carrentaldata
+group by location_state;
 
 -- 47.How does the average rental rate vary across vehicle makes within the same state?
+select location_state, vehicle_make, round(avg(rate_daily),2) as avg_rate
+from carrentaldata
+group by location_state, vehicle_make
+order by location_state, avg_rate desc; 
+
 -- 48.What is the most common vehicle year in each city?
+with count_num_vehicle_per_year_in_city as (
+	select location_city,vehicle_year, 
+	count(*) as num_vehicle
+	from carrentaldata
+	group by location_city,vehicle_year
+),
+ranking_per_city as (
+	select location_city, vehicle_year, num_vehicle,
+	dense_rank() over (partition by location_city order by num_vehicle desc) as ranking
+	from count_num_vehicle_per_year_in_city
+)
+select location_city, vehicle_year, num_vehicle
+from ranking_per_city
+where ranking =1; 
+
 -- 49.How does the average rental rate change based on the number of reviews a vehicle has received?
+-- select * from carrentaldata
+
 -- 50.What is the distribution of rental trips by owner for vehicles with more than 100 trips?
