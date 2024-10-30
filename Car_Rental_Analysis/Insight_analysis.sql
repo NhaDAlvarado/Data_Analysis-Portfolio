@@ -436,6 +436,14 @@ from ranking_per_city
 where ranking =1; 
 
 -- 49.How does the average rental rate change based on the number of reviews a vehicle has received?
--- select * from carrentaldata
-
--- 50.What is the distribution of rental trips by owner for vehicles with more than 100 trips?
+select case 
+        when reviewCount between 0 and 10 then '0-10 reviews'
+        when reviewCount between 11 and 20 then '11-20 reviews'
+        when reviewCount between 21 and 50 then '21-50 reviews'
+		when reviewCount between 51 and 100 then '51-100 reviews'
+        else '100+ reviews' 
+    end as review_count_range,
+    round(avg(rate_daily),2) as average_rental_rate
+from carrentaldata
+group by review_count_range
+order by review_count_range;
