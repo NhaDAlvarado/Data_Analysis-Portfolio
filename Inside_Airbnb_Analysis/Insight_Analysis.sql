@@ -238,3 +238,15 @@ from airbnb_listings
 where number_of_reviews >0 
 	and last_review is not null 
 	and last_review >= cast('2024-09-03' as date) - INTERVAL '365 days';
+
+
+-- select * from airbnb_listings
+select case
+	when license like 'STR%' or license like '%STR' or license ~ '^[0-9]+$'  then 'licensed'
+	when license like 'pending%' or license like '%pending' or license like '%pending%' then 'pending'
+	when license = 'Exempt' then 'exempt'
+	else 'unlicensed'
+	end as license_type,
+	count(*) as num_of_type
+from airbnb_listings
+group by license_type
