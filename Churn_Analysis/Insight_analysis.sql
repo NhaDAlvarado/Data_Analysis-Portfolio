@@ -1,9 +1,89 @@
 -- 1.What is the overall churn rate of customers?
+select 
+	round(100.0*count(*)/(select count(*) from customerchurn),2) as churn_percentage
+from customerchurn
+where exited is true; 
+
 -- 2.How does churn rate vary by country (Geography)?
+with num_of_churn as (
+	select geography, 
+		count(*) as num_of_churn_user 
+	from customerchurn
+	where exited is true 
+	group by geography
+), 
+users_per_country as (
+	select geography,
+	count(*) as num_of_user
+	from customerchurn
+	group by geography 
+)
+select ch.geography, num_of_churn_user, num_of_user,
+round(100.0* num_of_churn_user/num_of_user,2) as percentage
+from num_of_churn as ch
+join users_per_country as u on ch.geography = u.geography;
+
 -- 3.What is the average credit score of customers who have churned versus those who have not?
+select 
+	round(sum(case when exited is true then creditscore else 0 end)
+	/ (select count(*) from customerchurn where exited is true) 
+	,2) as churn_avg_credit_score,
+	round(sum(case when exited is false then creditscore else 0 end)
+	/ (select count(*) from customerchurn where exited is false) 
+	,2) as not_churn_avg_credit_score	
+from customerchurn;
+
 -- 4.Is there a significant difference in the average balance between customers who churned and those who stayed?
+select 
+	round(sum(case when exited is true then balance else 0 end)
+	/ (select count(*) from customerchurn where exited is true) 
+	,2) as churn_avg_balance,
+	round(sum(case when exited is false then balance else 0 end)
+	/ (select count(*) from customerchurn where exited is false) 
+	,2) as not_churn_avg_balance	
+from customerchurn;
+
 -- 5.What is the distribution of churn across different age groups?
+with count_churned_user as (
+	select case when age between 15 and 25 then '15- 24'
+				when age between 25 and 35 then '25- 34'
+				when age between 35 and 45 then '35- 44'
+				when age between 45 and 55 then '45- 54'
+				when age between 55 and 65 then '55- 64'
+				when age between 65 and 75 then '65- 74'
+				when age between 75 and 85 then '75- 84'
+				when age between 85 and 95 then '85- 94'
+		else '95+'
+		end as age_group,
+		count(*) as num_churn_user
+	from customerchurn
+	where exited is true
+	group by age_group 
+),
+num_user_per_age_group as (
+	select case when age between 15 and 25 then '15- 24'
+				when age between 25 and 35 then '25- 34'
+				when age between 35 and 45 then '35- 44'
+				when age between 45 and 55 then '45- 54'
+				when age between 55 and 65 then '55- 64'
+				when age between 65 and 75 then '65- 74'
+				when age between 75 and 85 then '75- 84'
+				when age between 85 and 95 then '85- 94'
+		else '95+'
+		end as age_group,
+		count(*) as num_user
+	from customerchurn
+	group by age_group
+)
+select ch.age_group, num_churn_user, num_user,
+	round(100.0*num_churn_user/num_user,2) as churn_percentage 
+from count_churned_user as ch
+join num_user_per_age_group as a on ch.age_group = a.age_group 
+order by age_group; 
+
 -- 6.How does churn rate differ between customers who have a credit card versus those who do not (HasCrCard)?
+-- select * from customerchurn
+
 -- 7.What is the relationship between NumOfProducts and churn rate?
 -- 8.Among customers with the highest account balances, what percentage have churned?
 -- 9.How does the churn rate vary between active and inactive members (IsActiveMember)?
