@@ -82,9 +82,20 @@ join num_user_per_age_group as a on ch.age_group = a.age_group
 order by age_group; 
 
 -- 6.How does churn rate differ between customers who have a credit card versus those who do not (HasCrCard)?
--- select * from customerchurn
+select 
+	round(100.0*(
+		select count(*) from customerchurn where exited is true and hascrcard is true
+	)/ sum(case when hascrcard is true then 1 else 0 end) 
+	,2) as percentage_churn_user_with_cr,
+	round(100.0*(
+		select count(*) from customerchurn where exited is true and hascrcard is false 
+	)/sum(case when hascrcard is false then 1 else 0 end )
+	,2) as percentage_churn_user_wo_cr
+from customerchurn
 
 -- 7.What is the relationship between NumOfProducts and churn rate?
+-- select * from customerchurn
+
 -- 8.Among customers with the highest account balances, what percentage have churned?
 -- 9.How does the churn rate vary between active and inactive members (IsActiveMember)?
 -- 10.What is the average EstimatedSalary for churned versus retained customers?
