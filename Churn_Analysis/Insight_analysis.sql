@@ -91,13 +91,40 @@ select
 		select count(*) from customerchurn where exited is true and hascrcard is false 
 	)/sum(case when hascrcard is false then 1 else 0 end )
 	,2) as percentage_churn_user_wo_cr
-from customerchurn
+from customerchurn;
 
 -- 7.What is the relationship between NumOfProducts and churn rate?
--- select * from customerchurn
+select numofproducts, count(*) as num_churn_users 
+from customerchurn
+where exited is true
+group by numofproducts
+order by num_churn_users desc; 
 
 -- 8.Among customers with the highest account balances, what percentage have churned?
+-- select * from customerchurn
+with users_in_balance_group as (
+	select (case when balance > 50000 then 'high balances'
+			else 'low balances'
+		end) as balance_groups, count(*) as num_users
+	from customerchurn 
+	group by balance_groups 
+),
+churn_user_in_group as (
+	select (case when balance > 50000 then 'high balances'
+			else 'low balances'
+		end) as balance_groups, count(*) as num_churn_users
+	from customerchurn 
+	where exited is true 
+	group by balance_groups 
+)
+select ch.balance_groups, num_churn_users, num_users,
+	round(100.0*num_churn_users/num_users,2) as percentage 
+from users_in_balance_group as u
+join churn_user_in_group as ch on u.balance_groups = ch.balance_groups;
+
 -- 9.How does the churn rate vary between active and inactive members (IsActiveMember)?
+
+
 -- 10.What is the average EstimatedSalary for churned versus retained customers?
 -- 11.Which age group has the highest churn rate?
 -- 12.Is there a correlation between Tenure and churn rate?
