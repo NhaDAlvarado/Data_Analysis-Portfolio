@@ -101,7 +101,6 @@ group by numofproducts
 order by num_churn_users desc; 
 
 -- 8.Among customers with the highest account balances, what percentage have churned?
--- select * from customerchurn
 with users_in_balance_group as (
 	select (case when balance > 50000 then 'high balances'
 			else 'low balances'
@@ -123,10 +122,30 @@ from users_in_balance_group as u
 join churn_user_in_group as ch on u.balance_groups = ch.balance_groups;
 
 -- 9.How does the churn rate vary between active and inactive members (IsActiveMember)?
-
+select 
+	round(100.0*(
+		select count(*) from customerchurn where exited is true and isactivemember is true
+	)/ sum(case when isactivemember is true then 1 else 0 end) 
+	,2) as percentage_churn_active_user,
+	round(100.0*(
+		select count(*) from customerchurn where exited is true and isactivemember is false 
+	)/sum(case when isactivemember is false then 1 else 0 end )
+	,2) as percentage_churn_nonactive_user
+from customerchurn;
 
 -- 10.What is the average EstimatedSalary for churned versus retained customers?
+select 
+	round(sum(case when exited is true then estimatedsalary else 0 end)
+	/ (select count(*) from customerchurn where exited is true) 
+	,2) as churn_avg_estimatedsalary,
+	round(sum(case when exited is false then estimatedsalary else 0 end)
+	/ (select count(*) from customerchurn where exited is false) 
+	,2) as not_churn_avg_estimatedsalary	
+from customerchurn;
+
 -- 11.Which age group has the highest churn rate?
+-- select * from customerchurn
+
 -- 12.Is there a correlation between Tenure and churn rate?
 -- 13.Which combination of factors (e.g., age, geography, and number of products) has the highest churn rate?
 -- 14.What is the average tenure of customers who have stayed versus those who have churned?
