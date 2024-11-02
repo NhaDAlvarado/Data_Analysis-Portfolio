@@ -175,11 +175,24 @@ select ch.tenure, num_churned_users, num_users,
 	round(100.0 * num_churned_users/num_users,2) as percentage
 from churn_users as ch
 join users_per_tenure as t on ch.tenure = t.tenure 
-order by percentage desc 
+order by percentage desc; 
 
 -- 13.Which combination of factors (e.g., age, geography, and number of products) has the highest churn rate?
 -- select * from customerchurn
-
+select case when age between 15 and 25 then '15- 24'
+			when age between 25 and 35 then '25- 34'
+			when age between 35 and 45 then '35- 44'
+			when age between 45 and 55 then '45- 54'
+			when age between 55 and 65 then '55- 64'
+			when age between 65 and 75 then '65- 74'
+			when age between 75 and 85 then '75- 84'
+			when age between 85 and 95 then '85- 94'
+	else '95+' end as age_group, 
+	geography, numofproducts,
+    round(100.0 * sum(case when exited is true then 1 else 0 end) / count(*), 2) AS churn_rate
+from customerchurn
+group by  age_group, geography, numofproducts
+order by  churn_rate desc, age_group, geography, numofproducts ;
 
 -- 14.What is the average tenure of customers who have stayed versus those who have churned?
 -- 15.How does the churn rate differ by gender?
