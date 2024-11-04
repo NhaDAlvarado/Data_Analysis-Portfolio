@@ -216,10 +216,21 @@ from female_churn_rate
 cross join male_churn_rate;
 
 -- 16.What is the median credit score of customers who churned?
--- select * from customerchurn
+select percentile_cont(0.5) within group (order by creditscore) as median_credit_score
+from customerchurn
+where exited is true;
 
 -- 17.Among customers with a low CreditScore, how many products are they most likely to have?
+select case when creditscore < 601 then 'low credit score'
+			else 'high credit score'
+		end as credit_score_types,
+	round(avg(numofproducts),2) as avg_products
+from customerchurn
+group by credit_score_types;
+
 -- 18.What percentage of high-income customers (above a certain salary threshold) have churned?
+-- select * from customerchurn
+
 -- 19.How does the average number of products differ between churned and retained customers?
 -- 20.Which geography has the highest average customer balance?
 -- 21.What is the average tenure for customers who have stayed with the bank for over five years?
