@@ -194,9 +194,10 @@ group by  age_group, geography, numofproducts
 order by  churn_rate desc, age_group, geography, numofproducts ;
 
 -- 14.What is the average tenure of customers who have stayed versus those who have churned?
-select round(avg(tenure),2) as avg_tenure_stay,
-	(select round(avg(tenure),2) from customerchurn where exited is true) as avg_tenure_churn
-from customerchurn; 
+select exited,
+	round(avg(tenure),2) as avg_tenure
+from customerchurn
+group by exited;
 
 -- 15.How does the churn rate differ by gender?
 with female_churn_rate as (
@@ -229,10 +230,22 @@ from customerchurn
 group by credit_score_types;
 
 -- 18.What percentage of high-income customers (above a certain salary threshold) have churned?
--- select * from customerchurn
+select round(100.0* sum (case when estimatedsalary > 100000 and exited = true then 1 else 0 end)
+		/ sum (case when estimatedsalary > 100000 then 1 else 0 end) ,2) as high_income_churn_percentage
+from customerchurn;
 
 -- 19.How does the average number of products differ between churned and retained customers?
+select exited,
+	round(avg(numofproducts),2) as avg_num_products
+from customerchurn
+group by exited; 
+
 -- 20.Which geography has the highest average customer balance?
+select geography, round(avg(balance),2) as avg_balance
+from customerchurn
+group by geography
+order by avg_balance desc
+
 -- 21.What is the average tenure for customers who have stayed with the bank for over five years?
 -- 22.How many active customers (IsActiveMember) have a balance greater than the average balance?
 -- 23.What is the churn rate for each unique NumOfProducts count?
