@@ -178,7 +178,6 @@ join users_per_tenure as t on ch.tenure = t.tenure
 order by percentage desc; 
 
 -- 13.Which combination of factors (e.g., age, geography, and number of products) has the highest churn rate?
--- select * from customerchurn
 select case when age between 15 and 25 then '15- 24'
 			when age between 25 and 35 then '25- 34'
 			when age between 35 and 45 then '35- 44'
@@ -195,8 +194,30 @@ group by  age_group, geography, numofproducts
 order by  churn_rate desc, age_group, geography, numofproducts ;
 
 -- 14.What is the average tenure of customers who have stayed versus those who have churned?
+select round(avg(tenure),2) as avg_tenure_stay,
+	(select round(avg(tenure),2) from customerchurn where exited is true) as avg_tenure_churn
+from customerchurn; 
+
 -- 15.How does the churn rate differ by gender?
+with female_churn_rate as (
+	select round(100.0*sum(case when exited is true then 1 else 0 end) 
+		/ count(*),2) as female_churn_percentage
+	from customerchurn
+	where gender = 'Female'
+),
+male_churn_rate as (
+	select round(100.0*sum(case when exited is true then 1 else 0 end) 
+		/ count(*),2) as male_churn_percentage
+	from customerchurn
+	where gender = 'Male'
+)
+select female_churn_percentage, male_churn_percentage
+from female_churn_rate
+cross join male_churn_rate;
+
 -- 16.What is the median credit score of customers who churned?
+-- select * from customerchurn
+
 -- 17.Among customers with a low CreditScore, how many products are they most likely to have?
 -- 18.What percentage of high-income customers (above a certain salary threshold) have churned?
 -- 19.How does the average number of products differ between churned and retained customers?
