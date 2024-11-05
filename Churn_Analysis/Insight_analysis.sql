@@ -244,12 +244,39 @@ group by exited;
 select geography, round(avg(balance),2) as avg_balance
 from customerchurn
 group by geography
-order by avg_balance desc
+order by avg_balance desc;
 
 -- 21.What is the average tenure for customers who have stayed with the bank for over five years?
+select round(avg(tenure),2) as avg_turn
+from customerchurn
+where tenure >5 and exited is false; 
+
 -- 22.How many active customers (IsActiveMember) have a balance greater than the average balance?
+select count(*) as num_of_cus
+from customerchurn
+where isactivemember = true and 
+	balance > (select avg(balance) from customerchurn);
+
 -- 23.What is the churn rate for each unique NumOfProducts count?
+with num_users as (
+	select numofproducts, count(*) as num_of_users 
+	from customerchurn
+	group by numofproducts
+),
+num_churn_users as (
+	select numofproducts, count(*) as num_churned_users 
+	from customerchurn
+	where exited = true
+	group by numofproducts
+)
+select ch.numofproducts, num_churned_users, num_of_users,
+	round(100.0*num_churned_users/num_of_users,2) as percentage 
+from num_users as u 
+join num_churn_users as ch on u.numofproducts = ch.numofproducts
+
 -- 24.How does churn correlate with both credit score and age?
+-- select * from customerchurn
+
 -- 25.What is the most common age for churned customers?
 -- 26.How does churn rate vary by customer tenure bracket (e.g., 0-2 years, 3-5 years, etc.)?
 -- 27.What percentage of customers with both a high balance and multiple products churned?
