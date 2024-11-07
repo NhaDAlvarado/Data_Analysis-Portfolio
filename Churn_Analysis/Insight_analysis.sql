@@ -310,10 +310,69 @@ group by age_group
 order by num_of_churn desc; 
 
 -- 26.How does churn rate vary by customer tenure bracket (e.g., 0-2 years, 3-5 years, etc.)?
--- select * from customerchurn
+with num_churn_user as (
+	select case when tenure between 0 and 2 then '0-1 years'
+				when tenure between 2 and 4 then '2-3 years'
+				when tenure between 4 and 6 then '4-5 years'
+				when tenure between 6 and 8 then '6-7 years'
+				when tenure between 8 and 10 then '8-9 years'
+				else '10+'
+			end as tenure_bracket,
+		count(*) as num_churn_users 
+	from customerchurn
+	where exited = true 
+	group by tenure_bracket 
+),
+num_user as (
+	select case when tenure between 0 and 2 then '0-1 years'
+				when tenure between 2 and 4 then '2-3 years'
+				when tenure between 4 and 6 then '4-5 years'
+				when tenure between 6 and 8 then '6-7 years'
+				when tenure between 8 and 10 then '8-9 years'
+				else '10+'
+			end as tenure_bracket,
+		count(*) as num_users 
+	from customerchurn
+	group by tenure_bracket 
+)
+select ch.tenure_bracket, num_churn_users, num_users, 
+	round(100.0*num_churn_users/num_users,2) as percentage
+from num_churn_user as ch
+join num_user as u on ch.tenure_bracket = u.tenure_bracket; 
 
 -- 27.What percentage of customers with both a high balance and multiple products churned?
+with num_of_churn as (
+	select case when balance > 50000 then 'high balances'
+				else 'low balances'
+			end as balance_groups, 
+		case when numofproducts > 1 then 'multi products'
+				else 'single product '
+			end as product_groups,
+		count(*) as num_churn_users
+		from customerchurn 
+		where exited is true 
+		group by balance_groups, product_groups 
+),
+num_users as (
+	select case when balance > 50000 then 'high balances'
+				else 'low balances'
+			end as balance_groups, 
+		case when numofproducts > 1 then 'multi products'
+				else 'single product '
+			end as product_groups,
+		count(*) as num_users
+		from customerchurn 
+		group by balance_groups, product_groups 
+)
+select ch.balance_groups, ch.product_groups, num_churn_users, num_users, 
+	round(100.0*num_churn_users/num_users,2) as percentage
+from num_of_churn as ch
+join num_users as u on ch.balance_groups = u.balance_groups 
+	and  ch.product_groups = u.product_groups;
+
 -- 28.Are customers with zero balance more likely to churn compared to those with a positive balance?
+-- select * from customerchurn 
+
 -- 29.Among customers with high credit scores, what is the most common number of products held?
 -- 30.How does the average EstimatedSalary vary by geography?
 -- 31.What is the average tenure of customers who hold only one product versus multiple products?
