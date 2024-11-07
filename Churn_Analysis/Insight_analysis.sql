@@ -272,13 +272,46 @@ num_churn_users as (
 select ch.numofproducts, num_churned_users, num_of_users,
 	round(100.0*num_churned_users/num_of_users,2) as percentage 
 from num_users as u 
-join num_churn_users as ch on u.numofproducts = ch.numofproducts
+join num_churn_users as ch on u.numofproducts = ch.numofproducts;
 
 -- 24.How does churn correlate with both credit score and age?
--- select * from customerchurn
+select case when age between 15 and 25 then '15- 24'
+			when age between 25 and 35 then '25- 34'
+			when age between 35 and 45 then '35- 44'
+			when age between 45 and 55 then '45- 54'
+			when age between 55 and 65 then '55- 64'
+			when age between 65 and 75 then '65- 74'
+			when age between 75 and 85 then '75- 84'
+			when age between 85 and 95 then '85- 94'
+	else '95+' end as age_group, 
+	case when creditscore < 601 then 'low credit score'
+			else 'high credit score'
+		end as credit_score_types,
+	count(*) as num_of_churn	
+from customerchurn
+where exited = true 
+group by age_group, credit_score_types
+order by age_group, credit_score_types;
 
 -- 25.What is the most common age for churned customers?
+select case when age between 15 and 25 then '15- 24'
+			when age between 25 and 35 then '25- 34'
+			when age between 35 and 45 then '35- 44'
+			when age between 45 and 55 then '45- 54'
+			when age between 55 and 65 then '55- 64'
+			when age between 65 and 75 then '65- 74'
+			when age between 75 and 85 then '75- 84'
+			when age between 85 and 95 then '85- 94'
+	else '95+' end as age_group, 
+count(*) as num_of_churn	
+from customerchurn
+where exited = true 
+group by age_group
+order by num_of_churn desc; 
+
 -- 26.How does churn rate vary by customer tenure bracket (e.g., 0-2 years, 3-5 years, etc.)?
+-- select * from customerchurn
+
 -- 27.What percentage of customers with both a high balance and multiple products churned?
 -- 28.Are customers with zero balance more likely to churn compared to those with a positive balance?
 -- 29.Among customers with high credit scores, what is the most common number of products held?
