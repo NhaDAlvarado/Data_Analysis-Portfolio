@@ -371,10 +371,41 @@ join num_users as u on ch.balance_groups = u.balance_groups
 	and  ch.product_groups = u.product_groups;
 
 -- 28.Are customers with zero balance more likely to churn compared to those with a positive balance?
--- select * from customerchurn 
+with num_user as (
+	select case when balance = 0 then 'zero balance'
+		else 'positive balance' end as balance_group,
+		count(*) as num_user
+	from customerchurn
+	group by balance_group
+),
+num_churn_user as (
+	select case when balance = 0 then 'zero balance'
+		else 'positive balance' end as balance_group,
+		count(*) as num_churn_user
+	from customerchurn
+	where exited = true
+	group by balance_group
+)
+select ch.balance_group, num_churn_user, num_user,
+	round(100.0*num_churn_user/num_user,2) as percentage
+from num_churn_user as ch
+join num_user as u on ch.balance_group = u.balance_group;
 
 -- 29.Among customers with high credit scores, what is the most common number of products held?
+select case when creditscore < 601 then 'low credit score'
+			else 'high credit score'
+		end as credit_score_types,
+	numofproducts, count(*) as num_users
+from customerchurn
+where (case when creditscore < 601 then 'low credit score'
+			else 'high credit score'
+		end) = 'high credit score'
+group by numofproducts, credit_score_types
+order by num_users desc; 
+
 -- 30.How does the average EstimatedSalary vary by geography?
+-- select * from customerchurn 
+
 -- 31.What is the average tenure of customers who hold only one product versus multiple products?
 -- 32.How many customers have both low credit scores and high account balances?
 -- 33.Among female customers, which age group has the highest churn rate?
