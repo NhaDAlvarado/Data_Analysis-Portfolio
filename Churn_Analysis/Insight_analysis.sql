@@ -404,11 +404,37 @@ group by numofproducts, credit_score_types
 order by num_users desc; 
 
 -- 30.How does the average EstimatedSalary vary by geography?
--- select * from customerchurn 
+select geography, round(avg(estimatedsalary),2) as avg_estimate_salary
+from customerchurn
+group by geography; 
 
 -- 31.What is the average tenure of customers who hold only one product versus multiple products?
+select case when numofproducts <= 1 then 'single product'
+		else 'multi products'
+	end as product_group,
+round(avg(tenure),2) as avg_tenure 
+from customerchurn 
+group by product_group; 
+
 -- 32.How many customers have both low credit scores and high account balances?
+select case when creditscore < 601 then 'low credit score'
+			else 'high credit score'
+		end as credit_score_types,
+		case when balance <= 50000 then 'low balance'
+			else 'high balance' 
+		end as balance_group,
+		count(*) as num_churn_user
+	from customerchurn
+	where (case when creditscore < 601 then 'low credit score'
+			else 'high credit score'
+			end) = 'low credit score'
+	and (case when balance <= 50000 then 'low balance'
+		else 'high balance' end) = 'high balance'
+	group by credit_score_types,balance_group;
+
 -- 33.Among female customers, which age group has the highest churn rate?
+-- select * from customerchurn 
+
 -- 34.Which age group has the highest balance on average?
 -- 35.What is the churn rate among customers who have only been with the bank for one year?
 -- 36.Among customers with no credit card, how many are active members?
