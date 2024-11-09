@@ -433,10 +433,64 @@ select case when creditscore < 601 then 'low credit score'
 	group by credit_score_types,balance_group;
 
 -- 33.Among female customers, which age group has the highest churn rate?
--- select * from customerchurn 
+with female_customer as (
+	select * 
+	from customerchurn
+	where gender = 'Female'
+),
+churn_users as (
+	select case when age between 15 and 25 then '15- 24'
+				when age between 25 and 35 then '25- 34'
+				when age between 35 and 45 then '35- 44'
+				when age between 45 and 55 then '45- 54'
+				when age between 55 and 65 then '55- 64'
+				when age between 65 and 75 then '65- 74'
+				when age between 75 and 85 then '75- 84'
+				when age between 85 and 95 then '85- 94'
+		else '95+' end as age_group, 
+	count(*) as num_of_churn	
+	from female_customer 
+	where exited = true 
+	group by age_group
+),
+num_users as (
+	select case when age between 15 and 25 then '15- 24'
+				when age between 25 and 35 then '25- 34'
+				when age between 35 and 45 then '35- 44'
+				when age between 45 and 55 then '45- 54'
+				when age between 55 and 65 then '55- 64'
+				when age between 65 and 75 then '65- 74'
+				when age between 75 and 85 then '75- 84'
+				when age between 85 and 95 then '85- 94'
+		else '95+' end as age_group, 
+	count(*) as num_users	
+	from female_customer  
+	group by age_group
+)
+select ch.age_group, num_of_churn, num_users,
+	round(100.0* num_of_churn/num_users,2) as  percentage 
+from churn_users as ch
+join num_users as u on ch.age_group = u.age_group 
+order by percentage desc; 
 
 -- 34.Which age group has the highest balance on average?
+select case when age between 15 and 25 then '15- 24'
+				when age between 25 and 35 then '25- 34'
+				when age between 35 and 45 then '35- 44'
+				when age between 45 and 55 then '45- 54'
+				when age between 55 and 65 then '55- 64'
+				when age between 65 and 75 then '65- 74'
+				when age between 75 and 85 then '75- 84'
+				when age between 85 and 95 then '85- 94'
+		else '95+' end as age_group, 
+round(avg(balance),2) as avg_balance
+from customerchurn
+group by age_group 
+order by avg_balance desc; 
+
 -- 35.What is the churn rate among customers who have only been with the bank for one year?
+-- select * from customerchurn 
+
 -- 36.Among customers with no credit card, how many are active members?
 -- 37.What is the average credit score for each unique number of products?
 -- 38.What percentage of customers with a low tenure and low balance are active members?
