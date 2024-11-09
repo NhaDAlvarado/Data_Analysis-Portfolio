@@ -489,11 +489,27 @@ group by age_group
 order by avg_balance desc; 
 
 -- 35.What is the churn rate among customers who have only been with the bank for one year?
+select round(100.0*count(*)
+	/(select count(*) from customerchurn where tenure =1)
+	,2) as churn_rate
+from customerchurn
+where tenure =1 and exited = true; 
+
+-- 36.Among customers with no credit card, how many are active members? 
+select round(100.0*count(*)
+	/(select count(*) from customerchurn where hascrcard = true)
+	,2) as active_rate
+from customerchurn
+where hascrcard = true and exited = false; 
+
+-- 37.What is the average credit score for each unique number of products?
+select numofproducts, round(avg(creditscore),2) as avg_score
+from customerchurn
+group by numofproducts;
+
+-- 38.What percentage of customers with a low tenure and low balance are active members?
 -- select * from customerchurn 
 
--- 36.Among customers with no credit card, how many are active members?
--- 37.What is the average credit score for each unique number of products?
--- 38.What percentage of customers with a low tenure and low balance are active members?
 -- 39.What is the average age of customers who hold two products?
 -- 40.Among customers in each geography, which gender has a higher average balance?
 -- 41.What is the most common tenure for customers who have high estimated salaries?
