@@ -1,0 +1,2893 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20242.24.0807.0327                               -->
+<workbook original-version='18.1' source-build='2024.2.2 (20242.24.0807.0327)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <BasicButtonObject />
+    <CollapsiblePane />
+    <IntuitiveSorting />
+    <IntuitiveSorting_SP2 />
+    <_.fcp.LayerControlWidget.true...LayerControlWidget />
+    <MapboxVectorStylesAndLayers />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelExtractV2.true...ObjectModelExtractV2 />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+    <ZoneBackgroundTransparency />
+    <ZoneFriendlyName />
+    <ZoneVisibilityControl />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <style>
+    <style-rule element='all'>
+      <format attr='font-family' value='Verdana' />
+      <format attr='color' value='#192a51' />
+    </style-rule>
+  </style>
+  <datasources>
+    <datasource caption='CarRentalData' inline='true' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='CarRentalData' name='textscan.1k4rtr11ejziat1cm2tug1nny1ip'>
+            <connection class='textscan' directory='/Users/miadang/Desktop/DA/Car_Rental_Analysis' filename='CarRentalData.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.1k4rtr11ejziat1cm2tug1nny1ip' name='CarRentalData.csv' table='[CarRentalData#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='fuelType' ordinal='0' />
+            <column datatype='real' name='rating' ordinal='1' />
+            <column datatype='real' name='renterTripsTaken' ordinal='2' />
+            <column datatype='real' name='reviewCount' ordinal='3' />
+            <column datatype='string' name='location.city' ordinal='4' />
+            <column datatype='string' name='location.country' ordinal='5' />
+            <column datatype='real' name='location.latitude' ordinal='6' />
+            <column datatype='real' name='location.longitude' ordinal='7' />
+            <column datatype='string' name='location.state' ordinal='8' />
+            <column datatype='real' name='owner.id' ordinal='9' />
+            <column datatype='real' name='rate.daily' ordinal='10' />
+            <column datatype='string' name='vehicle.make' ordinal='11' />
+            <column datatype='string' name='vehicle.model' ordinal='12' />
+            <column datatype='string' name='vehicle.type' ordinal='13' />
+            <column datatype='real' name='vehicle.year' ordinal='14' />
+            <column datatype='string' name='airportcity' ordinal='15' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='textscan.1k4rtr11ejziat1cm2tug1nny1ip' name='CarRentalData.csv' table='[CarRentalData#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='string' name='fuelType' ordinal='0' />
+            <column datatype='real' name='rating' ordinal='1' />
+            <column datatype='real' name='renterTripsTaken' ordinal='2' />
+            <column datatype='real' name='reviewCount' ordinal='3' />
+            <column datatype='string' name='location.city' ordinal='4' />
+            <column datatype='string' name='location.country' ordinal='5' />
+            <column datatype='real' name='location.latitude' ordinal='6' />
+            <column datatype='real' name='location.longitude' ordinal='7' />
+            <column datatype='string' name='location.state' ordinal='8' />
+            <column datatype='real' name='owner.id' ordinal='9' />
+            <column datatype='real' name='rate.daily' ordinal='10' />
+            <column datatype='string' name='vehicle.make' ordinal='11' />
+            <column datatype='string' name='vehicle.model' ordinal='12' />
+            <column datatype='string' name='vehicle.type' ordinal='13' />
+            <column datatype='real' name='vehicle.year' ordinal='14' />
+            <column datatype='string' name='airportcity' ordinal='15' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>fuelType</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[fuelType]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>fuelType</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>rating</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[rating]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>rating</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>renterTripsTaken</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[renterTripsTaken]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>renterTripsTaken</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>reviewCount</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[reviewCount]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>reviewCount</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>location.city</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[location.city]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>location.city</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>location.country</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[location.country]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>location.country</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>location.latitude</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[location.latitude]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>location.latitude</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>location.longitude</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[location.longitude]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>location.longitude</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>location.state</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[location.state]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>location.state</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>owner.id</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[owner.id]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>owner.id</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>rate.daily</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[rate.daily]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>rate.daily</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>vehicle.make</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[vehicle.make]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>vehicle.make</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>vehicle.model</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[vehicle.model]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>vehicle.model</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>vehicle.type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[vehicle.type]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>vehicle.type</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>vehicle.year</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[vehicle.year]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>vehicle.year</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>airportcity</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[airportcity]</local-name>
+            <parent-name>[CarRentalData.csv]</parent-name>
+            <remote-alias>airportcity</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Location type' datatype='string' name='[Calculation_1040964842301325312]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [location.latitude] &gt;= 34 AND [location.latitude] &lt;= 42&#10;AND [location.longitude] &gt;= -118 AND [location.longitude] &lt;= -74&#10;THEN &quot;Urban&quot;&#10;ELSE &quot;Rural&quot;&#10;END' />
+      </column>
+      <column caption='Rental Rate Bin' datatype='string' name='[Calculation_1040964843638865921]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [rate.daily] &gt;= 20 and [rate.daily]&lt; 100 then &apos;$20- $99&apos;&#10;elseif [rate.daily] &gt;= 100 and [rate.daily]&lt; 200 then &apos;$100- $199&apos;&#10;elseif [rate.daily] &gt;= 200 and [rate.daily]&lt; 300 then &apos;$200- $299&apos;&#10;else &apos;$300+&apos;&#10;end' />
+      </column>
+      <column caption='Low/High EV vehicles' datatype='string' name='[Num EV Vehicles  (copy)_1040964843714203651]' role='measure' type='nominal'>
+        <calculation class='tableau' formula='IF COUNT([fuelType]) &gt;10 THEN &apos;High EV City&apos; &#10;ELSE &apos;Low EV City&apos; &#10;END' />
+      </column>
+      <_.fcp.ObjectModelTableType.true...column caption='CarRentalData.csv' datatype='table' name='[__tableau_internal_object_id__].[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]' role='measure' type='quantitative' />
+      <column caption='Airportcity' datatype='string' name='[airportcity]' role='dimension' type='nominal' />
+      <column caption='Fuel Type' datatype='string' name='[fuelType]' role='dimension' type='nominal' />
+      <column caption='Location.City' datatype='string' name='[location.city]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column caption='Location.Country' datatype='string' name='[location.country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column aggregation='Avg' caption='Location.Latitude' datatype='real' name='[location.latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+      <column aggregation='Avg' caption='Location.Longitude' datatype='real' name='[location.longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+      <column caption='Location.State' datatype='string' name='[location.state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column caption='Owner.Id' datatype='real' name='[owner.id]' role='dimension' type='ordinal' />
+      <column caption='Rate.Daily' datatype='real' name='[rate.daily]' role='measure' type='quantitative' />
+      <column caption='Rating' datatype='real' name='[rating]' role='measure' type='quantitative' />
+      <column caption='Renter Trips Taken' datatype='real' name='[renterTripsTaken]' role='measure' type='quantitative' />
+      <column caption='Review Count' datatype='real' name='[reviewCount]' role='measure' type='quantitative' />
+      <column caption='Vehicle.Make' datatype='string' name='[vehicle.make]' role='dimension' type='nominal' />
+      <column caption='Vehicle.Model' datatype='string' name='[vehicle.model]' role='dimension' type='nominal' />
+      <column caption='Vehicle.Type' datatype='string' name='[vehicle.type]' role='dimension' type='nominal' />
+      <column caption='Vehicle.Year' datatype='real' name='[vehicle.year]' role='dimension' type='quantitative' />
+      <column-instance column='[Calculation_1040964842301325312]' derivation='None' name='[none:Calculation_1040964842301325312:nk]' pivot='key' type='nominal' />
+      <column-instance column='[fuelType]' derivation='None' name='[none:fuelType:nk]' pivot='key' type='nominal' />
+      <column-instance column='[location.state]' derivation='None' name='[none:location.state:nk]' pivot='key' type='nominal' />
+      <column-instance column='[vehicle.type]' derivation='None' name='[none:vehicle.type:nk]' pivot='key' type='nominal' />
+      <drill-paths>
+        <drill-path name='Location Hierachy'>
+          <field>[location.country]</field>
+          <field>[location.state]</field>
+          <field>[location.city]</field>
+        </drill-path>
+      </drill-paths>
+      <extract _.fcp.ObjectModelExtractV2.true...object-id='' _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/pz/x922ffzx1z77z1strd8qk2qh0000gn/T/tableau-temp/#TableauTemp_04z6lcf0kj3k7z10rogtr1nxe9l8.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='10/30/2024 09:49:05 PM' username='tableau_internal_user'>
+          <_.fcp.ObjectModelEncapsulateLegacy.false...relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <_.fcp.ObjectModelEncapsulateLegacy.true...relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>fuelType</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[fuelType]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>fuelType</remote-alias>
+              <ordinal>0</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>rating</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[rating]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>rating</remote-alias>
+              <ordinal>1</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>78</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>renterTripsTaken</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[renterTripsTaken]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>renterTripsTaken</remote-alias>
+              <ordinal>2</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>207</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>reviewCount</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[reviewCount]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>reviewCount</remote-alias>
+              <ordinal>3</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>196</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>location.city</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[location.city]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>location.city</remote-alias>
+              <ordinal>4</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>691</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>location.country</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[location.country]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>location.country</remote-alias>
+              <ordinal>5</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>1</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>location.latitude</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[location.latitude]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>location.latitude</remote-alias>
+              <ordinal>6</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5851</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>location.longitude</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[location.longitude]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>location.longitude</remote-alias>
+              <ordinal>7</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>5650</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>location.state</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[location.state]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>location.state</remote-alias>
+              <ordinal>8</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>42</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>owner.id</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[owner.id]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>owner.id</remote-alias>
+              <ordinal>9</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>1854</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>rate.daily</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[rate.daily]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>rate.daily</remote-alias>
+              <ordinal>10</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>266</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>vehicle.make</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[vehicle.make]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>vehicle.make</remote-alias>
+              <ordinal>11</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>56</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>vehicle.model</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[vehicle.model]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>vehicle.model</remote-alias>
+              <ordinal>12</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>478</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>vehicle.type</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[vehicle.type]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>vehicle.type</remote-alias>
+              <ordinal>13</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>5</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>vehicle.year</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[vehicle.year]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>vehicle.year</remote-alias>
+              <ordinal>14</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>21</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>airportcity</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[airportcity]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>airportcity</remote-alias>
+              <ordinal>15</ordinal>
+              <family>CarRentalData.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>107</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:vehicle.type:nk]' type='palette'>
+            <map to='#310055'>
+              <bucket>&quot;van&quot;</bucket>
+            </map>
+            <map to='#4a0a77'>
+              <bucket>&quot;truck&quot;</bucket>
+            </map>
+            <map to='#6818a5'>
+              <bucket>&quot;suv&quot;</bucket>
+            </map>
+            <map to='#ab51e3'>
+              <bucket>&quot;minivan&quot;</bucket>
+            </map>
+            <map to='#d283ff'>
+              <bucket>&quot;car&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:fuelType:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>%null%</bucket>
+            </map>
+            <map to='#6818a5'>
+              <bucket>&quot;DIESEL&quot;</bucket>
+            </map>
+            <map to='#967aa1'>
+              <bucket>&quot;GASOLINE&quot;</bucket>
+            </map>
+            <map to='#ab51e3'>
+              <bucket>&quot;HYBRID&quot;</bucket>
+            </map>
+            <map to='#d283ff'>
+              <bucket>&quot;ELECTRIC&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:location.state:nk]' type='palette'>
+            <map to='#310055'>
+              <bucket>&quot;CA&quot;</bucket>
+            </map>
+            <map to='#4a0a77'>
+              <bucket>&quot;CO&quot;</bucket>
+            </map>
+            <map to='#6818a5'>
+              <bucket>&quot;FL&quot;</bucket>
+            </map>
+            <map to='#ab51e3'>
+              <bucket>&quot;NV&quot;</bucket>
+            </map>
+            <map to='#d283ff'>
+              <bucket>&quot;TX&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Calculation_1040964842301325312:nk]' type='palette'>
+            <map to='#ab51e3'>
+              <bucket>&quot;Rural&quot;</bucket>
+            </map>
+            <map to='#d283ff'>
+              <bucket>&quot;Urban&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='CarRentalData.csv' id='CarRentalData.csv_A4D8766AB00B4694A0255B406FD805E5'>
+            <properties context=''>
+              <relation connection='textscan.1k4rtr11ejziat1cm2tug1nny1ip' name='CarRentalData.csv' table='[CarRentalData#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='string' name='fuelType' ordinal='0' />
+                  <column datatype='real' name='rating' ordinal='1' />
+                  <column datatype='real' name='renterTripsTaken' ordinal='2' />
+                  <column datatype='real' name='reviewCount' ordinal='3' />
+                  <column datatype='string' name='location.city' ordinal='4' />
+                  <column datatype='string' name='location.country' ordinal='5' />
+                  <column datatype='real' name='location.latitude' ordinal='6' />
+                  <column datatype='real' name='location.longitude' ordinal='7' />
+                  <column datatype='string' name='location.state' ordinal='8' />
+                  <column datatype='real' name='owner.id' ordinal='9' />
+                  <column datatype='real' name='rate.daily' ordinal='10' />
+                  <column datatype='string' name='vehicle.make' ordinal='11' />
+                  <column datatype='string' name='vehicle.model' ordinal='12' />
+                  <column datatype='string' name='vehicle.type' ordinal='13' />
+                  <column datatype='real' name='vehicle.year' ordinal='14' />
+                  <column datatype='string' name='airportcity' ordinal='15' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <mapsources>
+    <mapsource name='Tableau' />
+  </mapsources>
+  <worksheets>
+    <worksheet name='10 Popular Model in top 5 State'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+            <column caption='Location.State' datatype='string' name='[location.state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[location.state]' derivation='None' name='[none:location.state:nk]' pivot='key' type='nominal' />
+            <column-instance column='[vehicle.model]' derivation='None' name='[none:vehicle.model:nk]' pivot='key' type='nominal' />
+            <column caption='Renter Trips Taken' datatype='real' name='[renterTripsTaken]' role='measure' type='quantitative' />
+            <column-instance column='[renterTripsTaken]' derivation='Sum' name='[sum:renterTripsTaken:qk]' pivot='key' type='quantitative' />
+            <column caption='Vehicle.Model' datatype='string' name='[vehicle.model]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.state:nk]'>
+            <groupfilter count='5' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='SUM([renterTripsTaken])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:location.state:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.model:nk]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='COUNT([vehicle.model])' function='order' user:ui-marker='order'>
+                <groupfilter function='union' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate'>
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;1 Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;124 Convertible 2000&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;124 Spider&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;1500&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;2 Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;2-Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;200&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;2500&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;3 Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;3 Series Gran Turismo&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;3-Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;300&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;348 Spider&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;3500&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;356&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;370Z&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;380sl&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;4 Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;4 Series Gran Coupe&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;4-Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;458 Spider&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;488 Gtb&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;488 Spider&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;488GTB&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;4C&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;4Runner&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;5 Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;5-Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;500&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;500e&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;500L&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;500X&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;6&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;6 Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;7 Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;7-Series&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;718 Boxster&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;718 Cayman&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;911&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;A3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;A4&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;A5&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;A6&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;A7&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;A8&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;A8 L&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Acadia&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Accent&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Accord&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Accord Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Accord Sedan&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Altima&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;AMG GT&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Armada&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Ascent&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Atlas&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Atlas Cross Sport&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;ATS&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Avalon&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Avenger&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Aveo&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Beetle&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Blazer&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Bolt EV&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Boxster&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;C-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;C-HR&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;C-Max Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cadenza&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;California&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Camaro&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Camry&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Camry Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Canyon&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cayenne&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cayman&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Challenger&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Charger&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cherokee&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Civic&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Civic Sedan&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CL-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CLA-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Clarity&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CLS-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Colorado&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Compass&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Continental&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Continental Flying Spur&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Continental GT&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Continental GT Speed&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Convertible&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cooper&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cooper Clubman&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cooper Countryman&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cooper Roadster&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Corolla&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Corolla Hatchback&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Corvette&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Corvette Stingray&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CR-V&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Crosstrek&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cruze&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cruze Limited&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CT 200h&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CTS&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CTS Coupe&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Cube&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CX-5&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;CX-9&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Dakota&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Dart&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;DB9&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Discovery Sport&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Durango&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;E-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;E-Tron&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Eclipse Cross&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Edge&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Elantra&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Elantra GT&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Encore&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Eos&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Equinox&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Equus&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;ES 300h&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;ES 330&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;ES 350&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Escalade&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Escalade ESV&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Escape&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Evora&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Evora 400&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Expedition&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Explorer&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Express&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Express Cargo&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;F-150&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;F-250 Super Duty&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;F-PACE&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;F-Type&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;F-TYPE&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;F430&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Fiesta&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Fit&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;FJ Cruiser&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Flex&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Focus&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Forester&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Forte&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;fortwo&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Frontier&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Fusion&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Fusion Energi&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Fusion Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;G-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Gallardo&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Genesis&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Ghibli&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Ghost&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Giulia&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GL-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GLA-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Gladiator&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GLC-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GLE-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GLE-Class Coupe&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GLK-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GLS-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Grand Caravan&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Grand Cherokee&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GranTurismo&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GS 350&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GT-R&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;GX 460&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Hardtop 2 Door&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Hardtop 2dr&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Highlander&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Highlander Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;HR-V&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;HS 250h&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Huracan&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;i3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;I3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;i8&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;I8&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;ILX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Impala&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Impreza&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Insight&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Ioniq Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;IS&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;IS 200t&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;IS 350&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;IS 350 C&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Jetta&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Journey&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;JX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Kona&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Lancer&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;LC 500&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Leaf&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Legacy&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Levante&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Liberty&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;LR2&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;LR4&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;LS 460&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;LX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;M-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;M3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;M35&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;M4&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;M6&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;M6 Gran Coupe&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Macan&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Malibu&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Matrix&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Maxima&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;MAZDA2&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;MAZDA5&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Mazda6&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;MDX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Metris&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Mirage&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Mirage G4&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;MKC&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;MKS&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;MKZ&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Model 3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Model S&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Model X&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Model Y&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Murano&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Mustang&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;MX-5 Miata&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;MX-5 Miata RF&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Navigator&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Niro&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;NV200&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;NX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;NX 200t&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;NX 300&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Odyssey&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Optima&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Optima Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Outback&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Outlander&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Outlander Sport&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Pacifica&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Palisade&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Panamera&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Passat&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Pathfinder&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Patriot&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Pilot&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Prius&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Prius c&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Prius Prime&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Prius v&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Q3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Q5&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Q50&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Q60&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Q60 Coupe&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Q7&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Q8&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Quattroporte&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;QX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;QX50&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;QX60&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;QX80&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;R8&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Ram 1500&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Ram 1500 Classic&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Range Rover&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Range Rover Evoque&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Range Rover Sport&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Range Rover Velar&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RAV4&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RC&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RC 200t&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RDX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Regal&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Renegade&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Ridgeline&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Rio&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Rogue&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Rogue Sport&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RS 3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RX 350&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RX 350L&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;RX 450h&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;S-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;S4&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;S40&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;S5&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;S6&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;S60&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;S80&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Santa Fe&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Santa Fe Sport&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sebring&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sedona&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sentra&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sequoia&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sienna&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sierra 1500&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Silverado 1500&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Silverado 1500 Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sky&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;SL-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;SLC-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Slingshot&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;SLK-Class&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Solstice&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sonata&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sonic&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sorento&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Soul&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Spark&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Spectra&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sportage&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Sprinter&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;SQ5&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;SRX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Stelvio&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Suburban&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Supra&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Tacoma&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Tahoe&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Tahoe Hybrid&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;tC&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Telluride&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Terrain&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Tiguan&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;TL&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Touareg&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Town and Country&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;TrailBlazer&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Transit Connect&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Transit Wagon&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Transit-350 Wagon&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Transit-350 Wagon EL&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Traverse&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Trax&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;TSX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;TT RS&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;TTS&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Tucson&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Tundra&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Uplander&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Urus&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Ux&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;V8 Vantage&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Veloster&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Venza&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Verano&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Versa&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Versa Note&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Volt&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Wrangler&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Wrangler JK&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Wrangler Unlimited&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;WRX&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;X1&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;X3&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;X4&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;X5&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;X5 eDrive&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;X6&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;X6 M&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;X7&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;xB&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XC60&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XC90&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XF&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XJ&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XL7&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XT4&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XT5&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Xterra&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XTS&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;XV Crosstrek&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Yaris&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Yukon&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Yukon XL&quot;' />
+                  <groupfilter function='member' level='[none:vehicle.model:nk]' member='&quot;Z4&quot;' />
+                </groupfilter>
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.state:nk]</column>
+            <column>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.model:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[sum:renterTripsTaken:qk]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.state:nk]' />
+            </encodings>
+            <trendline enable-confidence-bands='false' enable-instant-analytics='true' enabled='true' exclude-color='false' exclude-intercept='false' fit='linear' />
+            <customized-tooltip>
+              <formatted-text>
+                <run>One of top 5 States (base on total renter trips):	</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.state:nk]>]]></run>
+                <run>
+One of top 10 most popular model in this city:	</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.model:nk]>]]></run>
+                <run>&#10;Number of renter trips:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[sum:renterTripsTaken:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#967aa1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[sum:renterTripsTaken:qk]</rows>
+        <cols>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.model:nk]</cols>
+      </table>
+      <simple-id uuid='{CDD7658C-251E-4164-860F-753CCD4FC1CF}' />
+    </worksheet>
+    <worksheet name='Avg Rental'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+            <column-instance column='[location.city]' derivation='Attribute' name='[attr:location.city:nk]' pivot='key' type='nominal' />
+            <column-instance column='[location.country]' derivation='Attribute' name='[attr:location.country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[location.state]' derivation='Attribute' name='[attr:location.state:nk]' pivot='key' type='nominal' />
+            <column-instance column='[vehicle.type]' derivation='Attribute' name='[attr:vehicle.type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[rate.daily]' derivation='Avg' name='[avg:rate.daily:qk]' pivot='key' type='quantitative' />
+            <column caption='Location.City' datatype='string' name='[location.city]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+            <column caption='Location.Country' datatype='string' name='[location.country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column aggregation='Avg' caption='Location.Latitude' datatype='real' name='[location.latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' caption='Location.Longitude' datatype='real' name='[location.longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column caption='Location.State' datatype='string' name='[location.state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[location.latitude]' derivation='None' name='[none:location.latitude:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[location.longitude]' derivation='None' name='[none:location.longitude:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[vehicle.type]' derivation='None' name='[none:vehicle.type:nk]' pivot='key' type='nominal' />
+            <column caption='Rate.Daily' datatype='real' name='[rate.daily]' role='measure' type='quantitative' />
+            <column caption='Vehicle.Type' datatype='string' name='[vehicle.type]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.type:nk]'>
+            <groupfilter function='level-members' level='[none:vehicle.type:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.type:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='mark'>
+            <encoding attr='color' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rate.daily:qk]' type='custom-interpolated'>
+              <color-palette custom='true' name='' type='ordered-diverging'>
+                <color>#310055</color>
+                <color>#45116b</color>
+                <color>#5c2b81</color>
+                <color>#774b97</color>
+                <color>#9473ad</color>
+                <color>#b5a2c3</color>
+                <color>#d9d9d9</color>
+                <color>#d2b3b7</color>
+                <color>#cc9097</color>
+                <color>#c56e78</color>
+                <color>#bf4f5c</color>
+                <color>#b83141</color>
+                <color>#b21628</color>
+              </color-palette>
+            </encoding>
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='map-layer'>
+            <format attr='enabled' id='admin-0-boundaries-bg' value='false' />
+            <format attr='enabled' id='admin-0-boundaries' value='false' />
+            <format attr='enabled' id='admin-0-boundaries-dispute' value='false' />
+            <format attr='enabled' id='b01002_001e' value='false' />
+            <format attr='enabled' id='b01002_002e' value='false' />
+            <format attr='enabled' id='b01002_003e' value='false' />
+            <format attr='enabled' id='dp02_0001e' value='false' />
+            <format attr='enabled' id='dp02_0015e' value='false' />
+            <format attr='enabled' id='dp03_0027e_plus_dp03_0029e' value='false' />
+            <format attr='enabled' id='dp03_0028e' value='false' />
+            <format attr='enabled' id='dp03_0030e_plus_dp03_0031e' value='false' />
+            <format attr='enabled' id='dp03_0062e' value='false' />
+            <format attr='enabled' id='dp03_0088e' value='false' />
+            <format attr='enabled' id='dp04_0001e' value='false' />
+            <format attr='enabled' id='dp04_0046e' value='false' />
+            <format attr='enabled' id='dp04_0047e' value='false' />
+            <format attr='enabled' id='dp04_0089e' value='false' />
+            <format attr='enabled' id='dp05_0001e' value='false' />
+            <format attr='enabled' id='dp05_0002e_div_dp05_0003e' value='false' />
+            <format attr='enabled' id='dp05_0032e' value='false' />
+            <format attr='enabled' id='dp05_0033e' value='false' />
+            <format attr='enabled' id='dp05_0034e' value='false' />
+            <format attr='enabled' id='dp05_0039e' value='false' />
+            <format attr='enabled' id='dp05_0047e' value='false' />
+            <format attr='enabled' id='dp05_0053e' value='false' />
+            <format attr='enabled' id='dp05_0066e' value='false' />
+            <format attr='enabled' id='dp05_0077e' value='false' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0099999997764825821' />
+            <format attr='map-style' value='normal' />
+          </style-rule>
+          <style-rule element='map-data-layer'>
+            <format attr='palette' value='tableau-map-blue-green-light' />
+            <format attr='geo-area-type' value='State' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Multipolygon' />
+            <encodings>
+              <color column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rate.daily:qk]' />
+              <tooltip column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:location.country:nk]' />
+              <tooltip column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:location.state:nk]' />
+              <tooltip column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:location.city:nk]' />
+              <tooltip column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:vehicle.type:nk]' />
+              <geometry column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[Geometry (generated)]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:location.city:nk]> ]]></run>
+                <run>|</run>
+                <run bold='true'><![CDATA[ <[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:location.state:nk]>]]></run>
+                <run>&#10;Type </run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:vehicle.type:nk]>]]></run>
+                <run> Average $</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rate.daily:qk]> ]]></run>
+                <run>/ day&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+          </pane>
+        </panes>
+        <rows>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.latitude:qk]</rows>
+        <cols>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.longitude:qk]</cols>
+      </table>
+      <simple-id uuid='{875C7E36-319E-4886-A89B-692CAB88BAE0}' />
+    </worksheet>
+    <worksheet name='Fuel type dis'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+            <column-instance column='[fuelType]' derivation='Attribute' name='[attr:fuelType:nk]' pivot='key' type='nominal' />
+            <column-instance column='[fuelType]' derivation='Count' name='[cnt:fuelType:qk]' pivot='key' type='quantitative' />
+            <column caption='Fuel Type' datatype='string' name='[fuelType]' role='dimension' type='nominal' />
+            <column caption='Location.State' datatype='string' name='[location.state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[fuelType]' derivation='None' name='[none:fuelType:nk]' pivot='key' type='nominal' />
+            <column-instance column='[location.state]' derivation='None' name='[none:location.state:nk]' pivot='key' type='nominal' />
+            <column-instance column='[fuelType]' derivation='Count' name='[pcto:cnt:fuelType:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:fuelType:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:fuelType:nk]' />
+              <groupfilter function='member' level='[none:fuelType:nk]' member='%null%' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:fuelType:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='width' value='522' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Square' />
+            <encodings>
+              <color column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:fuelType:nk]' />
+              <size column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[pcto:cnt:fuelType:qk]' />
+              <tooltip column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:fuelType:nk]' />
+              <text column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[pcto:cnt:fuelType:qk]' />
+              <text column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[cnt:fuelType:qk]' />
+              <text column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.state:nk]' />
+              <lod column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.state:nk]' />
+            </encodings>
+            <trendline enable-confidence-bands='false' enable-instant-analytics='true' enabled='true' exclude-color='false' exclude-intercept='false' fit='linear' />
+            <customized-tooltip>
+              <formatted-text>
+                <run>In&#9;</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.state:nk]>]]></run>
+                <run>Æ&#10;</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:fuelType:nk]> ]]></run>
+                <run>has</run>
+                <run bold='true'><![CDATA[ <[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[cnt:fuelType:qk]> ]]></run>
+                <run>vehicles for rent</run>
+                <run bold='true'>Æ </run>
+                <run>(</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[pcto:cnt:fuelType:qk]>]]></run>
+                <run>)</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#967aa1' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{DA2C1D6D-067A-4B33-81E5-68A061263E2F}' />
+    </worksheet>
+    <worksheet name='Rental rate Bins vs vehicles types '>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+            <column caption='Rental Rate Bin' datatype='string' name='[Calculation_1040964843638865921]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [rate.daily] &gt;= 20 and [rate.daily]&lt; 100 then &apos;$20- $99&apos;&#10;elseif [rate.daily] &gt;= 100 and [rate.daily]&lt; 200 then &apos;$100- $199&apos;&#10;elseif [rate.daily] &gt;= 200 and [rate.daily]&lt; 300 then &apos;$200- $299&apos;&#10;else &apos;$300+&apos;&#10;end' />
+            </column>
+            <column-instance column='[rate.daily]' derivation='Count' name='[cnt:rate.daily:qk]' pivot='key' type='quantitative' />
+            <column caption='Fuel Type' datatype='string' name='[fuelType]' role='dimension' type='nominal' />
+            <column-instance column='[Calculation_1040964843638865921]' derivation='None' name='[none:Calculation_1040964843638865921:nk]' pivot='key' type='nominal' />
+            <column-instance column='[fuelType]' derivation='None' name='[none:fuelType:nk]' pivot='key' type='nominal' />
+            <column-instance column='[vehicle.type]' derivation='None' name='[none:vehicle.type:nk]' pivot='key' type='nominal' />
+            <column caption='Rate.Daily' datatype='real' name='[rate.daily]' role='measure' type='quantitative' />
+            <column caption='Vehicle.Type' datatype='string' name='[vehicle.type]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:fuelType:nk]'>
+            <groupfilter function='except' user:ui-domain='relevant' user:ui-enumeration='exclusive' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[none:fuelType:nk]' />
+              <groupfilter function='member' level='[none:fuelType:nk]' member='%null%' />
+            </groupfilter>
+          </filter>
+          <slices>
+            <column>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:fuelType:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' domain-expand='false' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[cnt:rate.daily:qk]' field-type='quantitative' scope='rows' type='space' />
+            <format attr='display' class='0' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[cnt:rate.daily:qk]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:Calculation_1040964843638865921:nk]' value='86' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.type:nk]' />
+            </encodings>
+            <trendline enable-confidence-bands='false' enable-instant-analytics='true' enabled='true' exclude-color='false' exclude-intercept='false' fit='linear' />
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[cnt:rate.daily:qk]> ]]></run>
+                <run>types</run>
+                <run bold='true'><![CDATA[ <[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.type:nk]> ]]></run>
+                <run> fall into</run>
+                <run bold='true'><![CDATA[ <[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:Calculation_1040964843638865921:nk]> ]]></run>
+                <run>bin&#9;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-color' value='#967aa1' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[cnt:rate.daily:qk]</rows>
+        <cols>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:Calculation_1040964843638865921:nk]</cols>
+        <show-full-range>
+          <column>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[Rate.Daily (bin)]</column>
+        </show-full-range>
+      </table>
+      <simple-id uuid='{92347597-FF32-4638-BDDA-FE2E2047623A}' />
+    </worksheet>
+    <worksheet name='Top 10 cities '>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+            <column-instance column='[location.country]' derivation='Attribute' name='[attr:location.country:nk]' pivot='key' type='nominal' />
+            <column-instance column='[location.state]' derivation='Attribute' name='[attr:location.state:nk]' pivot='key' type='nominal' />
+            <column caption='Location.City' datatype='string' name='[location.city]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+            <column caption='Location.Country' datatype='string' name='[location.country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column caption='Location.State' datatype='string' name='[location.state]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[location.city]' derivation='None' name='[none:location.city:nk]' pivot='key' type='nominal' />
+            <column caption='Renter Trips Taken' datatype='real' name='[renterTripsTaken]' role='measure' type='quantitative' />
+            <column-instance column='[renterTripsTaken]' derivation='Sum' name='[sum:renterTripsTaken:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.city:nk]'>
+            <groupfilter count='10' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+              <groupfilter direction='DESC' expression='SUM([renterTripsTaken])' function='order' user:ui-marker='order'>
+                <groupfilter function='level-members' level='[none:location.city:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+              </groupfilter>
+            </groupfilter>
+          </filter>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.city:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[sum:renterTripsTaken:qk]' shelf='rows' />
+          </shelf-sorts>
+          <slices>
+            <column>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.city:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[sum:renterTripsTaken:qk]' scope='cols' value='false' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='height' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.city:nk]' value='22' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <tooltip column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:location.country:nk]' />
+              <tooltip column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:location.state:nk]' />
+            </encodings>
+            <trendline enable-confidence-bands='false' enable-instant-analytics='true' enabled='true' exclude-color='false' exclude-intercept='false' fit='linear' />
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.city:nk]>]]></run>
+                <run>,</run>
+                <run bold='true'><![CDATA[ <[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[attr:location.state:nk]>]]></run>
+                <run>&#10;Renter Trips Taken:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[sum:renterTripsTaken:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-color' value='#967aa1' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.city:nk]</rows>
+        <cols>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[sum:renterTripsTaken:qk]</cols>
+      </table>
+      <simple-id uuid='{D55B7B39-54F0-4759-8FBF-3CB3D2DFEAE1}' />
+    </worksheet>
+    <worksheet name='Vehicle make vs rating'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+            <column-instance column='[rating]' derivation='Avg' name='[avg:rating:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[vehicle.make]' derivation='None' name='[none:vehicle.make:nk]' pivot='key' type='nominal' />
+            <column caption='Rating' datatype='real' name='[rating]' role='measure' type='quantitative' />
+            <column caption='Vehicle.Make' datatype='string' name='[vehicle.make]' role='dimension' type='nominal' />
+          </datasource-dependencies>
+          <shelf-sorts>
+            <shelf-sort-v2 dimension-to-sort='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.make:nk]' direction='DESC' is-on-innermost-dimension='true' measure-to-sort-by='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]' shelf='rows' />
+          </shelf-sorts>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='0' domain-expand='false' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]' field-type='quantitative' scope='cols' type='space' />
+            <format attr='display' class='0' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='fill-above' id='refline0' value='#00000000' />
+            <format attr='fill-below' id='refline0' value='#00000000' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <trendline enable-confidence-bands='false' enable-instant-analytics='true' enabled='true' exclude-color='false' exclude-intercept='false' fit='linear' />
+            <reference-line axis-column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]' enable-instant-analytics='true' formula='average' id='refline0' label-type='automatic' probability='95' scope='per-pane' value-column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]' z-order='1' />
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.make:nk]> ]]></run>
+                <run>has average rating is</run>
+                <run bold='true'><![CDATA[ <[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-color' value='#967aa1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.make:nk]</rows>
+        <cols>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]</cols>
+      </table>
+      <simple-id uuid='{1FBA3211-B4CF-442F-849F-7D38ACF695B6}' />
+    </worksheet>
+    <worksheet name='cus rating rural VS urban'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+            <column caption='Location type' datatype='string' name='[Calculation_1040964842301325312]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [location.latitude] &gt;= 34 AND [location.latitude] &lt;= 42&#10;AND [location.longitude] &gt;= -118 AND [location.longitude] &lt;= -74&#10;THEN &quot;Urban&quot;&#10;ELSE &quot;Rural&quot;&#10;END' />
+            </column>
+            <column-instance column='[rating]' derivation='Avg' name='[avg:rating:qk]' pivot='key' type='quantitative' />
+            <column aggregation='Avg' caption='Location.Latitude' datatype='real' name='[location.latitude]' role='measure' semantic-role='[Geographical].[Latitude]' type='quantitative' />
+            <column aggregation='Avg' caption='Location.Longitude' datatype='real' name='[location.longitude]' role='measure' semantic-role='[Geographical].[Longitude]' type='quantitative' />
+            <column-instance column='[Calculation_1040964842301325312]' derivation='None' name='[none:Calculation_1040964842301325312:nk]' pivot='key' type='nominal' />
+            <column caption='Rating' datatype='real' name='[rating]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]' scope='rows' value='false' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]' value='n#,##0.0000;-#,##0.0000' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:Calculation_1040964842301325312:nk]' />
+              <tooltip column='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]' />
+            </encodings>
+            <trendline enable-confidence-bands='false' enable-instant-analytics='true' enabled='true' exclude-color='false' exclude-intercept='false' fit='linear' />
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#967aa1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:rating:qk]</rows>
+        <cols>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:Calculation_1040964842301325312:nk]</cols>
+      </table>
+      <simple-id uuid='{9043BBD9-D8C4-48C3-96AB-D1B6B734A567}' />
+    </worksheet>
+    <worksheet name='rate vs num trips '>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+          </datasources>
+          <mapsources>
+            <mapsource name='Tableau' />
+          </mapsources>
+          <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+            <column-instance column='[renterTripsTaken]' derivation='Avg' name='[avg:renterTripsTaken:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[rate.daily]' derivation='None' name='[none:rate.daily:qk]' pivot='key' type='quantitative' />
+            <column caption='Rate.Daily' datatype='real' name='[rate.daily]' role='measure' type='quantitative' />
+            <column caption='Renter Trips Taken' datatype='real' name='[renterTripsTaken]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:renterTripsTaken:qk]' scope='rows' value='false' />
+            <format attr='display' class='0' field='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:rate.daily:qk]' scope='cols' value='false' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='map'>
+            <format attr='washout' value='0.0' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Shape' />
+            <trendline enable-confidence-bands='false' enable-instant-analytics='true' enabled='true' exclude-color='false' exclude-intercept='false' fit='linear' />
+            <customized-tooltip>
+              <formatted-text>
+                <run>$</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:rate.daily:qk]>]]></run>
+                <run>/ day&#10;Average trips taken:&#9;</run>
+                <run bold='true'><![CDATA[<[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:renterTripsTaken:qk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#967aa1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[avg:renterTripsTaken:qk]</rows>
+        <cols>[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:rate.daily:qk]</cols>
+      </table>
+      <simple-id uuid='{EC63FDE1-F4D7-43CE-8A78-0950F07B7C18}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Car Rental '>
+      <style />
+      <size maxheight='800' maxwidth='1400' minheight='800' minwidth='1400' sizing-mode='fixed' />
+      <datasources>
+        <datasource caption='CarRentalData' name='federated.093wfaf1gfuaay1byzh2c1o5b7zf' />
+      </datasources>
+      <datasource-dependencies datasource='federated.093wfaf1gfuaay1byzh2c1o5b7zf'>
+        <column-instance column='[vehicle.type]' derivation='None' name='[none:vehicle.type:nk]' pivot='key' type='nominal' />
+        <column caption='Vehicle.Type' datatype='string' name='[vehicle.type]' role='dimension' type='nominal' />
+      </datasource-dependencies>
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone friendly-name='Whole dashboard' h='98000' id='3' param='horz' type-v2='layout-flow' w='98858' x='571' y='1000'>
+            <zone fixed-size='121' friendly-name='Titles' h='98000' id='10' is-fixed='true' param='vert' type-v2='layout-flow' w='8643' x='571' y='1000'>
+              <zone fixed-size='69' friendly-name='Logo' h='9625' id='63' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Car_Rental_Analysis/Logo/vehicle.png' type-v2='bitmap' w='8501' x='642' y='1125'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='2' friendly-name='Divider ' h='250' id='65' is-fixed='true' type-v2='empty' w='8501' x='642' y='10750'>
+                <zone-style>
+                  <format attr='border-color' value='#967aa1' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='2' />
+                  <format attr='margin' value='5' />
+                  <format attr='margin-top' value='0' />
+                  <format attr='margin-bottom' value='0' />
+                  <format attr='background-color' value='#967aa1' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='116' forceUpdate='true' friendly-name='Title' h='15500' id='53' is-fixed='true' type-v2='text' w='8501' x='642' y='11000'>
+                <formatted-text>
+                  <run bold='true' fontalignment='1' fontsize='11'>CAR </run>
+                  <run fontalignment='1'>Æ&#10;</run>
+                  <run bold='true' fontalignment='1' fontsize='11'>RENTAL </run>
+                  <run fontalignment='1'>Æ&#10;</run>
+                  <run bold='true' fontalignment='1' fontsize='11'>DASHBOARD </run>
+                </formatted-text>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='2875' id='67' type-v2='text' w='8501' x='642' y='26500'>
+                <formatted-text>
+                  <run fontalignment='1'>Filter</run>
+                </formatted-text>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='2' friendly-name='Divider ' h='250' id='66' is-fixed='true' type-v2='empty' w='8501' x='642' y='29375'>
+                <zone-style>
+                  <format attr='border-color' value='#967aa1' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='2' />
+                  <format attr='margin' value='0' />
+                  <format attr='margin-right' value='5' />
+                  <format attr='margin-left' value='5' />
+                  <format attr='background-color' value='#967aa1' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='92' friendly-name='Filter button' h='12500' id='64' is-fixed='true' type-v2='dashboard-object' w='8501' x='642' y='29625'>
+                <button action='' active-visual-state-index='1'>
+                  <toggle-action>tabdoc:toggle-button-click-action window-id=&quot;{C572E8B1-C026-4A51-8E6E-01D927F72FDD}&quot; zone-id=&quot;64&quot; zone-ids=[35]</toggle-action>
+                  <button-visual-state>
+                    <image-path>/Users/miadang/Desktop/DA/Car_Rental_Analysis/Logo/filter_shown.png</image-path>
+                    <tooltip-text>Click to close filter </tooltip-text>
+                  </button-visual-state>
+                  <button-visual-state>
+                    <image-path>/Users/miadang/Desktop/DA/Car_Rental_Analysis/Logo/filter_hidden.png</image-path>
+                    <tooltip-text>Click to shown filter</tooltip-text>
+                  </button-visual-state>
+                </button>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='2' h='250' id='72' is-fixed='true' type-v2='empty' w='8501' x='642' y='42125'>
+                <zone-style>
+                  <format attr='border-color' value='#967aa1' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='2' />
+                  <format attr='margin' value='5' />
+                  <format attr='margin-top' value='0' />
+                  <format attr='margin-bottom' value='0' />
+                  <format attr='background-color' value='#967aa1' />
+                </zone-style>
+              </zone>
+              <zone h='28375' id='71' type-v2='empty' w='8501' x='642' y='42375'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone h='2875' id='70' type-v2='text' w='8501' x='642' y='70750'>
+                <formatted-text>
+                  <run fontalignment='1'>Contact </run>
+                </formatted-text>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='2' friendly-name='Divider ' h='250' id='12' is-fixed='true' type-v2='empty' w='8501' x='642' y='73625'>
+                <zone-style>
+                  <format attr='border-color' value='#967aa1' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='2' />
+                  <format attr='margin' value='0' />
+                  <format attr='margin-right' value='5' />
+                  <format attr='margin-left' value='5' />
+                  <format attr='background-color' value='#967aa1' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='92' h='12500' id='69' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Car_Rental_Analysis/Logo/github.png' type-v2='bitmap' url='https://github.com/NhaDAlvarado' w='8501' x='642' y='73875'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='92' h='12500' id='68' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Car_Rental_Analysis/Logo/linkedin.png' type-v2='bitmap' url='https://www.linkedin.com/in/nhadalvarado/' w='8501' x='642' y='86375'>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#967aa1' />
+                <format attr='border-style' value='solid' />
+                <format attr='border-width' value='1' />
+              </zone-style>
+            </zone>
+            <zone fixed-size='1266' friendly-name='Charts and Details' h='98000' id='7' is-fixed='true' param='vert' type-v2='layout-flow' w='90215' x='9214' y='1000'>
+              <zone fixed-size='207' friendly-name='Top Charts' h='25875' id='13' is-fixed='true' param='horz' type-v2='layout-flow' w='90215' x='9214' y='1000'>
+                <zone fixed-size='510' friendly-name='Chart 1' h='25625' id='32' is-fixed='true' param='vert' type-v2='layout-flow' w='36429' x='9285' y='1125'>
+                  <zone forceUpdate='true' friendly-name='Title' h='2875' id='33' type-v2='text' w='36429' x='9285' y='1125'>
+                    <formatted-text>
+                      <run bold='true'>Average Rental Rate by Vehicle Types &amp; States</run>
+                      <run>Æ&#10;</run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone friendly-name='Chart' h='22750' id='34' name='Avg Rental' show-title='false' w='36429' x='9285' y='4000'>
+                    <layout-cache minheight='201' minwidth='201' type-h='scalable' type-w='scalable' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone fixed-size='1' friendly-name='Divider ' h='25625' id='54' is-fixed='true' type-v2='empty' w='71' x='45714' y='1125'>
+                  <zone-style>
+                    <format attr='border-color' value='#967aa1' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='4' />
+                    <format attr='margin' value='1' />
+                    <format attr='margin-top' value='5' />
+                    <format attr='margin-right' value='0' />
+                    <format attr='margin-bottom' value='5' />
+                    <format attr='margin-left' value='0' />
+                    <format attr='background-color' value='#967aa1' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='404' friendly-name='Chart 2' h='25625' id='36' is-fixed='true' param='vert' type-v2='layout-flow' w='28857' x='45785' y='1125'>
+                  <zone forceUpdate='true' friendly-name='Title' h='2875' id='37' type-v2='text' w='28857' x='45785' y='1125'>
+                    <formatted-text>
+                      <run bold='true'>Correlation between Rental Rate &amp; Total Trips Taken</run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone friendly-name='Chart' h='22750' id='38' name='rate vs num trips ' show-title='false' w='28857' x='45785' y='4000'>
+                    <layout-cache minheight='100' minwidth='100' type-h='scalable' type-w='scalable' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone fixed-size='1' friendly-name='Divider ' h='25625' id='57' is-fixed='true' type-v2='empty' w='71' x='74642' y='1125'>
+                  <zone-style>
+                    <format attr='border-color' value='#967aa1' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='2' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-top' value='5' />
+                    <format attr='margin-bottom' value='5' />
+                    <format attr='background-color' value='#967aa1' />
+                  </zone-style>
+                </zone>
+                <zone friendly-name='Chart 3' h='25625' id='39' param='vert' type-v2='layout-flow' w='24644' x='74713' y='1125'>
+                  <zone forceUpdate='true' friendly-name='Title' h='2875' id='40' type-v2='text' w='24644' x='74713' y='1125'>
+                    <formatted-text>
+                      <run bold='true'>Rental Rate Bins VS Vehicle Types </run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone friendly-name='Chart' h='22750' id='41' name='Rental rate Bins vs vehicles types ' show-title='false' w='24644' x='74713' y='4000'>
+                    <layout-cache minheight='120' type-h='scalable' type-w='cell' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone-style>
+                  <format attr='border-color' value='#967aa1' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='1' />
+                </zone-style>
+              </zone>
+              <zone friendly-name='Middle Charts' h='33375' id='19' param='horz' type-v2='layout-flow' w='90215' x='9214' y='26875'>
+                <zone fixed-size='425' friendly-name='Chart 4' h='33125' id='20' is-fixed='true' param='vert' type-v2='layout-flow' w='30357' x='9285' y='27000'>
+                  <zone forceUpdate='true' friendly-name='Title' h='2875' id='24' type-v2='text' w='30357' x='9285' y='27000'>
+                    <formatted-text>
+                      <run bold='true'>Top 10 Popular Models in Top 5 States </run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone friendly-name='Chart' h='30250' id='25' name='10 Popular Model in top 5 State' show-title='false' w='30357' x='9285' y='29875'>
+                    <layout-cache cell-count-w='10' minheight='180' type-h='scalable' type-w='cell' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone fixed-size='1' friendly-name='Divider ' h='33125' id='58' is-fixed='true' type-v2='empty' w='71' x='39642' y='27000'>
+                  <zone-style>
+                    <format attr='border-color' value='#967aa1' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='2' />
+                    <format attr='margin' value='5' />
+                    <format attr='margin-right' value='0' />
+                    <format attr='margin-left' value='0' />
+                    <format attr='background-color' value='#967aa1' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='619' friendly-name='Chart 5' h='33125' id='22' is-fixed='true' param='vert' type-v2='layout-flow' w='44214' x='39713' y='27000'>
+                  <zone forceUpdate='true' friendly-name='Title' h='2875' id='27' type-v2='text' w='44214' x='39713' y='27000'>
+                    <formatted-text>
+                      <run bold='true'>Top 10 Cities </run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone fixed-size='227' friendly-name='Chart' h='29375' id='28' is-fixed='true' name='Top 10 cities ' show-title='false' w='44214' x='39713' y='29875'>
+                    <layout-cache minwidth='180' type-h='fixed' type-w='scalable' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone fixed-size='1' friendly-name='Divider ' h='33125' id='59' is-fixed='true' type-v2='empty' w='71' x='83927' y='27000'>
+                  <zone-style>
+                    <format attr='border-color' value='#967aa1' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='2' />
+                    <format attr='margin' value='5' />
+                    <format attr='margin-right' value='0' />
+                    <format attr='margin-left' value='0' />
+                    <format attr='background-color' value='#967aa1' />
+                  </zone-style>
+                </zone>
+                <zone friendly-name='Chart 6' h='33125' id='23' param='vert' type-v2='layout-flow' w='15360' x='83998' y='27000'>
+                  <zone forceUpdate='true' friendly-name='Title' h='2875' id='29' type-v2='text' w='15360' x='83998' y='27000'>
+                    <formatted-text>
+                      <run bold='true'>Rating in Rural VS Urban</run>
+                      <run>Æ&#10;</run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone friendly-name='Chart' h='30250' id='30' name='cus rating rural VS urban' show-title='false' w='15360' x='83998' y='29875'>
+                    <layout-cache minheight='120' type-h='scalable' type-w='cell' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone-style>
+                  <format attr='border-color' value='#967aa1' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='1' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='310' friendly-name='Bottom Charts' h='38750' id='14' is-fixed='true' param='horz' type-v2='layout-flow' w='90215' x='9214' y='60250'>
+                <zone fixed-size='530' friendly-name='Chart 7' h='38500' id='42' is-fixed='true' param='vert' type-v2='layout-flow' w='37857' x='9285' y='60375'>
+                  <zone forceUpdate='true' friendly-name='Title ' h='2875' id='44' type-v2='text' w='37857' x='9285' y='60375'>
+                    <formatted-text>
+                      <run bold='true'>Fuel Types Distribution </run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone fixed-size='249' friendly-name='Chart ' h='32125' id='45' is-fixed='true' name='Fuel type dis' show-title='false' w='37857' x='9285' y='63250'>
+                    <layout-cache fixed-size-w='522' type-h='fixed' type-w='fixed' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone fixed-size='1' friendly-name='Divider ' h='38500' id='60' is-fixed='true' type-v2='empty' w='71' x='47142' y='60375'>
+                  <zone-style>
+                    <format attr='border-color' value='#967aa1' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='2' />
+                    <format attr='margin' value='5' />
+                    <format attr='margin-right' value='0' />
+                    <format attr='margin-left' value='0' />
+                    <format attr='background-color' value='#967aa1' />
+                  </zone-style>
+                </zone>
+                <zone friendly-name='Chart 8 ' h='38500' id='46' param='vert' type-v2='layout-flow' w='52145' x='47213' y='60375'>
+                  <zone forceUpdate='true' friendly-name='Title ' h='2875' id='47' type-v2='text' w='52145' x='47213' y='60375'>
+                    <formatted-text>
+                      <run bold='true'>Customer Rating VS Vehicle Make </run>
+                    </formatted-text>
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                  <zone friendly-name='Chart ' h='35625' id='48' name='Vehicle make vs rating' show-title='false' w='52145' x='47213' y='63250'>
+                    <layout-cache fixed-size-h='1080' minwidth='200' type-h='fixed' type-w='scalable' />
+                    <zone-style>
+                      <format attr='border-color' value='#000000' />
+                      <format attr='border-style' value='none' />
+                      <format attr='border-width' value='0' />
+                      <format attr='margin' value='4' />
+                    </zone-style>
+                  </zone>
+                </zone>
+                <zone-style>
+                  <format attr='border-color' value='#967aa1' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='1' />
+                </zone-style>
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+            <format attr='background-color' value='#f5e6e8' />
+          </zone-style>
+        </zone>
+        <zone h='17250' hidden-by-user='true' id='35' name='Avg Rental' param='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.type:nk]' type-v2='filter' w='6571' x='1357' y='41250' />
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='2900' minheight='2900' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='74' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='73' param='vert' type-v2='layout-flow' w='98858' x='571' y='1000'>
+                <zone fixed-size='69' friendly-name='Logo' h='9625' id='63' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Car_Rental_Analysis/Logo/vehicle.png' type-v2='bitmap' w='8501' x='642' y='1125'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='33' type-v2='text' w='36429' x='9285' y='1125'>
+                  <formatted-text>
+                    <run bold='true'>Average Rental Rate by Vehicle Types &amp; States</run>
+                    <run>Æ&#10;</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='37' type-v2='text' w='28857' x='45785' y='1125'>
+                  <formatted-text>
+                    <run bold='true'>Correlation between Rental Rate &amp; Total Trips Taken</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='40' type-v2='text' w='24644' x='74713' y='1125'>
+                  <formatted-text>
+                    <run bold='true'>Rental Rate Bins VS Vehicle Types </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='17250' id='35' mode='checkdropdown' name='Avg Rental' param='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.type:nk]' type-v2='filter' w='6571' x='1357' y='41250'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='174' friendly-name='Chart' h='22750' id='34' is-fixed='true' name='Avg Rental' show-title='false' w='36429' x='9285' y='4000'>
+                  <layout-cache minheight='201' minwidth='201' type-h='scalable' type-w='scalable' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='174' friendly-name='Chart' h='22750' id='38' is-fixed='true' name='rate vs num trips ' show-title='false' w='28857' x='45785' y='4000'>
+                  <layout-cache minheight='100' minwidth='100' type-h='scalable' type-w='scalable' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='174' friendly-name='Chart' h='22750' id='41' is-fixed='true' name='Rental rate Bins vs vehicles types ' show-title='false' w='24644' x='74713' y='4000'>
+                  <layout-cache minheight='120' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='116' forceUpdate='true' friendly-name='Title' h='15500' id='53' type-v2='text' w='8501' x='642' y='11000'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1' fontsize='11'>CAR </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run bold='true' fontalignment='1' fontsize='11'>RENTAL </run>
+                    <run fontalignment='1'>Æ&#10;</run>
+                    <run bold='true' fontalignment='1' fontsize='11'>DASHBOARD </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='2875' id='67' type-v2='text' w='8501' x='642' y='26500'>
+                  <formatted-text>
+                    <run fontalignment='1'>Filter</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='24' type-v2='text' w='30357' x='9285' y='27000'>
+                  <formatted-text>
+                    <run bold='true'>Top 10 Popular Models in Top 5 States </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='27' type-v2='text' w='44214' x='39713' y='27000'>
+                  <formatted-text>
+                    <run bold='true'>Top 10 Cities </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='29' type-v2='text' w='15360' x='83998' y='27000'>
+                  <formatted-text>
+                    <run bold='true'>Rating in Rural VS Urban</run>
+                    <run>Æ&#10;</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='234' friendly-name='Chart' h='30250' id='25' is-fixed='true' name='10 Popular Model in top 5 State' show-title='false' w='30357' x='9285' y='29875'>
+                  <layout-cache cell-count-w='10' minheight='180' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='227' friendly-name='Chart' h='29375' id='28' is-fixed='true' name='Top 10 cities ' show-title='false' w='44214' x='39713' y='29875'>
+                  <layout-cache minwidth='180' type-h='fixed' type-w='scalable' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='234' friendly-name='Chart' h='30250' id='30' is-fixed='true' name='cus rating rural VS urban' show-title='false' w='15360' x='83998' y='29875'>
+                  <layout-cache minheight='120' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title ' h='2875' id='44' type-v2='text' w='37857' x='9285' y='60375'>
+                  <formatted-text>
+                    <run bold='true'>Fuel Types Distribution </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title ' h='2875' id='47' type-v2='text' w='52145' x='47213' y='60375'>
+                  <formatted-text>
+                    <run bold='true'>Customer Rating VS Vehicle Make </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='249' friendly-name='Chart ' h='32125' id='45' is-fixed='true' name='Fuel type dis' show-title='false' w='37857' x='9285' y='63250'>
+                  <layout-cache fixed-size-w='522' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='277' friendly-name='Chart ' h='35625' id='48' is-fixed='true' name='Vehicle make vs rating' show-title='false' w='52145' x='47213' y='63250'>
+                  <layout-cache fixed-size-h='1080' minwidth='200' type-h='fixed' type-w='scalable' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='2875' id='70' type-v2='text' w='8501' x='642' y='70750'>
+                  <formatted-text>
+                    <run fontalignment='1'>Contact </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='92' h='12500' id='69' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Car_Rental_Analysis/Logo/github.png' type-v2='bitmap' url='https://github.com/NhaDAlvarado' w='8501' x='642' y='73875'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='92' h='12500' id='68' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Car_Rental_Analysis/Logo/linkedin.png' type-v2='bitmap' url='https://www.linkedin.com/in/nhadalvarado/' w='8501' x='642' y='86375'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+                <format attr='background-color' value='#f5e6e8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{E21FE7EF-3B76-4650-A957-16021C136F0B}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Avg Rental'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card param='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.type:nk]' type='filter' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>&quot;minivan&quot;</bucket>
+          </multibucket>
+        </current-page>
+        <floating-toolbar-visibility value='2' />
+        <geo-search-visibility value='1' />
+        <map-navigation value='1' />
+        <default-map-unit-selection mapunit='2' />
+        <_.fcp.LayerControlWidget.true...layer-control toolbar-button-enabled='false' />
+      </viewpoint>
+      <simple-id uuid='{7988CA9D-A275-40CF-86D8-B2EDA81AA902}' />
+    </window>
+    <window class='worksheet' name='rate vs num trips '>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>&quot;minivan&quot;</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{DFA86E52-0285-4093-95D7-C97EEFAB627B}' />
+    </window>
+    <window class='worksheet' name='10 Popular Model in top 5 State'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:location.state:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>&quot;minivan&quot;</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{10232358-EE56-4C80-9A29-668BD56DE386}' />
+    </window>
+    <window class='worksheet' name='cus rating rural VS urban'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>&quot;minivan&quot;</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{0761F355-0502-4EA0-896A-2D61BF1E8A86}' />
+    </window>
+    <window class='worksheet' name='Fuel type dis'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>&quot;minivan&quot;</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{20E42BC5-8ED3-4E2E-BC81-7263D082A2AC}' />
+    </window>
+    <window class='worksheet' name='Top 10 cities '>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>&quot;minivan&quot;</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{369F0E81-39FC-4647-83B0-71D1A11EDC97}' />
+    </window>
+    <window class='worksheet' name='Vehicle make vs rating'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>&quot;minivan&quot;</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{A8AD7F70-7878-40F9-90C5-BC2E4ED7B724}' />
+    </window>
+    <window class='worksheet' name='Rental rate Bins vs vehicles types '>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='2' param='[federated.093wfaf1gfuaay1byzh2c1o5b7zf].[none:vehicle.type:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <current-page>
+          <multibucket>
+            <bucket>&quot;minivan&quot;</bucket>
+          </multibucket>
+        </current-page>
+      </viewpoint>
+      <simple-id uuid='{E780D173-F75D-424E-A311-29C3D9063546}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Car Rental '>
+      <viewpoints>
+        <viewpoint name='10 Popular Model in top 5 State'>
+          <current-page>
+            <multibucket>
+              <bucket>&quot;minivan&quot;</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Avg Rental'>
+          <current-page>
+            <multibucket>
+              <bucket>&quot;minivan&quot;</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+          <floating-toolbar-visibility value='1' />
+          <default-map-unit-selection mapunit='2' />
+        </viewpoint>
+        <viewpoint name='Fuel type dis'>
+          <current-page>
+            <multibucket>
+              <bucket>&quot;minivan&quot;</bucket>
+            </multibucket>
+          </current-page>
+        </viewpoint>
+        <viewpoint name='Rental rate Bins vs vehicles types '>
+          <current-page>
+            <multibucket>
+              <bucket>&quot;minivan&quot;</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Top 10 cities '>
+          <current-page>
+            <multibucket>
+              <bucket>&quot;minivan&quot;</bucket>
+            </multibucket>
+          </current-page>
+        </viewpoint>
+        <viewpoint name='Vehicle make vs rating'>
+          <current-page>
+            <multibucket>
+              <bucket>&quot;minivan&quot;</bucket>
+            </multibucket>
+          </current-page>
+        </viewpoint>
+        <viewpoint name='cus rating rural VS urban'>
+          <current-page>
+            <multibucket>
+              <bucket>&quot;minivan&quot;</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='rate vs num trips '>
+          <current-page>
+            <multibucket>
+              <bucket>&quot;minivan&quot;</bucket>
+            </multibucket>
+          </current-page>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='71' />
+      <simple-id uuid='{C572E8B1-C026-4A51-8E6E-01D927F72FDD}' />
+    </window>
+  </windows>
+</workbook>

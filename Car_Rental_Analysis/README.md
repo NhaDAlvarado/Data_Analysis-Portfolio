@@ -52,6 +52,10 @@ Through this project, I aim to:
 - **SQL**: For data querying and analysis.
 - **Tableau**: For data visualization and creating interactive dashboards.
 
+## How dashboard look like
+
+![Car Rental Dashboard](Car%20Rental.png)
+
 ## Interactive Tableau Visualizations
 
 Check out my **Tableau Public profile** for more interactive dashboards related to this project and other visualizations:  
