@@ -536,11 +536,38 @@ group by geography, gender
 order by geography, avg_balance desc; 
 
 -- 41.What is the most common tenure for customers who have high estimated salaries?
--- select * from customerchurn
+select tenure, 
+	case when estimatedsalary > 50000 then 'high salary'
+			else 'low salary'
+		end as salary_group,
+count(*) as num_user
+from customerchurn 
+where (case when estimatedsalary > 50000 then 'high salary'
+			else 'low salary'
+		end) = 'high salary'
+group by tenure, salary_group
+order by num_user desc; 
 
 -- 42.What is the highest balance held by any customer, and did that customer churn?
+select surname, gender, balance, exited
+from customerchurn
+order by balance desc 
+limit 1; 
+/* Lo has the highest balance, and he's still active */
+
 -- 43.How does the average balance differ between customers with low, medium, and high estimated salaries?
+select case when estimatedsalary < 50000 then 'low salary'
+			when estimatedsalary >= 50000 and estimatedsalary < 110000 then 'medium salary'
+			else 'high salary'
+		end as salary_group,
+round(avg(balance),2) as avg_balance
+from customerchurn
+group by salary_group
+order by avg_balance desc; 
+
 -- 44.What percentage of customers with high tenure (e.g., 10+ years) have left the bank?
+-- select * from customerchurn
+
 -- 45.How many customers with two or more products are inactive members?
 -- 46.Among customers aged 50 and above, what is the average credit score?
 -- 47.For customers who churned, what is the average number of products they held?
