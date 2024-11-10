@@ -507,12 +507,37 @@ select numofproducts, round(avg(creditscore),2) as avg_score
 from customerchurn
 group by numofproducts;
 
--- 38.What percentage of customers with a low tenure and low balance are active members?
--- select * from customerchurn 
+-- 38.What percentage of customers with a low tenure and low balance are active members? 
+select case when tenure <=2 then 'low tenure'
+			else 'high tenure'
+		end as tenure_types,
+		case when balance <= 50000 then 'low balance'
+			else 'high balance' 
+		end as balance_group,
+		round(100.0*count(*)/(select count(*) from customerchurn),2) as percentage 
+	from customerchurn
+	where (case when tenure <=2 then 'low tenure'
+			else 'high tenure'
+		end) = 'low tenure'
+	and (case when balance <= 50000 then 'low balance'
+			else 'high balance' 
+		end) = 'low balance'
+	group by tenure_types,balance_group;
 
 -- 39.What is the average age of customers who hold two products?
+select round(avg(age),2) as avg_age 
+from customerchurn 
+where numofproducts = 2; 
+
 -- 40.Among customers in each geography, which gender has a higher average balance?
+select geography, gender, round(avg(balance),2) as avg_balance
+from customerchurn
+group by geography, gender
+order by geography, avg_balance desc; 
+
 -- 41.What is the most common tenure for customers who have high estimated salaries?
+-- select * from customerchurn
+
 -- 42.What is the highest balance held by any customer, and did that customer churn?
 -- 43.How does the average balance differ between customers with low, medium, and high estimated salaries?
 -- 44.What percentage of customers with high tenure (e.g., 10+ years) have left the bank?
