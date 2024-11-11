@@ -566,11 +566,86 @@ group by salary_group
 order by avg_balance desc; 
 
 -- 44.What percentage of customers with high tenure (e.g., 10+ years) have left the bank?
--- select * from customerchurn
+with num_users as (
+	select case when tenure <=5 then 'low tenure'
+		else 'high tenure'
+		end as tenure_group,
+		count(*) as num_users
+	from customerchurn 
+	group by tenure_group
+),
+churn_users as (
+	select case when tenure <=5 then 'low tenure'
+		else 'high tenure'
+		end as tenure_group,
+		count(*) as churn_users
+	from customerchurn 
+	where exited = true 
+	group by tenure_group
+)	
+select ch.tenure_group, churn_users, num_users, 
+round(100.0 * churn_users/num_users,2) as percentage 
+from churn_users as ch
+join num_users as u on ch.tenure_group = u.tenure_group; 
 
 -- 45.How many customers with two or more products are inactive members?
+select count(*) as num_churn_user
+from customerchurn
+where numofproducts >1 and exited = true; 
+
 -- 46.Among customers aged 50 and above, what is the average credit score?
+select round(avg(creditscore),2) as avg_score 
+from customerchurn
+where age >=50; 
+
 -- 47.For customers who churned, what is the average number of products they held?
+select round(avg(numofproducts),2) as avg_num_of_products
+from customerchurn
+where exited = true; 
+
 -- 48.How does churn rate compare between customers with high and low tenure who have a credit card?
+with num_users as (
+	select case when tenure <=5 then 'low tenure'
+		else 'high tenure'
+		end as tenure_group,
+		count(*) as num_users
+	from customerchurn 
+	where hascrcard = true 
+	group by tenure_group
+),
+churn_users as (
+	select case when tenure <=5 then 'low tenure'
+		else 'high tenure'
+		end as tenure_group,
+		count(*) as churn_users
+	from customerchurn 
+	where exited = true and hascrcard = true 
+	group by tenure_group
+)	
+select ch.tenure_group, churn_users, num_users, 
+round(100.0 * churn_users/num_users,2) as percentage 
+from churn_users as ch
+join num_users as u on ch.tenure_group = u.tenure_group; 
+
 -- 49.What is the median age of customers with high balances?
+with balance_group_setup as (
+	select *, case when balance <= 50000 then 'low balance'
+				else 'high balance' 
+			end as balance_group 
+	from customerchurn
+)
+select percentile_cont(0.5) within group (order by age) as age_median
+from balance_group_setup
+where balance_group =  'high balance';
+
 -- 50.Among customers with an average or below-average estimated salary, how many hold multiple products?
+-- select * from customerchurn
+with below_avg_estimated_salary as (
+	select * 
+	from customerchurn
+	where estimatedsalary <= (
+		select avg(estimatedsalary) from customerchurn)
+)
+select count(*) as num_users
+from below_avg_estimated_salary
+where numofproducts > 1; 
