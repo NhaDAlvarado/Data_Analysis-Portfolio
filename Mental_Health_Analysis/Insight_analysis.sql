@@ -1,10 +1,25 @@
 -- 1. What is the distribution of respondents by gender?
--- 	select * from mental_health
-
+select gender, 
+	round(100.0*count(*)/ (select count(*) from mental_health),2) as percentage
+from mental_health
+group by gender; 
 
 -- 2. Which countries have the highest number of respondents?
+select country, count(*) as num_of_respondents 
+from mental_health
+group by country
+order by num_of_respondents desc;
+
 -- 3. What percentage of respondents report having a family history of mental illness?
+select family_history,
+round(100.0*count(*)/ (select count(*) from mental_health),2) as percentage
+from mental_health 
+where family_history = 'Yes'
+group by family_history;
+
 -- 4. How many respondents have sought treatment for mental health issues?
+-- select * from mental_health
+
 -- 5. What is the average duration of days spent indoors by respondents?
 -- 6. Do self-employed individuals report a higher rate of mental health issues than employed individuals?
 -- 7. How does the rate of mental health treatment vary by country?
