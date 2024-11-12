@@ -18,11 +18,40 @@ where family_history = 'Yes'
 group by family_history;
 
 -- 4. How many respondents have sought treatment for mental health issues?
--- select * from mental_health
+select treatment, 
+	round(100.0*count(*)/ (select count(*) from mental_health),2) as percentage
+from mental_health
+group by treatment;
 
 -- 5. What is the average duration of days spent indoors by respondents?
+select days_indoors, count(*) as num_of_respondents 
+from mental_health 
+group by days_indoors 
+order by num_of_respondents desc; 
+
 -- 6. Do self-employed individuals report a higher rate of mental health issues than employed individuals?
+with have_mental_issue as (
+	select self_employed, count(*) as num_of_mental_respondents
+	from mental_health
+	where self_employed is not null and mental_health_history = 'Yes'
+	group by self_employed 
+),
+count_num_respondent_per_employed_type as (
+	select self_employed, count(*) as num_of_respondents
+	from mental_health
+	where self_employed is not null 
+	group by self_employed 
+)
+select e.self_employed, num_of_mental_respondents, num_of_respondents,
+	round(100.0* num_of_mental_respondents/num_of_respondents,2) as percentage  
+from have_mental_issue as m
+join count_num_respondent_per_employed_type as e 
+on m.self_employed = e.self_employed;
+
 -- 7. How does the rate of mental health treatment vary by country?
+-- select * from mental_health
+
+
 -- 8. What is the correlation between family history and seeking treatment?
 -- 9. Which occupation has the highest reported rate of mental health struggles?
 -- 10.What proportion of respondents report growing stress levels?
