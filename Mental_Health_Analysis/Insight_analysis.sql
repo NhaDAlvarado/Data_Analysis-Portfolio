@@ -49,11 +49,53 @@ join count_num_respondent_per_employed_type as e
 on m.self_employed = e.self_employed;
 
 -- 7. How does the rate of mental health treatment vary by country?
--- select * from mental_health
-
+with num_of_seeking_treatment_per_country as (
+	select country, count(*) as num_of_respondent_w_treatment
+	from mental_health
+	where treatment = 'Yes'
+	group by country 
+),
+num_of_respondents_per_country as (
+	select country, count(*) as num_of_respondent
+	from mental_health
+	group by country 
+)
+select t.country, num_of_respondent_w_treatment , num_of_respondent,
+round(100.0* num_of_respondent_w_treatment / num_of_respondent,2) as percentage 
+from num_of_seeking_treatment_per_country as t
+join num_of_respondents_per_country as r
+on t.country = r.country 
+order by percentage desc; 
 
 -- 8. What is the correlation between family history and seeking treatment?
+select family_history, treatment, count(*) as numof_respondent,
+	round(
+		100.0*count(*) / (sum(count(*)) over (partition by family_history))
+	,2) as percentage 
+from mental_health
+group by family_history, treatment
+order by family_history desc;
+
 -- 9. Which occupation has the highest reported rate of mental health struggles?
+-- select * from mental_health
+with struggle_respondents_per_job as (
+	select occupation, count(*) as num_respondents_has_struggles
+	from mental_health 
+	where coping_struggles = 'Yes'	
+	group by occupation 
+),
+respondents_per_job as (
+	select occupation, count(*) as num_respondents 
+	from mental_health 	
+	group by occupation 
+)
+select j.occupation, num_respondents_has_struggles , num_respondents,
+round(100.0* num_respondents_has_struggles / num_respondents,2) as percentage 
+from respondents_per_job as j
+join struggle_respondents_per_job as s 
+on j.occupation = s.occupation 
+order by percentage desc;
+
 -- 10.What proportion of respondents report growing stress levels?
 -- 11.How many respondents report changes in habits due to stress?
 -- 12.Are there significant differences in mental health interview openness by gender?
