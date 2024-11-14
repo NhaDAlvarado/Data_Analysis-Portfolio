@@ -114,12 +114,28 @@ from mental_health
 group by gender, mental_health_interview
 order by gender, percentage;  
 
--- 13.How does mood swing severity vary across age groups (if age data were available)?
--- select * from mental_health
+-- 13.How does mood swing severity vary across occupation ?
+select occupation, mood_swings, count(*) as num_of_respondents,
+	round(100.0*count(*) / sum(count(*)) over (partition by occupation),2) as percentage 
+from mental_health 
+group by occupation, mood_swings 
+order by occupation, percentage desc; 
 
 -- 14.What percentage of respondents feel socially weak or isolated?
+select social_weakness, 
+	round(100.0*count(*)/(select count(*) from mental_health),2) as percentage
+from mental_health 
+group by social_weakness; 
+
 -- 15.What are the most common occupations among respondents?
+select occupation, count(*) as num_of_respondents
+from mental_health
+group by occupation
+order by num_of_respondents desc; 
+
 -- 16.Is there a difference in mental health issues reported by those who work indoors for prolonged periods?
+-- select * from mental_health
+
 -- 17.Do respondents with a family history of mental health issues report higher rates of coping struggles?
 -- 18.What percentage of respondents feel their work interest has decreased?
 -- 19.How does the availability of care options vary across countries?
