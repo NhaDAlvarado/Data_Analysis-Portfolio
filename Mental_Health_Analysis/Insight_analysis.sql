@@ -77,7 +77,6 @@ group by family_history, treatment
 order by family_history desc;
 
 -- 9. Which occupation has the highest reported rate of mental health struggles?
--- select * from mental_health
 with struggle_respondents_per_job as (
 	select occupation, count(*) as num_respondents_has_struggles
 	from mental_health 
@@ -97,9 +96,27 @@ on j.occupation = s.occupation
 order by percentage desc;
 
 -- 10.What proportion of respondents report growing stress levels?
+select growing_stress, 
+	round(100.0*count(*)/ (select count(*) from mental_health),2) as percentage
+from mental_health
+group by growing_stress;
+
 -- 11.How many respondents report changes in habits due to stress?
+select growing_stress, changes_habits, count(*) as num_of_respondents
+from mental_health
+where growing_stress = 'Yes'and changes_habits = 'Yes'	
+group by growing_stress, changes_habits;
+
 -- 12.Are there significant differences in mental health interview openness by gender?
+select gender, mental_health_interview, count(*) as num_of_respondent,
+	round(100.0*count(*) / sum(count(*)) over (partition by gender),2) as percentage  
+from mental_health
+group by gender, mental_health_interview
+order by gender, percentage;  
+
 -- 13.How does mood swing severity vary across age groups (if age data were available)?
+-- select * from mental_health
+
 -- 14.What percentage of respondents feel socially weak or isolated?
 -- 15.What are the most common occupations among respondents?
 -- 16.Is there a difference in mental health issues reported by those who work indoors for prolonged periods?
