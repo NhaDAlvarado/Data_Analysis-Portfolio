@@ -134,11 +134,28 @@ group by occupation
 order by num_of_respondents desc; 
 
 -- 16.Is there a difference in mental health issues reported by those who work indoors for prolonged periods?
--- select * from mental_health
+select days_indoors, mental_health_history, count(*) as num_of_respondent,
+	round(100.0*count(*)/ (sum(count(*)) over (partition by days_indoors)),2) as percentage 
+from mental_health
+group by days_indoors, mental_health_history
+order by days_indoors, percentage desc; 
 
 -- 17.Do respondents with a family history of mental health issues report higher rates of coping struggles?
+select family_history, coping_struggles, count(*) as num_of_respondent,
+	round(100.0*count(*)/ (sum(count(*)) over (partition by family_history)),2) as percentage
+from mental_health
+where family_history = 'Yes'
+group by family_history, coping_struggles;
+
 -- 18.What percentage of respondents feel their work interest has decreased?
+select work_interest, count(*) as num_of_respondent,
+	round(100.0*count(*)/(select count(*) from mental_health),2) as percentage 
+from mental_health
+group by work_interest;
+
 -- 19.How does the availability of care options vary across countries?
+-- select * from mental_health
+
 -- 20.Which gender reports higher levels of coping struggles?
 -- 21.How does treatment-seeking behavior vary between those with and without family histories?
 -- 22.What are the top five countries in terms of mood swings reported by respondents?
