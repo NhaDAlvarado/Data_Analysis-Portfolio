@@ -213,11 +213,40 @@ group by occupation, mental_health_interview
 order by occupation, percentage desc; 
 
 -- 26.Which country has the highest reported percentage of social weakness among respondents?
--- select * from mental_health
+with respondents_by_country as (
+	select country, count(*) as num_of_respondents
+	from mental_health
+	group by country
+),
+respondents_with_social_weakness as (
+	select country, count(*) as social_weakness_respondents
+	from mental_health
+	where social_weakness = 'Yes'
+	group by country
+)
+select s.country, social_weakness_respondents, num_of_respondents,
+	round(100.0* social_weakness_respondents/ num_of_respondents,2) as percentage
+from respondents_with_social_weakness as s
+join respondents_by_country as r
+on s.country = r.country 
+order by percentage desc; 
 
 -- 27.How does mood swing severity impact treatment-seeking behavior?
+select treatment, mood_swings, 
+	round(100.0*count(*)/sum(count(*)) over (partition by treatment),2) as percentage
+from mental_health
+group by treatment, mood_swings;
+
 -- 28.What percentage of respondents are self-employed, and do they report higher stress levels?
+select self_employed, growing_stress, 
+	round(100.0*count(*)/sum(count(*)) over (partition by self_employed),2) as percentage 
+from mental_health
+where self_employed = 'Yes'
+group by self_employed, growing_stress;
+
 -- 29.Which occupation reports the lowest coping struggles?
+-- select * from mental_health
+
 -- 30.Are there regional differences in the availability of mental health care options?
 -- 31.How do mood swings correlate with the feeling of social weakness?
 -- 32.How many respondents feel mentally strong despite a family history of mental health issues?
