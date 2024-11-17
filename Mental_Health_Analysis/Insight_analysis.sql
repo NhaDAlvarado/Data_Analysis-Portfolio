@@ -154,12 +154,47 @@ from mental_health
 group by work_interest;
 
 -- 19.How does the availability of care options vary across countries?
--- select * from mental_health
+select country, count(*) as num_of_respondents
+from mental_health
+where care_options = 'Yes'
+group by care_options, country
+order by num_of_respondents desc; 
 
 -- 20.Which gender reports higher levels of coping struggles?
+select gender, coping_struggles, 
+	round(100.0*count(*)/ (sum(count(*)) over (partition by gender)),2) as num_of_respondents
+from mental_health
+group by gender, coping_struggles;
+
 -- 21.How does treatment-seeking behavior vary between those with and without family histories?
+with seeking_treatment as (
+	select family_history, count(*) as num_of_ppl_with_treatments
+	from mental_health
+	where treatment = 'Yes'
+	group by family_history
+),
+num_of_ppl as (
+	select family_history, count(*) as num_of_ppl
+	from mental_health
+	group by family_history
+)
+select t.family_history, num_of_ppl_with_treatments, num_of_ppl,
+	round(100.0*num_of_ppl_with_treatments/num_of_ppl,2) as percentage 
+from seeking_treatment as t
+join num_of_ppl as n
+on t.family_history = n.family_history;
+	
 -- 22.What are the top five countries in terms of mood swings reported by respondents?
+select country, count(*) as num_of_respondents
+from mental_health
+where mood_swings = 'High'
+group by country 
+order by num_of_respondents desc; 
+
 -- 23.How do stress levels vary among different occupations?
+-- select * from mental_health
+
+
 -- 24.What is the relationship between habit changes and growing stress?
 -- 25.Is there a difference in mental health interview openness by occupation?
 -- 26.Which country has the highest reported percentage of social weakness among respondents?
