@@ -192,12 +192,29 @@ group by country
 order by num_of_respondents desc; 
 
 -- 23.How do stress levels vary among different occupations?
--- select * from mental_health
-
+select occupation, growing_stress, 
+	round(100.0*count(*)/sum(count(*)) over (partition by occupation),2) as percentage
+from mental_health
+group by occupation, growing_stress 
+order by occupation, percentage desc; 
 
 -- 24.What is the relationship between habit changes and growing stress?
+select changes_habits, growing_stress, 
+	round(100.0*count(*)/sum(count(*)) over (partition by changes_habits),2) as percentage
+from mental_health
+group by changes_habits, growing_stress 
+order by changes_habits, percentage desc; 
+
 -- 25.Is there a difference in mental health interview openness by occupation?
+select occupation, mental_health_interview, 
+	round(100.0*count(*)/sum(count(*)) over (partition by occupation),2) as percentage
+from mental_health
+group by occupation, mental_health_interview 
+order by occupation, percentage desc; 
+
 -- 26.Which country has the highest reported percentage of social weakness among respondents?
+-- select * from mental_health
+
 -- 27.How does mood swing severity impact treatment-seeking behavior?
 -- 28.What percentage of respondents are self-employed, and do they report higher stress levels?
 -- 29.Which occupation reports the lowest coping struggles?
