@@ -276,11 +276,40 @@ from mental_health
 group by mood_swings, social_weakness; 
 
 -- 32.How many respondents feel mentally strong despite a family history of mental health issues?
--- select * from mental_health
+select family_history, mental_health_history,  count(*) as num_of_respondents 
+from mental_health
+where family_history = 'Yes' and mental_health_history = 'No'
+group by family_history, mental_health_history;
 
 -- 33.What is the proportion of respondents by country who report decreased work interest?
+with num_of_ppl_no_work_interest as (
+	select country, count(*) as num_of_ppl_wo_work_interest
+	from mental_health
+	where work_interest = 'No'
+	group by country 
+),
+num_of_respondents_per_country as (
+	select country, count(*) as num_of_respondent
+	from mental_health
+	group by country 
+)
+select w.country, num_of_ppl_wo_work_interest , num_of_respondent,
+round(100.0* num_of_ppl_wo_work_interest / num_of_respondent,2) as percentage 
+from num_of_ppl_no_work_interest as w
+join num_of_respondents_per_country as r
+on w.country = r.country 
+order by percentage desc; 
+
 -- 34.What is the relationship between mood swings and growing stress levels?
+select mood_swings, growing_stress,
+	round(100.0*count(*)/ sum(count(*)) over (partition by mood_swings),2) as percentage 
+from mental_health
+group by mood_swings, growing_stress 
+order by percentage desc; 
+
 -- 35.Do respondents who report changes in habits also report increased stress?
+-- select * from mental_health
+
 -- 36.Which occupations report the highest levels of social weakness?
 -- 37.How does care option availability correlate with respondents’ willingness for interviews?
 -- 38.Are there differences in coping struggles based on days spent indoors?
