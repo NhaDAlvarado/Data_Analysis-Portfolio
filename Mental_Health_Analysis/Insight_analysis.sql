@@ -245,11 +245,39 @@ where self_employed = 'Yes'
 group by self_employed, growing_stress;
 
 -- 29.Which occupation reports the lowest coping struggles?
--- select * from mental_health
+with respondents_by_occupation as (
+	select occupation, count(*) as num_of_respondents
+	from mental_health
+	group by occupation
+),
+respondents_with_copings_struggles as (
+	select occupation, count(*) as copings_struggles_respondents
+	from mental_health
+	where coping_struggles = 'Yes'
+	group by occupation
+)
+select s.occupation, copings_struggles_respondents, num_of_respondents,
+	round(100.0* copings_struggles_respondents/ num_of_respondents,2) as percentage
+from respondents_with_copings_struggles as s
+join respondents_by_occupation as r
+on s.occupation = r.occupation 
+order by percentage;
 
 -- 30.Are there regional differences in the availability of mental health care options?
+select country, care_options, 
+	round(100.0*count(*)/sum(count(*)) over (partition by country),2) as percentage
+from mental_health
+group by country, care_options;
+
 -- 31.How do mood swings correlate with the feeling of social weakness?
+select mood_swings, social_weakness, 
+	round(100.0*count(*)/sum(count(*)) over (partition by mood_swings),2) as percentage
+from mental_health
+group by mood_swings, social_weakness; 
+
 -- 32.How many respondents feel mentally strong despite a family history of mental health issues?
+-- select * from mental_health
+
 -- 33.What is the proportion of respondents by country who report decreased work interest?
 -- 34.What is the relationship between mood swings and growing stress levels?
 -- 35.Do respondents who report changes in habits also report increased stress?
