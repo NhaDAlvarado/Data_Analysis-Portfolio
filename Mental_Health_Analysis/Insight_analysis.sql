@@ -308,11 +308,41 @@ group by mood_swings, growing_stress
 order by percentage desc; 
 
 -- 35.Do respondents who report changes in habits also report increased stress?
--- select * from mental_health
+select changes_habits, growing_stress, count(*) as num_of_respondents,
+	round(100.0*count(*) / sum(count(*)) over (partition by changes_habits),2) as percentage 
+from mental_health
+where changes_habits = 'Yes'
+group by changes_habits, growing_stress; 
 
 -- 36.Which occupations report the highest levels of social weakness?
+with social_weakness as (
+	select occupation, count(*) as num_of_social_weakness
+	from mental_health
+	where social_weakness = 'Yes'
+	group by occupation
+),
+respondents_by_occupation as (
+	select occupation, count(*) as num_of_respondents
+	from mental_health
+	group by occupation
+)
+select s.occupation, num_of_social_weakness, num_of_respondents,
+	round(100.0*num_of_social_weakness/ num_of_respondents,2) as percentage 
+from social_weakness as s
+join respondents_by_occupation as r
+on s.occupation = r.occupation 
+order by percentage desc; 
+
 -- 37.How does care option availability correlate with respondents’ willingness for interviews?
+select care_options, mental_health_interview, count(*) as num_of_respondents,
+	round(100.0*count(*)/ sum(count(*)) over (partition by care_options),2) as percentage
+from mental_health
+group by care_options, mental_health_interview 
+order by care_options desc, percentage desc; 
+
 -- 38.Are there differences in coping struggles based on days spent indoors?
+-- select * from mental_health
+
 -- 39.How does occupation impact mood swing levels?
 -- 40.What is the percentage of respondents who feel mental health care options are available to them?
 -- 41.What are the top factors contributing to growing stress among respondents?
