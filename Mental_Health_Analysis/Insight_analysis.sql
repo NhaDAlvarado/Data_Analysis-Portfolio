@@ -341,11 +341,27 @@ group by care_options, mental_health_interview
 order by care_options desc, percentage desc; 
 
 -- 38.Are there differences in coping struggles based on days spent indoors?
--- select * from mental_health
+select days_indoors, coping_struggles, 
+	round(100.0*count(*)/ sum(count(*)) over (partition by days_indoors),2) as percentage 
+from mental_health
+group by days_indoors, coping_struggles
+order by days_indoors, coping_struggles desc; 
 
 -- 39.How does occupation impact mood swing levels?
+select occupation, mood_swings, 
+	round(100.0*count(*)/ sum(count(*)) over (partition by occupation),2) as percentage 
+from mental_health
+group by occupation, mood_swings 
+order by occupation, percentage desc; 
+
 -- 40.What is the percentage of respondents who feel mental health care options are available to them?
+select round(100.0*count(*)/(select count(*) from mental_health),2) as percentage 
+from mental_health
+where care_options = 'Yes'
+
 -- 41.What are the top factors contributing to growing stress among respondents?
+-- select * from mental_health
+
 -- 42.How do gender differences impact the likelihood of seeking mental health treatment?
 -- 43.How many respondents report both family history and increased stress?
 -- 44.Is there a relationship between work interest and mood swings?
