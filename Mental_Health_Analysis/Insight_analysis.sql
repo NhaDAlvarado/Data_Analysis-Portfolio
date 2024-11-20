@@ -357,17 +357,32 @@ order by occupation, percentage desc;
 -- 40.What is the percentage of respondents who feel mental health care options are available to them?
 select round(100.0*count(*)/(select count(*) from mental_health),2) as percentage 
 from mental_health
-where care_options = 'Yes'
+where care_options = 'Yes';
 
 -- 41.What are the top factors contributing to growing stress among respondents?
--- select * from mental_health
+select growing_stress, family_history, self_employed, treatment, changes_habits,
+    count(*) as num_of_respondents
+from mental_health
+where growing_stress = 'Yes'
+group by growing_stress, family_history, self_employed, treatment, changes_habits
+order by num_of_respondents desc;
 
 -- 42.How do gender differences impact the likelihood of seeking mental health treatment?
+select gender, treatment, 
+	round(100.0*count(*)/ sum(count(*)) over (partition by gender),2) as percentage
+from mental_health
+group by gender, treatment; 
+
 -- 43.How many respondents report both family history and increased stress?
+select count(*) as num_of_respondents,
+	round(100.0*count(*)/(select count(*) from mental_health),2) as percentage 
+from mental_health
+where family_history = 'Yes' and growing_stress = 'Yes';
+
 -- 44.Is there a relationship between work interest and mood swings?
 -- 45.How does social weakness impact the willingness for mental health interviews?
 -- 46.How do habit changes correlate with family history of mental health issues?
 -- 47.Which country has the highest proportion of treatment-seeking respondents?
 -- 48.How many respondents report no coping struggles, regardless of mood swings?
--- 49.How does work interest change across different age groups (if age data were available)?
+-- 49.How does work interest change across different occupations?
 -- 50.Are there differences in mood swings among self-employed vs. corporate workers?
