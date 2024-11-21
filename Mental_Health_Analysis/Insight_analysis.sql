@@ -417,5 +417,20 @@ on t.country = r.country
 order by percentage desc; 
 
 -- 48.How many respondents report no coping struggles, regardless of mood swings?
+select count(*) as num_of_respondents,
+	round(100.0*count(*)/(select count(*) from mental_health),2) as percentage 
+from mental_health
+where coping_struggles = 'No' and mood_swings != 'Low';
+
 -- 49.How does work interest change across different occupations?
+select occupation, work_interest, 
+	round(100.0*count(*)/ sum(count(*)) over (partition by occupation),2) as percentage
+from mental_health
+group by occupation, work_interest;
+
 -- 50.Are there differences in mood swings among self-employed vs. corporate workers?
+select self_employed, mood_swings, count(*) as num_of_respondents,
+    round(100.0 * count(*) / sum(count(*)) over (partition by self_employed), 2) as percentage
+from mental_health
+group by self_employed, mood_swings
+order by self_employed, percentage desc;
