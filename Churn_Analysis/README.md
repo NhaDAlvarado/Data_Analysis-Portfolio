@@ -44,6 +44,10 @@ Some of the primary insights uncovered in the project include:
 
 The visualizations in this project bring these insights to life, allowing us to see trends in churn by various factors. For a full interactive experience, check out my [Tableau Public link](https://public.tableau.com/app/profile/nha.alvarado/vizzes).
 
+## How dashboard look like
+
+![Bank Churn Dashboard](Bank%20Churn%20Dashboard.png)
+
 ## Dataset Information
 
 The dataset for this project is publicly available on Kaggle:
