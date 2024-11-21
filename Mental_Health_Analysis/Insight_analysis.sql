@@ -380,9 +380,42 @@ from mental_health
 where family_history = 'Yes' and growing_stress = 'Yes';
 
 -- 44.Is there a relationship between work interest and mood swings?
+select work_interest, mood_swings, 
+	round(100.0*count(*)/ sum(count(*)) over (partition by work_interest),2) as percentage
+from mental_health
+group by work_interest, mood_swings;
+
 -- 45.How does social weakness impact the willingness for mental health interviews?
+select social_weakness, mental_health_interview, 
+	round(100.0*count(*)/ sum(count(*)) over (partition by social_weakness),2) as percentage
+from mental_health
+group by social_weakness, mental_health_interview;
+
 -- 46.How do habit changes correlate with family history of mental health issues?
+select family_history, changes_habits, 
+	round(100.0*count(*)/ sum(count(*)) over (partition by family_history),2) as percentage
+from mental_health
+group by family_history, changes_habits;
+
 -- 47.Which country has the highest proportion of treatment-seeking respondents?
+with respondents_with_treatment as (
+	select country, count(*) as num_of_ppl_with_treatment
+	from mental_health
+	where treatment = 'Yes'
+	group by country 
+),
+num_of_respondents_per_country as (
+	select country, count(*) as num_of_respondent
+	from mental_health
+	group by country 
+)
+select t.country, num_of_ppl_with_treatment , num_of_respondent,
+round(100.0* num_of_ppl_with_treatment / num_of_respondent,2) as percentage 
+from respondents_with_treatment as t
+join num_of_respondents_per_country as r
+on t.country = r.country 
+order by percentage desc; 
+
 -- 48.How many respondents report no coping struggles, regardless of mood swings?
 -- 49.How does work interest change across different occupations?
 -- 50.Are there differences in mood swings among self-employed vs. corporate workers?
