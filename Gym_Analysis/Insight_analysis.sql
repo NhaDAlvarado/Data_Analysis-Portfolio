@@ -1,0 +1,51 @@
+-- 1.What is the average age of gym members?
+-- 2.How many male and female gym members are there?
+-- 3.What is the average BMI of gym members?
+-- 4.What is the distribution of gym members across different experience levels?
+-- 5.What is the average weight and height of gym members by gender?
+-- 6.What is the most common workout type among members?
+-- 7.What is the average session duration for each workout type?
+-- 8.How does workout frequency vary across experience levels?
+-- 9.What is the average calories burned for each workout type?
+-- 10.What is the maximum session duration recorded in the dataset?
+-- 11.Heart Rate Analysis
+-- 12.What is the average resting BPM for all members?
+-- 13.What is the average maximum BPM during workouts?
+-- 14.How does average BPM during workouts vary across different workout types?
+-- 15.What is the difference between resting BPM and average BPM during sessions?
+-- 16.What is the correlation between resting BPM and BMI?
+-- 17.What is the average water intake of members during workouts?
+-- 18.How does water intake vary by workout frequency?
+-- 19.What is the relationship between water intake and calories burned?
+-- 20.Which workout type requires the highest water intake on average?
+-- 21.How does water intake correlate with BMI?
+-- 22.What is the average fat percentage of gym members?
+-- 23.What is the relationship between fat percentage and BMI?
+-- 24.Which workout type burns the most calories on average?
+-- 25.What is the average calories burned per hour for each workout type?
+-- 26.How does fat percentage vary across different experience levels?
+-- 27.What is the average workout frequency for each experience level?
+-- 28.How does BMI vary across experience levels?
+-- 29.What is the average session duration for beginners, intermediates, and advanced members?
+-- 30.What is the relationship between experience level and calories burned?
+-- 31.How does water intake differ by experience level?
+-- 32.What is the average workout frequency for male and female members?
+-- 33.How does BMI differ between male and female members?
+-- 34.What is the average session duration for males vs. females?
+-- 35.Which workout type is most popular among male members? Female members?
+-- 36.How do resting BPM and maximum BPM differ between genders?
+-- 37.How does workout frequency correlate with calories burned?
+-- 38.What is the relationship between session duration and calories burned?
+-- 39.How does BMI influence workout frequency?
+-- 40.What is the relationship between fat percentage and workout type?
+-- 41.How does water intake correlate with session duration?
+-- 42.What is the average calories burned per unit of water intake for each workout type?
+-- 43.Which workout type yields the best calorie-to-duration ratio?
+-- 44.What is the average time spent per workout type by experience level?
+-- 45.How does workout frequency affect BMI over time?
+-- 46.What is the difference in average calories burned between male and female members?
+-- 47.What percentage of members perform HIIT workouts?
+-- 48.How does average session duration differ by age group?
+-- 49.Which workout type is preferred by members with high BMI?
+-- 50.How does resting BPM vary with workout frequency?
+-- 51.What is the correlation between maximum BPM and calories burned?
