@@ -1,8 +1,25 @@
 -- 1.What is the average age of gym members?
+select round(avg(age),2) as avg_age
+from gym_members_exercise_tracking;
+
 -- 2.How many male and female gym members are there?
+select gender, count(*) as num_of_members
+from gym_members_exercise_tracking
+group by gender; 
+
 -- 3.What is the average BMI of gym members?
+select round(avg(bmi):: numeric,2) as avg_bmi
+from gym_members_exercise_tracking;
+
 -- 4.What is the distribution of gym members across different experience levels?
+select experience_level, 
+	round(100.0*count(*)/(select count(*) from gym_members_exercise_tracking),2) as percentage
+from gym_members_exercise_tracking
+group by experience_level
+
 -- 5.What is the average weight and height of gym members by gender?
+-- select * from gym_members_exercise_tracking
+
 -- 6.What is the most common workout type among members?
 -- 7.What is the average session duration for each workout type?
 -- 8.How does workout frequency vary across experience levels?
