@@ -15,15 +15,33 @@ from gym_members_exercise_tracking;
 select experience_level, 
 	round(100.0*count(*)/(select count(*) from gym_members_exercise_tracking),2) as percentage
 from gym_members_exercise_tracking
-group by experience_level
+group by experience_level;
 
 -- 5.What is the average weight and height of gym members by gender?
--- select * from gym_members_exercise_tracking
+select gender, round(avg(weight_kg)::numeric,2) as avg_weight, round(avg(height_m)::numeric,2) as avg_height
+from gym_members_exercise_tracking
+group by gender; 
 
 -- 6.What is the most common workout type among members?
+select workout_type, count(*) as num_of_member
+from gym_members_exercise_tracking
+group by workout_type
+order by num_of_member desc; 
+
 -- 7.What is the average session duration for each workout type?
+select workout_type, round(avg(session_duration_hours)::numeric,2) as avg_duration
+from gym_members_exercise_tracking
+group by workout_type; 
+
 -- 8.How does workout frequency vary across experience levels?
+select experience_level, workout_frequency_days_per_week, count(*) as num_of_member
+from gym_members_exercise_tracking
+group by workout_frequency_days_per_week, experience_level
+order by experience_level , workout_frequency_days_per_week
+
 -- 9.What is the average calories burned for each workout type?
+-- select * from gym_members_exercise_tracking
+
 -- 10.What is the maximum session duration recorded in the dataset?
 -- 11.Heart Rate Analysis
 -- 12.What is the average resting BPM for all members?
