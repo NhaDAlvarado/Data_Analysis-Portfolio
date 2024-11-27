@@ -37,17 +37,34 @@ group by workout_type;
 select experience_level, workout_frequency_days_per_week, count(*) as num_of_member
 from gym_members_exercise_tracking
 group by workout_frequency_days_per_week, experience_level
-order by experience_level , workout_frequency_days_per_week
+order by experience_level , workout_frequency_days_per_week;
 
 -- 9.What is the average calories burned for each workout type?
--- select * from gym_members_exercise_tracking
+select workout_type, round(avg(calories_burned)::numeric,2) as avg_cal_burn
+from gym_members_exercise_tracking
+group by workout_type
+order by avg_cal_burn desc; 
 
 -- 10.What is the maximum session duration recorded in the dataset?
--- 11.Heart Rate Analysis
--- 12.What is the average resting BPM for all members?
--- 13.What is the average maximum BPM during workouts?
+select max(session_duration_hours) as max_session_duration
+from gym_members_exercise_tracking;
+
+-- 11.What is the average resting BPM for all members?
+select round(avg(resting_bpm)::numeric,2) as avg_resting_bpm
+from gym_members_exercise_tracking;
+
+-- 12.What is the average maximum BPM during workouts?
+select round(avg(max_bpm)::numeric,2) as avg_max_bpm
+from gym_members_exercise_tracking;
+
 -- 14.How does average BPM during workouts vary across different workout types?
+select workout_type,round(avg(avg_bpm),2) as avg_bpm
+from gym_members_exercise_tracking
+group by workout_type;
+
 -- 15.What is the difference between resting BPM and average BPM during sessions?
+-- select * from gym_members_exercise_tracking
+
 -- 16.What is the correlation between resting BPM and BMI?
 -- 17.What is the average water intake of members during workouts?
 -- 18.How does water intake vary by workout frequency?
@@ -83,4 +100,4 @@ order by experience_level , workout_frequency_days_per_week
 -- 48.How does average session duration differ by age group?
 -- 49.Which workout type is preferred by members with high BMI?
 -- 50.How does resting BPM vary with workout frequency?
--- 51.What is the correlation between maximum BPM and calories burned?
+-- 50.What is the correlation between maximum BPM and calories burned?
