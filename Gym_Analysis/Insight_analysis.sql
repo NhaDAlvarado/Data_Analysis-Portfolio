@@ -57,18 +57,33 @@ from gym_members_exercise_tracking;
 select round(avg(max_bpm)::numeric,2) as avg_max_bpm
 from gym_members_exercise_tracking;
 
--- 14.How does average BPM during workouts vary across different workout types?
+-- 13.How does average BPM during workouts vary across different workout types?
 select workout_type,round(avg(avg_bpm),2) as avg_bpm
 from gym_members_exercise_tracking
 group by workout_type;
 
--- 15.What is the difference between resting BPM and average BPM during sessions?
+-- 14.What is the difference between resting BPM and average BPM during sessions?
+select resting_bpm,
+    avg_bpm,
+    (avg_bpm - resting_bpm) AS BPM_Difference
+from gym_members_exercise_tracking;
+
+-- 15.What is the correlation between resting BPM and BMI?
+select corr(resting_bpm, bmi) as corr_bpm_bmi
+from gym_members_exercise_tracking;
+
+-- 16.What is the average water intake of members during workouts?
+select round(avg(water_intake_liters)::numeric,2) as avg_intake
+from gym_members_exercise_tracking;
+
+-- 17.How does water intake vary by workout frequency?
+select workout_frequency_days_per_week, round(avg(water_intake_liters)::numeric,2) as avg_intake
+from gym_members_exercise_tracking
+group by workout_frequency_days_per_week;
+
+-- 18.What is the relationship between water intake and calories burned?
 -- select * from gym_members_exercise_tracking
 
--- 16.What is the correlation between resting BPM and BMI?
--- 17.What is the average water intake of members during workouts?
--- 18.How does water intake vary by workout frequency?
--- 19.What is the relationship between water intake and calories burned?
 -- 20.Which workout type requires the highest water intake on average?
 -- 21.How does water intake correlate with BMI?
 -- 22.What is the average fat percentage of gym members?
