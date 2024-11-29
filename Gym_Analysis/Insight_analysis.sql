@@ -82,10 +82,39 @@ from gym_members_exercise_tracking
 group by workout_frequency_days_per_week;
 
 -- 18.What is the relationship between water intake and calories burned?
--- select * from gym_members_exercise_tracking
+select case when calories_burned between 0 and 300 then 'low' 
+	when calories_burned between 301 and 800 then 'medium' 
+	when calories_burned between 801 and 1200 then 'high' 
+	else 'super'
+	end as calories_groups,
+	case 
+		when water_intake_liters between 0 and 1 then '0-1 litter'
+		when water_intake_liters between 1 and 2 then '1-2 litters'
+		when water_intake_liters between 2 and 3 then '2-3 litters'
+		when water_intake_liters between 3 and 4 then '3-4 litters'
+		else 'other'
+	end as water_groups,
+	count(*) as num_of_members,
+	round(100.0*count(*)/ sum(count(*)) over (partition by 
+	case 
+		when calories_burned between 0 and 300 then 'low' 
+		when calories_burned between 301 and 800 then 'medium' 
+		when calories_burned between 801 and 1200 then 'high' 
+		else 'super'
+	end ),2) as percentages
+from gym_members_exercise_tracking
+group by calories_groups, water_groups
+order by calories_groups, water_groups;  
 
 -- 20.Which workout type requires the highest water intake on average?
+select workout_type, round(avg(water_intake_liters)::numeric,2) as avg_intake
+from gym_members_exercise_tracking
+group by workout_type 
+order by avg_intake desc; 
+
 -- 21.How does water intake correlate with BMI?
+-- select * from gym_members_exercise_tracking
+
 -- 22.What is the average fat percentage of gym members?
 -- 23.What is the relationship between fat percentage and BMI?
 -- 24.Which workout type burns the most calories on average?
