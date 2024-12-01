@@ -113,11 +113,38 @@ group by workout_type
 order by avg_intake desc; 
 
 -- 21.How does water intake correlate with BMI?
--- select * from gym_members_exercise_tracking
+select
+	case 
+		when bmi < 18.5 then 'Underweight'
+		when bmi between 18.5 and 24.99 then 'Healthy weight'
+		when bmi between 25 and 29.99 then 'Overweight'
+		when bmi > 30 then 'Obesity'
+	end as bmi_range,
+	round(avg(water_intake_liters)::numeric,2) as avg_intakes
+from gym_members_exercise_tracking 
+group by bmi_range
+order by avg_intakes desc; 
 
 -- 22.What is the average fat percentage of gym members?
+select round(avg(fat_percentage)::numeric,2) as avg_fat_percentage 
+from gym_members_exercise_tracking; 
+
 -- 23.What is the relationship between fat percentage and BMI?
+select
+	case 
+		when bmi < 18.5 then 'Underweight'
+		when bmi between 18.5 and 24.99 then 'Healthy weight'
+		when bmi between 25 and 29.99 then 'Overweight'
+		when bmi > 30 then 'Obesity'
+	end as bmi_range,
+	round(avg(fat_percentage)::numeric,2) as avg_fat_percentage
+from gym_members_exercise_tracking 
+group by bmi_range
+order by avg_fat_percentage desc; 
+
 -- 24.Which workout type burns the most calories on average?
+-- select * from gym_members_exercise_tracking
+
 -- 25.What is the average calories burned per hour for each workout type?
 -- 26.How does fat percentage vary across different experience levels?
 -- 27.What is the average workout frequency for each experience level?
