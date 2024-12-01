@@ -143,11 +143,27 @@ group by bmi_range
 order by avg_fat_percentage desc; 
 
 -- 24.Which workout type burns the most calories on average?
--- select * from gym_members_exercise_tracking
+select workout_type, round(avg(calories_burned)::numeric,2) as avg_burned 
+from gym_members_exercise_tracking
+group by workout_type
+order by avg_burned desc; 
 
 -- 25.What is the average calories burned per hour for each workout type?
+select workout_type, round(avg(calories_burned/session_duration_hours)::numeric,2) as avg_burned 
+from gym_members_exercise_tracking
+group by workout_type
+order by avg_burned desc; 
+
 -- 26.How does fat percentage vary across different experience levels?
+select experience_level,
+	round(avg(fat_percentage)::numeric,2) as avg_fat_percentage
+from gym_members_exercise_tracking 
+group by experience_level
+order by avg_fat_percentage desc; 
+
 -- 27.What is the average workout frequency for each experience level?
+-- select * from gym_members_exercise_tracking
+
 -- 28.How does BMI vary across experience levels?
 -- 29.What is the average session duration for beginners, intermediates, and advanced members?
 -- 30.What is the relationship between experience level and calories burned?
