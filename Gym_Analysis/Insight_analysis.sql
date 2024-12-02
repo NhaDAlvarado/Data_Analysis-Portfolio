@@ -162,11 +162,32 @@ group by experience_level
 order by avg_fat_percentage desc; 
 
 -- 27.What is the average workout frequency for each experience level?
--- select * from gym_members_exercise_tracking
+select experience_level,
+	round(avg(workout_frequency_days_per_week)::numeric,2) as avg_frequency
+from gym_members_exercise_tracking 
+group by experience_level
+order by avg_frequency desc; 
 
 -- 28.How does BMI vary across experience levels?
+select
+	experience_level,
+	round(avg(bmi)::numeric,2) as avg_bmi
+from gym_members_exercise_tracking 
+group by experience_level
+order by avg_bmi desc; 
+
 -- 29.What is the average session duration for beginners, intermediates, and advanced members?
+select
+	experience_level,
+	round(avg(session_duration_hours)::numeric,2) as avg_session
+from gym_members_exercise_tracking 
+group by experience_level
+order by avg_session desc; 
+
 -- 30.What is the relationship between experience level and calories burned?
+-- select * from gym_members_exercise_tracking
+
+
 -- 31.How does water intake differ by experience level?
 -- 32.What is the average workout frequency for male and female members?
 -- 33.How does BMI differ between male and female members?
