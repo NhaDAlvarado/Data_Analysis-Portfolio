@@ -185,12 +185,44 @@ group by experience_level
 order by avg_session desc; 
 
 -- 30.What is the relationship between experience level and calories burned?
--- select * from gym_members_exercise_tracking
-
+select
+	experience_level,
+	round(avg(calories_burned)::numeric,2) as avg_calories_burned
+from gym_members_exercise_tracking 
+group by experience_level
+order by avg_calories_burned desc; 
 
 -- 31.How does water intake differ by experience level?
+select
+	experience_level,
+	round(avg(water_intake_liters)::numeric,2) as avg_water_intake
+from gym_members_exercise_tracking 
+group by experience_level
+order by avg_water_intake desc; 
+
 -- 32.What is the average workout frequency for male and female members?
+-- select * from gym_members_exercise_tracking
+select
+	gender,
+	round(avg(workout_frequency_days_per_week)::numeric,2) as avg_frequency
+from gym_members_exercise_tracking 
+group by gender 
+order by avg_frequency desc; 
+
 -- 33.How does BMI differ between male and female members?
+select gender,
+	case 
+		when bmi < 18.5 then 'Underweight'
+		when bmi between 18.5 and 24.99 then 'Healthy weight'
+		when bmi between 25 and 29.99 then 'Overweight'
+		when bmi > 30 then 'Obesity'
+	end as bmi_range,
+	count(*) as num_of_memebers,
+	round(100.0*count(*)/sum(count(*)) over (partition by gender),2) as percentage
+from gym_members_exercise_tracking 
+group by bmi_range, gender
+order by gender; 
+
 -- 34.What is the average session duration for males vs. females?
 -- 35.Which workout type is most popular among male members? Female members?
 -- 36.How do resting BPM and maximum BPM differ between genders?
