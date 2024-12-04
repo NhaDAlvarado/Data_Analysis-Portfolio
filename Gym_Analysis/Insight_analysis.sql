@@ -201,7 +201,6 @@ group by experience_level
 order by avg_water_intake desc; 
 
 -- 32.What is the average workout frequency for male and female members?
--- select * from gym_members_exercise_tracking
 select
 	gender,
 	round(avg(workout_frequency_days_per_week)::numeric,2) as avg_frequency
@@ -224,9 +223,26 @@ group by bmi_range, gender
 order by gender; 
 
 -- 34.What is the average session duration for males vs. females?
+select gender, round(avg(session_duration_hours)::numeric,2) as avg_session
+from gym_members_exercise_tracking
+group by gender;
+
 -- 35.Which workout type is most popular among male members? Female members?
+select gender, workout_type, count(*) as num_members,
+	round(100.0*count(*) / sum(count(*)) over (partition by gender) ,2) as percentage 
+from gym_members_exercise_tracking
+group by gender, workout_type
+order by gender, percentage desc;
+
 -- 36.How do resting BPM and maximum BPM differ between genders?
+select gender, round(avg(max_bpm)::numeric,2) as avg_max_bpm,
+	round(avg(resting_bpm)::numeric,2) as avg_resting_bpm
+from gym_members_exercise_tracking
+group by gender;
+
 -- 37.How does workout frequency correlate with calories burned?
+-- select * from gym_members_exercise_tracking
+
 -- 38.What is the relationship between session duration and calories burned?
 -- 39.How does BMI influence workout frequency?
 -- 40.What is the relationship between fat percentage and workout type?
