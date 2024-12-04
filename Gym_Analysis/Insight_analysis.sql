@@ -241,12 +241,49 @@ from gym_members_exercise_tracking
 group by gender;
 
 -- 37.How does workout frequency correlate with calories burned?
--- select * from gym_members_exercise_tracking
+select workout_frequency_days_per_week, round(avg(calories_burned)::numeric,2) as avg_burned
+from gym_members_exercise_tracking
+group by workout_frequency_days_per_week
+order by avg_burned desc; 
 
 -- 38.What is the relationship between session duration and calories burned?
+select case 
+	when session_duration_hours between 0.5 and 1 then '30 - 60 mins'
+	when session_duration_hours between 1 and 1.5 then '61 - 90 mins'
+	when session_duration_hours between 1.5 and 2 then '91 - 120 mins'
+	end as session_ranges,
+	round(avg(calories_burned)::numeric,2) as avg_burned
+from gym_members_exercise_tracking
+group by session_ranges
+order by avg_burned desc; 
+
 -- 39.How does BMI influence workout frequency?
+with bmi_range as (
+	select case 
+			when bmi < 18.5 then 'Underweight'
+			when bmi between 18.5 and 24.99 then 'Healthy weight'
+			when bmi between 25 and 29.99 then 'Overweight'
+			when bmi > 30 then 'Obesity'
+		end as bmi_range,
+		workout_frequency_days_per_week,
+		count(*) as num_of_members
+	from gym_members_exercise_tracking 
+	group by bmi_range, workout_frequency_days_per_week
+)
+select bmi_range, workout_frequency_days_per_week as days_per_week, num_of_members,
+	round(100.0* num_of_members/sum(num_of_members) over (partition by bmi_range),2) as percentage
+from bmi_range
+order by bmi_range, percentage desc ; 
+
 -- 40.What is the relationship between fat percentage and workout type?
+select workout_type, round(avg(fat_percentage)::numeric,2) as avg_fat
+from gym_members_exercise_tracking
+group by workout_type 
+order by avg_fat desc; 
+
 -- 41.How does water intake correlate with session duration?
+-- select * from gym_members_exercise_tracking
+
 -- 42.What is the average calories burned per unit of water intake for each workout type?
 -- 43.Which workout type yields the best calorie-to-duration ratio?
 -- 44.What is the average time spent per workout type by experience level?
