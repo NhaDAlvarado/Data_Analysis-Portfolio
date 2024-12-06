@@ -307,13 +307,43 @@ group by workout_type
 order by avg_calorie_to_duration desc;
 
 -- 43.What is the average time spent per workout type by experience level?
--- select * from gym_members_exercise_tracking
-
+select workout_type, experience_level, round(avg(session_duration_hours)::numeric,2) AS avg_duration 
+from gym_members_exercise_tracking
+group by workout_type, experience_level
+order by workout_type, experience_level;
 
 -- 44.How does workout frequency affect BMI over time?
+select workout_frequency_days_per_week, round(avg(bmi)::numeric,2) as avg_bmi
+from gym_members_exercise_tracking
+group by workout_frequency_days_per_week
+order by avg_bmi desc; 
+
 -- 45.What is the difference in average calories burned between male and female members?
+select gender, round(avg(calories_burned)::numeric,2) as avg_burned
+from gym_members_exercise_tracking
+group by gender 
+order by avg_burned desc; 
+
 -- 46.What percentage of members perform HIIT workouts?
+select workout_type, 
+	round(100.0* count(*)/(select count(*) from gym_members_exercise_tracking),2) as percentage
+from gym_members_exercise_tracking
+group by workout_type; 
+
 -- 47.How does average session duration differ by age group?
+select case 
+	when age between 18 and 25 then '18-25'
+	when age between 26 and 35 then '26-35'
+	when age between 36 and 45 then '36-45'
+	when age between 46 and 55 then '46-55'
+	when age between 56 and 65 then '56-65'
+	end as age_group,
+	round(avg(session_duration_hours)::numeric,2) as avg_duration	
+from gym_members_exercise_tracking
+group by age_group;
+
 -- 48.Which workout type is preferred by members with high BMI?
+-- select * from gym_members_exercise_tracking
+
 -- 49.How does resting BPM vary with workout frequency?
 -- 50.What is the correlation between maximum BPM and calories burned?
