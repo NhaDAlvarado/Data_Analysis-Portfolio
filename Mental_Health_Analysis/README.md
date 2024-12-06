@@ -29,6 +29,10 @@ The dataset used in this project can be found on Kaggle:
 
 - [Mental Health Dataset](https://www.kaggle.com/datasets/bhavikjikadara/mental-health-dataset)
 
+## How dashboard look like
+
+![Mental Health Dashboard](Mental%20Health%20Dashboard.png)
+
 ## Tableau Dashboard
 
 You can explore the interactive Tableau visualizations here:
