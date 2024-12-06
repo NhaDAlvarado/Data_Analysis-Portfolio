@@ -106,13 +106,13 @@ from gym_members_exercise_tracking
 group by calories_groups, water_groups
 order by calories_groups, water_groups;  
 
--- 20.Which workout type requires the highest water intake on average?
+-- 19.Which workout type requires the highest water intake on average?
 select workout_type, round(avg(water_intake_liters)::numeric,2) as avg_intake
 from gym_members_exercise_tracking
 group by workout_type 
 order by avg_intake desc; 
 
--- 21.How does water intake correlate with BMI?
+-- 20.How does water intake correlate with BMI?
 select
 	case 
 		when bmi < 18.5 then 'Underweight'
@@ -125,11 +125,11 @@ from gym_members_exercise_tracking
 group by bmi_range
 order by avg_intakes desc; 
 
--- 22.What is the average fat percentage of gym members?
+-- 21.What is the average fat percentage of gym members?
 select round(avg(fat_percentage)::numeric,2) as avg_fat_percentage 
 from gym_members_exercise_tracking; 
 
--- 23.What is the relationship between fat percentage and BMI?
+-- 22.What is the relationship between fat percentage and BMI?
 select
 	case 
 		when bmi < 18.5 then 'Underweight'
@@ -142,33 +142,33 @@ from gym_members_exercise_tracking
 group by bmi_range
 order by avg_fat_percentage desc; 
 
--- 24.Which workout type burns the most calories on average?
+-- 23.Which workout type burns the most calories on average?
 select workout_type, round(avg(calories_burned)::numeric,2) as avg_burned 
 from gym_members_exercise_tracking
 group by workout_type
 order by avg_burned desc; 
 
--- 25.What is the average calories burned per hour for each workout type?
+-- 24.What is the average calories burned per hour for each workout type?
 select workout_type, round(avg(calories_burned/session_duration_hours)::numeric,2) as avg_burned 
 from gym_members_exercise_tracking
 group by workout_type
 order by avg_burned desc; 
 
--- 26.How does fat percentage vary across different experience levels?
+-- 25.How does fat percentage vary across different experience levels?
 select experience_level,
 	round(avg(fat_percentage)::numeric,2) as avg_fat_percentage
 from gym_members_exercise_tracking 
 group by experience_level
 order by avg_fat_percentage desc; 
 
--- 27.What is the average workout frequency for each experience level?
+-- 26.What is the average workout frequency for each experience level?
 select experience_level,
 	round(avg(workout_frequency_days_per_week)::numeric,2) as avg_frequency
 from gym_members_exercise_tracking 
 group by experience_level
 order by avg_frequency desc; 
 
--- 28.How does BMI vary across experience levels?
+-- 27.How does BMI vary across experience levels?
 select
 	experience_level,
 	round(avg(bmi)::numeric,2) as avg_bmi
@@ -176,7 +176,7 @@ from gym_members_exercise_tracking
 group by experience_level
 order by avg_bmi desc; 
 
--- 29.What is the average session duration for beginners, intermediates, and advanced members?
+-- 28.What is the average session duration for beginners, intermediates, and advanced members?
 select
 	experience_level,
 	round(avg(session_duration_hours)::numeric,2) as avg_session
@@ -184,7 +184,7 @@ from gym_members_exercise_tracking
 group by experience_level
 order by avg_session desc; 
 
--- 30.What is the relationship between experience level and calories burned?
+-- 29.What is the relationship between experience level and calories burned?
 select
 	experience_level,
 	round(avg(calories_burned)::numeric,2) as avg_calories_burned
@@ -192,7 +192,7 @@ from gym_members_exercise_tracking
 group by experience_level
 order by avg_calories_burned desc; 
 
--- 31.How does water intake differ by experience level?
+-- 30.How does water intake differ by experience level?
 select
 	experience_level,
 	round(avg(water_intake_liters)::numeric,2) as avg_water_intake
@@ -200,7 +200,7 @@ from gym_members_exercise_tracking
 group by experience_level
 order by avg_water_intake desc; 
 
--- 32.What is the average workout frequency for male and female members?
+-- 31.What is the average workout frequency for male and female members?
 select
 	gender,
 	round(avg(workout_frequency_days_per_week)::numeric,2) as avg_frequency
@@ -208,7 +208,7 @@ from gym_members_exercise_tracking
 group by gender 
 order by avg_frequency desc; 
 
--- 33.How does BMI differ between male and female members?
+-- 32.How does BMI differ between male and female members?
 select gender,
 	case 
 		when bmi < 18.5 then 'Underweight'
@@ -222,31 +222,31 @@ from gym_members_exercise_tracking
 group by bmi_range, gender
 order by gender; 
 
--- 34.What is the average session duration for males vs. females?
+-- 33.What is the average session duration for males vs. females?
 select gender, round(avg(session_duration_hours)::numeric,2) as avg_session
 from gym_members_exercise_tracking
 group by gender;
 
--- 35.Which workout type is most popular among male members? Female members?
+-- 34.Which workout type is most popular among male members? Female members?
 select gender, workout_type, count(*) as num_members,
 	round(100.0*count(*) / sum(count(*)) over (partition by gender) ,2) as percentage 
 from gym_members_exercise_tracking
 group by gender, workout_type
 order by gender, percentage desc;
 
--- 36.How do resting BPM and maximum BPM differ between genders?
+-- 35.How do resting BPM and maximum BPM differ between genders?
 select gender, round(avg(max_bpm)::numeric,2) as avg_max_bpm,
 	round(avg(resting_bpm)::numeric,2) as avg_resting_bpm
 from gym_members_exercise_tracking
 group by gender;
 
--- 37.How does workout frequency correlate with calories burned?
+-- 36.How does workout frequency correlate with calories burned?
 select workout_frequency_days_per_week, round(avg(calories_burned)::numeric,2) as avg_burned
 from gym_members_exercise_tracking
 group by workout_frequency_days_per_week
 order by avg_burned desc; 
 
--- 38.What is the relationship between session duration and calories burned?
+-- 37.What is the relationship between session duration and calories burned?
 select case 
 	when session_duration_hours between 0.5 and 1 then '30 - 60 mins'
 	when session_duration_hours between 1 and 1.5 then '61 - 90 mins'
@@ -257,7 +257,7 @@ from gym_members_exercise_tracking
 group by session_ranges
 order by avg_burned desc; 
 
--- 39.How does BMI influence workout frequency?
+-- 38.How does BMI influence workout frequency?
 with bmi_range as (
 	select case 
 			when bmi < 18.5 then 'Underweight'
@@ -275,22 +275,45 @@ select bmi_range, workout_frequency_days_per_week as days_per_week, num_of_membe
 from bmi_range
 order by bmi_range, percentage desc ; 
 
--- 40.What is the relationship between fat percentage and workout type?
+-- 39.What is the relationship between fat percentage and workout type?
 select workout_type, round(avg(fat_percentage)::numeric,2) as avg_fat
 from gym_members_exercise_tracking
 group by workout_type 
 order by avg_fat desc; 
 
--- 41.How does water intake correlate with session duration?
+-- 40.How does water intake correlate with session duration?
+select case 
+	when session_duration_hours between 0.5 and 1 then '30 - 60 mins'
+	when session_duration_hours between 1 and 1.5 then '61 - 90 mins'
+	when session_duration_hours between 1.5 and 2 then '91 - 120 mins'
+	end as session_ranges,
+	round(avg(water_intake_liters)::numeric,2) as avg_intakes
+from gym_members_exercise_tracking
+group by session_ranges
+order by avg_intakes desc; 
+
+-- 41.What is the average calories burned per unit of water intake for each workout type?
+select workout_type,
+    round(avg(calories_burned / water_intake_liters)::numeric,2) AS avg_calories_per_unit_water
+from gym_members_exercise_tracking
+group by workout_type
+order by avg_calories_per_unit_water desc;
+
+-- 42.Which workout type yields the best calorie-to-duration ratio?
+select workout_type,
+    round(avg(calories_burned / session_duration_hours)::numeric,2) AS avg_calorie_to_duration
+from gym_members_exercise_tracking
+group by workout_type
+order by avg_calorie_to_duration desc;
+
+-- 43.What is the average time spent per workout type by experience level?
 -- select * from gym_members_exercise_tracking
 
--- 42.What is the average calories burned per unit of water intake for each workout type?
--- 43.Which workout type yields the best calorie-to-duration ratio?
--- 44.What is the average time spent per workout type by experience level?
--- 45.How does workout frequency affect BMI over time?
--- 46.What is the difference in average calories burned between male and female members?
--- 47.What percentage of members perform HIIT workouts?
--- 48.How does average session duration differ by age group?
--- 49.Which workout type is preferred by members with high BMI?
--- 50.How does resting BPM vary with workout frequency?
+
+-- 44.How does workout frequency affect BMI over time?
+-- 45.What is the difference in average calories burned between male and female members?
+-- 46.What percentage of members perform HIIT workouts?
+-- 47.How does average session duration differ by age group?
+-- 48.Which workout type is preferred by members with high BMI?
+-- 49.How does resting BPM vary with workout frequency?
 -- 50.What is the correlation between maximum BPM and calories burned?
