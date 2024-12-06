@@ -343,7 +343,31 @@ from gym_members_exercise_tracking
 group by age_group;
 
 -- 48.Which workout type is preferred by members with high BMI?
--- select * from gym_members_exercise_tracking
+with bmi_range as (
+	select case 
+			when bmi < 18.5 then 'Underweight'
+			when bmi between 18.5 and 24.99 then 'Healthy weight'
+			when bmi > 25 then 'Overweight'
+		end as bmi_range,
+	workout_type, 
+	count(*) as num_of_members
+from gym_members_exercise_tracking
+group by bmi_range, workout_type 
+)
+select workout_type, num_of_members
+from bmi_range
+where bmi_range = 'Overweight'
+order by num_of_members desc; 
 
 -- 49.How does resting BPM vary with workout frequency?
+select workout_frequency_days_per_week, round(avg(resting_bpm)::numeric,2) as avg_rest_bpm
+from gym_members_exercise_tracking
+group by workout_frequency_days_per_week
+order by avg_rest_bpm desc; 
+
 -- 50.What is the correlation between maximum BPM and calories burned?
+select corr(max_bpm, calories_burned) as correlation
+from gym_members_exercise_tracking
+-- result is 0.0021 is near to 0 so there is no correlation
+
+
