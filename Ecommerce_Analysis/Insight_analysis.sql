@@ -1,7 +1,23 @@
 -- 1.How many unique customers are there in the dataset?
+select count (distinct cid) as num_customers
+from ecommerce_data;
+
 -- 2.What is the gender distribution of customers?
+select gender, 
+	round(100.0*count(*)/(select count(*) from ecommerce_data),2) as percentage
+from ecommerce_data
+group by gender;
+
 -- 3.What is the age group distribution of customers?
+select age_group, 
+	round(100.0*count(*)/(select count(*) from ecommerce_data),2) as percentage
+from ecommerce_data
+group by age_group
+order by percentage desc; 
+
 -- 4.Which age group generates the highest revenue?
+-- select * from ecommerce_data
+
 -- 5.What is the average transaction amount per customer?
 -- 6.How many customers have availed discounts?
 -- 7.What is the average revenue per customer for each gender?
