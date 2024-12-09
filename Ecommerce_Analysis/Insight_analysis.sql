@@ -16,16 +16,71 @@ group by age_group
 order by percentage desc; 
 
 -- 4.Which age group generates the highest revenue?
--- select * from ecommerce_data
+select age_group, 
+	round(sum(net_amount)::numeric) as total_revenue
+from ecommerce_data
+group by age_group
+order by total_revenue desc; 
 
 -- 5.What is the average transaction amount per customer?
+select round(avg(gross_amount)::numeric,2) as avg_transaction_amount
+from ecommerce_data;
+
 -- 6.How many customers have availed discounts?
+select count(distinct cid) as num_of_mem
+from ecommerce_data
+where discount_availed = 'Yes';
+
 -- 7.What is the average revenue per customer for each gender?
+select gender, 
+	round((sum(net_amount)/count (distinct cid))::numeric,2) as avg_revenue
+from ecommerce_data
+group by gender;
+
 -- 8.What is the lifetime value of the top 10 customers by revenue?
+select cid, round(sum(net_amount)::numeric) as revenue
+from ecommerce_data
+group by cid
+order by revenue desc 
+limit 10; 
+
 -- 9.How many customers have made multiple purchases?
+with multi_transaction as (
+	select cid as cus_id, count(tid) as num_of_transac
+	from ecommerce_data
+	group by cid
+	having count(tid) >1 
+)
+select count (distinct cus_id) as num_of_cus 
+from multi_transaction;
+
 -- 10.What is the percentage of returning customers vs. one-time customers?
+with transaction as (
+	select cid as cus_id, count(tid) as num_of_tran
+	from ecommerce_data
+	group by cid
+),
+return_cus as (
+	select round(100.0*count (cus_id)/(select count (distinct cid) from ecommerce_data)::numeric,2) as return_cus_percentage 
+	from transaction
+	where num_of_tran >1
+),
+one_time_cus as (
+	select round(100.0*count (cus_id)/(select count (distinct cid) from ecommerce_data)::numeric,2) as one_time_cus_percentage 
+	from transaction
+	where num_of_tran =1
+)	
+select return_cus_percentage, one_time_cus_percentage
+from return_cus
+cross join one_time_cus;
+
 -- 11.How many transactions occurred in total?
+select count(distinct tid) as num_of_trans
+from ecommerce_data;
+
 -- 12.What is the monthly trend of transactions over the dataset's timeline?
+-- select * from ecommerce_data
+
 -- 13.Which purchase methods (e.g., credit card, debit card) are most frequently used?
 -- 14.What is the average, minimum, and maximum transaction amount?
 -- 15.What is the most common transaction size (in terms of gross amount)?
