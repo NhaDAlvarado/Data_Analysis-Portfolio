@@ -125,12 +125,25 @@ from ecommerce_data
 group by location
 order by num_of_trans desc; 
 
--- 18.What is the average discount amount per transaction?
--- select * from ecommerce_data
+-- 18.What is the average discount amount per transactions
+select round(avg(discount_amount_inr)::numeric,2) as avg_discount_amount
+from ecommerce_data;
 
 -- 19.Which month had the highest number of transactions?
+select extract(month from purchase_date) as month,
+	count(tid) as num_of_trans
+from ecommerce_data
+group by month
+order by num_of_trans desc; 
+
 -- 20.How many transactions were made in each age group?
+select age_group, count(tid) as num_of_trans
+from ecommerce_data
+group by age_group;
+
 -- 21.Which product categories are most frequently purchased?
+-- select * from ecommerce_data
+
 -- 22.Which product category generates the highest revenue?
 -- 23.What is the average net revenue per product category?
 -- 24.Which product category has the highest average discount applied?
