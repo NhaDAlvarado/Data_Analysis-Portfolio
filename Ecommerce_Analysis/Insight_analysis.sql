@@ -98,11 +98,36 @@ select round(avg(gross_amount)::numeric,2) as avg_tranc_amount,
 from ecommerce_data;
 
 -- 15.What is the most common transaction size (in terms of gross amount)?
--- select * from ecommerce_data
+select case 
+		when gross_amount < 1000 then 'less than 1000$'
+		when gross_amount between 1000 and 2000 then '1000$ - $2000'
+		when gross_amount between 2000.1 and 3000 then '2000$ - $3000'
+		when gross_amount between 3000.1 and 4000 then '3000$ - $4000'
+		when gross_amount between 4000.1 and 5000 then '4000$ - $5000'
+		when gross_amount between 5000.1 and 6000 then '5000$ - $6000'
+		when gross_amount between 6000.1 and 7000 then '6000$ - $7000'
+		else 'more than $7000'
+	end as gross_amount_groups,
+	count(tid) as num_of_trans
+from ecommerce_data
+group by gross_amount_groups
+order by num_of_trans desc; 
 
 -- 16.How many transactions had discounts applied?
+select sum(
+	case when discount_availed = 'Yes' then 1 else 0 end
+	) as num_of_dis_trans
+from ecommerce_data;
+
 -- 17.How many transactions were made per location?
+select location, count(tid) as num_of_trans
+from ecommerce_data
+group by location
+order by num_of_trans desc; 
+
 -- 18.What is the average discount amount per transaction?
+-- select * from ecommerce_data
+
 -- 19.Which month had the highest number of transactions?
 -- 20.How many transactions were made in each age group?
 -- 21.Which product categories are most frequently purchased?
