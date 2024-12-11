@@ -79,11 +79,27 @@ select count(distinct tid) as num_of_trans
 from ecommerce_data;
 
 -- 12.What is the monthly trend of transactions over the dataset's timeline?
--- select * from ecommerce_data
+select to_char(purchase_date, 'MM-YYYY') as month_year,
+	count(tid) as num_of_trans
+from ecommerce_data
+group by month_year 
+order by month_year; 
 
 -- 13.Which purchase methods (e.g., credit card, debit card) are most frequently used?
+select purchase_method, count(tid) as num_of_trans
+from ecommerce_data
+group by purchase_method
+order by num_of_trans desc; 
+
 -- 14.What is the average, minimum, and maximum transaction amount?
+select round(avg(gross_amount)::numeric,2) as avg_tranc_amount,
+	round(min(gross_amount)::numeric,2) as min_trans_amount, 
+	round(max(gross_amount)::numeric,2) as max_trans_amount
+from ecommerce_data;
+
 -- 15.What is the most common transaction size (in terms of gross amount)?
+-- select * from ecommerce_data
+
 -- 16.How many transactions had discounts applied?
 -- 17.How many transactions were made per location?
 -- 18.What is the average discount amount per transaction?
