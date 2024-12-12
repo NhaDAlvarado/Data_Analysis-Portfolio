@@ -3,16 +3,20 @@
 <!-- build 20242.24.0807.0327                               -->
 <workbook original-version='18.1' source-build='2024.2.2 (20242.24.0807.0327)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
   <document-format-change-manifest>
+    <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
     <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
     <_.fcp.MarkAnimation.true...MarkAnimation />
     <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
     <_.fcp.ObjectModelExtractV2.true...ObjectModelExtractV2 />
     <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
     <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
     <SheetIdentifierTracking />
     <SortTagCleanup />
     <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
     <WindowsPersistSimpleIdentifiers />
+    <ZoneFriendlyName />
   </document-format-change-manifest>
   <preferences>
     <preference name='ui.encoding.shelf.height' value='24' />
@@ -1168,6 +1172,72 @@
       <simple-id uuid='{BC3C4C9F-14B1-448F-B4AC-E20B61D640EB}' />
     </worksheet>
   </worksheets>
+  <dashboards>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Fitness Dashboard'>
+      <style />
+      <size maxheight='800' maxwidth='1400' minheight='800' minwidth='1400' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone friendly-name='Whole dashboard' h='98000' id='3' param='horz' type-v2='layout-flow' w='98858' x='571' y='1000'>
+            <zone fixed-size='101' friendly-name='Overview' h='98000' id='7' is-fixed='true' param='vert' type-v2='layout-flow' w='7214' x='571' y='1000' />
+            <zone fixed-size='1251' friendly-name=' All Charts' h='98000' id='8' is-fixed='true' param='vert' type-v2='layout-flow' w='89357' x='7785' y='1000'>
+              <zone friendly-name='Big Title' h='2875' id='10' type-v2='text' w='89357' x='7785' y='1000'>
+                <formatted-text>
+                  <run>GYM DASHBOARD - Overview</run>
+                </formatted-text>
+                <zone-style>
+                  <format attr='border-color' value='#000000' />
+                  <format attr='border-style' value='none' />
+                  <format attr='border-width' value='0' />
+                  <format attr='margin' value='4' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='626' friendly-name='Charts and Detail' h='78250' id='12' is-fixed='true' param='horz' type-v2='layout-flow' w='89357' x='7785' y='3875'>
+                <zone friendly-name='Left Chart' h='78250' id='16' param='vert' type-v2='layout-flow' w='44678' x='7785' y='3875' />
+                <zone friendly-name='Right Chart' h='78250' id='15' param='vert' type-v2='layout-flow' w='44679' x='52463' y='3875' />
+              </zone>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='700' minheight='700' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='18' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='17' param='vert' type-v2='layout-flow' w='98858' x='571' y='1000'>
+                <zone friendly-name='Big Title' h='2875' id='10' type-v2='text' w='89357' x='7785' y='1000'>
+                  <formatted-text>
+                    <run>GYM DASHBOARD - Overview</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{E7EA39C7-AC36-4DF1-89F9-0EF1331B128F}' />
+    </dashboard>
+  </dashboards>
   <windows source-height='30'>
     <window class='worksheet' name='Age Groups'>
       <cards>
@@ -1199,7 +1269,7 @@
       </viewpoint>
       <simple-id uuid='{FA09AF27-4116-42D4-990B-43E3A90AC07F}' />
     </window>
-    <window class='worksheet' maximized='true' name='Age Group Vs Workout Freq'>
+    <window class='worksheet' name='Age Group Vs Workout Freq'>
       <cards>
         <edge name='left'>
           <strip size='160'>
@@ -1489,6 +1559,11 @@
         </highlight>
       </viewpoint>
       <simple-id uuid='{0016730B-9C5C-4369-B041-094CB796BD2F}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Fitness Dashboard'>
+      <viewpoints />
+      <active id='15' />
+      <simple-id uuid='{8CBCAF11-3936-4E57-B1BF-59F540717FC0}' />
     </window>
   </windows>
   <thumbnails>
@@ -2972,6 +3047,67 @@
       R6Ntws3VxWYIDXDg4EnL03qGDI60u7+bmwtDE6MYmhjV/aKFEBeNizogu+qLL3fy5bpdjE4d
       RExMMKEh/mg1TZzMKmTTjwcB84Mszr3HWwhxabqkAhKgvl7Ltu32l/MEBPjwyEM3tHs3jxDi
       0vH/AcsGfoN+HcWyAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='384' name='Fitness Dashboard' width='384'>
+      iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAYAAACkx7W/AAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAAMDElEQVR4nO3ce7CcdX3H8c/JRZLgIRgMl4TYKEWQjja1Bu8IndYL4EzrtDItU8f/+oel
+      tfzTmc50xLHWdjqt4K1qbQewKFqLBAIolwTQZChgALknJDkk0UROcpKT20lyzub0D2ZoHdTp
+      2CodP6/Xv/v8nv0+++zO+9nd2R2anp6eDgB1ZrzQAwDwwhAAgFICAFBKAABKCQBAKQEAKDXz
+      sssuu+yFHuLnYTA4mtV33pNvr1mXAwcmMrZ7b4550ezMnTsna9auy1CSJ9dvzuLFJ2Xr1u1Z
+      v2EkixedlCTZvXtvbrr5zjy1aUuGX3xshoePTZI88ODjObD/YBYsOD4Thw5n5crVWbfuscyd
+      OycTE4ezd9/+HHfci/PgQ4/nJS+Zn1V33pMHHnw8+/YeyKmnnpwjRyaz8ua78sADj2XRohMz
+      b+6cHD58JDffclfOOOPlSZLrV9yex5/YmHnz5ub4+cNZs3Zd7rvv4ezePZ5Fi07MjBk/ueFP
+      Prk5N3/j7uzffzAvW3LKT/XYbd8xmu3bR3PCCcf/VOuB/59q3gF86tP/mlmzZuWCd70tO3fu
+      zoIFx+WfvvBvWb9hJI88siGbNm/LFZ/8Yg4enMhXv/aN3HrbmufWPjO6K7vG9uSVpy/NZz9/
+      bTZu3JLp6elcd92t+fJXbkqSXHX117Nw4Qk555zl2bNnbzZu3JKnntqSJLn77vszMXEo3/rW
+      /XnD65flplvuyujoWD5+xVVZdMrCvPENy/Kxv/lcBoOjWbt2XW68aXU2PPV0kuTee7+bZcte
+      lY9ffmWS5Lbb1+bs5a/O3r37c/nlV/3EY966dXu+dO2Nedc73pr1G0Zy621r8t2Hn0ySjO4c
+      y44do9k8si03rlydsbHxbN8xmg0bns6aNeuyafPWJMkjj27I9PR0jg6OZmLiUG6+5e48/Mj6
+      bN/+THaN7cnI09/LgQMH88STmzIYHP0/PWfAz1ZNAEZ3juVt5yzPM8/syqJFJ+bUxSdn4YkL
+      8unPXJP3/eFvJ0ne+fa35FOfviannLzweevnHzecM894RS7+g3dn1ep7sn79SF511mmZPXtW
+      xsf35cwzXpEVN9yeO+5Ym1NPPTlJsvKm1fmHy6/MugcfS5KM792ff7/um9m6dUdmzpyZffsO
+      ZPnrXp2lSxfn5S9fkh88szNr73kwf/Hnf/RcgCYOHc7mzduycOGCJMmMoaEsWXJK3vXOczK2
+      e08mJyeTJAcPTuTBh57I5pFtz8287oHHcuEF52XhwgW56PfOz333P5xvr1mXbdt25KtfvSUH
+      Dkzkqquvz9Kli/O5z1+bhx56IjesXJUXD8/LlVd9PZOTU7l+xe3ZObo7GzdtzWc+++WcfPJL
+      c/2KO7J55HtZteqeXPOlG3PnXfdmxQ13ZObMmqcT/EKoecUeOTKZqalBDh0+nKu/uCLT09O5
+      8Pxz88rTl2bu3GOSJKefvjSzZs/KhRee+2P3s2PHzixYMD+33b4mTz/9vYzv3Z9Vq/8j57z1
+      dfnYRy/N8uWvyRWfuDpJcuEF5+XSD74/r112VpLkpSccnz+95H259M/enxtXrsrU1FSOHn32
+      h9i7d49namqQjZu25oaVq/KddY9mMBhkaGgoo6Njz4vSYHA0E4cOZ+bMWUmSycmpjI7uyvj4
+      /ue2GR4+Nrt27UmSjI3tyXHDx+bdF5ybFTfckX37D+bo9HQOHTqcDRtGcvbZr0mS/MZ5r8+v
+      vubMLFlySr78lZtyzluXP7e/73//BxkZ2ZZfOeu0nHnGK/L4ExuzeNFJefyJTZk3b+7/5vQA
+      L4BZL/QAPy/v+Z2358Mf+VSWLDkls2c/e9hDQ0PJ0NAPbXfpB9+fqanB89Z/a8392bpte44e
+      nc4lH7g4f/t3X8iHP3RJBoNB/vJDn8j4+L7s3DmWGTNn5uzlr/6RM+zctSdXfPLqjI2N5/cv
+      uiBLly7ORz76mQwPz8uiRSfmvvseziUfuDi/tuysfO26b+Y76x7N8fOHc9F7z88//8vXcutt
+      a3JkcjKXX3FVxvfuy+++5x2ZMePZ+efPH85v/eabf+j+3vLmX89f/fU/ZvPItmzZsj1//IGL
+      s3jRSXlq45Zc9N7zs/SXFmfOnBdl587d2bf/YE468YTn1l54wbn5kw9+NNde8/d59NGnkiRv
+      ftNrM/L09zMYDHLeua/PkSOTedMbl2X1nffmtF9+2U9/coAXxFDTfwFNT09nYuLQz+xq9fDh
+      I5kxYyizZ8/+H6+ZmhpkMBjkmGNe9DOZKXn246G5c+c8G7wfYWLiUObMOebH3v7fHTkymRkz
+      hjJrVs21A/zCqgoAAP+l5jsAAH6YAACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQS
+      AIBSAgBQSgAASgkAQCkBACglAAClBACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCU
+      AACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkBACglAACl
+      BACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJAEApAQAo
+      JQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkBACglAAClBACglAAAlBIAgFICAFBKAABKCQBA
+      KQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBSAgBQSgAA
+      SgkAQCkBACglAAClBACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACUEgCAUgIA
+      UEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkBACglAAClBACglAAAlBIA
+      gFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQA
+      AJQSAIBSAgBQSgAASgkAQCkBACglAAClBACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUE
+      AKCUAACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkBACgl
+      AAClBACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJAEAp
+      AQAoJQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkBACglAAClBACglAAAlBIAgFICAFBKAABK
+      CQBAKQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBSAgBQ
+      SgAASgkAQCkBACglAAClBACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACUEgCA
+      UgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkBACglAAClBACglAAA
+      lBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQA
+      oJQAAJQSAIBSAgBQSgAASgkAQCkBACglAAClBACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUA
+      AKUEAKCUAACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkB
+      ACglAAClBACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJ
+      AEApAQAoJQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkBACglAAClBACglAAAlBIAgFICAFBK
+      AABKCQBAKQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBS
+      AgBQSgAASgkAQCkBACglAAClBACglAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACU
+      EgCAUgIAUEoAAEoJAEApAQAoJQAApQQAoJQAAJQSAIBSAgBQSgAASgkAQCkBACglAAClBACg
+      lAAAlBIAgFICAFBKAABKCQBAKQEAKCUAAKUEAKCUAACUEgCAUgIAUEoAAEoJAEApAQAoJQAA
+      pQQAoJQAAJT6T1UTjUbib22tAAAAAElFTkSuQmCC
     </thumbnail>
     <thumbnail height='384' name='Freq vs Exp Levels' width='384'>
       iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAYAAACkx7W/AAAACXBIWXMAAA7DAAAOwwHHb6hk
