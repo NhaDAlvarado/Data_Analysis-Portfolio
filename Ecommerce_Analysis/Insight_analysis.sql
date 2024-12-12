@@ -142,12 +142,32 @@ from ecommerce_data
 group by age_group;
 
 -- 21.Which product categories are most frequently purchased?
--- select * from ecommerce_data
+select product_category, count(tid) as num_of_trans
+from ecommerce_data
+group by product_category
+order by num_of_trans desc; 
 
 -- 22.Which product category generates the highest revenue?
+select product_category, sum(net_amount) as revenue
+from ecommerce_data
+group by product_category
+order by revenue desc; 
+
 -- 23.What is the average net revenue per product category?
+select product_category, round(avg(net_amount)::numeric,2) as revenue
+from ecommerce_data
+group by product_category
+order by revenue desc; 
+
 -- 24.Which product category has the highest average discount applied?
+select product_category, round(avg(discount_amount_inr)::numeric,2) as avg_discount
+from ecommerce_data
+group by product_category
+order by avg_discount desc; 
+
 -- 25.Which product category has the lowest gross-to-net ratio?
+-- select * from ecommerce_data
+
 -- 26.What is the percentage contribution of each product category to total revenue?
 -- 27.How many distinct product categories are there?
 -- 28.Which product category is most popular among specific age groups?
