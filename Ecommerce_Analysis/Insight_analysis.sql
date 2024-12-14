@@ -212,10 +212,33 @@ from ecommerce_data;
 select sum(net_amount) as revenue_after_dis
 from ecommerce_data ;
 
--- 33.What is the gross revenue trend over time (monthly/yearly)?
+- 33.What is the gross revenue trend over time (monthly/yearly)?
+select to_char(purchase_date, 'MM-YYYY') as month_year,
+	round(sum(gross_amount)::numeric,2) as gross_revenue
+from ecommerce_data
+group by month_year 
+order by month_year; 
+
 -- 34.What is the net revenue trend over time (monthly/yearly)?
+select to_char(purchase_date, 'MM-YYYY') as month_year,
+	round(sum(net_amount)::numeric,2) as net_revenue
+from ecommerce_data
+group by month_year 
+order by month_year; 
+
 -- 35.What is the contribution of discounts to overall revenue reduction?
+select round(100.0* 
+	sum(discount_amount_inr)::numeric/sum(gross_amount)::numeric,2
+	) as dis_cont_percentage
+from ecommerce_data; 
+
 -- 36.Which regions contribute most to total revenue?
+select location, sum(gross_amount) as revenue_b4_discount,
+	round(100.0*sum(gross_amount)::numeric/(select sum(gross_amount) from ecommerce_data)::numeric,2) as percentage
+from ecommerce_data
+group by location
+order by percentage desc; 
+
 -- 37.What is the average gross revenue per transaction?
 -- 38.What is the average net revenue per transaction?
 -- 39.What percentage of gross revenue comes from discounted transactions?
