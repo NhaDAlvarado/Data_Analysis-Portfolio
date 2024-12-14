@@ -240,9 +240,27 @@ group by location
 order by percentage desc; 
 
 -- 37.What is the average gross revenue per transaction?
+select round(sum(gross_amount)::numeric/count(tid)::numeric,2) as avg_gross_rev_per_trans
+from ecommerce_data;
+
 -- 38.What is the average net revenue per transaction?
+select round(sum(net_amount)::numeric/count(tid)::numeric,2) as avg_gross_rev_per_trans
+from ecommerce_data;
+
 -- 39.What percentage of gross revenue comes from discounted transactions?
+select round(100.0*
+	sum(gross_amount)::numeric/(select sum(gross_amount) from ecommerce_data)::numeric
+	,2) as discount_percentage
+from ecommerce_data
+where discount_availed = 'Yes';
+
 -- 40.What percentage of gross revenue comes from non-discounted transactions?
+select round(100.0*
+	sum(gross_amount)::numeric/(select sum(gross_amount) from ecommerce_data)::numeric
+	,2) as non_discount_percentage
+from ecommerce_data
+where discount_availed = 'No';
+
 -- 41.Which locations have the highest number of transactions?
 -- 42.Which locations generate the highest revenue?
 -- 43.What is the average transaction value for each location?
