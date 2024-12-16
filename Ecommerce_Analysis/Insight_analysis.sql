@@ -262,8 +262,23 @@ from ecommerce_data
 where discount_availed = 'No';
 
 -- 41.Which locations have the highest number of transactions?
+select location, count(tid) as num_of_trans
+from ecommerce_data
+group by location
+order by num_of_trans desc ;
+
 -- 42.Which locations generate the highest revenue?
+select location, sum(gross_amount) as total_gross_revenue
+from ecommerce_data
+group by location
+order by total_gross_revenue desc; 
+
 -- 43.What is the average transaction value for each location?
+select location, round(sum(gross_amount)::numeric/count(tid)::numeric,2) as avg_trans_value 
+from ecommerce_data
+group by location
+order by avg_trans_value desc; 
+
 -- 44.Which product categories are most popular in each location?
 -- 45.What is the average discount applied in each location?
 -- 46.How does the gross-to-net revenue ratio vary by location?
