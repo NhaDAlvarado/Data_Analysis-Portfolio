@@ -280,9 +280,31 @@ group by location
 order by avg_trans_value desc; 
 
 -- 44.Which product categories are most popular in each location?
+with ranking_category as (
+	select location,  product_category,
+		count(tid) as num_of_trans,
+		rank() over (partition by location order by count(tid) desc) as ranking
+	from ecommerce_data
+	group by location, product_category
+)
+select location, product_category
+from ranking_category
+where ranking = 1;
+
 -- 45.What is the average discount applied in each location?
+select location, round(sum(discount_amount_inr)::numeric/count(tid)::numeric,2) as avg_discount_value 
+from ecommerce_data
+group by location
+order by  avg_discount_value desc; 
+
 -- 46.How does the gross-to-net revenue ratio vary by location?
--- 47.Which location has the highest average revenue per customer?
+select location,
+	round(
+		avg(gross_amount/net_amount)::numeric
+	,2) as gross_to_net_ratio
+from ecommerce_data
+group by location;
+
 -- 48.What is the gender distribution of customers in each location?
 -- 49.What are the top 3 locations with the highest customer retention rates?
 -- 50.What is the average transaction count per location?
