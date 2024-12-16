@@ -305,6 +305,59 @@ select location,
 from ecommerce_data
 group by location;
 
+-- 47.Which location has the highest average revenue per customer?
+select location,
+	round(
+		sum(gross_amount)::numeric/count(distinct tid)::numeric
+	,2) as avg_revenue_per_cus
+from ecommerce_data
+group by location
+order by avg_revenue_per_cus desc;
+
 -- 48.What is the gender distribution of customers in each location?
+with customer_by_gender_per_location as (
+	select location, gender, count(distinct cid) as cus_per_gen_per_location
+	from ecommerce_data
+	group by location, gender 
+),
+customer_by_location as (
+	select location, count(distinct cid) as cus_per_location
+	from ecommerce_data
+	group by location 
+)
+select g.location, gender,
+	round(100.0*cus_per_gen_per_location::numeric/cus_per_location::numeric) as percentage
+from customer_by_gender_per_location as g
+join customer_by_location as l
+on g.location = l.location; 
+
 -- 49.What are the top 3 locations with the highest customer retention rates?
+with rentention_cus as (
+	select location, count(distinct cid) as retained_cus
+	from ecommerce_data
+	where cid in (
+		select cid 
+		from ecommerce_data
+		group by cid
+		having count(tid)>1
+	)
+	group by location 
+),
+customer_by_location as (
+	select location, count(distinct cid) as cus_per_location
+	from ecommerce_data
+	group by location 
+)	
+select r.location, retained_cus,
+	round(100.0* retained_cus::numeric/cus_per_location::numeric,2) as retention_rate
+from rentention_cus as r
+join customer_by_location as l
+on r.location = l.location 
+order by retention_rate desc
+limit 3; 
+
 -- 50.What is the average transaction count per location?
+select location, 
+	round(1.0*count(tid)/ count(distinct cid),2) as avg_trans
+from ecommerce_data
+group by location;
