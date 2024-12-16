@@ -45,6 +45,10 @@ Through this project, I aim to:
 
 ---
 
+## How dashboard look like
+
+![Fitness Dashboard](Fitness%20Dashboard.png)
+
 ## Files
 
 1. **Dataset:** [Gym Members Exercise Dataset](https://www.kaggle.com/datasets/valakhorasani/gym-members-exercise-dataset)
