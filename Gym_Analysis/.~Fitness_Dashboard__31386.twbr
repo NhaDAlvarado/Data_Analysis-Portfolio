@@ -1,0 +1,2740 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20242.24.0807.0327                               -->
+<workbook original-version='18.1' source-build='2024.2.2 (20242.24.0807.0327)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AccessibleZoneTabOrder.true...AccessibleZoneTabOrder />
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <AutoCreateAndUpdateDSDPhoneLayouts />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelExtractV2.true...ObjectModelExtractV2 />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SetMembershipControl />
+    <SheetIdentifierTracking />
+    <SortTagCleanup />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+    <WorksheetBackgroundTransparency />
+    <ZoneFriendlyName />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <style>
+    <style-rule element='all'>
+      <format attr='font-family' value='Verdana' />
+      <format attr='color' value='#3d405b' />
+    </style-rule>
+  </style>
+  <datasources>
+    <datasource caption='gym_members_exercise_tracking' inline='true' name='federated.15o9u161viiab416acsca0axll2m' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='gym_members_exercise_tracking' name='textscan.0phraea0dloxk4187qd2s195yrcb'>
+            <connection class='textscan' directory='/Users/miadang/Desktop/DA/Gym_Analysis' filename='gym_members_exercise_tracking.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.0phraea0dloxk4187qd2s195yrcb' name='gym_members_exercise_tracking.csv' table='[gym_members_exercise_tracking#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='Age' ordinal='0' />
+            <column datatype='string' name='Gender' ordinal='1' />
+            <column datatype='real' name='Weight (kg)' ordinal='2' />
+            <column datatype='real' name='Height (m)' ordinal='3' />
+            <column datatype='integer' name='Max_BPM' ordinal='4' />
+            <column datatype='integer' name='Avg_BPM' ordinal='5' />
+            <column datatype='integer' name='Resting_BPM' ordinal='6' />
+            <column datatype='real' name='Session_Duration (hours)' ordinal='7' />
+            <column datatype='real' name='Calories_Burned' ordinal='8' />
+            <column datatype='string' name='Workout_Type' ordinal='9' />
+            <column datatype='real' name='Fat_Percentage' ordinal='10' />
+            <column datatype='real' name='Water_Intake (liters)' ordinal='11' />
+            <column datatype='integer' name='Workout_Frequency (days/week)' ordinal='12' />
+            <column datatype='integer' name='Experience_Level' ordinal='13' />
+            <column datatype='real' name='BMI' ordinal='14' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='textscan.0phraea0dloxk4187qd2s195yrcb' name='gym_members_exercise_tracking.csv' table='[gym_members_exercise_tracking#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='Age' ordinal='0' />
+            <column datatype='string' name='Gender' ordinal='1' />
+            <column datatype='real' name='Weight (kg)' ordinal='2' />
+            <column datatype='real' name='Height (m)' ordinal='3' />
+            <column datatype='integer' name='Max_BPM' ordinal='4' />
+            <column datatype='integer' name='Avg_BPM' ordinal='5' />
+            <column datatype='integer' name='Resting_BPM' ordinal='6' />
+            <column datatype='real' name='Session_Duration (hours)' ordinal='7' />
+            <column datatype='real' name='Calories_Burned' ordinal='8' />
+            <column datatype='string' name='Workout_Type' ordinal='9' />
+            <column datatype='real' name='Fat_Percentage' ordinal='10' />
+            <column datatype='real' name='Water_Intake (liters)' ordinal='11' />
+            <column datatype='integer' name='Workout_Frequency (days/week)' ordinal='12' />
+            <column datatype='integer' name='Experience_Level' ordinal='13' />
+            <column datatype='real' name='BMI' ordinal='14' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Age</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Age]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Age</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Gender</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Gender]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Gender</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Weight (kg)</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Weight (kg)]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Weight (kg)</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Height (m)</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Height (m)]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Height (m)</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Max_BPM</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Max_BPM]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Max_BPM</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Avg_BPM</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Avg_BPM]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Avg_BPM</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Resting_BPM</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Resting_BPM]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Resting_BPM</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Session_Duration (hours)</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Session_Duration (hours)]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Session_Duration (hours)</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Calories_Burned</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Calories_Burned]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Calories_Burned</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Workout_Type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Workout_Type]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Workout_Type</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Fat_Percentage</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Fat_Percentage]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Fat_Percentage</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Water_Intake (liters)</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Water_Intake (liters)]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Water_Intake (liters)</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Workout_Frequency (days/week)</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Workout_Frequency (days/week)]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Workout_Frequency (days/week)</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Experience_Level</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Experience_Level]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>Experience_Level</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>BMI</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[BMI]</local-name>
+            <parent-name>[gym_members_exercise_tracking.csv]</parent-name>
+            <remote-alias>BMI</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='BMI Groups' datatype='string' name='[Age Groups (copy)_502855069735055363]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [BMI] &lt; 18.5 then &apos;Underweight&apos;&#10;ELSEIF [BMI] &gt;= 18.5 and [BMI] &lt;= 24.99 then &apos;Healthy weight&apos;&#10;ELSEIF [BMI] &gt;=25 and [BMI] &lt;= 29.99 then &apos;Overweight&apos;&#10;ELSEIF [BMI] &gt;= 30 then &apos;Obesity&apos;&#10;END' />
+      </column>
+      <column caption='Avg BPM' datatype='integer' name='[Avg_BPM]' role='measure' type='quantitative' />
+      <column caption='Water Intake Groups' datatype='string' name='[BMI Groups (copy)_502855070066757637]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Water_Intake (liters)] &gt; 0 and [Water_Intake (liters)] &lt;1 then &apos;0-1l&apos;&#10;ELSEIF [Water_Intake (liters)] &gt;=1 and [Water_Intake (liters)] &lt;2 then &apos;1-2l&apos;&#10;ELSEIF [Water_Intake (liters)] &gt;=2 and [Water_Intake (liters)] &lt;3 then &apos;2-3l&apos;&#10;ELSEIF [Water_Intake (liters)] &gt;=3 and [Water_Intake (liters)] &lt;4 then &apos;3-4l&apos;&#10;ELSE &apos;Other&apos;&#10;END' />
+      </column>
+      <column caption='Female Count' datatype='integer' name='[Calculation_1358961212443078656]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Gender] = &quot;Female&quot; THEN 1 END' />
+      </column>
+      <column caption='Age Groups' datatype='string' name='[Calculation_502855069728985088]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='if [Age] &gt;=18 and [Age] &lt;25 then &apos;18-24&apos;&#10;ELSEIF [Age] &gt;=25 and [Age] &lt;35 then &apos;25-34&apos;&#10;ELSEIF [Age] &gt;=35 and [Age] &lt;45 then &apos;35-44&apos;&#10;ELSEIF [Age] &gt;=45 and [Age] &lt;55 then &apos;45-54&apos;&#10;ELSEIF [Age] &gt;=55 and [Age] &lt;65 then &apos;55-64&apos;&#10;end' />
+      </column>
+      <column caption='Calories Burned per hour' datatype='real' name='[Calculation_502855070063828996]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='[Calories_Burned] / [Session_Duration (hours)]' />
+      </column>
+      <column caption='Calories Burned' datatype='real' name='[Calories_Burned]' role='measure' type='quantitative' />
+      <column caption='Experience Level' datatype='integer' name='[Experience_Level]' role='measure' type='quantitative'>
+        <aliases>
+          <alias key='1' value='Beginer' />
+          <alias key='2' value='Intermediate ' />
+          <alias key='3' value='Advanced ' />
+        </aliases>
+      </column>
+      <column caption='Fat Percentage' datatype='real' name='[Fat_Percentage]' role='measure' type='quantitative' />
+      <column caption='Male Count ' datatype='integer' name='[Female Count (copy)_1358961212443676673]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='IF [Gender] = &quot;Male&quot; THEN 1 END' />
+      </column>
+      <column datatype='string' name='[Gender]' role='dimension' type='nominal' />
+      <column caption='Max BPM' datatype='integer' name='[Max_BPM]' role='measure' type='quantitative' />
+      <column caption='Resting BPM' datatype='integer' name='[Resting_BPM]' role='measure' type='quantitative' />
+      <column caption='Session Duration (hours)' datatype='real' name='[Session_Duration (hours)]' role='measure' type='quantitative' />
+      <column caption='Calories Burned Group' datatype='string' name='[Water Intake Groups (copy)_502855070067773446]' role='dimension' type='nominal'>
+        <calculation class='tableau' formula='IF [Calories_Burned] &lt;=200 then &apos;0-200 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;200 and [Calories_Burned] &lt;=400 then &apos;201-400 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;400 and [Calories_Burned] &lt;=600 then &apos;401-600 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;600 and [Calories_Burned] &lt;=800 then &apos;601-800 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;800 and [Calories_Burned] &lt;=1000 then &apos;801-1000 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;1000 and [Calories_Burned] &lt;=1200 then &apos;1001-1200 cal&apos;&#10;ELSE &apos;1200+ cal&apos;&#10;END' />
+      </column>
+      <column caption='Water Intake (liters)' datatype='real' name='[Water_Intake (liters)]' role='measure' type='quantitative' />
+      <column caption='Workout Frequency (days/week)' datatype='integer' name='[Workout_Frequency (days/week)]' role='measure' type='quantitative' />
+      <column caption='Workout Type' datatype='string' name='[Workout_Type]' role='dimension' type='nominal' />
+      <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+      <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Rows' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Calculation_502855070063828996]' derivation='Avg' name='[avg:Calculation_502855070063828996:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calories_Burned]' derivation='Avg' name='[avg:Calories_Burned:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Fat_Percentage]' derivation='Avg' name='[avg:Fat_Percentage:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Water_Intake (liters)]' derivation='Avg' name='[avg:Water_Intake (liters):qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_1358961212443078656]' derivation='Count' name='[cnt:Calculation_1358961212443078656:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Female Count (copy)_1358961212443676673]' derivation='Count' name='[cnt:Female Count (copy)_1358961212443676673:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calories_Burned]' derivation='None' name='[none:Calories_Burned:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Water Intake Groups (copy)_502855070067773446]' derivation='None' name='[none:Water Intake Groups (copy)_502855070067773446:nk]' pivot='key' type='nominal' />
+      <column-instance column='[Workout_Frequency (days/week)]' derivation='None' name='[none:Workout_Frequency (days/week):ok]' pivot='key' type='ordinal' />
+      <column-instance column='[Workout_Type]' derivation='None' name='[none:Workout_Type:nk]' pivot='key' type='nominal' />
+      <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Columns' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:6]' pivot='key' type='quantitative'>
+        <table-calc ordering-type='Table' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:8]' pivot='key' type='quantitative'>
+        <table-calc ordering-field='[federated.15o9u161viiab416acsca0axll2m].[Workout_Type]' ordering-type='Field' type='PctTotal' />
+      </column-instance>
+      <column-instance column='[Calculation_1358961212443078656]' derivation='Sum' name='[sum:Calculation_1358961212443078656:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_502855070063828996]' derivation='Sum' name='[sum:Calculation_502855070063828996:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calories_Burned]' derivation='Sum' name='[sum:Calories_Burned:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Female Count (copy)_1358961212443676673]' derivation='Sum' name='[sum:Female Count (copy)_1358961212443676673:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Water_Intake (liters)]' derivation='Sum' name='[sum:Water_Intake (liters):qk]' pivot='key' type='quantitative' />
+      <extract _.fcp.ObjectModelExtractV2.true...object-id='' _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/pz/x922ffzx1z77z1strd8qk2qh0000gn/T/tableau-temp/#TableauTemp_0ao45571aaiz7c13unty909rzhlg.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='12/06/2024 10:51:36 PM' username='tableau_internal_user'>
+          <_.fcp.ObjectModelEncapsulateLegacy.false...relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <_.fcp.ObjectModelEncapsulateLegacy.true...relation name='Extract' table='[Extract].[Extract]' type='table' />
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>Age</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Age]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Age</remote-alias>
+              <ordinal>0</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>42</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Gender</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Gender]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Gender</remote-alias>
+              <ordinal>1</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>2</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Weight (kg)</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Weight (kg)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Weight (kg)</remote-alias>
+              <ordinal>2</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>532</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Height (m)</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Height (m)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Height (m)</remote-alias>
+              <ordinal>3</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>51</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Max_BPM</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Max_BPM]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Max_BPM</remote-alias>
+              <ordinal>4</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>40</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Avg_BPM</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Avg_BPM]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Avg_BPM</remote-alias>
+              <ordinal>5</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>50</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Resting_BPM</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Resting_BPM]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Resting_BPM</remote-alias>
+              <ordinal>6</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>25</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Session_Duration (hours)</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Session_Duration (hours)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Session_Duration (hours)</remote-alias>
+              <ordinal>7</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>147</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Calories_Burned</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Calories_Burned]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Calories_Burned</remote-alias>
+              <ordinal>8</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>621</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Workout_Type</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[Workout_Type]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Workout_Type</remote-alias>
+              <ordinal>9</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Fat_Percentage</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Fat_Percentage]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Fat_Percentage</remote-alias>
+              <ordinal>10</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>239</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Water_Intake (liters)</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[Water_Intake (liters)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Water_Intake (liters)</remote-alias>
+              <ordinal>11</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>23</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Workout_Frequency (days/week)</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Workout_Frequency (days/week)]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Workout_Frequency (days/week)</remote-alias>
+              <ordinal>12</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>4</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>Experience_Level</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[Experience_Level]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>Experience_Level</remote-alias>
+              <ordinal>13</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>3</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>BMI</remote-name>
+              <remote-type>5</remote-type>
+              <local-name>[BMI]</local-name>
+              <parent-name>[Extract]</parent-name>
+              <remote-alias>BMI</remote-alias>
+              <ordinal>14</ordinal>
+              <family>gym_members_exercise_tracking.csv</family>
+              <local-type>real</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>771</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[avg:Calories_Burned:qk]&quot;</bucket>
+            </map>
+            <map to='#59a14f'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[avg:Fat_Percentage:qk]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[avg:Water_Intake (liters):qk]&quot;</bucket>
+            </map>
+            <map to='#76b7b2'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[sum:Water_Intake (liters):qk]&quot;</bucket>
+            </map>
+            <map to='#81b29a'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[avg:Calculation_502855070063828996:qk]&quot;</bucket>
+            </map>
+            <map to='#81b29a'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[cnt:Calculation_1358961212443078656:qk]&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[cnt:Female Count (copy)_1358961212443676673:qk]&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:6]&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:8]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[cnt:Female Count (copy)_1358961212443676673:qk]:1&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[none:Calories_Burned:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[sum:Calories_Burned:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[sum:Female Count (copy)_1358961212443676673:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_1358961212444393475:qk]&quot;</bucket>
+            </map>
+            <map to='#e15759'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_1358961212446519301:qk]&quot;</bucket>
+            </map>
+            <map to='#edc948'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[cnt:Calculation_1358961212443078656:qk]:1&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[sum:Calculation_1358961212443078656:qk]&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;[federated.15o9u161viiab416acsca0axll2m].[sum:Calculation_502855070063828996:qk]&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Workout_Frequency (days/week):ok]' type='palette'>
+            <map to='#3d405b'>
+              <bucket>4</bucket>
+            </map>
+            <map to='#81b29a'>
+              <bucket>3</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>5</bucket>
+            </map>
+            <map to='#f2cc8f'>
+              <bucket>2</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Workout_Type:nk]' type='palette'>
+            <map to='#3d405b'>
+              <bucket>&quot;Strength&quot;</bucket>
+            </map>
+            <map to='#81b29a'>
+              <bucket>&quot;HIIT&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;Yoga&quot;</bucket>
+            </map>
+            <map to='#f2cc8f'>
+              <bucket>&quot;Cardio&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Water Intake Groups (copy)_502855070067773446:nk]' type='palette'>
+            <map to='#549296'>
+              <bucket>&quot;801-1000 cal&quot;</bucket>
+            </map>
+            <map to='#81b29a'>
+              <bucket>&quot;201-400 cal&quot;</bucket>
+            </map>
+            <map to='#967aa1'>
+              <bucket>&quot;601-800 cal&quot;</bucket>
+            </map>
+            <map to='#aad576'>
+              <bucket>&quot;1001-1200 cal&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;401-600 cal&quot;</bucket>
+            </map>
+            <map to='#ffa500'>
+              <bucket>&quot;1200+ cal&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[none:Gender:nk]' type='palette'>
+            <map to='#81b29a'>
+              <bucket>&quot;Female&quot;</bucket>
+            </map>
+            <map to='#e07a5f'>
+              <bucket>&quot;Male&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='gym_members_exercise_tracking.csv' id='gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1'>
+            <properties context=''>
+              <relation connection='textscan.0phraea0dloxk4187qd2s195yrcb' name='gym_members_exercise_tracking.csv' table='[gym_members_exercise_tracking#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='integer' name='Age' ordinal='0' />
+                  <column datatype='string' name='Gender' ordinal='1' />
+                  <column datatype='real' name='Weight (kg)' ordinal='2' />
+                  <column datatype='real' name='Height (m)' ordinal='3' />
+                  <column datatype='integer' name='Max_BPM' ordinal='4' />
+                  <column datatype='integer' name='Avg_BPM' ordinal='5' />
+                  <column datatype='integer' name='Resting_BPM' ordinal='6' />
+                  <column datatype='real' name='Session_Duration (hours)' ordinal='7' />
+                  <column datatype='real' name='Calories_Burned' ordinal='8' />
+                  <column datatype='string' name='Workout_Type' ordinal='9' />
+                  <column datatype='real' name='Fat_Percentage' ordinal='10' />
+                  <column datatype='real' name='Water_Intake (liters)' ordinal='11' />
+                  <column datatype='integer' name='Workout_Frequency (days/week)' ordinal='12' />
+                  <column datatype='integer' name='Experience_Level' ordinal='13' />
+                  <column datatype='real' name='BMI' ordinal='14' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='Extract' table='[Extract].[Extract]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Age Group Vs Workout Freq'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column datatype='integer' name='[Age]' role='measure' type='quantitative' />
+            <column caption='Age Groups' datatype='string' name='[Calculation_502855069728985088]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [Age] &gt;=18 and [Age] &lt;25 then &apos;18-24&apos;&#10;ELSEIF [Age] &gt;=25 and [Age] &lt;35 then &apos;25-34&apos;&#10;ELSEIF [Age] &gt;=35 and [Age] &lt;45 then &apos;35-44&apos;&#10;ELSEIF [Age] &gt;=45 and [Age] &lt;55 then &apos;45-54&apos;&#10;ELSEIF [Age] &gt;=55 and [Age] &lt;65 then &apos;55-64&apos;&#10;end' />
+            </column>
+            <column caption='Workout Frequency (days/week)' datatype='integer' name='[Workout_Frequency (days/week)]' role='measure' type='quantitative' />
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_502855069728985088]' derivation='None' name='[none:Calculation_502855069728985088:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Workout_Frequency (days/week)]' derivation='None' name='[none:Workout_Frequency (days/week):ok]' pivot='key' type='ordinal' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' type='PctTotal' />
+            </column-instance>
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]' scope='rows' value='false' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.15o9u161viiab416acsca0axll2m].[none:Calculation_502855069728985088:nk]' value='57' />
+            <format attr='cell-w' value='20' />
+            <format attr='cell-h' value='20' />
+            <format attr='cell' value='20' />
+            <format attr='cell-q' value='100' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Frequency (days/week):ok]' value='120' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Frequency (days/week):ok]' />
+              <tooltip column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run>Age Group</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[none:Calculation_502855069728985088:nk]> ]]></run>
+                <run>has</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members</run>
+                <run bold='true'><![CDATA[ (<[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]>) ]]></run>
+                <run>workout</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Frequency (days/week):ok]> ]]></run>
+                <run>days/week</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1.7999999523162842' />
+                <format attr='mark-color' value='#81b29a' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]</rows>
+        <cols>[federated.15o9u161viiab416acsca0axll2m].[none:Calculation_502855069728985088:nk]</cols>
+      </table>
+      <simple-id uuid='{BF300E58-C31B-401E-ABB1-93C1E2145EB1}' />
+    </worksheet>
+    <worksheet name='Age Groups'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column datatype='integer' name='[Age]' role='measure' type='quantitative' />
+            <column caption='Age Groups' datatype='string' name='[Calculation_502855069728985088]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='if [Age] &gt;=18 and [Age] &lt;25 then &apos;18-24&apos;&#10;ELSEIF [Age] &gt;=25 and [Age] &lt;35 then &apos;25-34&apos;&#10;ELSEIF [Age] &gt;=35 and [Age] &lt;45 then &apos;35-44&apos;&#10;ELSEIF [Age] &gt;=45 and [Age] &lt;55 then &apos;45-54&apos;&#10;ELSEIF [Age] &gt;=55 and [Age] &lt;65 then &apos;55-64&apos;&#10;end' />
+            </column>
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column-instance column='[Calculation_502855069728985088]' derivation='None' name='[none:Calculation_502855069728985088:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' scope='rows' value='false' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <tooltip column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Calculation_502855069728985088:nk]> ]]></run>
+                <run>has</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members (</run>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]>]]></run>
+                <run>)</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#e07a5f' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]</rows>
+        <cols>[federated.15o9u161viiab416acsca0axll2m].[none:Calculation_502855069728985088:nk]</cols>
+      </table>
+      <simple-id uuid='{A4D9BA8E-F7E3-4AB8-9484-277065A5AFAF}' />
+    </worksheet>
+    <worksheet name='BMI'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column caption='BMI Groups' datatype='string' name='[Age Groups (copy)_502855069735055363]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [BMI] &lt; 18.5 then &apos;Underweight&apos;&#10;ELSEIF [BMI] &gt;= 18.5 and [BMI] &lt;= 24.99 then &apos;Healthy weight&apos;&#10;ELSEIF [BMI] &gt;=25 and [BMI] &lt;= 29.99 then &apos;Overweight&apos;&#10;ELSEIF [BMI] &gt;= 30 then &apos;Obesity&apos;&#10;END' />
+            </column>
+            <column datatype='real' name='[BMI]' role='measure' type='quantitative' />
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[Age Groups (copy)_502855069735055363]' derivation='None' name='[none:Age Groups (copy)_502855069735055363:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <manual-sort column='[federated.15o9u161viiab416acsca0axll2m].[none:Age Groups (copy)_502855069735055363:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Underweight&quot;</bucket>
+              <bucket>&quot;Healthy weight&quot;</bucket>
+              <bucket>&quot;Overweight&quot;</bucket>
+              <bucket>&quot;Obesity&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' scope='cols' value='false' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <customized-tooltip>
+              <formatted-text>
+                <run>BMI group </run>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Age Groups (copy)_502855069735055363:nk]> ]]></run>
+                <run> has </run>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.71364641189575195' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+                <format attr='mark-color' value='#e07a5f' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.15o9u161viiab416acsca0axll2m].[none:Age Groups (copy)_502855069735055363:nk]</rows>
+        <cols>[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]</cols>
+      </table>
+      <simple-id uuid='{B6117ACA-A55A-4C56-A447-33E0B63D8CBE}' />
+    </worksheet>
+    <worksheet name='Caloried burn groups vs Workout Type'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column caption='Calories Burned' datatype='real' name='[Calories_Burned]' role='measure' type='quantitative' />
+            <column caption='Calories Burned Group' datatype='string' name='[Water Intake Groups (copy)_502855070067773446]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Calories_Burned] &lt;=200 then &apos;0-200 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;200 and [Calories_Burned] &lt;=400 then &apos;201-400 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;400 and [Calories_Burned] &lt;=600 then &apos;401-600 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;600 and [Calories_Burned] &lt;=800 then &apos;601-800 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;800 and [Calories_Burned] &lt;=1000 then &apos;801-1000 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;1000 and [Calories_Burned] &lt;=1200 then &apos;1001-1200 cal&apos;&#10;ELSE &apos;1200+ cal&apos;&#10;END' />
+            </column>
+            <column caption='Workout Type' datatype='string' name='[Workout_Type]' role='dimension' type='nominal' />
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[Water Intake Groups (copy)_502855070067773446]' derivation='None' name='[none:Water Intake Groups (copy)_502855070067773446:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Workout_Type]' derivation='None' name='[none:Workout_Type:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='tick-color' scope='rows' value='#00000000' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='height' value='273' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Circle' />
+            <encodings>
+              <color column='[federated.15o9u161viiab416acsca0axll2m].[none:Water Intake Groups (copy)_502855070067773446:nk]' />
+              <size column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+              <text column='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]' />
+              <text column='[federated.15o9u161viiab416acsca0axll2m].[none:Water Intake Groups (copy)_502855070067773446:nk]' />
+              <text column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+              <lod column='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]> ]]></run>
+                <run>has</run>
+                <run fontcolor='#787878'>Æ&#9;</run>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members burn</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[none:Water Intake Groups (copy)_502855070067773446:nk]>]]></run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.25' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='true' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{1AF8B91D-96CF-41D0-A7A1-4E64C49BEBBA}' />
+    </worksheet>
+    <worksheet name='Calories burned by Gender'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column caption='Calories Burned' datatype='real' name='[Calories_Burned]' role='measure' type='quantitative' />
+            <column datatype='string' name='[Gender]' role='dimension' type='nominal' />
+            <column caption='Calories Burned Group' datatype='string' name='[Water Intake Groups (copy)_502855070067773446]' role='dimension' type='nominal'>
+              <calculation class='tableau' formula='IF [Calories_Burned] &lt;=200 then &apos;0-200 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;200 and [Calories_Burned] &lt;=400 then &apos;201-400 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;400 and [Calories_Burned] &lt;=600 then &apos;401-600 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;600 and [Calories_Burned] &lt;=800 then &apos;601-800 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;800 and [Calories_Burned] &lt;=1000 then &apos;801-1000 cal&apos;&#10;ELSEIF [Calories_Burned] &gt;1000 and [Calories_Burned] &lt;=1200 then &apos;1001-1200 cal&apos;&#10;ELSE &apos;1200+ cal&apos;&#10;END' />
+            </column>
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Water Intake Groups (copy)_502855070067773446]' derivation='None' name='[none:Water Intake Groups (copy)_502855070067773446:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' scope='cols' value='false' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='height' field='[federated.15o9u161viiab416acsca0axll2m].[none:Water Intake Groups (copy)_502855070067773446:nk]' value='29' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.15o9u161viiab416acsca0axll2m].[none:Water Intake Groups (copy)_502855070067773446:nk]' value='116' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='8' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]' />
+              <tooltip column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]> ]]></run>
+                <run>group has</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members </run>
+                <run bold='true'><![CDATA[(<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]>) ]]></run>
+                <run>burn</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[none:Water Intake Groups (copy)_502855070067773446:nk]>]]></run>
+                <run>Æ </run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.65867406129837036' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.15o9u161viiab416acsca0axll2m].[none:Water Intake Groups (copy)_502855070067773446:nk]</rows>
+        <cols>[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]</cols>
+      </table>
+      <simple-id uuid='{972889A6-958E-4655-9E64-6BAFCFCACB90}' />
+    </worksheet>
+    <worksheet name='Fat Percentage vs Workout Freq'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column caption='Fat Percentage' datatype='real' name='[Fat_Percentage]' role='measure' type='quantitative' />
+            <column caption='Workout Frequency (days/week)' datatype='integer' name='[Workout_Frequency (days/week)]' role='measure' type='quantitative' />
+            <column caption='Workout Type' datatype='string' name='[Workout_Type]' role='dimension' type='nominal' />
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[Fat_Percentage]' derivation='Avg' name='[avg:Fat_Percentage:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Workout_Frequency (days/week)]' derivation='None' name='[none:Workout_Frequency (days/week):ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Workout_Type]' derivation='None' name='[none:Workout_Type:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='tick-color' scope='cols' value='#00000000' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='height' field='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]' value='51' />
+            <format attr='width' field='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Frequency (days/week):ok]' value='41' />
+            <format attr='cell-w' value='20' />
+            <format attr='cell-h' value='20' />
+            <format attr='cell' value='20' />
+            <format attr='cell-q' value='100' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='width' field='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Frequency (days/week):ok]' value='120' />
+            <format attr='width' field='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]' value='120' />
+            <format attr='border-width' data-class='subtotal' scope='rows' value='0' />
+            <format attr='border-style' data-class='subtotal' scope='rows' value='none' />
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+            <format attr='border-width' data-class='subtotal' scope='cols' value='0' />
+            <format attr='border-style' data-class='subtotal' scope='cols' value='none' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Frequency (days/week):ok]' value='false' />
+          </style-rule>
+          <style-rule element='mark'>
+            <encoding attr='size' field='[federated.15o9u161viiab416acsca0axll2m].[avg:Fat_Percentage:qk]' field-type='quantitative' max-size='1' min-size='0' type='quantsize' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='subtotal' scope='rows' value='0' />
+            <format attr='border-style' data-class='subtotal' scope='rows' value='none' />
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+            <format attr='border-width' data-class='subtotal' scope='cols' value='0' />
+            <format attr='border-style' data-class='subtotal' scope='cols' value='none' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+            <format attr='display-field-labels' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]' />
+              <size column='[federated.15o9u161viiab416acsca0axll2m].[avg:Fat_Percentage:qk]' />
+              <lod column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members do</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]> ]]></run>
+                <run>with</run>
+                <run bold='true'>Æ </run>
+                <run>frequency of</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Frequency (days/week):ok]> ]]></run>
+                <run>days/week</run>
+                <run bold='true'>Æ </run>
+                <run>have avg </run>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[avg:Fat_Percentage:qk]>]]></run>
+                <run> fat percentage </run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='1.7999999523162842' />
+                <format attr='mark-color' value='#81b29a' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minheight' value='-1' />
+                <format attr='maxheight' value='-1' />
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]</rows>
+        <cols>[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Frequency (days/week):ok]</cols>
+      </table>
+      <simple-id uuid='{1CA63E40-1B70-4030-AAB8-9825847C5AC5}' />
+    </worksheet>
+    <worksheet name='Freq vs Exp Levels'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column caption='Experience Level' datatype='integer' name='[Experience_Level]' role='measure' type='quantitative'>
+              <aliases>
+                <alias key='1' value='Beginer' />
+                <alias key='2' value='Intermediate ' />
+                <alias key='3' value='Advanced ' />
+              </aliases>
+            </column>
+            <column caption='Workout Type' datatype='string' name='[Workout_Type]' role='dimension' type='nominal' />
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[Experience_Level]' derivation='None' name='[none:Experience_Level:ok]' pivot='key' type='ordinal' />
+            <column-instance column='[Workout_Type]' derivation='None' name='[none:Workout_Type:nk]' pivot='key' type='nominal' />
+          </datasource-dependencies>
+          <manual-sort column='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]' direction='ASC'>
+            <dictionary>
+              <bucket>&quot;Yoga&quot;</bucket>
+              <bucket>&quot;Strength&quot;</bucket>
+              <bucket>&quot;Cardio&quot;</bucket>
+              <bucket>&quot;HIIT&quot;</bucket>
+            </dictionary>
+          </manual-sort>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' scope='rows' value='false' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+            <format attr='tick-color' scope='rows' value='#00000000' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='width' field='[federated.15o9u161viiab416acsca0axll2m].[none:Experience_Level:ok]' value='67' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+          </style-rule>
+          <style-rule element='label'>
+            <format attr='display' field='[federated.15o9u161viiab416acsca0axll2m].[none:Experience_Level:ok]' value='false' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='1' />
+            <format attr='line-visibility' scope='cols' value='on' />
+            <format attr='line-pattern-only' scope='cols' value='solid' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]> ]]></run>
+                <run>has</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members at</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[none:Experience_Level:ok]> ]]></run>
+                <run>level &#10;</run>
+                <run fontcolor='#787878'>Æ&#9;&#9;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.44977900385856628' />
+              </style-rule>
+              <style-rule element='pane'>
+                <format attr='minwidth' value='-1' />
+                <format attr='maxwidth' value='-1' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]</rows>
+        <cols>([federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk] / [federated.15o9u161viiab416acsca0axll2m].[none:Experience_Level:ok])</cols>
+      </table>
+      <simple-id uuid='{B43ED309-9141-4125-85F2-4E2712931960}' />
+    </worksheet>
+    <worksheet name='Gender'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column caption='avg(0)' datatype='real' name='[Calculation_502855069731663874]' role='measure' type='quantitative' user:unnamed='Gender'>
+              <calculation class='tableau' formula='avg(0)' />
+            </column>
+            <column datatype='string' name='[Gender]' role='dimension' type='nominal' />
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Rows' type='PctTotal' />
+            </column-instance>
+            <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Calculation_502855069731663874]' derivation='User' name='[usr:Calculation_502855069731663874:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <encoding attr='space' class='1' field='[federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_502855069731663874:qk]' field-type='quantitative' fold='true' scope='rows' synchronized='true' type='space' />
+            <format attr='display' class='1' field='[federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_502855069731663874:qk]' scope='rows' value='false' />
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_502855069731663874:qk]' scope='rows' value='false' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+          </style-rule>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' value='p0.0%' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+          <style-rule element='table-div'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]> ]]></run>
+                <run>has</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members</run>
+                <run bold='true'>Æ </run>
+                <run>(</run>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]>]]></run>
+                <run>)&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#e07a5f' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_502855069731663874:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <color column='[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]' />
+              <wedge-size column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+              <text column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+              <text column='[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]' />
+              <lod column='[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]> ]]></run>
+                <run>has</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members</run>
+                <run bold='true'>Æ </run>
+                <run>(</run>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]>]]></run>
+                <run>)&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <customized-label>
+              <formatted-text>
+                <run fontalignment='2' fontsize='8'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]>]]></run>
+                <run fontalignment='2'>Æ&#10;</run>
+                <run fontalignment='2' fontsize='8'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]>]]></run>
+              </formatted-text>
+            </customized-label>
+            <style>
+              <style-rule element='cell'>
+                <format attr='text-align' value='center' />
+                <format attr='vertical-align' value='center' />
+              </style-rule>
+              <style-rule element='mark'>
+                <format attr='size' value='1.8570718765258789' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#e07a5f' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' y-axis-name='[federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_502855069731663874:qk]' y-index='1'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Pie' />
+            <mark-sizing mark-sizing-setting='marks-scaling-off' />
+            <encodings>
+              <text column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]> ]]></run>
+                <run>has</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members</run>
+                <run bold='true'>Æ </run>
+                <run>(</run>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]>]]></run>
+                <run>)&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.71364641189575195' />
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-color' value='#f4f1de' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>([federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_502855069731663874:qk] + [federated.15o9u161viiab416acsca0axll2m].[usr:Calculation_502855069731663874:qk])</rows>
+        <cols />
+      </table>
+      <simple-id uuid='{DBF41CE7-515A-4D57-A7AB-B744A42E0C70}' />
+    </worksheet>
+    <worksheet name='Workout Type  by Gender'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gym_members_exercise_tracking' name='federated.15o9u161viiab416acsca0axll2m' />
+          </datasources>
+          <datasource-dependencies datasource='federated.15o9u161viiab416acsca0axll2m'>
+            <column datatype='string' name='[Gender]' role='dimension' type='nominal' />
+            <column caption='Workout Type' datatype='string' name='[Workout_Type]' role='dimension' type='nominal' />
+            <_.fcp.ObjectModelTableType.false...column caption='gym_members_exercise_tracking.csv' datatype='integer' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' pivot='key' type='quantitative' />
+            <_.fcp.ObjectModelTableType.true...column caption='gym_members_exercise_tracking.csv' datatype='table' name='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' role='measure' type='quantitative' />
+            <column-instance column='[Gender]' derivation='None' name='[none:Gender:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Workout_Type]' derivation='None' name='[none:Workout_Type:nk]' pivot='key' type='nominal' />
+            <column-instance column='[__tableau_internal_object_id__].[gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1]' derivation='Count' name='[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='Columns' type='PctTotal' />
+            </column-instance>
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='axis'>
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]' scope='rows' value='false' />
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='tick-color' scope='cols' value='#00000000' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+            <format attr='display' class='0' field='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' scope='rows' value='false' />
+          </style-rule>
+          <style-rule element='header'>
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+          </style-rule>
+          <style-rule element='pane'>
+            <format attr='border-width' data-class='total' scope='cols' value='0' />
+            <format attr='border-style' data-class='total' scope='cols' value='none' />
+            <format attr='border-width' data-class='total' scope='rows' value='0' />
+            <format attr='border-style' data-class='total' scope='rows' value='none' />
+          </style-rule>
+          <style-rule element='table'>
+            <format attr='background-color' value='#00000000' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='display-field-labels' scope='cols' value='false' />
+          </style-rule>
+          <style-rule element='dropline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='refline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='gridline'>
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+          <style-rule element='zeroline'>
+            <format attr='stroke-size' scope='cols' value='0' />
+            <format attr='line-visibility' scope='cols' value='off' />
+            <format attr='stroke-size' scope='rows' value='0' />
+            <format attr='line-visibility' scope='rows' value='off' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane id='12' selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]' />
+              <tooltip column='[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]' />
+            </encodings>
+            <customized-tooltip>
+              <formatted-text>
+                <run bold='true'><![CDATA[<[federated.15o9u161viiab416acsca0axll2m].[none:Gender:nk]> ]]></run>
+                <run>group has</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[__tableau_internal_object_id__].[cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk]> ]]></run>
+                <run>members</run>
+                <run bold='true'><![CDATA[ (<[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]>) ]]></run>
+                <run>do</run>
+                <run bold='true'><![CDATA[ <[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]>]]></run>
+                <run>Æ&#10;</run>
+              </formatted-text>
+            </customized-tooltip>
+            <style>
+              <style-rule element='mark'>
+                <format attr='size' value='0.25' />
+                <format attr='mark-labels-cull' value='true' />
+                <format attr='mark-labels-show' value='false' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows>[federated.15o9u161viiab416acsca0axll2m].[pcto:cnt:gym_members_exercise_tracking.csv_4B33147742044114894026710836CAB1:qk:4]</rows>
+        <cols>[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]</cols>
+      </table>
+      <simple-id uuid='{BC3C4C9F-14B1-448F-B4AC-E20B61D640EB}' />
+    </worksheet>
+  </worksheets>
+  <dashboards>
+    <dashboard _.fcp.AccessibleZoneTabOrder.true...enable-sort-zone-taborder='true' name='Fitness Dashboard'>
+      <style />
+      <size maxheight='800' maxwidth='1400' minheight='800' minwidth='1400' sizing-mode='fixed' />
+      <zones>
+        <zone h='100000' id='4' type-v2='layout-basic' w='100000' x='0' y='0'>
+          <zone h='98000' id='62' param='horz' type-v2='layout-flow' w='98858' x='571' y='1000'>
+            <zone friendly-name='Whole dashboard' h='98000' id='3' param='horz' type-v2='layout-flow' w='98858' x='571' y='1000'>
+              <zone fixed-size='100' friendly-name='Overview' h='97250' id='7' is-fixed='true' param='vert' type-v2='layout-flow' w='7143' x='785' y='1375'>
+                <zone h='12750' id='19' is-scaled='1' param='/Users/miadang/Desktop/DA/Gym_Analysis/Logo/weightlifting.png' type-v2='bitmap' w='7143' x='785' y='1375'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='336' h='43000' id='20' is-fixed='true' type-v2='empty' w='7143' x='785' y='14125'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone h='2875' id='25' type-v2='text' w='7143' x='785' y='57125'>
+                  <formatted-text>
+                    <run fontalignment='1'>Contact</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='1' friendly-name='Divider' h='125' id='24' is-fixed='true' type-v2='empty' w='7143' x='785' y='60000'>
+                  <zone-style>
+                    <format attr='border-color' value='#3d405b' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='2' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-right' value='5' />
+                    <format attr='margin-left' value='5' />
+                  </zone-style>
+                </zone>
+                <zone h='12750' id='22' is-scaled='1' param='/Users/miadang/Desktop/DA/Gym_Analysis/Logo/dashboard.png' type-v2='bitmap' url='https://public.tableau.com/app/profile/nha.alvarado/vizzes' w='7143' x='785' y='60125'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='1' friendly-name='Divider' h='125' id='26' is-fixed='true' type-v2='empty' w='7143' x='785' y='72875'>
+                  <zone-style>
+                    <format attr='border-color' value='#3d405b' />
+                    <format attr='border-style' value='dashed' />
+                    <format attr='border-width' value='2' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-right' value='10' />
+                    <format attr='margin-left' value='10' />
+                  </zone-style>
+                </zone>
+                <zone h='12750' id='21' is-scaled='1' param='/Users/miadang/Desktop/DA/Gym_Analysis/Logo/linkedin.png' type-v2='bitmap' url='https://www.linkedin.com/in/nhadalvarado/' w='7143' x='785' y='73000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='1' h='125' id='27' is-fixed='true' type-v2='empty' w='7143' x='785' y='85750'>
+                  <zone-style>
+                    <format attr='border-color' value='#3d405b' />
+                    <format attr='border-style' value='dashed' />
+                    <format attr='border-width' value='2' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-right' value='10' />
+                    <format attr='margin-left' value='10' />
+                  </zone-style>
+                </zone>
+                <zone h='12750' id='23' is-scaled='1' param='/Users/miadang/Desktop/DA/Gym_Analysis/Logo/github.png' type-v2='bitmap' url='https://github.com/NhaDAlvarado' w='7143' x='785' y='85875'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone fixed-size='2' friendly-name='Divider' h='97250' id='28' is-fixed='true' type-v2='empty' w='143' x='7928' y='1375'>
+                <zone-style>
+                  <format attr='border-color' value='#3d405b' />
+                  <format attr='border-style' value='solid' />
+                  <format attr='border-width' value='3' />
+                  <format attr='margin' value='0' />
+                  <format attr='margin-top' value='5' />
+                  <format attr='margin-right' value='0' />
+                  <format attr='margin-bottom' value='5' />
+                  <format attr='margin-left' value='0' />
+                </zone-style>
+              </zone>
+              <zone fixed-size='1298' friendly-name=' All Charts' h='97250' id='8' is-fixed='true' param='vert' type-v2='layout-flow' w='91144' x='8071' y='1375'>
+                <zone fixed-size='27' forceUpdate='true' friendly-name='Big Title' h='4375' id='10' is-fixed='true' type-v2='text' w='91144' x='8071' y='1375'>
+                  <formatted-text>
+                    <run bold='true' fontsize='15'>GYM DASHBOARD - Overview</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='2' friendly-name='Divider' h='250' id='76' is-fixed='true' type-v2='empty' w='91144' x='8071' y='5750'>
+                  <zone-style>
+                    <format attr='border-color' value='#3d405b' />
+                    <format attr='border-style' value='solid' />
+                    <format attr='border-width' value='3' />
+                    <format attr='margin' value='0' />
+                    <format attr='margin-right' value='5' />
+                    <format attr='margin-left' value='5' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='763' friendly-name='Charts and Detail' h='92625' id='12' is-fixed='true' param='horz' type-v2='layout-flow' w='91144' x='8071' y='6000'>
+                  <zone fixed-size='382' friendly-name='Left Charts' h='92625' id='16' is-fixed='true' param='vert' type-v2='layout-flow' w='27286' x='8071' y='6000'>
+                    <zone fixed-size='218' friendly-name='Gender Dist' h='27250' id='35' is-fixed='true' param='vert' type-v2='layout-flow' w='27286' x='8071' y='6000'>
+                      <zone forceUpdate='true' friendly-name='Title' h='2875' id='38' type-v2='text' w='27286' x='8071' y='6000'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>Gender Distribution</run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='24375' id='39' name='Gender' show-title='false' w='27286' x='8071' y='8875'>
+                        <layout-cache cell-count-w='1' minheight='100' type-h='scalable' type-w='cell' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                    <zone fixed-size='1' friendly-name='Divider' h='125' id='79' is-fixed='true' type-v2='empty' w='27286' x='8071' y='33250'>
+                      <zone-style>
+                        <format attr='border-color' value='#3d405b' />
+                        <format attr='border-style' value='dashed' />
+                        <format attr='border-width' value='2' />
+                        <format attr='margin' value='0' />
+                        <format attr='margin-right' value='5' />
+                        <format attr='margin-left' value='5' />
+                      </zone-style>
+                    </zone>
+                    <zone fixed-size='220' friendly-name='Gender vs Workout Type' h='27500' id='48' is-fixed='true' param='vert' type-v2='layout-flow' w='27286' x='8071' y='33375'>
+                      <zone forceUpdate='true' friendly-name='Title' h='2875' id='49' type-v2='text' w='27286' x='8071' y='33375'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>Workout Type by Gender </run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='24625' id='50' name='Workout Type  by Gender' show-title='false' w='27286' x='8071' y='36250'>
+                        <layout-cache cell-count-w='4' minheight='120' type-h='scalable' type-w='cell' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                    <zone fixed-size='1' friendly-name='Divider' h='125' id='80' is-fixed='true' type-v2='empty' w='27286' x='8071' y='60875'>
+                      <zone-style>
+                        <format attr='border-color' value='#3d405b' />
+                        <format attr='border-style' value='dashed' />
+                        <format attr='border-width' value='2' />
+                        <format attr='margin' value='0' />
+                        <format attr='margin-right' value='5' />
+                        <format attr='margin-left' value='5' />
+                      </zone-style>
+                    </zone>
+                    <zone fixed-size='287' friendly-name='Age Group Dis' h='35875' id='34' is-fixed='true' param='vert' type-v2='layout-flow' w='27286' x='8071' y='61000'>
+                      <zone forceUpdate='true' friendly-name='Title' h='2875' id='36' type-v2='text' w='27286' x='8071' y='61000'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>Age Groups Distribution</run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='33000' id='37' name='Age Groups' show-title='false' w='27286' x='8071' y='63875'>
+                        <layout-cache cell-count-w='5' minheight='120' type-h='scalable' type-w='cell' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                  </zone>
+                  <zone fixed-size='1' friendly-name='Divider' h='92625' id='72' is-fixed='true' type-v2='empty' w='71' x='35357' y='6000'>
+                    <zone-style>
+                      <format attr='border-color' value='#3d405b' />
+                      <format attr='border-style' value='dashed' />
+                      <format attr='border-width' value='2' />
+                      <format attr='margin' value='0' />
+                      <format attr='margin-top' value='5' />
+                      <format attr='margin-bottom' value='5' />
+                    </zone-style>
+                  </zone>
+                  <zone fixed-size='447' friendly-name='Middle Charts' h='92625' id='71' is-fixed='true' param='vert' type-v2='layout-flow' w='31858' x='35428' y='6000'>
+                    <zone fixed-size='256' friendly-name='Workout Freq vs level' h='30791' id='63' is-fixed='true' param='vert' type-v2='layout-flow' w='31858' x='35428' y='6000'>
+                      <zone forceUpdate='true' friendly-name='Title' h='2875' id='64' type-v2='text' w='31858' x='35428' y='6000'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>Experience level VS Workout Frequency</run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='27916' id='65' name='Freq vs Exp Levels' show-title='false' w='31858' x='35428' y='8875'>
+                        <layout-cache cell-count-w='12' minheight='121' type-h='scalable' type-w='cell' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                    <zone fixed-size='1' friendly-name='Divider' h='125' id='81' is-fixed='true' type-v2='empty' w='31858' x='35428' y='36791'>
+                      <zone-style>
+                        <format attr='border-color' value='#3d405b' />
+                        <format attr='border-style' value='dashed' />
+                        <format attr='border-width' value='2' />
+                        <format attr='margin' value='0' />
+                        <format attr='margin-right' value='5' />
+                        <format attr='margin-left' value='5' />
+                      </zone-style>
+                    </zone>
+                    <zone fixed-size='271' friendly-name='Fat Percentage vs Workout Freq' h='30791' id='66' is-fixed='true' param='vert' type-v2='layout-flow' w='31858' x='35428' y='36916'>
+                      <zone forceUpdate='true' friendly-name='Title' h='2875' id='67' type-v2='text' w='31858' x='35428' y='36916'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>Fat Percentage VS Workout Frequency</run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='26500' id='68' name='Fat Percentage vs Workout Freq' show-title='false' w='31858' x='35428' y='39791'>
+                        <layout-cache fixed-size-h='204' fixed-size-w='284' type-h='fixed' type-w='fixed' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                    <zone fixed-size='1' friendly-name='Divider' h='125' id='82' is-fixed='true' type-v2='empty' w='31858' x='35428' y='67707'>
+                      <zone-style>
+                        <format attr='border-color' value='#3d405b' />
+                        <format attr='border-style' value='dashed' />
+                        <format attr='border-width' value='2' />
+                        <format attr='margin' value='0' />
+                        <format attr='margin-right' value='5' />
+                        <format attr='margin-left' value='5' />
+                      </zone-style>
+                    </zone>
+                    <zone fixed-size='260' friendly-name='Age Group Vs Workou Frq' h='30793' id='43' is-fixed='true' param='vert' type-v2='layout-flow' w='31858' x='35428' y='67832'>
+                      <zone forceUpdate='true' friendly-name='Title' h='2875' id='44' type-v2='text' w='31858' x='35428' y='67832'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>Age Groups VS Workout Frequency</run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='27918' id='45' name='Age Group Vs Workout Freq' show-title='false' w='31858' x='35428' y='70707'>
+                        <layout-cache cell-count-w='5' minheight='120' type-h='scalable' type-w='cell' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                  </zone>
+                  <zone fixed-size='1' friendly-name='Divider' h='92625' id='73' is-fixed='true' type-v2='empty' w='71' x='67286' y='6000'>
+                    <zone-style>
+                      <format attr='border-color' value='#3d405b' />
+                      <format attr='border-style' value='dashed' />
+                      <format attr='border-width' value='2' />
+                      <format attr='margin' value='0' />
+                      <format attr='margin-top' value='5' />
+                      <format attr='margin-bottom' value='5' />
+                    </zone-style>
+                  </zone>
+                  <zone fixed-size='788' friendly-name='Right Charts' h='92625' id='15' is-fixed='true' param='vert' type-v2='layout-flow' w='31858' x='67357' y='6000'>
+                    <zone fixed-size='232' friendly-name='Calories burned group vs gender' h='29000' id='58' is-fixed='true' param='vert' type-v2='layout-flow' w='31858' x='67357' y='6000'>
+                      <zone forceUpdate='true' friendly-name='Title' h='2875' id='59' type-v2='text' w='31858' x='67357' y='6000'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>Calories Burn Groups VS Gender </run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='22750' id='60' name='Calories burned by Gender' show-title='false' w='31858' x='67357' y='8875'>
+                        <layout-cache fixed-size-h='174' minwidth='216' type-h='fixed' type-w='scalable' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                    <zone fixed-size='1' friendly-name='Divider' h='125' id='83' is-fixed='true' type-v2='empty' w='31858' x='67357' y='35000'>
+                      <zone-style>
+                        <format attr='border-color' value='#3d405b' />
+                        <format attr='border-style' value='dashed' />
+                        <format attr='border-width' value='2' />
+                        <format attr='margin' value='5' />
+                        <format attr='margin-top' value='0' />
+                        <format attr='margin-bottom' value='0' />
+                      </zone-style>
+                    </zone>
+                    <zone fixed-size='291' friendly-name='Calroies burn per hour by workout type' h='36375' id='55' is-fixed='true' param='vert' type-v2='layout-flow' w='31858' x='67357' y='35125'>
+                      <zone forceUpdate='true' friendly-name='Title' h='2875' id='56' type-v2='text' w='31858' x='67357' y='35125'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>Calories Burn Group VS Workout Type </run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='33500' id='57' name='Caloried burn groups vs Workout Type' show-title='false' w='31858' x='67357' y='38000'>
+                        <layout-cache cell-count-h='1' cell-count-w='1' type-h='cell' type-w='cell' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                    <zone fixed-size='1' friendly-name='Divider' h='125' id='84' is-fixed='true' type-v2='empty' w='31858' x='67357' y='71500'>
+                      <zone-style>
+                        <format attr='border-color' value='#3d405b' />
+                        <format attr='border-style' value='dashed' />
+                        <format attr='border-width' value='2' />
+                        <format attr='margin' value='0' />
+                        <format attr='margin-right' value='5' />
+                        <format attr='margin-left' value='5' />
+                      </zone-style>
+                    </zone>
+                    <zone friendly-name='BMI Dist' h='27000' id='40' param='vert' type-v2='layout-flow' w='31858' x='67357' y='71625'>
+                      <zone fixed-size='24' forceUpdate='true' friendly-name='Title' h='4000' id='41' is-fixed='true' type-v2='text' w='31858' x='67357' y='71625'>
+                        <formatted-text>
+                          <run bold='true' fontalignment='1'>BMI Distribution</run>
+                        </formatted-text>
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                      <zone friendly-name='Chart' h='23000' id='42' name='BMI' show-title='false' w='31858' x='67357' y='75625'>
+                        <layout-cache cell-count-h='4' minwidth='200' type-h='cell' type-w='scalable' />
+                        <zone-style>
+                          <format attr='border-color' value='#000000' />
+                          <format attr='border-style' value='none' />
+                          <format attr='border-width' value='0' />
+                          <format attr='margin' value='4' />
+                        </zone-style>
+                      </zone>
+                    </zone>
+                  </zone>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#3d405b' />
+                <format attr='border-style' value='solid' />
+                <format attr='border-width' value='3' />
+                <format attr='background-color' value='#f4f1de' />
+              </zone-style>
+            </zone>
+          </zone>
+          <zone-style>
+            <format attr='border-color' value='#000000' />
+            <format attr='border-style' value='none' />
+            <format attr='border-width' value='0' />
+            <format attr='margin' value='8' />
+          </zone-style>
+        </zone>
+      </zones>
+      <devicelayouts>
+        <devicelayout auto-generated='true' name='Phone'>
+          <size maxheight='3150' minheight='3150' sizing-mode='vscroll' />
+          <zones>
+            <zone h='100000' id='88' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='87' param='vert' type-v2='layout-flow' w='98858' x='571' y='1000'>
+                <zone fixed-size='94' h='12750' id='19' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Gym_Analysis/Logo/weightlifting.png' type-v2='bitmap' w='7143' x='785' y='1375'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='27' forceUpdate='true' friendly-name='Big Title' h='4375' id='10' type-v2='text' w='91144' x='8071' y='1375'>
+                  <formatted-text>
+                    <run bold='true' fontsize='15'>GYM DASHBOARD - Overview</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='38' type-v2='text' w='27286' x='8071' y='6000'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>Gender Distribution</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='64' type-v2='text' w='31858' x='35428' y='6000'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>Experience level VS Workout Frequency</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='59' type-v2='text' w='31858' x='67357' y='6000'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>Calories Burn Groups VS Gender </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='187' friendly-name='Chart' h='24375' id='39' is-fixed='true' name='Gender' show-title='false' w='27286' x='8071' y='8875'>
+                  <layout-cache cell-count-w='1' minheight='100' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='215' friendly-name='Chart' h='27916' id='65' is-fixed='true' name='Freq vs Exp Levels' show-title='false' w='31858' x='35428' y='8875'>
+                  <layout-cache cell-count-w='12' minheight='121' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='174' friendly-name='Chart' h='22750' id='60' is-fixed='true' name='Calories burned by Gender' show-title='false' w='31858' x='67357' y='8875'>
+                  <layout-cache fixed-size-h='174' minwidth='216' type-h='fixed' type-w='scalable' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='49' type-v2='text' w='27286' x='8071' y='33375'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>Workout Type by Gender </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='56' type-v2='text' w='31858' x='67357' y='35125'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>Calories Burn Group VS Workout Type </run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='189' friendly-name='Chart' h='24625' id='50' is-fixed='true' name='Workout Type  by Gender' show-title='false' w='27286' x='8071' y='36250'>
+                  <layout-cache cell-count-w='4' minheight='120' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='67' type-v2='text' w='31858' x='35428' y='36916'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>Fat Percentage VS Workout Frequency</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='260' friendly-name='Chart' h='33500' id='57' is-fixed='true' name='Caloried burn groups vs Workout Type' show-title='false' w='31858' x='67357' y='38000'>
+                  <layout-cache cell-count-h='1' cell-count-w='1' type-h='cell' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='204' friendly-name='Chart' h='26500' id='68' is-fixed='true' name='Fat Percentage vs Workout Freq' show-title='false' w='31858' x='35428' y='39791'>
+                  <layout-cache fixed-size-h='204' fixed-size-w='284' type-h='fixed' type-w='fixed' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone h='2875' id='25' type-v2='text' w='7143' x='785' y='57125'>
+                  <formatted-text>
+                    <run fontalignment='1'>Contact</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='94' h='12750' id='22' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Gym_Analysis/Logo/dashboard.png' type-v2='bitmap' url='https://public.tableau.com/app/profile/nha.alvarado/vizzes' w='7143' x='785' y='60125'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='36' type-v2='text' w='27286' x='8071' y='61000'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>Age Groups Distribution</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='256' friendly-name='Chart' h='33000' id='37' is-fixed='true' name='Age Groups' show-title='false' w='27286' x='8071' y='63875'>
+                  <layout-cache cell-count-w='5' minheight='120' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone forceUpdate='true' friendly-name='Title' h='2875' id='44' type-v2='text' w='31858' x='35428' y='67832'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>Age Groups VS Workout Frequency</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='215' friendly-name='Chart' h='27918' id='45' is-fixed='true' name='Age Group Vs Workout Freq' show-title='false' w='31858' x='35428' y='70707'>
+                  <layout-cache cell-count-w='5' minheight='120' type-h='scalable' type-w='cell' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='24' forceUpdate='true' friendly-name='Title' h='4000' id='41' type-v2='text' w='31858' x='67357' y='71625'>
+                  <formatted-text>
+                    <run bold='true' fontalignment='1'>BMI Distribution</run>
+                  </formatted-text>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='94' h='12750' id='21' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Gym_Analysis/Logo/linkedin.png' type-v2='bitmap' url='https://www.linkedin.com/in/nhadalvarado/' w='7143' x='785' y='73000'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='176' friendly-name='Chart' h='23000' id='42' is-fixed='true' name='BMI' show-title='false' w='31858' x='67357' y='75625'>
+                  <layout-cache cell-count-h='4' minwidth='200' type-h='cell' type-w='scalable' />
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+                <zone fixed-size='94' h='12750' id='23' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Gym_Analysis/Logo/github.png' type-v2='bitmap' url='https://github.com/NhaDAlvarado' w='7143' x='785' y='85875'>
+                  <zone-style>
+                    <format attr='border-color' value='#000000' />
+                    <format attr='border-style' value='none' />
+                    <format attr='border-width' value='0' />
+                    <format attr='margin' value='4' />
+                    <format attr='padding' value='0' />
+                  </zone-style>
+                </zone>
+              </zone>
+              <zone-style>
+                <format attr='border-color' value='#000000' />
+                <format attr='border-style' value='none' />
+                <format attr='border-width' value='0' />
+                <format attr='margin' value='8' />
+              </zone-style>
+            </zone>
+          </zones>
+        </devicelayout>
+      </devicelayouts>
+      <simple-id uuid='{E7EA39C7-AC36-4DF1-89F9-0EF1331B128F}' />
+    </dashboard>
+  </dashboards>
+  <windows source-height='30'>
+    <window class='worksheet' name='Age Groups'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{FA09AF27-4116-42D4-990B-43E3A90AC07F}' />
+    </window>
+    <window class='worksheet' name='Age Group Vs Workout Freq'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{13DBC439-6DDC-4EA6-9E0A-B0852F46C498}' />
+    </window>
+    <window class='worksheet' name='Gender'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{01DE16B2-4409-45A6-BAA0-EF8E5410175B}' />
+    </window>
+    <window class='worksheet' name='Workout Type  by Gender'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{9F6C485D-30F4-497B-A359-895A27C60E7B}' />
+    </window>
+    <window class='worksheet' name='BMI'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{277ACD34-03EC-4139-8912-8090745FF026}' />
+    </window>
+    <window class='worksheet' name='Freq vs Exp Levels'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{5B78017D-A779-46BF-9E8B-5BAB405CBC20}' />
+    </window>
+    <window class='worksheet' name='Caloried burn groups vs Workout Type'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{0B386AEC-14E7-4969-9BBC-18C66EA3CBE5}' />
+    </window>
+    <window class='worksheet' name='Calories burned by Gender'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{C7570A78-34DA-42DE-A095-DB7CD04E2E2D}' />
+    </window>
+    <window class='worksheet' name='Fat Percentage vs Workout Freq'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='0' param='[federated.15o9u161viiab416acsca0axll2m].[none:Workout_Type:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{0016730B-9C5C-4369-B041-094CB796BD2F}' />
+    </window>
+    <window class='dashboard' maximized='true' name='Fitness Dashboard'>
+      <viewpoints>
+        <viewpoint name='Age Group Vs Workout Freq'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Age Groups'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='BMI'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Caloried burn groups vs Workout Type'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Calories burned by Gender' />
+        <viewpoint name='Fat Percentage vs Workout Freq' />
+        <viewpoint name='Freq vs Exp Levels'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Gender'>
+          <zoom type='entire-view' />
+        </viewpoint>
+        <viewpoint name='Workout Type  by Gender'>
+          <zoom type='entire-view' />
+        </viewpoint>
+      </viewpoints>
+      <active id='21' />
+      <simple-id uuid='{8CBCAF11-3936-4E57-B1BF-59F540717FC0}' />
+    </window>
+  </windows>
+</workbook>
