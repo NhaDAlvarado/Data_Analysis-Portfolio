@@ -17,20 +17,40 @@ select round(avg(price/property_sqft),2) as avg_price_per_sqft
 from ny_housing_market;
 
 -- 5.What is the distribution of properties across different boroughs?
-select locality, count(*) as num_of_property,
+select sublocality, count(*) as num_of_property,
 	round(100.0*count(*)/(select count(*) from ny_housing_market),2) as percentage
 from ny_housing_market
-group by locality
+group by sublocality
 order by percentage desc; 
 
 -- 6.What is the total number of properties listed in each locality?
--- select * from ny_housing_market
+select locality, count(*) as num_of_property
+from ny_housing_market
+group by locality;
 
 -- 7.How many properties are listed by each broker?
+select broker_title, count(*) as num_of_property
+from ny_housing_market
+group by broker_title; 
+
 -- 8.What is the price range (min and max) for properties in each borough?
+select sublocality, min(price) as min_price, max(price) as max_price
+from ny_housing_market
+group by sublocality; 
+
 -- 9.What is the average number of bedrooms for properties by property type?
+select property_type, round(avg(beds)) as avg_bedrooms
+from ny_housing_market
+group by property_type; 
+
 -- 10.How many properties have at least 3 bedrooms and 2 bathrooms?
+select count(*) as num_of_property
+from ny_housing_market
+where beds >=3 and baths >=2; 
+
 -- 11.Which properties are listed above $1 million?
+-- select * from ny_housing_market
+
 -- 12.What are the top 10 most expensive properties in the dataset?
 -- 13.What is the average price for properties with 2 bedrooms?
 -- 14.Which borough has the highest average property price?
