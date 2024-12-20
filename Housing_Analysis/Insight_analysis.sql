@@ -78,7 +78,6 @@ order by avg_price desc
 limit 1;
 
 -- 15.Which property type has the highest average price?
--- select * from ny_housing_market
 select property_type, round(avg(price),2) as avg_price
 from ny_housing_market
 group by property_type
@@ -86,11 +85,61 @@ order by avg_price desc
 limit 1;
 
 -- 16.How does the price vary across different neighborhoods within Manhattan?
+select case 
+		when price <100000 then 'less than 100000'
+		when price >=100000 and price <500000 then '0.1mil - 0.5mil'
+		when price >=500000 and price <1000000 then '0.5mil - 1mil'
+		when price >=1000000 and price <1500000 then '1mil - 1.5mil'
+		when price >=1500000 and price <2000000 then '1.5mil - 2mil'
+		when price >=2000000 and price <2500000 then '2mil - 2.5mil'
+		when price >=2500000 and price <3000000 then '2.5mil - 3mil'
+		when price >=3000000 and price <3500000 then '3mil - 3.5mil'
+		when price >=3500000 and price <4000000 then '3.5mil - 4mil'
+		else '4mil+'
+	end as price_groups,
+	count(*) as num_of_property
+from ny_housing_market
+where state like 'Manhattan%'
+group by price_groups;
+
 -- 17.What is the average price for properties with less than 500 square feet?
+select round(avg(price),2) as avg_price
+from ny_housing_market
+where property_sqft < 500;
+
 -- 18.Which borough has the lowest average price per square foot?
--- 19.What is the average price for properties built before the year 2000?
+select sublocality, round(avg(price/property_sqft),2) as avg_price_per_sqft
+from ny_housing_market
+group by sublocality
+order by avg_price_per_sqft
+limit 1;
+
+-- 19.What is the average price for properties sale by COMPASS?
+select round(avg(price),2) as avg_price
+from ny_housing_market
+where broker_title = 'Brokered by COMPASS';
+
 -- 20.What is the most common price range (e.g., in $50,000 intervals) for properties?
+select case 
+		when price <100000 then 'less than 100000'
+		when price >=100000 and price <500000 then '0.1mil - 0.5mil'
+		when price >=500000 and price <1000000 then '0.5mil - 1mil'
+		when price >=1000000 and price <1500000 then '1mil - 1.5mil'
+		when price >=1500000 and price <2000000 then '1.5mil - 2mil'
+		when price >=2000000 and price <2500000 then '2mil - 2.5mil'
+		when price >=2500000 and price <3000000 then '2.5mil - 3mil'
+		when price >=3000000 and price <3500000 then '3mil - 3.5mil'
+		when price >=3500000 and price <4000000 then '3.5mil - 4mil'
+		else '4mil+'
+	end as price_groups,
+	count(*) as num_of_property
+from ny_housing_market
+group by price_groups
+order by num_of_property desc;
+
 -- 21.What is the geographical distribution of properties (latitude and longitude)?
+-- select * from ny_housing_market
+
 -- 22.How many properties are located within Manhattan?
 -- 23.Which neighborhood has the highest density of listings?
 -- 24.What are the 5 most common streets for property listings?
