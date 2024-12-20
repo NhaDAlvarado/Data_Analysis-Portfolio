@@ -138,12 +138,39 @@ group by price_groups
 order by num_of_property desc;
 
 -- 21.What is the geographical distribution of properties (latitude and longitude)?
--- select * from ny_housing_market
+select case
+        when latitude > 41.0 then 'North'
+        when latitude <= 40.7 then 'South'
+        when longitude > -73.8 then 'East'
+        else 'West'
+    end as region,
+    count(*) as property_count,
+	round(100.0*count(*)/(select count(*) from ny_housing_market),2) as percentage
+from ny_housing_market
+group by region
+order by percentage desc;
 
 -- 22.How many properties are located within Manhattan?
+select count(*) as property_count
+from ny_housing_market
+where state like 'Manhattan%';
+
 -- 23.Which neighborhood has the highest density of listings?
+select street_name as city_name, count(*) as property_count
+from ny_housing_market
+group by street_name
+order by property_count desc;
+
 -- 24.What are the 5 most common streets for property listings?
+select street_name , count(*) as property_count
+from ny_housing_market
+group by street_name
+order by property_count desc
+limit 5;
+
 -- 25.What is the average price of properties located on each street?
+-- select * from ny_housing_market
+
 -- 26.How many properties are within a 1-mile radius of Central Park (given its latitude and longitude)?
 -- 27.Which borough has the most properties listed within 0.5 miles of Times Square?
 -- 28.What is the most expensive property listed within 0.5 miles of Wall Street?
