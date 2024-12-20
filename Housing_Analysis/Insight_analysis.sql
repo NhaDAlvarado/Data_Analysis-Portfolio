@@ -49,12 +49,42 @@ from ny_housing_market
 where beds >=3 and baths >=2; 
 
 -- 11.Which properties are listed above $1 million?
--- select * from ny_housing_market
+select count(*) as property_above_1_mil,
+	round(100.0*count(*)/(select count(*) from ny_housing_market),2) as percentage
+from ny_housing_market
+where price > 1000000;
 
 -- 12.What are the top 10 most expensive properties in the dataset?
+with ranking_10 as (
+	select 
+		dense_rank() over (order by price desc) as ranking, 
+		*
+	from ny_housing_market
+)
+select *
+from ranking_10
+where ranking <=10;
+
 -- 13.What is the average price for properties with 2 bedrooms?
+select round(avg(price),2) as avg_price
+from ny_housing_market
+where beds = 2;
+
 -- 14.Which borough has the highest average property price?
+select sublocality, round(avg(price),2) as avg_price
+from ny_housing_market
+group by sublocality
+order by avg_price desc
+limit 1;
+
 -- 15.Which property type has the highest average price?
+-- select * from ny_housing_market
+select property_type, round(avg(price),2) as avg_price
+from ny_housing_market
+group by property_type
+order by avg_price desc
+limit 1;
+
 -- 16.How does the price vary across different neighborhoods within Manhattan?
 -- 17.What is the average price for properties with less than 500 square feet?
 -- 18.Which borough has the lowest average price per square foot?
