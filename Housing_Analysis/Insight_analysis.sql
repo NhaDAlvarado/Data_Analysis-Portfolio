@@ -169,12 +169,48 @@ order by property_count desc
 limit 5;
 
 -- 25.What is the average price of properties located on each street?
--- select * from ny_housing_market
+select street_name , round(avg(price),2) as avg_price
+from ny_housing_market
+group by street_name;
 
 -- 26.How many properties are within a 1-mile radius of Central Park (given its latitude and longitude)?
+select count(*) as property_count
+from ny_housing_market
+where 
+    3958.8 * acos(
+        cos(radians(40.785091)) * cos(radians(latitude)) *
+        cos(radians(longitude) - radians(-73.968285)) +
+        sin(radians(40.785091)) * sin(radians(latitude))
+    ) <= 1;
+
 -- 27.Which borough has the most properties listed within 0.5 miles of Times Square?
+select sublocality as borough,
+    count(*) as property_count
+from ny_housing_market
+where 
+    3958.8 * acos(
+        cos(radians(40.758896)) * cos(radians(latitude)) *
+        cos(radians(longitude) - radians(-73.985130)) +
+        sin(radians(40.758896)) * sin(radians(latitude))
+    ) <= 0.5
+group by sublocality
+order by property_count desc;
+
 -- 28.What is the most expensive property listed within 0.5 miles of Wall Street?
+select price
+from ny_housing_market
+where 
+    3958.8 * acos(
+        cos(radians(40.707491)) * cos(radians(latitude)) *
+        cos(radians(longitude) - radians(-74.011276 )) +
+        sin(radians(40.707491)) * sin(radians(latitude))
+    ) <= 0.5
+order by price desc
+limit 1;
+
 -- 29.What is the average number of properties listed in each ZIP code?
+-- select * from ny_housing_market
+
 -- 30.How does the number of properties vary by administrative area (e.g., counties)?
 -- 31.What is the largest property by square footage?
 -- 32.What is the smallest property by square footage?
