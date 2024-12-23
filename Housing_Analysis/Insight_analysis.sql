@@ -209,12 +209,30 @@ order by price desc
 limit 1;
 
 -- 29.What is the average number of properties listed in each ZIP code?
--- select * from ny_housing_market
+select state as zipcode, count(*) as property_count
+from ny_housing_market
+group by zipcode;
 
 -- 30.How does the number of properties vary by administrative area (e.g., counties)?
+select administrative_area_level_2, count(*) as property_count
+from ny_housing_market
+group by administrative_area_level_2;
+
 -- 31.What is the largest property by square footage?
+select * 
+from ny_housing_market
+order by property_sqft desc
+limit 1;
+
 -- 32.What is the smallest property by square footage?
+select * 
+from ny_housing_market
+order by property_sqft 
+limit 1;
+
 -- 33.What is the average square footage for properties in each borough?
+-- select * from ny_housing_market
+
 -- 34.What is the total square footage of all properties listed in Brooklyn?
 -- 35.How does the price per square foot vary by property type?
 -- 36.What is the most common property size range (e.g., in 500 sq. ft. intervals)?
