@@ -231,12 +231,41 @@ order by property_sqft
 limit 1;
 
 -- 33.What is the average square footage for properties in each borough?
--- select * from ny_housing_market
+select sublocality, round(avg(property_sqft),2) as avg_sqft
+from ny_housing_market
+group by sublocality;
 
 -- 34.What is the total square footage of all properties listed in Brooklyn?
+select street_name, sum(property_sqft) as total_sqft
+from ny_housing_market
+where street_name =  'Brooklyn'
+group by street_name;
+
 -- 35.How does the price per square foot vary by property type?
+select property_type,
+	round(avg(price/property_sqft),2) as avg_price_per_sqft 
+from ny_housing_market 
+group by property_type;
+
 -- 36.What is the most common property size range (e.g., in 500 sq. ft. intervals)?
+select case 
+	when property_sqft <500 then 'less than 500 sqft'
+	when property_sqft >=500 and property_sqft <1500 then '500- 1500sqft'
+	when property_sqft >=1500 and property_sqft <2500 then '1500- 2500sqft'
+	when property_sqft >=2500 and property_sqft <3500 then '2500- 3500sqft'
+	when property_sqft >=3500 and property_sqft <4500 then '3500- 4500sqft'
+	when property_sqft >=4500 and property_sqft <5500 then '4500- 5500sqft'
+	when property_sqft >=5500 and property_sqft <6500 then '5500- 6500sqft'
+	else 'more than 6500sqft'
+	end as size_range,
+	count(*) as property_count
+from ny_housing_market
+group by size_range 
+order by property_count desc; 
+
 -- 37.Which properties have a square footage greater than 5,000?
+-- select * from ny_housing_market
+
 -- 38.Which borough has the highest average square footage for properties?
 -- 39.What is the relationship between square footage and price for properties in Staten Island?
 -- 40.How many properties have a square footage between 1,000 and 2,000?
