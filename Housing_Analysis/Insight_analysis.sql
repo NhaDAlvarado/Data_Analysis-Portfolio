@@ -275,7 +275,6 @@ group by sublocality
 order by avg_sqft desc; 
 
 -- 39.What is the relationship between square footage and price for properties in Staten Island?
--- select * from ny_housing_market
 select case 
 			when property_sqft <500 then 'less than 500 sqft'
 			when property_sqft >=500 and property_sqft <1500 then '500- 1500sqft'
@@ -305,10 +304,40 @@ group by size_range, price_groups
 order by size_range, price_groups;
 
 -- 40.How many properties have a square footage between 1,000 and 2,000?
+select count(*) as property_count
+from ny_housing_market
+where property_sqft >= 1000 and property_sqft <=2000;
+
 -- 41.Which broker has listed the highest number of properties?
+select broker_title, count(*) as property_count
+from ny_housing_market
+group by broker_title 
+order by property_count desc
+limit 1;
+
 -- 42.What is the average price of properties listed by each broker?
+select broker_title, round(avg(price),2) as avg_price
+from ny_housing_market
+group by broker_title ;
+
 -- 43.How many properties are listed by brokers in Manhattan compared to Brooklyn?
+with manhanttan_count as (
+	select count(*) as manhattan_ppt_count
+	from ny_housing_market
+	where state like 'Manhattan%'
+),
+brooklyn_count as (
+	select count(*) as brooklyn_ppt_count
+	from ny_housing_market
+	where state like 'Brooklyn%'
+)
+select manhattan_ppt_count, brooklyn_ppt_count
+from manhanttan_count
+cross join brooklyn_count;
+
 -- 44.Which broker has the most properties priced above $5 million?
+-- select * from ny_housing_market
+
 -- 45.Which broker has the highest average square footage for their listings?
 -- 46.How many brokers have listed properties in more than one borough?
 -- 47.What is the average number of properties listed per broker?
