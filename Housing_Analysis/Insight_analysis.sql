@@ -362,10 +362,37 @@ from brokers_with_more_than_1_borough
 where rn >1;
 
 -- 47.What is the average number of properties listed per broker?
--- select * from ny_housing_market
-select round(count(*)/count(distinct broker_title),2) as avg_property_per_broker
+select round(
+	count(*)/count(distinct broker_title)
+	,2) as avg_property_per_broker
 from ny_housing_market;
 
 -- 48.Which brokers have listed properties with the highest number of bedrooms?
+select broker_title, beds 
+from ny_housing_market
+order by beds desc 
+limit 1;
+
 -- 49.What is the price range of properties listed by each broker?
+select broker_title, 
+	min(price) as min_price,
+	max(price) as max_price
+from ny_housing_market
+group by broker_title; 
+
 -- 50.How does the average price of properties vary between brokers?
+select broker_title, 
+	case 
+		when avg(price) <100000 then 'less than 100000'
+		when avg(price) >=100000 and avg(price) <500000 then '0.1mil - 0.5mil'
+		when avg(price) >=500000 and avg(price) <1000000 then '0.5mil - 1mil'
+		when avg(price) >=1000000 and avg(price) <1500000 then '1mil - 1.5mil'
+		when avg(price) >=1500000 and avg(price) <2000000 then '1.5mil - 2mil'
+		when avg(price) >=2000000 and avg(price) <2500000 then '2mil - 2.5mil'
+		when avg(price) >=2500000 and avg(price) <3000000 then '2.5mil - 3mil'
+		when avg(price) >=3000000 and avg(price) <3500000 then '3mil - 3.5mil'
+		when avg(price) >=3500000 and avg(price) <4000000 then '3.5mil - 4mil'
+		else '4mil+'
+	end as avg_price_groups
+from ny_housing_market
+group by broker_title;  
