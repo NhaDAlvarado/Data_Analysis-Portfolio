@@ -44,10 +44,17 @@ This analysis provided me with valuable insights into:
 - **Tableau**: For creating visualizations and dashboards that make the data insights more accessible and actionable.
 - **Python/Pandas (optional)**: For preliminary data exploration and preprocessing (if applicable).
 
-## Project Files
+## How dashboard look like
 
-- `ecommerce_analysis.sql`: Contains all SQL queries used for data analysis.
-- Tableau Dashboards: Available on my [Tableau Public profile](https://public.tableau.com/app/profile/nha.alvarado/vizzes).
+![Sales Dashboard](Sale%20Dashboard.png)
+
+![Customers Dashboard](Customer%20Dashboard.png)
+
+## Tableau Dashboard
+
+You can explore the interactive Tableau visualizations here:
+
+- [Tableau Visualizations](https://public.tableau.com/app/profile/nha.alvarado/vizzes)
 
 ## Future Enhancements
 
