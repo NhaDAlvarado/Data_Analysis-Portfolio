@@ -336,11 +336,36 @@ from manhanttan_count
 cross join brooklyn_count;
 
 -- 44.Which broker has the most properties priced above $5 million?
--- select * from ny_housing_market
+select broker_title,count(*) as property_count
+from ny_housing_market
+where price > 5000000
+group by broker_title
+order by property_count desc
+limit 1;
 
 -- 45.Which broker has the highest average square footage for their listings?
+select broker_title, round(avg(property_sqft),2) as avg_sqft
+from ny_housing_market
+group by broker_title
+order by avg_sqft desc
+limit 1;
+
 -- 46.How many brokers have listed properties in more than one borough?
+with brokers_with_more_than_1_borough as (
+	select broker_title, sublocality as borough, count(*) as property_count,
+		dense_rank() over (partition by broker_title) as rn 
+	from ny_housing_market
+	group by broker_title, sublocality
+)
+select count(*) as num_of_broker
+from brokers_with_more_than_1_borough
+where rn >1;
+
 -- 47.What is the average number of properties listed per broker?
+-- select * from ny_housing_market
+select round(count(*)/count(distinct broker_title),2) as avg_property_per_broker
+from ny_housing_market;
+
 -- 48.Which brokers have listed properties with the highest number of bedrooms?
 -- 49.What is the price range of properties listed by each broker?
 -- 50.How does the average price of properties vary between brokers?
