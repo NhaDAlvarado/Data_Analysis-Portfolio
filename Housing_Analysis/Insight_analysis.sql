@@ -264,10 +264,46 @@ group by size_range
 order by property_count desc; 
 
 -- 37.Which properties have a square footage greater than 5,000?
--- select * from ny_housing_market
+select count(*) as property_count
+from ny_housing_market
+where property_sqft > 5000;
 
 -- 38.Which borough has the highest average square footage for properties?
+select sublocality, round(avg(property_sqft),2) as avg_sqft
+from ny_housing_market
+group by sublocality
+order by avg_sqft desc; 
+
 -- 39.What is the relationship between square footage and price for properties in Staten Island?
+-- select * from ny_housing_market
+select case 
+			when property_sqft <500 then 'less than 500 sqft'
+			when property_sqft >=500 and property_sqft <1500 then '500- 1500sqft'
+			when property_sqft >=1500 and property_sqft <2500 then '1500- 2500sqft'
+			when property_sqft >=2500 and property_sqft <3500 then '2500- 3500sqft'
+			when property_sqft >=3500 and property_sqft <4500 then '3500- 4500sqft'
+			when property_sqft >=4500 and property_sqft <5500 then '4500- 5500sqft'
+			when property_sqft >=5500 and property_sqft <6500 then '5500- 6500sqft'
+			else 'more than 6500sqft'
+	end as size_range,
+	case 
+			when price <100000 then 'less than 100000'
+			when price >=100000 and price <500000 then '0.1mil - 0.5mil'
+			when price >=500000 and price <1000000 then '0.5mil - 1mil'
+			when price >=1000000 and price <1500000 then '1mil - 1.5mil'
+			when price >=1500000 and price <2000000 then '1.5mil - 2mil'
+			when price >=2000000 and price <2500000 then '2mil - 2.5mil'
+			when price >=2500000 and price <3000000 then '2.5mil - 3mil'
+			when price >=3000000 and price <3500000 then '3mil - 3.5mil'
+			when price >=3500000 and price <4000000 then '3.5mil - 4mil'
+			else '4mil+'
+	end as price_groups,
+	count(*) as num_of_property
+from ny_housing_market
+where state like 'Staten Island%'
+group by size_range, price_groups 
+order by size_range, price_groups;
+
 -- 40.How many properties have a square footage between 1,000 and 2,000?
 -- 41.Which broker has listed the highest number of properties?
 -- 42.What is the average price of properties listed by each broker?
