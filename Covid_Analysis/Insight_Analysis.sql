@@ -36,8 +36,6 @@ group by date
 order by date;
 
 -- 6.What is the correlation between total cases and total deaths across all countries?
--- select * from covidvaccinations 
--- select * from coviddeaths
 select corr(total_new_cases, total_new_deaths) as correlation
 from ( 
 	select location,
@@ -45,15 +43,49 @@ from (
 	sum(new_deaths) as total_new_deaths
 	from coviddeaths
 	group by location
-	) as q 
+	) as q; 
 /*The result is nearly 1; that meant the more new cases, the more deaths. */
 
-
 -- 7.Which countries have maintained low death rates despite high case counts?
+select location, 
+	sum(new_cases) as num_of_cases, 
+	sum(new_deaths) as num_of_deaths,
+	round(100.0* sum(new_deaths)/nullif(sum(new_cases),0)) as percentage 
+from coviddeaths
+group by location
+order by percentage; 
+
 -- 8.How does the total number of deaths compare per million population across continents?
+select continent, round(sum(new_deaths_per_million)::numeric,2) as total_death_per_mil 
+from coviddeaths
+group by continent;
+
 -- 9.What percentage of each country’s population has been infected with COVID-19?
+select location, sum(new_cases) as num_of_cases, population,
+	round(100.0*sum(new_cases)/nullif(population,0),5) as percentage 
+from coviddeaths
+group by location, population 
+order by percentage desc ; 
+
 -- 10.What percentage of the global population has been fully vaccinated?
+with fully_vaccinated as (
+	select location, date, people_fully_vaccinated, population,
+		row_number() over (partition by location order by date desc) as rn
+	from coviddeaths
+)
+, fully_vaccinated_per_location as (
+	select location, people_fully_vaccinated, population 
+	from fully_vaccinated
+	where rn = 1 and location = 'World'
+)
+select location, people_fully_vaccinated, population,
+	round(100.0*people_fully_vaccinated/population,2) as percentage
+from fully_vaccinated_per_location;
+
 -- 11.Which countries have vaccinated more than 70% of their population?
+-- select * from covidvaccinations 
+-- select * from coviddeaths
+
 -- 12.How do vaccination rates correlate with new cases and deaths?
 -- 13.What is the vaccination trend for the top 10 most affected countries by deaths?
 -- 14.Which countries have the highest daily vaccination rates per million population?
