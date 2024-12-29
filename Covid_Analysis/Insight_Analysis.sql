@@ -1,7 +1,8 @@
 -- 1.What is the total number of COVID-19 cases and deaths for each country?
 select location, sum(new_cases) as num_of_cases, sum(new_deaths) as num_of_deaths
 from coviddeaths
-group by location; 
+group by location
+order by location; 
 
 -- 2.Which country has the highest case fatality rate (deaths/cases)?
 select location, coalesce(round(sum(new_deaths)/nullif(sum(new_cases),0),2),0) as fatality_rate
@@ -19,12 +20,35 @@ group by month_year
 order by month_year; 
 
 -- 4.Which countries have the fastest-growing number of cases in the last 30 days?
--- select * from covidvaccinations 
--- select * from coviddeaths
-
+select location, sum(new_cases) as growing_cases
+from coviddeaths
+where date between (date'2021-04-30' - interval '30 days') and date'2021-04-30'
+group by location 
+order by growing_cases desc; 
 
 -- 5.How do new cases smoothed values compare to raw new cases over time globally?
+select date,
+    sum(new_cases) as total_raw_new_cases,
+    sum(new_cases_smoothed) as total_smoothed_new_cases,
+    round(sum(new_cases_smoothed)::numeric / nullif(sum(new_cases)::numeric, 0), 2) as smoothed_to_raw_ratio
+from coviddeaths
+group by date
+order by date;
+
 -- 6.What is the correlation between total cases and total deaths across all countries?
+-- select * from covidvaccinations 
+-- select * from coviddeaths
+select corr(total_new_cases, total_new_deaths) as correlation
+from ( 
+	select location,
+	sum(new_cases) as total_new_cases,
+	sum(new_deaths) as total_new_deaths
+	from coviddeaths
+	group by location
+	) as q 
+/*The result is nearly 1; that meant the more new cases, the more deaths. */
+
+
 -- 7.Which countries have maintained low death rates despite high case counts?
 -- 8.How does the total number of deaths compare per million population across continents?
 -- 9.What percentage of each country’s population has been infected with COVID-19?
