@@ -108,13 +108,40 @@ where people_fully_vaccinated is not null
     and new_deaths is not null;
 
 -- 13.What is the vaccination trend for the top 10 most affected countries by deaths?
+with latest_info as (
+	select location, total_deaths, population, people_fully_vaccinated,
+		row_number() over (partition by location order by date desc) as rn
+	from coviddeaths
+),
+top_10_countries as (
+	select location
+	from latest_info
+	where rn =1 
+	order by round(100.0*total_deaths/nullif(population,0),2) desc 
+	limit 10
+)
+select d.location, d.date,
+	round(100.0*people_fully_vaccinated/ nullif(population,0),2) as vaccinated_percentage
+from coviddeaths as d
+inner join top_10_countries as c
+on d.location = c.location
+order by d.location, d.date; 
+	
+-- 14.Which countries have the highest daily vaccination rates per million population?
+select location, date, people_fully_vaccinated_per_hundred
+from coviddeaths
+order by people_fully_vaccinated_per_hundred desc;
+
+-- 15.How does vaccination rate per hundred correlate with the reproduction rate?
+select corr(people_fully_vaccinated_per_hundred, reproduction_rate) as corr
+from coviddeaths
+where people_fully_vaccinated_per_hundred is not null
+	and reproduction_rate is not null;
+
+-- 16.Which countries achieved the fastest increase in vaccinations over time?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
-
--- 14.Which countries have the highest daily vaccination rates per million population?
--- 15.How does vaccination rate per hundred correlate with the reproduction rate?
--- 16.Which countries achieved the fastest increase in vaccinations over time?
 -- 17.How do vaccination trends differ by continent?
 -- 18.What is the relationship between vaccination rates and ICU admissions?
 -- 19.How does the number of fully vaccinated individuals impact the stringency index?
