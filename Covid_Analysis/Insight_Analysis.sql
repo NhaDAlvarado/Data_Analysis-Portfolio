@@ -139,12 +139,51 @@ where people_fully_vaccinated_per_hundred is not null
 	and reproduction_rate is not null;
 
 -- 16.Which countries achieved the fastest increase in vaccinations over time?
+with vaccination_trend as (
+	select location, date, people_vaccinated_per_hundred,
+			lead(people_vaccinated_per_hundred) 
+				over (partition by location order by date) as next_day_ppl_vaccinated_per_100
+	from coviddeaths
+),
+daily_trend as (
+	select location,
+			(next_day_ppl_vaccinated_per_100 - people_vaccinated_per_hundred) as daily_increase_trend 
+	from vaccination_trend
+)
+select location, round(avg(daily_increase_trend)::numeric,2) as avg_daily_trend
+from daily_trend
+group by location
+order by avg_daily_trend desc 
+limit 10; 
+
+-- 17.How do vaccination trends differ by continent?
+with vaccination_trend as (
+	select continent, date, people_vaccinated_per_hundred,
+			lead(people_vaccinated_per_hundred) 
+				over (partition by location order by date) as next_day_ppl_vaccinated_per_100
+	from coviddeaths
+),
+daily_trend as (
+	select continent,
+			(next_day_ppl_vaccinated_per_100 - people_vaccinated_per_hundred) as daily_increase_trend 
+	from vaccination_trend
+)
+select continent, round(avg(daily_increase_trend)::numeric,2) as avg_daily_increase_trend
+from daily_trend
+group by continent
+order by avg_daily_increase_trend desc; 
+
+-- 18.What is the relationship between vaccination rates and ICU admissions?
+select 
+    corr(people_vaccinated_per_hundred, icu_patients_per_million) as correlation_vaccination_icu
+from coviddeaths
+where people_vaccinated_per_hundred is not null
+    and icu_patients_per_million is not null;
+
+-- 19.How does the number of fully vaccinated individuals impact the stringency index?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 17.How do vaccination trends differ by continent?
--- 18.What is the relationship between vaccination rates and ICU admissions?
--- 19.How does the number of fully vaccinated individuals impact the stringency index?
 -- 20.Which countries have the highest testing rates per thousand population?
 -- 21.What is the average positive rate globally, and how does it vary by continent?
 -- 22.How does the number of tests correlate with the total number of cases?
