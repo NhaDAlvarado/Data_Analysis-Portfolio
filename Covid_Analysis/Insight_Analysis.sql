@@ -83,11 +83,35 @@ select location, people_fully_vaccinated, population,
 from fully_vaccinated_per_location;
 
 -- 11.Which countries have vaccinated more than 70% of their population?
+with fully_vaccinated as (
+	select location, date, people_fully_vaccinated, population,
+		row_number() over (partition by location order by date desc) as rn
+	from coviddeaths
+)
+, fully_vaccinated_per_location as (
+	select location, people_fully_vaccinated, population 
+	from fully_vaccinated
+	where rn = 1 
+)
+select location, people_fully_vaccinated, population,
+	round(100.0*people_fully_vaccinated/nullif(population,0),2) as percentage
+from fully_vaccinated_per_location
+where round(100.0*people_fully_vaccinated/nullif(population,0),2) >= 70;
+
+-- 12.How do vaccination rates correlate with new cases and deaths?
+select 
+    corr(people_fully_vaccinated, new_cases) as correlation_vaccination_cases,
+    corr(people_fully_vaccinated, new_deaths) as correlation_vaccination_deaths
+from coviddeaths
+where people_fully_vaccinated is not null
+    and new_cases is not null
+    and new_deaths is not null;
+
+-- 13.What is the vaccination trend for the top 10 most affected countries by deaths?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 12.How do vaccination rates correlate with new cases and deaths?
--- 13.What is the vaccination trend for the top 10 most affected countries by deaths?
+
 -- 14.Which countries have the highest daily vaccination rates per million population?
 -- 15.How does vaccination rate per hundred correlate with the reproduction rate?
 -- 16.Which countries achieved the fastest increase in vaccinations over time?
