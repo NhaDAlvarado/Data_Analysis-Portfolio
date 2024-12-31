@@ -181,13 +181,35 @@ where people_vaccinated_per_hundred is not null
     and icu_patients_per_million is not null;
 
 -- 19.How does the number of fully vaccinated individuals impact the stringency index?
+select location, corr(people_fully_vaccinated,stringency_index) as corr 
+from coviddeaths 
+group by location;
+
+-- 20.Which countries have the highest testing rates per thousand population?
+with testing_per_thousand as (
+	select location, total_tests_per_thousand,
+		row_number() over (partition by location order by date desc) as rn
+	from covidvaccinations 
+)
+select location, total_tests_per_thousand
+from testing_per_thousand
+where rn =1
+order by total_tests_per_thousand desc; 
+
+-- 21.What is the average positive rate globally, and how does it vary by continent?
+select location, round(avg(positive_rate)::numeric,2) as avg_positive_rate
+from coviddeaths 
+group by location 
+order by avg_positive_rate desc; 
+
+-- 22.How does the number of tests correlate with the total number of cases?
+select corr(total_cases, total_tests) as corr
+from coviddeaths; 
+
+-- 23.Which countries report the lowest positive test rates consistently?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 20.Which countries have the highest testing rates per thousand population?
--- 21.What is the average positive rate globally, and how does it vary by continent?
--- 22.How does the number of tests correlate with the total number of cases?
--- 23.Which countries report the lowest positive test rates consistently?
 -- 24.How does positive test rate change over time in countries with high vaccination coverage?
 -- 25.What is the trend of daily new tests versus daily new cases globally?
 -- 26.Which countries currently have the highest ICU and hospital admissions?
