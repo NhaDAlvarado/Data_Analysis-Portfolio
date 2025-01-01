@@ -207,12 +207,41 @@ select corr(total_cases, total_tests) as corr
 from coviddeaths; 
 
 -- 23.Which countries report the lowest positive test rates consistently?
+select location, avg(positive_rate) as avg_rate
+from coviddeaths
+where positive_rate != 0
+group by location
+order by avg_rate; 
+
+-- 24.How does positive test rate change over time in countries with high vaccination coverage?
+with latest_info as (
+	select location, positive_rate, population, people_fully_vaccinated,
+		row_number() over (partition by location order by date desc) as rn
+	from coviddeaths
+)
+,top_10_countries as (
+	select location
+	from latest_info
+	where rn =1 
+	order by round(100.0*people_fully_vaccinated/nullif(population,0),2) desc 
+	limit 10
+)
+select d.location, d.date, positive_rate
+from coviddeaths as d
+inner join top_10_countries as c
+on d.location = c.location
+order by d.location, d.date; 
+
+-- 25.What is the trend of daily new tests versus daily new cases globally?
+select date, sum(new_cases) as daily_new_cases, sum(new_tests) as daily_new_tests
+from coviddeaths
+group by date 
+order by date; 
+
+-- 26.Which countries currently have the highest ICU and hospital admissions?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 24.How does positive test rate change over time in countries with high vaccination coverage?
--- 25.What is the trend of daily new tests versus daily new cases globally?
--- 26.Which countries currently have the highest ICU and hospital admissions?
 -- 27.How do ICU admissions correlate with new deaths in each country?
 -- 28.What is the global trend in weekly ICU and hospital admissions?
 -- 29.Which countries report the highest ICU patients per million population?
