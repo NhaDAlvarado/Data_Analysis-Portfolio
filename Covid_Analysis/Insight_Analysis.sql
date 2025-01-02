@@ -308,13 +308,47 @@ where rn =1 and gdp_per_capita != 0
 order by gdp_per_capita asc, deaths_rate desc; 
 
 -- 35.How does life expectancy correlate with COVID-19 case and death rates?
+select corr(life_expectancy, total_deaths/nullif(total_cases,0)) as corr_life_cases_deaths
+	-- ,corr(life_expectancy, total_deaths) as corr_deaths_cases
+from coviddeaths; 
+
+-- 36.Which countries have the highest extreme poverty levels and how does that relate to vaccination rates?
+with poverty_data as (
+    select location,
+        avg(extreme_poverty) as avg_extreme_poverty,
+        avg (people_vaccinated_per_hundred) as avg_vaccination_rate
+    from coviddeaths
+    where extreme_poverty !=0
+        and people_vaccinated_per_hundred !=0
+    group by location
+),
+correlation_data as (
+    select corr(extreme_poverty, people_vaccinated_per_hundred) as poverty_vaccination_correlation
+    from coviddeaths
+    where extreme_poverty != 0
+        and people_vaccinated_per_hundred != 0
+)
+select  p.location,
+    p.avg_extreme_poverty,
+    p.avg_vaccination_rate,
+    c.poverty_vaccination_correlation
+from poverty_data p
+cross join correlation_data c
+order by avg_extreme_poverty desc
+limit 10;
+
+-- 37.What are the total cases, deaths, and vaccinations by continent over time?
+select continent, 
+	sum(new_cases) as total_cases, 
+	sum(new_deaths) as total_deaths,
+	sum(new_vaccinations) as total_vaccinations
+from coviddeaths
+group by continent; 
+
+-- 38.Which countries show a significant reduction in new cases after vaccination rollout?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
-
--- 36.Which countries have the highest extreme poverty levels and how does that relate to vaccination rates?
--- 37.What are the total cases, deaths, and vaccinations by continent over time?
--- 38.Which countries show a significant reduction in new cases after vaccination rollout?
 -- 39.What are the top 5 countries in Asia, Europe, and Africa by total cases?
 -- 40.How do trends of new cases and deaths compare across continents?
 -- 41.How have vaccination efforts impacted stringency indexes in the past 12 months?
