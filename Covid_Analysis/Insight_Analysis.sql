@@ -266,12 +266,28 @@ where weekly_hosp_admissions != 0
 group by date;
 
 -- 29.Which countries report the highest ICU patients per million population?
+select location, sum(icu_patients_per_million) as icu_per_mil
+from coviddeaths
+group by location
+order by icu_per_mil desc; 
+
+-- 30.How does the number of hospital beds per thousand correlate with the reproduction rate?
+select corr(hospital_beds_per_thousand,reproduction_rate) as corr
+from coviddeaths 
+where hospital_beds_per_thousand != 0
+	and reproduction_rate != 0;
+
+-- 31.How does population density correlate with the number of total cases and deaths?
+select location, 
+	corr(total_cases, population_density) as corr_cases_density,
+	corr(total_deaths, population_density) as corr_deaths_density
+from coviddeaths 
+group by location; 
+
+-- 32.What is the relationship between median age and total deaths per million population?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 30.How does the number of hospital beds per thousand correlate with the reproduction rate?
--- 31.How does population density correlate with the number of total cases and deaths?
--- 32.What is the relationship between median age and total deaths per million population?
 -- 33.How do smoking rates (male and female) correlate with death rates globally?
 -- 34.Which countries with low GDP per capita experienced the highest death rates?
 -- 35.How does life expectancy correlate with COVID-19 case and death rates?
