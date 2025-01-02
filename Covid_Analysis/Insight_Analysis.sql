@@ -239,12 +239,36 @@ group by date
 order by date; 
 
 -- 26.Which countries currently have the highest ICU and hospital admissions?
+select location, 
+	sum(weekly_hosp_admissions) as hosp_admission, 
+	sum(weekly_icu_admissions) as icu_admission
+from coviddeaths
+where weekly_hosp_admissions != 0
+	and weekly_icu_admissions != 0
+group by location; 
+
+-- 27.How do ICU admissions correlate with new deaths in each country?
+select location,
+	corr(new_deaths, weekly_icu_admissions) as corr
+from coviddeaths
+where weekly_icu_admissions != 0
+	and new_deaths != 0 
+group by location
+order by location;
+
+-- 28.What is the global trend in weekly ICU and hospital admissions?
+select date, 
+	sum(weekly_hosp_admissions) as hosp_admission, 
+	sum(weekly_icu_admissions) as icu_admission
+from coviddeaths
+where weekly_hosp_admissions != 0
+	and weekly_icu_admissions != 0
+group by date;
+
+-- 29.Which countries report the highest ICU patients per million population?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 27.How do ICU admissions correlate with new deaths in each country?
--- 28.What is the global trend in weekly ICU and hospital admissions?
--- 29.Which countries report the highest ICU patients per million population?
 -- 30.How does the number of hospital beds per thousand correlate with the reproduction rate?
 -- 31.How does population density correlate with the number of total cases and deaths?
 -- 32.What is the relationship between median age and total deaths per million population?
