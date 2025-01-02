@@ -66,6 +66,10 @@ Stay tuned for my findings and visualizations—your feedback is always welcome!
 
 ---
 
+## How dashboard look like
+
+![NewYork Housing Market Analysis](NY%20Housing%20Dashboard.png)
+
 ## 📈 Visualization Repository
 
 Once completed, the Tableau visualizations for this project will be available on my Tableau Public profile:  
