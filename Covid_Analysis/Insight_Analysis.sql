@@ -285,12 +285,33 @@ from coviddeaths
 group by location; 
 
 -- 32.What is the relationship between median age and total deaths per million population?
+select corr(median_age, total_deaths_per_million) as corr
+from coviddeaths; 
+
+-- 33.How do smoking rates (male and female) correlate with death rates globally?
+select location, 
+	corr(female_smokers, total_deaths) as fm_smokers_w_total_deaths,
+	corr(male_smokers, total_deaths) as m_smokers_w_total_deaths
+from coviddeaths
+group by location;
+
+-- 34.Which countries with low GDP per capita experienced the highest death rates?
+with latest_info as (
+	select location, gdp_per_capita, total_deaths, total_cases,
+		row_number() over (partition by location order by date desc) as rn
+	from coviddeaths 
+)
+select location, gdp_per_capita, total_deaths, total_cases,
+	round(100.0*total_deaths/nullif(total_cases,0),5) as deaths_rate 
+from latest_info
+where rn =1 and gdp_per_capita != 0
+order by gdp_per_capita asc, deaths_rate desc; 
+
+-- 35.How does life expectancy correlate with COVID-19 case and death rates?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 33.How do smoking rates (male and female) correlate with death rates globally?
--- 34.Which countries with low GDP per capita experienced the highest death rates?
--- 35.How does life expectancy correlate with COVID-19 case and death rates?
+
 -- 36.Which countries have the highest extreme poverty levels and how does that relate to vaccination rates?
 -- 37.What are the total cases, deaths, and vaccinations by continent over time?
 -- 38.Which countries show a significant reduction in new cases after vaccination rollout?
