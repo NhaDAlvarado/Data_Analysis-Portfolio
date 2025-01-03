@@ -346,12 +346,70 @@ from coviddeaths
 group by continent; 
 
 -- 38.Which countries show a significant reduction in new cases after vaccination rollout?
+with vaccination_rollout as (
+    select location, date,
+        people_vaccinated_per_hundred,
+        avg(new_cases) over (partition by location order by date rows between unbounded preceding and current row) as avg_new_cases_before_vaccination
+    from coviddeaths
+    where people_vaccinated_per_hundred != 0 
+),
+post_vaccination_data as (
+    select location,
+        avg(new_cases) as avg_new_cases_after_vaccination
+    from coviddeaths
+    where 
+        people_vaccinated_per_hundred >= 10 -- Threshold for vaccination rollout
+        and new_cases != 0 
+    group by location
+),
+case_reduction as (
+    select v.location,
+        min(v.date) as rollout_start_date,
+        p.avg_new_cases_after_vaccination,
+        min(v.avg_new_cases_before_vaccination) as avg_new_cases_before_vaccination,
+        (min(v.avg_new_cases_before_vaccination) - p.avg_new_cases_after_vaccination) /
+        nullif(min(v.avg_new_cases_before_vaccination), 0) * 100 as reduction_percentage
+    from vaccination_rollout v
+    join post_vaccination_data p
+    on v.location = p.location
+    group by v.location, p.avg_new_cases_after_vaccination
+)
+select 
+    location,
+    rollout_start_date,
+    avg_new_cases_before_vaccination,
+    avg_new_cases_after_vaccination,
+    round(reduction_percentage, 2) as reduction_percentage
+from case_reduction
+where 
+    reduction_percentage > 0 -- Filters only countries with significant reductions
+order by reduction_percentage desc
+limit 10;
+
+-- 39.What are the top 5 countries in Asia, Europe, and Africa by total cases?
+with ranking_top_5 as (
+	select continent, location, sum(new_cases) as total_cases,
+		dense_rank() over (partition by continent order by sum(new_cases) desc) as ranking
+	from coviddeaths
+	group by continent, location 
+)
+select continent, location, total_cases
+from ranking_top_5
+where ranking <= 5 
+	and continent in ('Asia', 'Europe', 'Africa');
+
+-- 40.How do trends of new cases and deaths compare across continents?
+select continent, extract(month from date) as month , extract(year from date) as year,  
+sum(new_cases) as total_cases_in_continent,
+sum(new_deaths) as total_deaths_in_continent
+from coviddeaths
+group by continent,year, month 
+order by continent, year, month; 
+
+-- 41.How have vaccination efforts impacted stringency indexes in the past 12 months?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 39.What are the top 5 countries in Asia, Europe, and Africa by total cases?
--- 40.How do trends of new cases and deaths compare across continents?
--- 41.How have vaccination efforts impacted stringency indexes in the past 12 months?
 -- 42.What is the trend of hospital admissions in low-income vs. high-income countries?
 -- 43.Which countries have high vaccination rates but still report increasing new cases?
 -- 44.What is the correlation between handwashing facilities availability and COVID-19 death rates?
