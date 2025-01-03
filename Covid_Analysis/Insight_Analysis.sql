@@ -407,11 +407,38 @@ group by continent,year, month
 order by continent, year, month; 
 
 -- 41.How have vaccination efforts impacted stringency indexes in the past 12 months?
+select extract(month from date) as month , 
+	extract(year from date) as year, 
+	sum(people_fully_vaccinated) as total_fully_vaccinated,
+	round(avg(stringency_index)::numeric,2) as avg_retriction
+from coviddeaths 
+where 
+    date between (date '2021-04-01' - interval '12 months') and date '2021-04-30'
+group by month, year
+order by year, month; 
+
+-- 42.What is the trend of hospital admissions in low-income vs. high-income countries?
+with income_level as (
+	select location, weekly_hosp_admissions,  
+	    case 
+	        when gdp_per_capita < 1046 then 'Low income'
+	        when gdp_per_capita between 1046 and 4095 then 'Lower middle income'
+	        when gdp_per_capita between 4096 and 12695 then 'Upper middle income'
+	        else 'High income'
+	    end as  income_level
+	from coviddeaths
+)
+select location, income_level, sum(weekly_hosp_admissions) as total_admissions
+from income_level
+where income_level in ('Low income', 'High income')
+group by location, income_level 
+order by income_level;
+
+-- 43.Which countries have high vaccination rates but still report increasing new cases?
 -- select * from covidvaccinations 
 -- select * from coviddeaths
 
--- 42.What is the trend of hospital admissions in low-income vs. high-income countries?
--- 43.Which countries have high vaccination rates but still report increasing new cases?
+
 -- 44.What is the correlation between handwashing facilities availability and COVID-19 death rates?
 -- 45.How do reproduction rates differ between countries with high vaccination coverage and those with low coverage?
 -- 46.What is the impact of GDP per capita on ICU admissions per million population?
