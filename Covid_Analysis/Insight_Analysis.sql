@@ -512,3 +512,59 @@ with density_level as (
 select location, population_density_level, avg_reproduction_rate
 from density_level
 where population_density_level = 'High' and avg_reproduction_rate <1; 
+
+-- 48.How does the number of tests per case vary across countries and regions?
+select continent, location, 
+	avg(tests_per_case) as avg_test_per_case 
+from coviddeaths 
+group by continent, location
+order by continent; 
+
+-- 49.How have extreme poverty and stringency index together impacted vaccination rates?
+with poverty_stringency as (
+	select location, 
+		avg(extreme_poverty) as avg_extreme_poverty,
+		avg(stringency_index) as avg_stringency_index, 
+		avg(people_vaccinated_per_hundred) as avg_vaccination_rate
+	from coviddeaths 
+	where
+        extreme_poverty != 0
+        and stringency_index != 0
+        and people_vaccinated_per_hundred != 0
+	group by location
+),
+correlation_analysis as (
+	select 
+		corr (avg_extreme_poverty, avg_vaccination_rate) as correlation_poverty_vaccination,
+        corr (avg_stringency_index, avg_vaccination_rate) as correlation_stringency_vaccination
+	from poverty_stringency
+)
+select  
+    p.location,
+    p.avg_extreme_poverty,
+    p.avg_stringency_index,
+    p.avg_vaccination_rate,
+    c.correlation_poverty_vaccination,
+    c.correlation_stringency_vaccination
+from poverty_stringency p
+cross join correlation_analysis c
+order by avg_extreme_poverty desc;
+
+-- 50.What combination of factors (e.g., GDP, healthcare access, age demographics) 
+-- is most strongly associated with low COVID-19 death rates?
+with correlations as (
+    select 
+	corr(gdp_per_capita, total_deaths_per_million) as correlation_gdp_deaths,
+	corr(hospital_beds_per_thousand, total_deaths_per_million) as correlation_hospital_beds_deaths,
+	corr(life_expectancy, total_deaths_per_million) as correlation_life_expectancy_deaths,
+	corr(median_age, total_deaths_per_million) as correlation_median_age_deaths,
+	corr(aged_65_older, total_deaths_per_million) as correlation_aged_65_deaths,
+	corr(extreme_poverty, total_deaths_per_million) as correlation_poverty_deaths,
+	corr(population_density, total_deaths_per_million) as correlation_density_deaths,
+	corr(stringency_index, total_deaths_per_million) as correlation_stringency_deaths
+    from 
+        coviddeaths
+    where 
+        total_deaths_per_million != 0
+)
+select * from  correlations;
