@@ -435,14 +435,33 @@ group by location, income_level
 order by income_level;
 
 -- 43.Which countries have high vaccination rates but still report increasing new cases?
--- select * from covidvaccinations 
--- select * from coviddeaths
-
+with recent_trends as (
+    select location, date,
+        people_vaccinated_per_hundred,
+        new_cases,
+        lag(new_cases, 1) over (partition by location order by date) as previous_new_cases
+    from coviddeaths
+    where
+        people_vaccinated_per_hundred >= 10 
+        and new_cases != 0
+),
+increasing_cases as (
+    select location,
+        avg(people_vaccinated_per_hundred) as avg_vaccination_rate,
+        avg(new_cases) as avg_new_cases,
+        avg(new_cases - previous_new_cases) as avg_case_increase
+    from recent_trends
+    where new_cases > previous_new_cases 
+    group by location
+)
+select location,
+    round(avg_vaccination_rate::numeric, 2) as avg_vaccination_rate,
+    round(avg_new_cases::numeric, 2) as avg_new_cases,
+    round(avg_case_increase::numeric, 2) as avg_case_increase
+from increasing_cases
+order by avg_case_increase desc
+limit 10;
 
 -- 44.What is the correlation between handwashing facilities availability and COVID-19 death rates?
--- 45.How do reproduction rates differ between countries with high vaccination coverage and those with low coverage?
--- 46.What is the impact of GDP per capita on ICU admissions per million population?
--- 47.Which countries with a high population density managed to control reproduction rates effectively?
--- 48.How does the number of tests per case vary across countries and regions?
--- 49.How have extreme poverty and stringency index together impacted vaccination rates?
--- 50.What combination of factors (e.g., GDP, healthcare access, age demographics) is most strongly associated with low COVID-19 death rates?
+select corr(new_deaths_per_million, handwashing_facilities) as corr
+from coviddeaths;  
