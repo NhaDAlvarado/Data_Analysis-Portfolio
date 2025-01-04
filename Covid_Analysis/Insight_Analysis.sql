@@ -465,3 +465,50 @@ limit 10;
 -- 44.What is the correlation between handwashing facilities availability and COVID-19 death rates?
 select corr(new_deaths_per_million, handwashing_facilities) as corr
 from coviddeaths;  
+
+-- 45.How do reproduction rates differ between countries with high vaccination coverage and those with low coverage?
+with vaccination_rate as (
+	select location, max(total_vaccinations) as total_vaccination, reproduction_rate,
+		100.0*max(total_vaccinations)/nullif(population,0) as vaccination_rate
+	from coviddeaths 
+	group by location, population, reproduction_rate   
+),
+coverage as (
+	select reproduction_rate,
+		case when vaccination_rate > 25 then 'high coverage'
+			else 'low coverage'
+		end as coverage 
+	from vaccination_rate 
+)
+select coverage, avg(reproduction_rate) as avg_reproduction_rate
+from coverage
+group by coverage; 
+
+-- 46.What is the impact of GDP per capita on ICU admissions per million population?
+select case 
+	        when gdp_per_capita < 1046 then 'Low income'
+	        when gdp_per_capita between 1046 and 4095 then 'Lower middle income'
+	        when gdp_per_capita between 4096 and 12695 then 'Upper middle income'
+	        else 'High income'
+	    end as  income_level,
+	avg(weekly_icu_admissions_per_million) as avg_icu_admission
+from coviddeaths
+where 
+    gdp_per_capita != 0
+    AND weekly_icu_admissions_per_million != 0
+group by income_level; 
+
+-- 47.Which countries with a high population density managed to control reproduction rates effectively?
+with density_level as (
+	select location, 
+		case when population_density > 1000 then 'High'
+			when population_density between 100 and 999 then 'Moderate'
+			else 'Low'
+		end as population_density_level, 
+		avg(reproduction_rate) as avg_reproduction_rate  
+	from coviddeaths 
+	group by location, population_density_level 
+)
+select location, population_density_level, avg_reproduction_rate
+from density_level
+where population_density_level = 'High' and avg_reproduction_rate <1; 
