@@ -1,7 +1,33 @@
 -- 1.What are the total car sales by year?
+select extract(year from date) as year,
+	count(car_id) as num_car_sell
+from car_sales
+group by year; 
+
 -- 2.Which car brands have the highest sales volume?
+select company, count(*) as num_car_sell
+from car_sales
+group by company
+order by num_car_sell desc; 
+
 -- 3.What is the most sold car model for each brand?
+with car_sell_per_com as (
+	select company, model, count(*) as num_car_sell
+	from car_sales
+	group by company, model
+),
+ranking as(
+	select company, model, num_car_sell,
+		row_number() over (partition by company order by num_car_sell desc) as rn
+	from car_sell_per_com
+)
+select company, model, num_car_sell
+from ranking
+where rn =1; 
+
 -- 4.What is the average price of cars sold by each brand?
+-- select * from car_sales
+
 -- 5.What is the distribution of car sales by transmission type?
 -- 6.Which body styles are the most popular across all regions?
 -- 7.What is the percentage contribution of each brand to total sales?
