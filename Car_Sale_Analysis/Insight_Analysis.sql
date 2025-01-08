@@ -74,9 +74,27 @@ group by gender;
 -- 12.What is the average annual income of customers who purchased cars?
 select round(avg(annualincome),2) as avg_annual_income
 from car_sales;
+
 -- 13.Are there specific car brands or models preferred by male vs. female customers?
+with sale_by_com as (
+	select model, gender, count(*) as num_of_sale,
+		sum(count(*)) over (partition by model) as sale_per_company
+	from car_sales
+	group by model, gender 
+)
+select model, gender, num_of_sale,
+	round(100.0*num_of_sale/sale_per_company,2) as percentage
+from sale_by_com;
+
 -- 14.What is the correlation between annual income and car price?
+select corr(annualincome, price) as corr	
+from car_sales;
+
 -- 15.How does customer phone data (if any) reflect dealer preferences?
+select dealer_name, count (distinct phone) as distinct_cus
+from car_sales
+group by dealer_name;
+
 -- 16.How many unique customers purchased cars during the dataset's timeframe?
 -- 17.What is the median annual income of customers for each dealer?
 -- 18.Are there any patterns in gender preferences for specific car colors?
