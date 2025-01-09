@@ -96,8 +96,26 @@ from car_sales
 group by dealer_name;
 
 -- 16.How many unique customers purchased cars during the dataset's timeframe?
+select count(distinct phone) as num_of_cus
+from car_sales;
+
 -- 17.What is the median annual income of customers for each dealer?
+select dealer_name, 
+	percentile_cont(0.5) within group (order by annualincome) as median
+from car_sales
+group by dealer_name; 
+
 -- 18.Are there any patterns in gender preferences for specific car colors?
+with sale_by_color as (
+	select color, gender, count(*) as num_of_sale,
+		sum(count(*)) over (partition by color) as sale_per_color
+	from car_sales
+	group by color, gender 
+)
+select color, gender, num_of_sale,
+	round(100.0*num_of_sale/sale_per_color,2) as percentage
+from sale_by_color;
+
 -- 19.Which regions have the highest car sales volume?
 -- 20.What are the top-performing dealers in each region?
 -- 21.How does car price vary across different regions?
