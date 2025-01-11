@@ -173,12 +173,32 @@ group by month, year, dealer_region
 order by dealer_region, year, month;
 
 -- 25.Which regions have the highest average customer income?
--- select * from car_sales
-
+select dealer_region, avg(annualincome) as avg_annualincome
+from car_sales
+group by dealer_region
+order by avg_annualincome desc;
 
 -- 26.How do car sales vary month by month?
+select
+	extract (year from date) as year,
+	extract(month from date) as month, 
+	count(*) as num_car_sales
+from car_sales 
+group by month, year
+order by year, month;
+
 -- 27.What is the peak sales period for each brand?
+select company,
+	extract (year from date) as year,
+	extract(month from date) as month, 
+	count(*) as num_car_sales
+from car_sales 
+group by company, month, year
+order by company, num_car_sales desc;
+
 -- 28.What are the most sold car models during the holiday seasons?
+-- select * from car_sales
+
 -- 29.How does the revenue trend evolve over the years?
 -- 30.What is the average price of cars sold each month?
 -- 31.What is the year-over-year growth rate of sales?
