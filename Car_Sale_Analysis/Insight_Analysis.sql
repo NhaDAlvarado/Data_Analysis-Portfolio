@@ -197,9 +197,31 @@ group by company, month, year
 order by company, num_car_sales desc;
 
 -- 28.What are the most sold car models during the holiday seasons?
+with seasonal as (
+	select case 
+		when to_char (date, 'MM-DD') between '11-15' and '12-26' then 'Thank givings, Christmas season'
+		when to_char (date, 'MM-DD') between '07-01' and '07-06' then 'Independence season'
+		when to_char (date, 'MM-DD') between '05-20' and '05-31' then 'Memmorial season'
+		else 'Normal day'
+		end as seasonal,
+		model,
+	count(*) as num_car_sell
+	from car_sales
+	group by seasonal, model 
+),
+ranking as (
+	select seasonal, model, num_car_sell,
+		row_number() over (partition by seasonal order by num_car_sell desc) as rn 
+	from seasonal
+	where seasonal != 'Normal day'
+)
+select seasonal, model, num_car_sell
+from ranking
+where rn =1; 
+	
+-- 29.How does the revenue trend evolve over the years?
 -- select * from car_sales
 
--- 29.How does the revenue trend evolve over the years?
 -- 30.What is the average price of cars sold each month?
 -- 31.What is the year-over-year growth rate of sales?
 -- 32.Which dealer has the highest total sales revenue?
