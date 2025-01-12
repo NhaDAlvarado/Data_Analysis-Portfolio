@@ -220,11 +220,33 @@ from ranking
 where rn =1; 
 	
 -- 29.How does the revenue trend evolve over the years?
--- select * from car_sales
+select extract(year from date) as year,
+sum(price) as revenue
+from car_sales
+group by year; 
 
 -- 30.What is the average price of cars sold each month?
+select extract(month from date) as month,
+avg(price) as avg_price 
+from car_sales
+group by month; 
+
 -- 31.What is the year-over-year growth rate of sales?
+with next_year_sale as (
+	select extract(year from date) as year,
+	sum(price) as revenue,
+	lead(sum(price)) over (order by extract(year from date)) as next_year_revenue 
+	from car_sales
+	group by year
+)
+select year, revenue,next_year_revenue,
+	round(100.0*(next_year_revenue - revenue)/next_year_revenue,2) as growth_rate
+from next_year_sale
+where next_year_revenue is not null; 
+
 -- 32.Which dealer has the highest total sales revenue?
+-- select * from car_sales
+
 -- 33.What is the average price of cars sold by each dealer?
 -- 34.Which dealer sells the most expensive cars on average?
 -- 35.How many unique car models does each dealer sell?
