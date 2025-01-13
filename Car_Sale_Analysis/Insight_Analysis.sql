@@ -245,12 +245,40 @@ from next_year_sale
 where next_year_revenue is not null; 
 
 -- 32.Which dealer has the highest total sales revenue?
--- select * from car_sales
+select dealer_name, 
+	sum(price) as total_sales
+from car_sales
+group by dealer_name
+order by total_sales desc; 
 
 -- 33.What is the average price of cars sold by each dealer?
+select dealer_name, 
+	round(avg(price),2) as avg_sales
+from car_sales
+group by dealer_name;
+
 -- 34.Which dealer sells the most expensive cars on average?
+select dealer_name, price 
+from car_sales
+where dealer_name in (
+	select dealer_name
+	from car_sales
+	where price = (
+		select max(price)
+		from car_sales )
+)
+order by price desc
+limit 1;
+
 -- 35.How many unique car models does each dealer sell?
+select dealer_name, 
+	count(distinct model) as unique_count
+from car_sales
+group by dealer_name; 
+
 -- 36.What is the sales volume of each dealer by region?
+-- select * from car_sales
+
 -- 37..Which dealers dominate in terms of revenue in specific regions?
 -- 38.What is the median car price in the dataset?
 -- 39.How many cars are sold within specific price ranges (e.g., <$20,000, $20,000-$40,000, etc.)?
