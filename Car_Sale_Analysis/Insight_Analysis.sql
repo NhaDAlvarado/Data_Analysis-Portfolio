@@ -280,7 +280,7 @@ group by dealer_name;
 select dealer_region, dealer_name, count(*) as num_car_sales
 from car_sales
 group by dealer_region, dealer_name
-order by dealer_region
+order by dealer_region;
 
 -- 37.Which dealers dominate in terms of revenue in specific regions?
 with ranking as (
@@ -338,11 +338,23 @@ where model in (
 group by model;
 
 -- 42.Which car models contribute most significantly to total revenue?
--- select * from car_sales
-
+select model, sum(price) as total_revenue
+from car_sales
+group by model
+order by total_revenue desc; 
 
 -- 43.How does the popularity of car brands evolve over time?
+select extract (month from date) as month,
+extract(year from date) as year,
+company,
+count(*) as num_car_sale
+from car_sales
+group by company, year, month
+order by year, month, num_car_sale desc; 
+
 -- 44.What is the sales trend for each car model?
+-- select * from car_sales
+
 -- 45.Which car models have the best sales-to-price ratio?
 -- 46.Are there brands that dominate in specific transmission types or engine configurations?
 -- 47.Which models have the lowest average price but high sales volume?
