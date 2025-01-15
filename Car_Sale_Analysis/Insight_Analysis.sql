@@ -353,11 +353,29 @@ group by company, year, month
 order by year, month, num_car_sale desc; 
 
 -- 44.What is the sales trend for each car model?
--- select * from car_sales
+select extract (month from date) as month,
+extract(year from date) as year,
+model,
+count(*) as num_car_sale
+from car_sales
+group by model, year, month
+order by year, month, num_car_sale desc; 
 
 -- 45.Which car models have the best sales-to-price ratio?
+select model, avg(price) as avg_price 
+from car_sales
+group by model
+order by avg_price desc; 
+
 -- 46.Are there brands that dominate in specific transmission types or engine configurations?
+select company, transmission, count(*) as car_sale
+from car_sales
+group by company, transmission 
+order by company, car_sale desc;
+
 -- 47.Which models have the lowest average price but high sales volume?
+-- select * from car_sales
+
 -- 48.What is the relationship between engine size and car price?
 -- 49.How does the dealer's region influence the choice of car color?
 -- 50.What is the customer lifetime value (CLV) based on repeat purchases?
