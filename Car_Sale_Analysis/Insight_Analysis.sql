@@ -374,8 +374,41 @@ group by company, transmission
 order by company, car_sale desc;
 
 -- 47.Which models have the lowest average price but high sales volume?
--- select * from car_sales
+select model, avg(price) as avg_price, count(*) as num_car_sales
+from car_sales
+group by model 
+order by avg_price, num_car_sales desc; 
 
 -- 48.What is the relationship between engine size and car price?
+select engine, avg(price) as avg_price 
+from car_sales
+group by engine; 
+
 -- 49.How does the dealer's region influence the choice of car color?
+select dealer_region, color, count(*) as num_of_car
+from car_sales
+group by dealer_region, color; 
+
 -- 50.What is the customer lifetime value (CLV) based on repeat purchases?
+with CustomerRevenue as (
+    select 
+        customername,
+        sum(Price) as TotalRevenue,
+        count(*) as TotalPurchases
+    from car_sales
+    group by CustomerName
+    having count(*) > 1
+),
+clv as (
+    select  
+        avg(TotalRevenue) as AverageCLV,
+        sum(TotalRevenue) as TotalRevenueFromRepeatCustomers,
+        count(*) as TotalRepeatCustomers
+    from CustomerRevenue
+)
+select 
+    AverageCLV as CustomerLifetimeValue,
+    TotalRevenueFromRepeatCustomers,
+    TotalRepeatCustomers
+from clv;
+
