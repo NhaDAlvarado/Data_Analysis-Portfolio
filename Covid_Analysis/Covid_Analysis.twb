@@ -1118,7 +1118,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>date</local-type>
               <aggregation>Year</aggregation>
-              <approx-count>1291</approx-count>
+              <approx-count>1277</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1131,7 +1131,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>19854</approx-count>
+              <approx-count>20428</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1144,7 +1144,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>5166</approx-count>
+              <approx-count>5363</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1157,7 +1157,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>9498</approx-count>
+              <approx-count>9806</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1170,7 +1170,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>6207</approx-count>
+              <approx-count>6337</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1183,7 +1183,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>1158</approx-count>
+              <approx-count>1294</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1196,7 +1196,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>2426</approx-count>
+              <approx-count>2461</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1209,7 +1209,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>34208</approx-count>
+              <approx-count>35631</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1222,7 +1222,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>19945</approx-count>
+              <approx-count>21298</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1235,7 +1235,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>23122</approx-count>
+              <approx-count>22334</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1248,7 +1248,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>16845</approx-count>
+              <approx-count>16968</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1261,7 +1261,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>5631</approx-count>
+              <approx-count>5829</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1274,7 +1274,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>6080</approx-count>
+              <approx-count>6122</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1287,7 +1287,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>513</approx-count>
+              <approx-count>503</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1443,7 +1443,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>6636</approx-count>
+              <approx-count>6759</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1482,7 +1482,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>955</approx-count>
+              <approx-count>946</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1495,7 +1495,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>2297</approx-count>
+              <approx-count>2279</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1522,7 +1522,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>9184</approx-count>
+              <approx-count>9737</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1535,7 +1535,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>8068</approx-count>
+              <approx-count>8494</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1548,7 +1548,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>4309</approx-count>
+              <approx-count>4713</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1561,7 +1561,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>11247</approx-count>
+              <approx-count>11869</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1574,7 +1574,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>6391</approx-count>
+              <approx-count>6566</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1587,7 +1587,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>3625</approx-count>
+              <approx-count>4236</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1600,7 +1600,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>3472</approx-count>
+              <approx-count>4503</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1613,7 +1613,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>real</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>3304</approx-count>
+              <approx-count>3625</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -1626,7 +1626,7 @@
               <family>CovidDeaths_cleaned.csv</family>
               <local-type>integer</local-type>
               <aggregation>Sum</aggregation>
-              <approx-count>6098</approx-count>
+              <approx-count>5988</approx-count>
               <contains-null>true</contains-null>
             </metadata-record>
             <metadata-record class='column'>
@@ -4353,8 +4353,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='2200' minheight='2200' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='73' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98000' id='72' param='vert' type-v2='layout-flow' w='98858' x='571' y='1000'>
+            <zone h='100000' id='75' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='74' param='vert' type-v2='layout-flow' w='98858' x='571' y='1000'>
                 <zone h='6250' id='13' mode='compact' param='[Parameters].[Continent Parameter]' type-v2='paramctrl' w='4929' x='642' y='1125'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
@@ -4992,7 +4992,7 @@
           <zoom type='entire-view' />
         </viewpoint>
       </viewpoints>
-      <active id='26' />
+      <active id='62' />
       <simple-id uuid='{7AFBED2C-D68D-42F3-8CC0-953FFCDB7683}' />
     </window>
   </windows>
