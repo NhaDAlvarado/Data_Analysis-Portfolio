@@ -4465,8 +4465,8 @@
         <devicelayout auto-generated='true' name='Phone'>
           <size maxheight='2650' minheight='2650' sizing-mode='vscroll' />
           <zones>
-            <zone h='100000' id='91' type-v2='layout-basic' w='100000' x='0' y='0'>
-              <zone h='98000' id='90' param='vert' type-v2='layout-flow' w='98858' x='571' y='1000'>
+            <zone h='100000' id='93' type-v2='layout-basic' w='100000' x='0' y='0'>
+              <zone h='98000' id='92' param='vert' type-v2='layout-flow' w='98858' x='571' y='1000'>
                 <zone fixed-size='55' h='7937' id='85' is-fixed='true' is-scaled='1' param='/Users/miadang/Desktop/DA/Covid_Analysis/Logo/coronavirus.png' type-v2='bitmap' w='4929' x='642' y='1125'>
                   <zone-style>
                     <format attr='border-color' value='#000000' />
