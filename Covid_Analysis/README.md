@@ -67,6 +67,12 @@ The datasets used in this project are publicly available and can be accessed fro
 
 ---
 
+## How dashboard look like
+
+![Covid Analysis Dashboard](Covid.png)
+
+---
+
 ## Acknowledgments
 
 Special thanks to [Our World in Data](https://ourworldindata.org/covid-deaths) for making this data accessible to researchers and enthusiasts worldwide.
