@@ -52,8 +52,8 @@ CREATE TABLE works (
     work_id INT ,
     name TEXT ,
     artist_id INT ,
-    style VARCHAR(255),
+    style text,
     museum_id INT
 );
 
-drop table works
+select * from works
