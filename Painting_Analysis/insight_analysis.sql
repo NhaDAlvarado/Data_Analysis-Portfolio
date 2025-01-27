@@ -1,6 +1,24 @@
 -- 1. How many artists are represented in the dataset?
+select count(artist_id) as num_artists
+from artist;
+
 -- 2. What is the most common nationality of the artists?
+select nationality, count(artist_id) as num_artists
+from artist
+group by nationality
+order by num_artists desc
+limit 1;
+
 -- 3. List the top 10 artists with the most works in the dataset.
+select a.artist_id, a.full_name,
+	count(work_id) as num_of_works
+from artist as a
+join works as w
+on a.artist_id = w.artist_id
+group by a.artist_id, a.full_name 
+order by num_of_works desc
+limit 10;
+
 -- 4. How many artists belong to each artistic style?
 -- 5. Find the oldest artist in the dataset (based on `birth` year).
 -- 6. Which artists have works displayed in the most museums?
