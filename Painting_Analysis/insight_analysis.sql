@@ -20,8 +20,28 @@ order by num_of_works desc
 limit 10;
 
 -- 4. How many artists belong to each artistic style?
+select style, count(*) as num_of_artist
+from artist
+group by style; 
+
 -- 5. Find the oldest artist in the dataset (based on `birth` year).
+select full_name, birth
+from artist
+where birth = (
+	select min(birth)
+	from artist
+);
+
 -- 6. Which artists have works displayed in the most museums?
+select a.artist_id, a.full_name,
+	count(museum_id) as num_of_museum
+from artist as a
+join works as w
+on a.artist_id = w.artist_id
+group by a.artist_id, a.full_name 
+order by num_of_museum desc
+limit 1;
+
 -- 7. List artists whose works span across multiple styles.
 -- 8. Find artists who lived for the longest time.
 -- 9. Count the number of artists who were born and died in the same century.
