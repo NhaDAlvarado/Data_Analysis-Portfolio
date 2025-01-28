@@ -60,7 +60,7 @@ with same_century as (
 	where floor(birth/100) = floor(death/100)
 )
 select count(*) as num_of_artist
-from same_century
+from same_century;
 
 -- 10. Identify artists whose nationality is `NULL` or unknown.
 select full_name, nationality
@@ -68,8 +68,22 @@ from artist
 where nationality is null or nationality = 'unknown';
 
 -- 11. How many works are in the dataset?
+select count(*) as num_of_works
+from works;
+
 -- 12. What is the distribution of works across different artistic styles?
+select style, count(*) as num_of_art,
+	round(100.0*count(*)/(select count(*) from works),2) as percentage
+from works
+group by style; 
+
 -- 13. List the top 5 styles with the highest number of works.
+select style, count(*) as num_of_art
+from works
+group by style
+order by num_of_art desc
+limit 5; 
+
 -- 14. Which work has the highest sale price in `product_size`?
 -- 15. Find the average price of works by style.
 -- 16. Identify works that are housed in multiple museums (if any).
