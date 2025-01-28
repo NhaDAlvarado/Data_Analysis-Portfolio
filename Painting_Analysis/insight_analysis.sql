@@ -43,9 +43,30 @@ order by num_of_museum desc
 limit 1;
 
 -- 7. List artists whose works span across multiple styles.
+select artist_id, count(style) as num_of_style
+from artist
+group by artist_id
+having count(distinct style) >1;
+
 -- 8. Find artists who lived for the longest time.
+select artist_id, full_name, (death - birth) as age
+from artist 
+order by age desc; 
+
 -- 9. Count the number of artists who were born and died in the same century.
+with same_century as (
+	select full_name, birth, death 
+	from artist 
+	where floor(birth/100) = floor(death/100)
+)
+select count(*) as num_of_artist
+from same_century
+
 -- 10. Identify artists whose nationality is `NULL` or unknown.
+select full_name, nationality
+from artist
+where nationality is null or nationality = 'unknown';
+
 -- 11. How many works are in the dataset?
 -- 12. What is the distribution of works across different artistic styles?
 -- 13. List the top 5 styles with the highest number of works.
