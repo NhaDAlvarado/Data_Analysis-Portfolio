@@ -85,9 +85,27 @@ order by num_of_art desc
 limit 5; 
 
 -- 14. Which work has the highest sale price in `product_size`?
+select work_id, sale_price
+from product_size
+order by sale_price desc
+limit 1;
+
 -- 15. Find the average price of works by style.
+select style, round(avg(sale_price),2) as avg_sale_price
+from product_size as p
+join works as w
+on p.work_id = w.work_id
+group by style;
+
 -- 16. Identify works that are housed in multiple museums (if any).
+select work_id, count(distinct museum_id) as num_museums
+from works
+group by work_id
+having count(distinct museum_id) >1;
+
 -- 17. List works that belong to a single subject.
+select * from subject 
+
 -- 18. Find the total number of unique subjects in the dataset.
 -- 19. Identify works that are associated with the largest canvas sizes.
 -- 20. Find works that are not associated with any artist (if any).
