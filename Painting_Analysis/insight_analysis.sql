@@ -104,10 +104,23 @@ group by work_id
 having count(distinct museum_id) >1;
 
 -- 17. List works that belong to a single subject.
-select * from subject 
+select work_id, count(distinct subject) as num_subjects 
+from subject 
+group by work_id
+having count(distinct subject) =1; 
 
 -- 18. Find the total number of unique subjects in the dataset.
+select subject, count(*) as num_of_works 
+from subject 
+group by subject; 
+
 -- 19. Identify works that are associated with the largest canvas sizes.
+select work_id, size_id
+from product_size 
+where size_id = (
+	select max(size_id) 
+	from product_size);
+
 -- 20. Find works that are not associated with any artist (if any).
 -- 21. What are the most common canvas size labels in the dataset?
 -- 22. List the largest and smallest canvas sizes (by width and height).
