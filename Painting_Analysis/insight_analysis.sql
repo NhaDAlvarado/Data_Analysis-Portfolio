@@ -114,15 +114,42 @@ select subject, count(*) as num_of_works
 from subject 
 group by subject; 
 
+/*
+--Identify Non-Numeric Values
+SELECT DISTINCT size_id
+FROM product_size
+WHERE size_id !~ '^[0-9]+$';
+
+-- Delete Non-Numeric Values with NULL
+DELETE FROM product_size
+WHERE size_id !~ '^[0-9]+$';
+
+-- alter column from varchar to int
+ALTER TABLE product_size
+ALTER COLUMN size_id TYPE INT
+USING size_id::INTEGER;
+*/
+
 -- 19. Identify works that are associated with the largest canvas sizes.
-select work_id, size_id
-from product_size 
-where size_id = (
+select work_id, p.size_id, width, height
+from product_size as p
+left join canvas_size as c
+on p.size_id = c.size_id 
+where p.size_id = (
 	select max(size_id) 
 	from product_size);
 
 -- 20. Find works that are not associated with any artist (if any).
+select work_id
+from works
+where artist_id is null;
+
 -- 21. What are the most common canvas size labels in the dataset?
+select size_id, count(*) as num_of_arts
+from product_size
+group by size_id 
+order by num_of_arts desc
+
 -- 22. List the largest and smallest canvas sizes (by width and height).
 -- 23. Find the average dimensions of all canvases in the dataset.
 -- 24. Count the number of works for each canvas size label.
