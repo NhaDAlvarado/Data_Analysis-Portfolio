@@ -149,10 +149,23 @@ select size_id, count(*) as num_of_arts
 from product_size
 group by size_id 
 order by num_of_arts desc
+limit 1;
 
 -- 22. List the largest and smallest canvas sizes (by width and height).
+select max(size_id) as max_size,
+	min(size_id) as min_size
+from canvas_size;
+
 -- 23. Find the average dimensions of all canvases in the dataset.
+select round(avg(width),2) as avg_width,
+	round(avg(height),2) as avg_height
+from canvas_size; 
+
 -- 24. Count the number of works for each canvas size label.
+select size_id, count(*) as num_of_arts
+from product_size
+group by size_id;
+
 -- 25. Identify the canvas size with the highest average sale price.
 -- 26. How many museums are included in the dataset?
 -- 27. List the top 10 cities with the highest number of museums.
