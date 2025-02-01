@@ -183,7 +183,21 @@ group by city
 order by num_museums desc; 
 
 -- 28. Find the distribution of museums across countries.
+select country, 
+	count(museum_id) as num_museums,
+	round(100.0*count(museum_id)/(select count(*) from museum) ,2) as percentage
+from museum
+group by country;
+
 -- 29. Identify the museum with the longest opening hours (based on `museum_hours`).
+SELECT museum_id, 
+	TO_TIMESTAMP(open, 'HH24:MI')::TIME as open, 
+	TO_TIMESTAMP(close, 'HH24:MI')::TIME as close,
+       (TO_TIMESTAMP(open, 'HH24:MI')::TIME 
+	- TO_TIMESTAMP(close, 'HH24:MI')::TIME) AS opening_duration
+FROM museum_hours;
+-------nen sua them
+
 -- 30. List museums that are open every day of the week.
 -- 31. Find museums that have overlapping operating hours with other museums in the same city.
 -- 32. Identify the museum that houses the largest number of works.
