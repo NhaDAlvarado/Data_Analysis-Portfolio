@@ -167,8 +167,21 @@ from product_size
 group by size_id;
 
 -- 25. Identify the canvas size with the highest average sale price.
+select size_id, round(avg(sale_price),2) as avg_price
+from product_size
+group by size_id
+order by avg_price desc;
+
 -- 26. How many museums are included in the dataset?
+select count(museum_id) as num_museums
+from museum;
+
 -- 27. List the top 10 cities with the highest number of museums.
+select city, count(museum_id) as num_museums
+from museum
+group by city 
+order by num_museums desc; 
+
 -- 28. Find the distribution of museums across countries.
 -- 29. Identify the museum with the longest opening hours (based on `museum_hours`).
 -- 30. List museums that are open every day of the week.
