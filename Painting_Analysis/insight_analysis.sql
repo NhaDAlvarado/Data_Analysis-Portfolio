@@ -190,16 +190,53 @@ from museum
 group by country;
 
 -- 29. Identify the museum with the longest opening hours (based on `museum_hours`).
-SELECT museum_id, 
-	TO_TIMESTAMP(open, 'HH24:MI')::TIME as open, 
-	TO_TIMESTAMP(close, 'HH24:MI')::TIME as close,
-       (TO_TIMESTAMP(open, 'HH24:MI')::TIME 
-	- TO_TIMESTAMP(close, 'HH24:MI')::TIME) AS opening_duration
-FROM museum_hours;
--------nen sua them
+with opening_time as (
+	SELECT museum_id, 
+		TO_TIMESTAMP(open, 'HH24:MI')::TIME as open, 
+		TO_TIMESTAMP(close, 'HH24:MI')::TIME + INTERVAL '12 hours' as close
+	FROM museum_hours
+)
+select museum_id, open, close,
+	(close-open) as opening_time
+from opening_time
+order by opening_time desc;
 
 -- 30. List museums that are open every day of the week.
+select museum_id, count(day) as day_open
+from museum_hours 
+group by museum_id 
+having count(day) =7; 
+
 -- 31. Find museums that have overlapping operating hours with other museums in the same city.
+WITH hours AS (
+    SELECT mh.museum_id, 
+           m.city, 
+           m.state, 
+           mh.day,
+           TO_TIMESTAMP(mh.open, 'HH:MI AM')::TIME AS open, 
+           TO_TIMESTAMP(mh.close, 'HH:MI AM')::TIME AS close
+    FROM museum_hours AS mh
+    JOIN museum AS m
+    ON mh.museum_id = m.museum_id 
+),
+overlapping_time as (
+	SELECT h1.museum_id AS museum_1, h2.museum_id AS museum_2,
+	       h1.city,
+	       h1.open AS museum_1_open, h1.close AS museum_1_close,
+	       h2.open AS museum_2_open, h2.close AS museum_2_close,
+			row_number() over (partition by h1.museum_id order by h2.museum_id) as rn 
+	FROM hours AS h1 
+	JOIN hours AS h2
+	ON h1.city = h2.city
+	AND h1.museum_id < h2.museum_id
+	AND h1.open < h2.close
+	AND h1.close > h2.open
+	ORDER BY h1.city
+)
+select museum_1, museum_2, city
+from overlapping_time
+where rn=1;
+
 -- 32. Identify the museum that houses the largest number of works.
 -- 33. List museums with the highest number of unique artists.
 -- 34. Count the number of museums without any works associated with them.
