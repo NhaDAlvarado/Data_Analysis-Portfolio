@@ -238,8 +238,32 @@ from overlapping_time
 where rn=1;
 
 -- 32. Identify the museum that houses the largest number of works.
+select m.museum_id, m.name,
+	count(work_id) as num_of_works
+from works as w
+join museum as m
+on w.museum_id = m.museum_id
+group by m.museum_id, m.name
+order by num_of_works desc;
+
 -- 33. List museums with the highest number of unique artists.
+select m.museum_id, m.name,
+	count(distinct artist_id) as num_of_artists
+from works as w
+join museum as m
+on w.museum_id = m.museum_id
+group by m.museum_id, m.name
+order by num_of_artists desc;
+
 -- 34. Count the number of museums without any works associated with them.
+select m.museum_id, m.name,
+	count(work_id) as num_of_works
+from works as w
+right join museum as m
+on w.museum_id = m.museum_id
+group by m.museum_id, m.name
+having count(work_id) =0;
+
 -- 35. Identify museums that house works of only one style.
 -- 36. What is the average sale price for all works in the dataset?
 -- 37. Find the top 5 most expensive works based on sale price.
