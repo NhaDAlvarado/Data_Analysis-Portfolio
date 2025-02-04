@@ -284,8 +284,25 @@ order by sale_price desc
 limit 5;
 
 -- 38. Identify works where the sale price is higher than the regular price.
+select work_id, sale_price, regular_price
+from product_size
+where sale_price > regular_price;
+
 -- 39. Calculate the average sale price for works grouped by canvas size.
+select size_id, round(avg(sale_price),2) as avg_price
+from product_size
+group by size_id;
+
 -- 40. Identify artists whose works have the highest average sale price.
+select a.artist_id, a.full_name, round(avg(sale_price),2) as avg_price 
+from artist as a
+join works as w
+on a.artist_id = w.artist_id
+join product_size as p
+on p.work_id = w.work_id
+group by a.artist_id, a.full_name
+order by avg_price desc 
+
 -- 41. Find the most popular subject across all works.
 -- 42. Identify the average canvas size dimensions for works grouped by style.
 -- 43. List the top 5 artists whose works are spread across the most museums.
