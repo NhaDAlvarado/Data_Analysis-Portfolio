@@ -265,8 +265,24 @@ group by m.museum_id, m.name
 having count(work_id) =0;
 
 -- 35. Identify museums that house works of only one style.
+select m.museum_id, m.name,
+	count(distinct style) as num_of_style
+from works as w
+right join museum as m
+on w.museum_id = m.museum_id
+group by m.museum_id, m.name
+having count(distinct style) =1;
+
 -- 36. What is the average sale price for all works in the dataset?
+select round(avg(sale_price),2) as avg_sale_price
+from product_size; 
+
 -- 37. Find the top 5 most expensive works based on sale price.
+select work_id, sale_price
+from product_size
+order by sale_price desc
+limit 5;
+
 -- 38. Identify works where the sale price is higher than the regular price.
 -- 39. Calculate the average sale price for works grouped by canvas size.
 -- 40. Identify artists whose works have the highest average sale price.
