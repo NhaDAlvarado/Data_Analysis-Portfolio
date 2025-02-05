@@ -321,12 +321,52 @@ on c.size_id = p.size_id
 group by style; 
 
 -- 43. List the top 5 artists whose works are spread across the most museums.
-select 
+select w.artist_id, a.full_name, 
+	count(distinct museum_id) as num_of_museums
+from works as w
+join artist as a
+on w.artist_id = a.artist_id 
+group by w.artist_id, a.full_name
+having count(distinct museum_id) >10; 
 
 -- 44. Calculate the average sale price of works grouped by museum.
+select w.museum_id, m.name,
+	round(avg(regular_price),2) as avg_price
+from works as w
+join museum as m
+on w.museum_id = m .museum_id 
+join product_size as p
+on w.work_id = p.work_id 
+group by w.museum_id, m.name;
+
 -- 45. Identify the city with the highest average sale price for works displayed in its museums.
+select m.city, m.state,
+	round(avg(regular_price),2) as avg_price
+from works as w
+join museum as m
+on w.museum_id = m .museum_id 
+join product_size as p
+on w.work_id = p.work_id 
+group by m.city, m.state
+order by avg_price desc;
+
 -- 46. List artists who have works displayed in museums located in multiple countries.
+SELECT a.artist_id, 
+       a.full_name, 
+       COUNT(DISTINCT m.country) AS num_countries
+FROM works AS w
+LEFT JOIN museum AS m 
+	ON w.museum_id = m.museum_id 
+LEFT JOIN artist AS a 
+	ON w.artist_id = a.artist_id 
+GROUP BY a.artist_id, a.full_name
+-- Only artists with works in multiple countries	
+HAVING COUNT(DISTINCT m.country) > 1  
+ORDER BY num_countries DESC;
+
 -- 47. Find the average lifespan of artists grouped by nationality.
+
+
 -- 48. Identify museums that house works from the widest variety of styles.
 -- 49. List works that belong to the most subjects (e.g., a work with multiple subjects).
 -- 50. Find the correlation between canvas size (width, height) and sale price.
