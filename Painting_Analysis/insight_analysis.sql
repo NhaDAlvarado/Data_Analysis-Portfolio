@@ -301,11 +301,28 @@ on a.artist_id = w.artist_id
 join product_size as p
 on p.work_id = w.work_id
 group by a.artist_id, a.full_name
-order by avg_price desc 
+order by avg_price desc;
 
 -- 41. Find the most popular subject across all works.
+select subject, count(work_id) as num_of_works
+from subject
+group by subject 
+order by num_of_works desc; 
+
 -- 42. Identify the average canvas size dimensions for works grouped by style.
+select style, 
+	round(avg(width),2) as avg_width, 
+	round(avg(height),2) as avg_height
+from works as w
+join product_size as p
+on w.work_id = p.work_id
+join canvas_size as c
+on c.size_id = p.size_id
+group by style; 
+
 -- 43. List the top 5 artists whose works are spread across the most museums.
+select 
+
 -- 44. Calculate the average sale price of works grouped by museum.
 -- 45. Identify the city with the highest average sale price for works displayed in its museums.
 -- 46. List artists who have works displayed in museums located in multiple countries.
