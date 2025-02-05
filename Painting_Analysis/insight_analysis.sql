@@ -365,8 +365,29 @@ HAVING COUNT(DISTINCT m.country) > 1
 ORDER BY num_countries DESC;
 
 -- 47. Find the average lifespan of artists grouped by nationality.
-
+select nationality, round(avg(death-birth),2) as avg_ages
+from artist
+group by nationality;
 
 -- 48. Identify museums that house works from the widest variety of styles.
+SELECT w.museum_id, 
+       m.name AS museum_name, 
+       COUNT(DISTINCT w.style) AS num_styles
+FROM works AS w
+LEFT JOIN museum AS m 
+	ON w.museum_id = m.museum_id
+GROUP BY w.museum_id, m.name
+ORDER BY num_styles DESC;
+
 -- 49. List works that belong to the most subjects (e.g., a work with multiple subjects).
+select work_id, 
+	count(subject) as num_of_subjects
+from subject
+group by work_id 
+having count(subject) >1; 
+
 -- 50. Find the correlation between canvas size (width, height) and sale price.
+SELECT CORR(cs.width * cs.height, ps.sale_price) AS correlation
+FROM product_size AS ps
+JOIN canvas_size AS cs ON ps.size_id = cs.size_id;
+
