@@ -1,0 +1,702 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20242.24.0807.0327                               -->
+<workbook original-version='18.1' source-build='2024.2.2 (20242.24.0807.0327)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelExtractV2.true...ObjectModelExtractV2 />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <_.fcp.VConnDownstreamExtractsWithWarnings.true...VConnDownstreamExtractsWithWarnings />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <style>
+    <style-rule element='all'>
+      <format attr='font-family' value='Verdana' />
+    </style-rule>
+  </style>
+  <datasources>
+    <datasource caption='artist+' inline='true' name='federated.14wb0u21u2593q16pyy2t1i6x8jw' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='artist' name='textscan.151o99l0c731d5101mu680t54aab'>
+            <connection class='textscan' directory='/Users/miadang/Desktop/DA/Painting_Analysis' filename='artist.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.151o99l0c731d5101mu680t54aab' name='artist.csv' table='[artist#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='artist_id' ordinal='0' />
+            <column datatype='string' name='full_name' ordinal='1' />
+            <column datatype='string' name='first_name' ordinal='2' />
+            <column datatype='string' name='middle_names' ordinal='3' />
+            <column datatype='string' name='last_name' ordinal='4' />
+            <column datatype='string' name='nationality' ordinal='5' />
+            <column datatype='string' name='style' ordinal='6' />
+            <column datatype='integer' name='birth' ordinal='7' />
+            <column datatype='integer' name='death' ordinal='8' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+          <relation connection='textscan.151o99l0c731d5101mu680t54aab' name='artist.csv' table='[artist#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='integer' name='artist_id' ordinal='0' />
+              <column datatype='string' name='full_name' ordinal='1' />
+              <column datatype='string' name='first_name' ordinal='2' />
+              <column datatype='string' name='middle_names' ordinal='3' />
+              <column datatype='string' name='last_name' ordinal='4' />
+              <column datatype='string' name='nationality' ordinal='5' />
+              <column datatype='string' name='style' ordinal='6' />
+              <column datatype='integer' name='birth' ordinal='7' />
+              <column datatype='integer' name='death' ordinal='8' />
+            </columns>
+          </relation>
+          <relation connection='textscan.151o99l0c731d5101mu680t54aab' name='works.csv' table='[works#csv]' type='table'>
+            <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+              <column datatype='integer' name='work_id' ordinal='0' />
+              <column datatype='string' name='name' ordinal='1' />
+              <column datatype='integer' name='artist_id' ordinal='2' />
+              <column datatype='string' name='style' ordinal='3' />
+              <column datatype='integer' name='museum_id' ordinal='4' />
+            </columns>
+          </relation>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <cols>
+          <map key='[artist_id (works.csv)]' value='[works.csv].[artist_id]' />
+          <map key='[artist_id]' value='[artist.csv].[artist_id]' />
+          <map key='[birth]' value='[artist.csv].[birth]' />
+          <map key='[death]' value='[artist.csv].[death]' />
+          <map key='[first_name]' value='[artist.csv].[first_name]' />
+          <map key='[full_name]' value='[artist.csv].[full_name]' />
+          <map key='[last_name]' value='[artist.csv].[last_name]' />
+          <map key='[middle_names]' value='[artist.csv].[middle_names]' />
+          <map key='[museum_id]' value='[works.csv].[museum_id]' />
+          <map key='[name]' value='[works.csv].[name]' />
+          <map key='[nationality]' value='[artist.csv].[nationality]' />
+          <map key='[style (works.csv)]' value='[works.csv].[style]' />
+          <map key='[style]' value='[artist.csv].[style]' />
+          <map key='[work_id]' value='[works.csv].[work_id]' />
+        </cols>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[works.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>artist_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[artist_id]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>artist_id</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>full_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[full_name]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>full_name</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>first_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[first_name]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>first_name</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>middle_names</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[middle_names]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>middle_names</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>last_name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[last_name]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>last_name</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>nationality</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[nationality]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>nationality</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>style</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[style]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>style</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>birth</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[birth]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>birth</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>death</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[death]</local-name>
+            <parent-name>[artist.csv]</parent-name>
+            <remote-alias>death</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>work_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[work_id]</local-name>
+            <parent-name>[works.csv]</parent-name>
+            <remote-alias>work_id</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>name</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[name]</local-name>
+            <parent-name>[works.csv]</parent-name>
+            <remote-alias>name</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>artist_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[artist_id (works.csv)]</local-name>
+            <parent-name>[works.csv]</parent-name>
+            <remote-alias>artist_id</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>style</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[style (works.csv)]</local-name>
+            <parent-name>[works.csv]</parent-name>
+            <remote-alias>style</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>museum_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[museum_id]</local-name>
+            <parent-name>[works.csv]</parent-name>
+            <remote-alias>museum_id</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <_.fcp.ObjectModelTableType.true...column caption='artist.csv' datatype='table' name='[__tableau_internal_object_id__].[artist.csv_0B5AB239903A4130BD0763C149525F64]' role='measure' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='works.csv' datatype='table' name='[__tableau_internal_object_id__].[works.csv_E9BCFE515BEA435191FECDBF80242719]' role='measure' type='quantitative' />
+      <column caption='Artist Id (Works.Csv)' datatype='integer' name='[artist_id (works.csv)]' role='dimension' type='ordinal' />
+      <column caption='Artist Id' datatype='integer' name='[artist_id]' role='dimension' type='ordinal' />
+      <column caption='Birth' datatype='integer' name='[birth]' role='measure' type='quantitative' />
+      <column caption='Death' datatype='integer' name='[death]' role='measure' type='quantitative' />
+      <column caption='First Name' datatype='string' name='[first_name]' role='dimension' type='nominal' />
+      <column caption='Full Name' datatype='string' name='[full_name]' role='dimension' type='nominal' />
+      <column caption='Last Name' datatype='string' name='[last_name]' role='dimension' type='nominal' />
+      <column caption='Middle Names' datatype='string' name='[middle_names]' role='dimension' type='nominal' />
+      <column caption='Museum Id' datatype='integer' name='[museum_id]' role='dimension' type='ordinal' />
+      <column caption='Name' datatype='string' name='[name]' role='dimension' type='nominal' />
+      <column caption='Nationality' datatype='string' name='[nationality]' role='dimension' type='nominal' />
+      <column caption='Style (Works.Csv)' datatype='string' name='[style (works.csv)]' role='dimension' type='nominal' />
+      <column caption='Style' datatype='string' name='[style]' role='dimension' type='nominal' />
+      <column caption='Work Id' datatype='integer' name='[work_id]' role='dimension' type='ordinal' />
+      <extract _.fcp.ObjectModelExtractV2.true...object-id='' _.fcp.VConnDownstreamExtractsWithWarnings.true...user-specific='false' count='-1' enabled='true' units='records'>
+        <connection access_mode='readonly' author-locale='en_US' class='hyper' dbname='/var/folders/pz/x922ffzx1z77z1strd8qk2qh0000gn/T/tableau-temp/#TableauTemp_0aet36s1ukn3x817nh8pq17kg6c7.hyper' default-settings='hyper' schema='Extract' sslmode='' tablename='Extract' update-time='02/06/2025 12:22:31 PM' username='tableau_internal_user'>
+          <_.fcp.ObjectModelEncapsulateLegacy.false...relation name='artist.csv_0B5AB239903A4130BD0763C149525F64' table='[Extract].[artist.csv_0B5AB239903A4130BD0763C149525F64]' type='table' />
+          <_.fcp.ObjectModelEncapsulateLegacy.true...relation type='collection'>
+            <relation name='artist.csv_0B5AB239903A4130BD0763C149525F64' table='[Extract].[artist.csv_0B5AB239903A4130BD0763C149525F64]' type='table' />
+            <relation name='works.csv_E9BCFE515BEA435191FECDBF80242719' table='[Extract].[works.csv_E9BCFE515BEA435191FECDBF80242719]' type='table' />
+          </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+          <cols>
+            <map key='[artist_id (works.csv)]' value='[works.csv_E9BCFE515BEA435191FECDBF80242719].[artist_id]' />
+            <map key='[artist_id]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[artist_id]' />
+            <map key='[birth]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[birth]' />
+            <map key='[death]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[death]' />
+            <map key='[first_name]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[first_name]' />
+            <map key='[full_name]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[full_name]' />
+            <map key='[last_name]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[last_name]' />
+            <map key='[middle_names]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[middle_names]' />
+            <map key='[museum_id]' value='[works.csv_E9BCFE515BEA435191FECDBF80242719].[museum_id]' />
+            <map key='[name]' value='[works.csv_E9BCFE515BEA435191FECDBF80242719].[name]' />
+            <map key='[nationality]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[nationality]' />
+            <map key='[style (works.csv)]' value='[works.csv_E9BCFE515BEA435191FECDBF80242719].[style]' />
+            <map key='[style]' value='[artist.csv_0B5AB239903A4130BD0763C149525F64].[style]' />
+            <map key='[work_id]' value='[works.csv_E9BCFE515BEA435191FECDBF80242719].[work_id]' />
+          </cols>
+          <metadata-records>
+            <metadata-record class='column'>
+              <remote-name>artist_id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[artist_id]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>artist_id</remote-alias>
+              <ordinal>0</ordinal>
+              <family>artist.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>421</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>full_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[full_name]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>full_name</remote-alias>
+              <ordinal>1</ordinal>
+              <family>artist.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>421</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>first_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[first_name]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>first_name</remote-alias>
+              <ordinal>2</ordinal>
+              <family>artist.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>219</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>middle_names</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[middle_names]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>middle_names</remote-alias>
+              <ordinal>3</ordinal>
+              <family>artist.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>120</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>last_name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[last_name]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>last_name</remote-alias>
+              <ordinal>4</ordinal>
+              <family>artist.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>414</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>nationality</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[nationality]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>nationality</remote-alias>
+              <ordinal>5</ordinal>
+              <family>artist.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>18</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>style</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[style]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>style</remote-alias>
+              <ordinal>6</ordinal>
+              <family>artist.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>35</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>birth</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[birth]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>birth</remote-alias>
+              <ordinal>7</ordinal>
+              <family>artist.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>223</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>death</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[death]</local-name>
+              <parent-name>[artist.csv_0B5AB239903A4130BD0763C149525F64]</parent-name>
+              <remote-alias>death</remote-alias>
+              <ordinal>8</ordinal>
+              <family>artist.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>216</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[artist.csv_0B5AB239903A4130BD0763C149525F64]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>work_id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[work_id]</local-name>
+              <parent-name>[works.csv_E9BCFE515BEA435191FECDBF80242719]</parent-name>
+              <remote-alias>work_id</remote-alias>
+              <ordinal>9</ordinal>
+              <family>works.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>14776</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>name</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[name]</local-name>
+              <parent-name>[works.csv_E9BCFE515BEA435191FECDBF80242719]</parent-name>
+              <remote-alias>name</remote-alias>
+              <ordinal>10</ordinal>
+              <family>works.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>7907</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>artist_id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[artist_id (works.csv)]</local-name>
+              <parent-name>[works.csv_E9BCFE515BEA435191FECDBF80242719]</parent-name>
+              <remote-alias>artist_id</remote-alias>
+              <ordinal>11</ordinal>
+              <family>works.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>583</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>style</remote-name>
+              <remote-type>129</remote-type>
+              <local-name>[style (works.csv)]</local-name>
+              <parent-name>[works.csv_E9BCFE515BEA435191FECDBF80242719]</parent-name>
+              <remote-alias>style</remote-alias>
+              <ordinal>12</ordinal>
+              <family>works.csv</family>
+              <local-type>string</local-type>
+              <aggregation>Count</aggregation>
+              <approx-count>24</approx-count>
+              <contains-null>true</contains-null>
+              <collation flag='0' name='LEN_RUS' />
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+            <metadata-record class='column'>
+              <remote-name>museum_id</remote-name>
+              <remote-type>20</remote-type>
+              <local-name>[museum_id]</local-name>
+              <parent-name>[works.csv_E9BCFE515BEA435191FECDBF80242719]</parent-name>
+              <remote-alias>museum_id</remote-alias>
+              <ordinal>13</ordinal>
+              <family>works.csv</family>
+              <local-type>integer</local-type>
+              <aggregation>Sum</aggregation>
+              <approx-count>29</approx-count>
+              <contains-null>true</contains-null>
+              <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[works.csv_E9BCFE515BEA435191FECDBF80242719]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+            </metadata-record>
+          </metadata-records>
+        </connection>
+      </extract>
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='artist.csv' id='artist.csv_0B5AB239903A4130BD0763C149525F64'>
+            <properties context=''>
+              <relation connection='textscan.151o99l0c731d5101mu680t54aab' name='artist.csv' table='[artist#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='integer' name='artist_id' ordinal='0' />
+                  <column datatype='string' name='full_name' ordinal='1' />
+                  <column datatype='string' name='first_name' ordinal='2' />
+                  <column datatype='string' name='middle_names' ordinal='3' />
+                  <column datatype='string' name='last_name' ordinal='4' />
+                  <column datatype='string' name='nationality' ordinal='5' />
+                  <column datatype='string' name='style' ordinal='6' />
+                  <column datatype='integer' name='birth' ordinal='7' />
+                  <column datatype='integer' name='death' ordinal='8' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='artist.csv_0B5AB239903A4130BD0763C149525F64' table='[Extract].[artist.csv_0B5AB239903A4130BD0763C149525F64]' type='table' />
+            </properties>
+          </object>
+          <object caption='works.csv' id='works.csv_E9BCFE515BEA435191FECDBF80242719'>
+            <properties context=''>
+              <relation connection='textscan.151o99l0c731d5101mu680t54aab' name='works.csv' table='[works#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+                  <column datatype='integer' name='work_id' ordinal='0' />
+                  <column datatype='string' name='name' ordinal='1' />
+                  <column datatype='integer' name='artist_id' ordinal='2' />
+                  <column datatype='string' name='style' ordinal='3' />
+                  <column datatype='integer' name='museum_id' ordinal='4' />
+                </columns>
+              </relation>
+            </properties>
+            <properties context='extract'>
+              <relation name='works.csv_E9BCFE515BEA435191FECDBF80242719' table='[Extract].[works.csv_E9BCFE515BEA435191FECDBF80242719]' type='table' />
+            </properties>
+          </object>
+        </objects>
+        <relationships>
+          <relationship>
+            <expression op='='>
+              <expression op='[artist_id]' />
+              <expression op='[artist_id (works.csv)]' />
+            </expression>
+            <first-end-point object-id='artist.csv_0B5AB239903A4130BD0763C149525F64' />
+            <second-end-point object-id='works.csv_E9BCFE515BEA435191FECDBF80242719' />
+          </relationship>
+        </relationships>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='table'>
+            <format attr='background-color' value='#ffffff' />
+          </style-rule>
+          <style-rule element='worksheet'>
+            <format attr='color' value='#104911' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{CC6C8FED-E254-4421-9063-F21BDE89CCC5}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{8883A204-5B0F-4A20-8175-2F88B8745D33}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='384' name='Sheet 1' width='384'>
+      iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAYAAACkx7W/AAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAAFX0lEQVR4nO3VMQEAIAzAMIZ/z0MGRxMF/Tq7uweAlJmZ+zsCgD8MACDKAACiDAAgygAA
+      ogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDK
+      AACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwA
+      IMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACi
+      DAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoA
+      AKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAg
+      ygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIM
+      ACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAA
+      ogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDK
+      AACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwA
+      IMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACi
+      DAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoA
+      AKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAg
+      ygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIM
+      ACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAA
+      ogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDK
+      AACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwA
+      IMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACi
+      DAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoA
+      AKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAg
+      ygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIM
+      ACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAA
+      ogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDK
+      AACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwA
+      IMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAogwAIMoAAKIMACDKAACi
+      DAAgygAAogwAIMoAAKIMACDKAACiDAAgygAAoh4HPAcAnZVmXAAAAABJRU5ErkJggg==
+    </thumbnail>
+  </thumbnails>
+</workbook>
