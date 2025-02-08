@@ -7,16 +7,35 @@ select count(distinct market)
 from restaurants; 
 
 -- 3. What are the top 5 cities with the highest number of restaurants?
--- select * from restaurants
 select city, count(name) as num_restaurants
 from restaurants
 group by city 
 order by num_restaurants desc; 
 
 -- 4. Which state has the highest average restaurant rating?
+select state, 
+	round(avg(averagerating)::numeric,2) as avg_rating
+from restaurants
+group by state;
+
 -- 5. What are the top 5 most popular restaurant names (based on frequency)?
+select name, 
+	count(name) as count_same_name
+from restaurants
+group by name
+order by count_same_name desc 
+limit 5; 
+
 -- 6. What is the distribution of restaurants across different zip codes?
+select zipcode, 
+	count(name) as num_restaurants,
+	round(100.0*count(name)/ (select count(name) from restaurants), 2) as percentage
+from restaurants
+group by zipcode; 
+
 -- 7. Which city has the highest average restaurant rating?
+-- select * from restaurants
+
 -- 8. What is the total number of restaurants available in each timezone?
 -- 9. Which market has the largest number of restaurants offering pickup services?
 -- 10. What are the top 5 states with the most expensive restaurants (based on price range)?
