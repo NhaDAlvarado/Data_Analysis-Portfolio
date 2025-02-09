@@ -34,10 +34,25 @@ from restaurants
 group by zipcode; 
 
 -- 7. Which city has the highest average restaurant rating?
--- select * from restaurants
+select city, 
+	round(avg(averagerating)::numeric,2) as avg_rating
+from restaurants
+group by city
+order by avg_rating desc;
 
 -- 8. What is the total number of restaurants available in each timezone?
+select timezone, 
+	count(name) as num_of_restaurants
+from restaurants
+group by timezone; 
+
 -- 9. Which market has the largest number of restaurants offering pickup services?
+-- select * from restaurants
+select market, count(name) as num_of_restaurants
+from restaurants
+where pickupavailable = true 
+group by market;
+
 -- 10. What are the top 5 states with the most expensive restaurants (based on price range)?
 -- 11. What are the most commonly mentioned cuisines in the `description` column?
 -- 12. Which restaurant in each market has the highest rating?
