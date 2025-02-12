@@ -47,15 +47,45 @@ from restaurants
 group by timezone; 
 
 -- 9. Which market has the largest number of restaurants offering pickup services?
--- select * from restaurants
 select market, count(name) as num_of_restaurants
 from restaurants
 where pickupavailable = true 
 group by market;
 
 -- 10. What are the top 5 states with the most expensive restaurants (based on price range)?
+with city_price as (
+	select state,
+		case when pricerange = '$' then 1
+			when pricerange = '$$' then 2
+			when pricerange = '$$$' then 3
+			when pricerange = '$$$$' then 4
+		else null
+		end as price
+	from restaurants
+)
+select state, round(avg(price),2) as avg_price
+from city_price
+group by state
+order by avg_price desc; 
+
 -- 11. What are the most commonly mentioned cuisines in the `description` column?
+with cleaned_description as (
+	select substring(description from 
+					position('•' in description) + 1) AS text_description
+	from restaurants
+),
+unnest_description as (
+	select unnest(STRING_TO_ARRAY(text_description, ',')) as description_word
+	from cleaned_description
+)
+select description_word, count(*) as mentioned_cuisines_count
+from unnest_description
+group by description_word
+order by mentioned_cuisines_count desc;
+
 -- 12. Which restaurant in each market has the highest rating?
+-- select * from restaurants
+
 -- 13. What are the most frequent keywords used in the `description` column for top-rated restaurants?
 -- 14. Which market has the most diverse cuisine options based on `description`?
 -- 15. What are the top-rated restaurants offering a specific cuisine (e.g., Burgers)?
