@@ -116,10 +116,47 @@ group by key_word
 order by frequency desc;
 
 -- 14. Which market has the most diverse cuisine options based on `description`?
--- select * from restaurants
+WITH cuisine_extracted AS (
+    SELECT market, 
+           UNNEST(STRING_TO_ARRAY(description, ',')) AS cuisine
+    FROM restaurants
+),
+unique_cuisines AS (
+    SELECT market, TRIM(cuisine) AS cuisine_type
+    FROM cuisine_extracted
+    GROUP BY market, TRIM(cuisine)
+),
+market_diversity AS (
+    SELECT market, COUNT(DISTINCT cuisine_type) AS unique_cuisine_count
+    FROM unique_cuisines
+    GROUP BY market
+)
+SELECT market, unique_cuisine_count
+FROM market_diversity
+ORDER BY unique_cuisine_count DESC
+LIMIT 1;
 
 -- 15. What are the top-rated restaurants offering a specific cuisine (e.g., Burgers)?
+with clean_description as (
+    select name, 
+		averagerating as avg_rating,
+		substring(description from position('•' in description) + 1) as cleaned_description
+    from restaurants
+),
+trim_space as (
+	select name, avg_rating,
+		trim(cleaned_description) as cuisine
+	from clean_description
+)
+select name,avg_rating, cuisine 
+from trim_space
+where cuisine like '%Burgers' 
+	or cuisine like 'Burgers%'
+order by avg_rating desc; 
+
 -- 16. What is the average rating of restaurants by state?
+-- select * from restaurants
+
 -- 17. How many restaurants have an average rating of 4.5 or above?
 -- 18. What percentage of restaurants have fewer than 100 ratings?
 -- 19. Which city has the highest cumulative rating count across all restaurants?
