@@ -84,10 +84,40 @@ group by description_word
 order by mentioned_cuisines_count desc;
 
 -- 12. Which restaurant in each market has the highest rating?
--- select * from restaurants
+with state_rating as (
+	select state, 
+		name, 
+		averagerating,
+		row_number() over (partition by state order by averagerating desc) as rn
+	from restaurants
+)
+select state, name, averagerating
+from state_rating
+where rn =1; 
 
 -- 13. What are the most frequent keywords used in the `description` column for top-rated restaurants?
+with top_rated as (
+	select name, description, averagerating as avg_rating
+	from restaurants
+	where averagerating =5
+),
+cleaned_description as (
+	select substring(description from 
+					position('•' in description) + 1) AS text_description
+	from top_rated
+),
+unnest_description as (
+	select unnest(STRING_TO_ARRAY(text_description, ',')) as key_word
+	from cleaned_description
+)
+select key_word, count(*) as frequency
+from unnest_description
+group by key_word
+order by frequency desc;
+
 -- 14. Which market has the most diverse cuisine options based on `description`?
+-- select * from restaurants
+
 -- 15. What are the top-rated restaurants offering a specific cuisine (e.g., Burgers)?
 -- 16. What is the average rating of restaurants by state?
 -- 17. How many restaurants have an average rating of 4.5 or above?
