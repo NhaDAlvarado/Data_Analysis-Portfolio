@@ -155,12 +155,29 @@ where cuisine like '%Burgers'
 order by avg_rating desc; 
 
 -- 16. What is the average rating of restaurants by state?
--- select * from restaurants
+select state, avg(averagerating) as avg_rating
+from restaurants
+group by state; 
 
 -- 17. How many restaurants have an average rating of 4.5 or above?
+select count(*) as num_of_res
+from restaurants
+where averagerating > 4.5;
+
 -- 18. What percentage of restaurants have fewer than 100 ratings?
+select round(100.0*count(*)/(select count(*) from restaurants),2) as percentage 
+from restaurants
+where ratingcount <100;
+
 -- 19. Which city has the highest cumulative rating count across all restaurants?
+select city, sum(ratingcount) as total_rating_count
+from restaurants
+group by city 
+order by total_rating_count desc; 
+
 -- 20. What is the correlation between the number of ratings and the average rating?
+-- select * from restaurants
+
 -- 21. How many restaurants fall into each `priceRange` category?
 -- 22. Which `priceRange` has the highest average rating?
 -- 23. What is the distribution of price ranges across markets?
