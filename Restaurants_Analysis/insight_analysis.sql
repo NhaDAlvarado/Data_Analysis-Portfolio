@@ -176,12 +176,29 @@ group by city
 order by total_rating_count desc; 
 
 -- 20. What is the correlation between the number of ratings and the average rating?
--- select * from restaurants
+select corr(averagerating, ratingcount) as corr
+from restaurants; 
 
 -- 21. How many restaurants fall into each `priceRange` category?
+select pricerange, count(*) as num_of_restaurants
+from restaurants
+group by pricerange; 
+
 -- 22. Which `priceRange` has the highest average rating?
+select pricerange, avg(averagerating) as avg_rating
+from restaurants
+group by pricerange
+order by avg_rating desc; 
+
 -- 23. What is the distribution of price ranges across markets?
+select state, pricerange, count(*) as num_of_res
+from restaurants
+group by state, pricerange
+order by num_of_res desc; 
+
 -- 24. Which city has the most affordable restaurants (lowest `priceRange`) on average?
+-- select * from restaurants
+
 -- 25. How does the `priceRange` vary across different timezones?
 -- 26. How many restaurants offer `asapDeliveryAvailable` services?
 -- 27. What is the average `asapDeliveryTimeMinutes` for restaurants in each market?
