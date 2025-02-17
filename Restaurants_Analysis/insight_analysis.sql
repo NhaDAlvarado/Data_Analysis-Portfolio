@@ -191,15 +191,42 @@ group by pricerange
 order by avg_rating desc; 
 
 -- 23. What is the distribution of price ranges across markets?
-select state, pricerange, count(*) as num_of_res
-from restaurants
-group by state, pricerange
-order by num_of_res desc; 
+with price_range as (
+	select state, pricerange, count(*) as num_res_per_price_per_state
+	from restaurants
+	group by state, pricerange
+),
+count_res_in_state as (
+	select state, count(*) as num_res_per_state 
+	from restaurants
+	group by state
+)
+select p.state, pricerange,
+	round(100.0*num_res_per_price_per_state/num_res_per_state,2) as percentage
+from price_range as p
+join count_res_in_state as c
+on p.state = c.state; 
 
 -- 24. Which city has the most affordable restaurants (lowest `priceRange`) on average?
--- select * from restaurants
+with city_price as (
+	select city,
+		case when pricerange = '$' then 1
+			when pricerange = '$$' then 2
+			when pricerange = '$$$' then 3
+			when pricerange = '$$$$' then 4
+		else null
+		end as price
+	from restaurants
+)
+select city, round(avg(price),2) as avg_price
+from city_price
+group by city
+order by avg_price; 
 
 -- 25. How does the `priceRange` vary across different timezones?
+-- select * from restaurants
+
+
 -- 26. How many restaurants offer `asapDeliveryAvailable` services?
 -- 27. What is the average `asapDeliveryTimeMinutes` for restaurants in each market?
 -- 28. Which city has the fastest average delivery time?
