@@ -224,12 +224,35 @@ group by city
 order by avg_price; 
 
 -- 25. How does the `priceRange` vary across different timezones?
--- select * from restaurants
-
+with time_zone_price as (
+	select timezone,
+		case when pricerange = '$' then 1
+			when pricerange = '$$' then 2
+			when pricerange = '$$$' then 3
+			when pricerange = '$$$$' then 4
+		else null
+		end as price
+	from restaurants
+)
+select timezone, 
+	round(avg(price),2) as avg_price
+from time_zone_price
+group by timezone
+order by avg_price; 
 
 -- 26. How many restaurants offer `asapDeliveryAvailable` services?
+select asapdeliveryavailable, count(*) as num_of_res
+from restaurants
+group by asapdeliveryavailable;
+
 -- 27. What is the average `asapDeliveryTimeMinutes` for restaurants in each market?
+select city, round(avg(asapdeliverytimeminutes),2) as avg_mins
+from restaurants
+group by city;
+
 -- 28. Which city has the fastest average delivery time?
+-- select * from restaurants
+
 -- 29. How many restaurants offer both `asapDeliveryAvailable` and `pickupAvailable` services?
 -- 30. What is the average `asapPickupMinutes` for each market?
 -- 31. How many restaurants offer both `asapDeliveryAvailable` and `asapPickupAvailable`?
