@@ -251,11 +251,30 @@ from restaurants
 group by city;
 
 -- 28. Which city has the fastest average delivery time?
--- select * from restaurants
+select city, round(avg(asapdeliverytimeminutes),2) as avg_mins
+from restaurants
+group by city
+order by avg_mins 
+limit 1;
 
 -- 29. How many restaurants offer both `asapDeliveryAvailable` and `pickupAvailable` services?
+select count(*) as num_res
+from restaurants
+where asapdeliveryavailable = true
+and pickupavailable = true; 
+
 -- 30. What is the average `asapPickupMinutes` for each market?
+select city, round(avg(asappickupminutes),2) as avg_mins
+from restaurants
+group by city;
+
 -- 31. How many restaurants offer both `asapDeliveryAvailable` and `asapPickupAvailable`?
+-- select * from restaurants
+select count(*) as num_res
+from restaurants
+where asapdeliveryavailable = true
+and asappickupavailable = true; 
+
 -- 32. What percentage of restaurants in each market offer pickup services?
 -- 33. How does the availability of `asapPickupAvailable` vary across states?
 -- 34. Which city has the highest number of restaurants with `asapDeliveryAvailable = TRUE`?
