@@ -269,14 +269,48 @@ from restaurants
 group by city;
 
 -- 31. How many restaurants offer both `asapDeliveryAvailable` and `asapPickupAvailable`?
--- select * from restaurants
 select count(*) as num_res
 from restaurants
 where asapdeliveryavailable = true
 and asappickupavailable = true; 
 
 -- 32. What percentage of restaurants in each market offer pickup services?
+with num_of_res_per_city as (
+	select city, count(*) as num_of_res
+	from restaurants
+	group by city
+),
+num_of_res_offer_pickup as (
+	select city, count(*) as num_of_res_offer_pickup
+	from restaurants
+	where pickupavailable = true
+	group by city
+)
+select c.city, num_of_res_offer_pickup, num_of_res,
+round(100.0*num_of_res_offer_pickup/num_of_res,2) as percentage
+from num_of_res_per_city as c
+join num_of_res_offer_pickup as p
+on c.city = p.city;
+
 -- 33. How does the availability of `asapPickupAvailable` vary across states?
+-- select * from restaurants
+with num_of_res_per_state as (
+	select state, count(*) as num_of_res
+	from restaurants
+	group by state
+),
+num_of_res_offer_pickup_asap as (
+	select state, count(*) as num_of_res_offer_pickup_asap
+	from restaurants
+	where asappickupavailable = true
+	group by state
+)
+select c.state, num_of_res_offer_pickup_asap, num_of_res,
+round(100.0*num_of_res_offer_pickup_asap/num_of_res,2) as percentage
+from num_of_res_per_state as c
+join num_of_res_offer_pickup_asap as p
+on c.state = p.state;
+
 -- 34. Which city has the highest number of restaurants with `asapDeliveryAvailable = TRUE`?
 -- 35. What is the correlation between `asapDeliveryAvailable` and average ratings?
 -- 36. What are the northernmost and southernmost restaurants (based on `latitude`)?
