@@ -293,7 +293,6 @@ join num_of_res_offer_pickup as p
 on c.city = p.city;
 
 -- 33. How does the availability of `asapPickupAvailable` vary across states?
--- select * from restaurants
 with num_of_res_per_state as (
 	select state, count(*) as num_of_res
 	from restaurants
@@ -312,8 +311,34 @@ join num_of_res_offer_pickup_asap as p
 on c.state = p.state;
 
 -- 34. Which city has the highest number of restaurants with `asapDeliveryAvailable = TRUE`?
+select city, count(*) as num_of_res
+from restaurants
+where asapdeliveryavailable = true
+group by city
+order by num_of_res desc
+limit 1; 
+
 -- 35. What is the correlation between `asapDeliveryAvailable` and average ratings?
+select asapDeliveryAvailable, 
+	count(*) as num_of_res, 
+	avg(averagerating) as avg_rating
+from restaurants
+group by asapDeliveryAvailable;
+
 -- 36. What are the northernmost and southernmost restaurants (based on `latitude`)?
+-- select * from restaurants
+(select 'Northernmost' as location, * 
+ from restaurants 
+ order by latitude DESC 
+ limit 1)
+union all
+(select 'Southernmost' as location, * 
+ from restaurants 
+ order by latitude asc
+ limit 1);
+
+
+
 -- 37. Which restaurant is located farthest west and farthest east (based on `longitude`)?
 -- 38. How does average rating vary by geographic location (latitude/longitude clusters)?
 -- 39. What is the distribution of restaurants in a specific range of latitude and longitude (e.g., near a city)?
