@@ -1,18 +1,18 @@
 museum_id,name,address,city,state,postal,country,phone,url
-30,The Museum of Modern Art,11 W 53rd St,New York,NY,10019,USA,+1 212 708-9400,https://www.moma.org/
+30,The Museum of Modern Art,11 W 53rd St,New York,NY,10019,USA,+1 212-708-9400,https://www.moma.org/
 31,Pushkin State Museum of Fine Arts,12 Ulitsa Volkhonka,Moscow,,119019,Russia,+7 495 697-95-78,https://pushkinmuseum.art/
-32,National Gallery of Victoria,180 St Kilda Rd,Melbourne,Victoria,3004,Australia,+61 (0)3 8620 2222,https://www.ngv.vic.gov.au/
-33,São Paulo Museum of Art,"Av. Paulista, 1578 - Bela Vista",São Paulo,,01310-200,Brazil,+55 11 3149-5959,https://masp.org.br/
-34,The State Hermitage Museum,Palace Square,2,Sankt-Peterburg,190000,Russia,7 812 710-90-79,https://www.hermitagemuseum.org/wps/portal/hermitage/
-35,The Metropolitan Museum of Art,1000 5th Ave,New York,NY,10028,USA,+1 212 535-7710,https://www.metmuseum.org/
-36,Museum Folkwang,Museumsplatz 1,45128,Essen,,Germany,49 201 8845000,https://www.museum-folkwang.de/en
-37,Museum of Grenoble,5 Pl. de Lavalette,38000,Grenoble,,France,33 4 76 63 44 44,https://www.museedegrenoble.fr/1986-the-museum-in-english.htm
-38,Musée des Beaux-Arts de Quimper,40 Pl. Saint-Corentin,29000,Quimper,,France,33 2 98 95 45 20,https://www.mbaq.fr/en/home-3.html
-39,Nelson-Atkins Museum of Art,4525 Oak St,Kansas City,MO,64111,USA,+1 816 751-1278,https://www.nelson-atkins.org/
-40,Musée du Louvre,Rue de Rivoli,75001,Paris,,France,33 1 40 20 50 50,https://www.louvre.fr/en
-41,National Maritime Museum,Romney Rd,London,SE10 9NF,,United Kingdom,44 20 8858 4422,https://www.rmg.co.uk/national-maritime-museum
-42,Museum of Fine Arts Boston,465 Huntington Ave,Boston,MA,2115,USA,617-267-9300,https://www.mfa.org/
-43,Rijksmuseum,Museumstraat 1,Amsterdam,,1071 XX,Netherlands,31 20 674 7000,https://www.rijksmuseum.nl/en/visit
+32,National Gallery of Victoria,180 St Kilda Rd,Melbourne,VIC,3006,Australia,+61 3 8620 2222,https://www.ngv.vic.gov.au/
+33,São Paulo Museum of Art,"Av. Paulista, 1578 - Bela Vista",São Paulo,SP,01310-200,Brazil,+55 11 3149-5959,https://masp.org.br/
+34,The State Hermitage Museum,2 Palace Square,Sankt-Petersburg,,190000,Russia,+7 812 710-90-79,
+35,The Metropolitan Museum of Art,1000 5th Ave,New York,NY,10028,USA,+1 212-535-7710,https://www.metmuseum.org/
+36,Museum Folkwang,Museumsplatz 1,Essen,North Rhine-Westphalia,45128,Germany,+49 201 8845000,https://www.museum-folkwang.de/en
+37,Museum of Grenoble,5 Pl. de Lavalette,Grenoble,Auvergne-Rhône-Alpes,38000,France,+33 4 76 63 44 44,https://www.museedegrenoble.fr/
+38,Musée des Beaux-Arts de Quimper,40 Pl. Saint-Corentin,Quimper,Brittany,29000,France,+33 2 98 95 45 20,https://www.mbaq.fr/
+39,Nelson-Atkins Museum of Art,4525 Oak St,Kansas City,MO,64111,USA,+1 816-751-1278,https://www.nelson-atkins.org/
+40,Musée du Louvre,Rue de Rivoli,Paris,Île-de-France,75001,France,+33 1 40 20 50 50,https://www.louvre.fr/
+41,National Maritime Museum,Romney Rd,London,England,SE10 9NF,UK,+44 20 8858 4422,https://www.rmg.co.uk/
+42,Museum of Fine Arts,465 Huntington Ave,Boston,MA,2115,USA,+1 617-267-9300,+1 617-267-9300
+43,Rijksmuseum,Museumstraat 1,Amsterdam,North Holland,1071 XX,Netherlands,+31 20 674 7000,https://www.rijksmuseum.nl/
 44,Israel Museum,Derech Ruppin 11,Jerusalem,,,Israel,972 2-670-8811,https://www.imj.org.il/en
 45,Kunsthaus Zürich,Heimplatz 1,Zurich,,8001,Switzerland,+41 44 253 84 84,https://www.kunsthaus.ch/en/
 46,National Gallery of Art,Constitution Ave. NW,Washington,DC,20565,USA,+1 202 737-4215,https://www.nga.gov/
@@ -48,11 +48,11 @@ museum_id,name,address,city,state,postal,country,phone,url
 76,Columbus Museum of Art,480 E Broad St,Columbus,OH,43215,USA,+1 (614) 221-6801,https://www.columbusmuseum.org/
 77,Kimbell Art Museum,3333 Camp Bowie Blvd,Fort Worth,TX,76107,USA,+(817) 332-8451,https://kimbellart.org/
 78,Walker Art Gallery,William Brown St,Liverpool,,L3 8EL,UK,+44 151 478 4199,https://www.liverpoolmuseums.org.uk/
-79,National Museum of Art Architecture and Design,Brynjulf Bulls plass 3,Oslo,,0250,Norway,+47 21 98 20 00,https://www.nasjonalmuseet.no/en/
+79,National Museum of Art Architecture and Design,Brynjulf Bulls plass 3,Oslo,,250,Norway,+47 21 98 20 00,https://www.nasjonalmuseet.no/en/
 80,Dallas Museum of Art,1717 N Harwood St,Dallas,TX,75201,USA,+1(214) 922-1200,https://www.dma.org/
 81,Museum of Fine Arts,Hodlerstrasse 8,Bern,,3011,Switzerland,+41 31 328 09 44,https://www.kunstmuseumbern.ch/en/
 82,Army Museum,129 Rue de Grenelle,Paris,,75007,France,+33 810 11 33 99,https://www.musee-armee.fr/en/english-version.html
 83,Chrysler Museum of Art,1 Memorial Pl,Norfolk,VA,23510,USA,+1(757) 664-6200,https://chrysler.org/
-84,National Gallery Prague,Václavské nám. 68,Nové Měst,,110 15,Czechia,+420 224 497 111,https://www.nm.cz/en
+84,National Gallery Prague,Václavské nám. 68,Nové Měst,,11015,Czechia,+420 224 497 111,https://www.nm.cz/en
 85,Norton Simon Museum,411 W Colorado Blvd,Pasadena,CA,91105,USA,+1(626) 449-6840,https://www.nortonsimon.org/
-86,Courtauld Gallery,Somerset House,Stran,London,WC2R 0RN,UK,+44 20 3947 7777,https://courtauld.ac.uk/
+86,Courtauld Gallery,"Somerset House, Stran",London,WC2R 0RN,,UK,+44 20 3947 7777,https://courtauld.ac.uk/
