@@ -326,7 +326,6 @@ from restaurants
 group by asapDeliveryAvailable;
 
 -- 36. What are the northernmost and southernmost restaurants (based on `latitude`)?
--- select * from restaurants
 (select 'Northernmost' as location, * 
  from restaurants 
  order by latitude DESC 
@@ -337,12 +336,48 @@ union all
  order by latitude asc
  limit 1);
 
-
-
 -- 37. Which restaurant is located farthest west and farthest east (based on `longitude`)?
+(select 'Farthest West' as location, * 
+ from restaurants 
+ order by longitude DESC 
+ limit 1)
+union all
+(select 'Farthest East' as location, * 
+ from restaurants 
+ order by longitude asc
+ limit 1);
+
 -- 38. How does average rating vary by geographic location (latitude/longitude clusters)?
+WITH location_clusters AS (
+    SELECT 
+        WIDTH_BUCKET(latitude, (SELECT MIN(latitude) FROM restaurants), 
+                               (SELECT MAX(latitude) FROM restaurants), 10) AS lat_cluster,
+        WIDTH_BUCKET(longitude, (SELECT MIN(longitude) FROM restaurants), 
+                                (SELECT MAX(longitude) FROM restaurants), 10) AS lon_cluster,
+        AVG(averageRating) AS avg_rating,
+        COUNT(*) AS total_restaurants
+    FROM restaurants
+    GROUP BY lat_cluster, lon_cluster
+)
+SELECT * 
+FROM location_clusters
+ORDER BY avg_rating DESC;
+
 -- 39. What is the distribution of restaurants in a specific range of latitude and longitude (e.g., near a city)?
+SELECT 
+    FLOOR(latitude * 10) / 10 AS lat_group,
+    FLOOR(longitude * 10) / 10 AS lon_group,
+    COUNT(*) AS restaurant_count
+FROM restaurants
+WHERE latitude BETWEEN 29.5 AND 29.9
+  AND longitude BETWEEN -95.3 AND -95.7
+GROUP BY lat_group, lon_group
+ORDER BY restaurant_count DESC;
+
 -- 40. How many restaurants fall within a specific radius (e.g., 10 miles) of a given coordinate?
+-- select * from restaurants
+
+
 -- 41. Which market has the highest-rated restaurants with more than 500 reviews?
 -- 42. What is the average number of ratings for restaurants with `averageRating >= 4`?
 -- 43. Which state has the highest percentage of 5-star restaurants?
