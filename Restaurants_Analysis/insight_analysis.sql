@@ -375,12 +375,55 @@ GROUP BY lat_group, lon_group
 ORDER BY restaurant_count DESC;
 
 -- 40. How many restaurants fall within a specific radius (e.g., 10 miles) of a given coordinate?
--- select * from restaurants
-
+WITH params AS (
+    SELECT 
+        29.7227 AS target_lat,   
+        -95.3705 AS target_lon, 
+        10 AS radius_miles       -- Search radius in miles
+)
+SELECT COUNT(*) AS total_restaurants
+FROM restaurants, params
+WHERE (
+    3959 * acos(
+        cos(radians(target_lat)) * cos(radians(latitude)) 
+        * cos(radians(longitude) - radians(target_lon)) 
+        + sin(radians(target_lat)) * sin(radians(latitude))
+    )
+) <= radius_miles;
 
 -- 41. Which market has the highest-rated restaurants with more than 500 reviews?
+select city, count(*) as res_count
+from restaurants
+where ratingcount > 500
+group by city
+order by res_count desc 
+limit 1; 
+
 -- 42. What is the average number of ratings for restaurants with `averageRating >= 4`?
+select round(avg(ratingcount),2) as avg_num_of_ratings
+from restaurants
+where averagerating >=4;
+
 -- 43. Which state has the highest percentage of 5-star restaurants?
+-- select * from restaurants
+with five_star_res as (
+	select city, count(*) as five_star_res_count
+	from restaurants
+	where averagerating =5 
+	group by city
+),
+num_of_res as (
+	select city, count(*) as res_count
+	from restaurants
+	group by city
+)
+select s.city, five_star_res_count, res_count,
+	round(100.0* five_star_res_count/res_count,2) as percentage
+from five_star_res as s
+join num_of_res as c
+on s.city = c.city 
+order by percentage desc; 
+
 -- 44. What is the median rating for restaurants across different `priceRange` categories?
 -- 45. How many restaurants in each market have `ratingCount` > 1000?
 -- 46. How does the number of restaurants offering delivery services compare across timezones?
