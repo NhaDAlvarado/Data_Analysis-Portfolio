@@ -405,7 +405,6 @@ from restaurants
 where averagerating >=4;
 
 -- 43. Which state has the highest percentage of 5-star restaurants?
--- select * from restaurants
 with five_star_res as (
 	select city, count(*) as five_star_res_count
 	from restaurants
@@ -425,9 +424,26 @@ on s.city = c.city
 order by percentage desc; 
 
 -- 44. What is the median rating for restaurants across different `priceRange` categories?
+select pricerange,
+	percentile_cont(0.5) within group (order by averagerating) as median
+from restaurants
+group by pricerange;
+
 -- 45. How many restaurants in each market have `ratingCount` > 1000?
+select city, count(*) as res_count
+from restaurants
+where ratingcount > 1000
+group by city;
+
 -- 46. How does the number of restaurants offering delivery services compare across timezones?
+select timezone, count(*) as res_count
+from restaurants
+where asapdeliveryavailable = true
+group by timezone;
+
 -- 47. Which markets have the fastest pickup times on average?
+-- select * from restaurants
+
 -- 48. What is the average rating for restaurants that are `asapDeliveryAvailable = TRUE` versus those that are not?
 -- 49. How does the average rating vary for restaurants offering `pickupAvailable` services?
 -- 50. What percentage of restaurants with `asapDeliveryAvailable` have a rating of 4.5 or higher?
