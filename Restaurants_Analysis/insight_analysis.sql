@@ -442,8 +442,32 @@ where asapdeliveryavailable = true
 group by timezone;
 
 -- 47. Which markets have the fastest pickup times on average?
--- select * from restaurants
+select city, round(avg(asappickupminutes)) as avg_pickup_time
+from restaurants
+group by city
+order by avg_pickup_time 
+limit 1;
 
 -- 48. What is the average rating for restaurants that are `asapDeliveryAvailable = TRUE` versus those that are not?
+select asapdeliveryavailable, 
+	avg(averagerating) as avg_rating
+from restaurants
+group by asapdeliveryavailable;
+
 -- 49. How does the average rating vary for restaurants offering `pickupAvailable` services?
+select pickupavailable, 
+	avg(averagerating) as avg_rating
+from restaurants
+group by pickupavailable;
+
 -- 50. What percentage of restaurants with `asapDeliveryAvailable` have a rating of 4.5 or higher?
+select round(100.0*count(*)/
+	(select count(*) 
+		from restaurants 
+		where asapdeliveryavailable = True
+	),2)as percentage
+from restaurants
+where asapdeliveryavailable = True
+and averagerating > 4.5;
+
+
