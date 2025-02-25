@@ -25,6 +25,12 @@ This project will allow me to:
 
 The dataset for this project is sourced from Kaggle and can be accessed [here](https://www.kaggle.com/datasets/mexwell/famous-paintings?resource=download&select=canvas_size.csv). Special thanks to the creator for compiling this valuable resource.
 
+## How dashboard look like
+
+![Paintings Dashboard](Paintings_Dashboard.png)
+
+![Museums Dashboard](Museum_Dashboard.png)
+
 ## Tableau Visualizations
 
 The results of this analysis will be showcased on my Tableau Public profile. You can explore my interactive dashboards and visualizations [here](https://public.tableau.com/app/profile/nha.alvarado/vizzes).
