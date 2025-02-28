@@ -31,6 +31,10 @@ The dataset for this project was sourced from Kaggle: [Restaurants Dataset](http
 2. **Tableau Dashboards:** Interactive and visually compelling dashboards that summarize key insights. [View my Tableau projects](https://public.tableau.com/app/profile/nha.alvarado/viz/DataMartDashboards/DataMartDashboard).
 3. **Summary Report:** A detailed report summarizing the findings, insights, and recommendations.
 
+## How dashboard look like
+
+![Restaurants Dashboard](Restaurants%20Dashboard.png)
+
 ## Future Plans
 
 This project is just the beginning of exploring how data can shape industries. As I progress, I plan to:
