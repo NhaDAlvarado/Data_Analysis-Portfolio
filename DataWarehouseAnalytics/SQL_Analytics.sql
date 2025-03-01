@@ -85,4 +85,47 @@ select year, category, sale_per_category, sale_per_year,
 from sale_yearly;
 
 -- DATA SEGMENTATION
+-- Segment products into cost ranges and count how many products fall into each segment
+select case 
+		when cost <100 then 'low cost'
+		when cost >=100 and cost <500 then 'medium cost'
+		when cost >=500 and cost <1000 then 'high cost'
+		else 'extreme high cost'
+	end as cost_ranges, 
+	count(*) as num_of_pro
+from gold.dim_products
+group by cost_ranges
+order by num_of_pro;
 
+/* Group customers into 3 segments based on their spending behavior:
+	- VIP: Customers with at least 12 months of history and spending more than 5000$
+	- Regular: Customers with at least 12 months of history but spending 5000$ or less
+	- New: Customers with a lifespan less than 12 months
+And find the total number of customers by each group
+*/
+with last_first_order as (
+	select c.customer_id, 
+		sum(sales_amount) as total_spend,
+		min(s.order_date) as first_order_date,
+		max(s.order_date) as last_order_date
+	from gold.dim_customers as c
+	join gold.fact_sales as s
+	on c.customer_key = s.customer_key
+	group by c.customer_id
+),
+life_span_history as (
+	select customer_id,
+		first_order_date, last_order_date, 
+		floor((last_order_date - first_order_date):: numeric /30) as life_span,
+		total_spend
+	from last_first_order 
+)
+select case 
+			when life_span >= 12 and total_spend > 5000 then 'VIP'
+			when life_span >= 12 and total_spend <= 5000 then 'Regular'
+			else 'New'
+	end as customer_groups,
+	count(customer_id) as customers_count
+from life_span_history
+group by customer_groups
+order by customers_count desc 
