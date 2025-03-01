@@ -34,6 +34,7 @@ with extract_info as (
 	from gold.dim_products as p
 	join gold.fact_sales as s
 	on p.product_key = s.product_key
+	where order_date is not null
 ),
 products_aggregation as (
 	select product_name, 
