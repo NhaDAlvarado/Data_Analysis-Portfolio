@@ -20,3 +20,5 @@ Highlights:
        - average monthly revenue
 ===============================================================================
 */
+
+select * from gold.report_customers
