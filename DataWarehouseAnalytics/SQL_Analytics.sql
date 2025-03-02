@@ -128,4 +128,4 @@ select case
 	count(customer_id) as customers_count
 from life_span_history
 group by customer_groups
-order by customers_count desc 
+order by customers_count desc; 
