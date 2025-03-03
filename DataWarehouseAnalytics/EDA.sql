@@ -122,3 +122,48 @@ on c.customer_key = s.customer_key
 join gold.dim_products as p
 on p.product_key = s.product_key
 group by country;
+
+-- RANKING ANALYSIS
+-- Which 5 products generate the highest revenue
+select product_name, 
+	(sum(sales_amount) - sum(cost)) as revenue
+from gold.dim_products as p
+join gold.fact_sales as s
+on p.product_key = s.product_key
+group by product_name
+order by revenue desc
+limit 5;
+
+-- What are the 5 worst performing products in terms of sales?
+select product_name, 
+	sum(sales_amount) as total_sales
+from gold.dim_products as p
+join gold.fact_sales as s
+on p.product_key = s.product_key
+group by product_name
+order by total_sales
+limit 5;
+
+-- Find the top 10 customers who have generated the highest value
+select customer_id, first_name, last_name,
+	(sum(sales_amount) - sum(cost)) as revenue
+from gold.dim_customers as c
+join gold.fact_sales as s
+on c.customer_key = s.customer_key
+join gold.dim_products as p
+on p.product_key = s.product_key
+group by customer_id, first_name, last_name
+order by revenue desc
+limit 5;
+
+-- Find 3 customers with the fewest order placed 
+select customer_id, first_name, last_name,
+	sum(quantity) as total_order
+from gold.dim_customers as c
+join gold.fact_sales as s
+on c.customer_key = s.customer_key
+join gold.dim_products as p
+on p.product_key = s.product_key
+group by customer_id, first_name, last_name
+order by total_order
+limit 3;
