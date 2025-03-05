@@ -1,12 +1,7 @@
--- CREATE SCHEMAS
--- create schema bronze;
--- create schema silver;
--- create schema gold;
+-- call bronze.load_bronze()
 
 -- DATA DEFINITION LANGUAGE DEFINES THE STRUCTURE OF DATABASE TABLES
 -- bronze schema
-
-drop table if exists bronze.crm_cust_info;
 create table bronze.crm_cust_info (
 	cst_id int,
 	cst_key varchar(50),
@@ -17,7 +12,6 @@ create table bronze.crm_cust_info (
 	cst_create_date date
 );
 
-drop table if exists bronze.crm_prod_info;
 create table bronze.crm_prod_info (
 	prd_id int,
 	prd_key	varchar(50),
@@ -28,7 +22,6 @@ create table bronze.crm_prod_info (
 	prd_end_dt date
 );
 
-drop table if exists bronze.crm_sales_details;
 create table bronze.crm_sales_details (
 	sls_ord_num	varchar(50),
 	sls_prd_key	varchar(50),
@@ -41,20 +34,17 @@ create table bronze.crm_sales_details (
 	sls_price int
 );
 
-drop table if exists bronze.erp_CUST_AZ12;
 create table bronze.erp_CUST_AZ12 (
 	cid	varchar(50),
 	bdate date,
 	gen varchar(50)
 );
 
-drop table if exists bronze.erp_LOC_A101;
 create table bronze.erp_LOC_A101 (
 	cid	varchar(50),
 	cntry varchar(50)
 );
 
-drop table if exists bronze.erp_PX_CAT_G1V2;
 create table bronze.erp_PX_CAT_G1V2 (
 	id varchar(50),
 	cat	varchar(50),
