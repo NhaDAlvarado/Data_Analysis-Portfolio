@@ -50,10 +50,18 @@ Insert values to table silver.crm_prod_info
 */
 select prd_id,
 	prd_key,
+	replace(left(prd_key,5),'-','_') as cat_id, 
+	replace(substring(prd_key from 7 for length(prd_key)),'-','_') as prod_key,
 	prd_nm,
-	prd_cost,
-	prd_line,
+	coalesce(prd_cost,0) as prd_cost,
+	CASE 
+        WHEN UPPER(TRIM(prd_line)) = 'M' THEN 'Mountain'
+        WHEN UPPER(TRIM(prd_line)) = 'R' THEN 'Road'
+		WHEN UPPER(TRIM(prd_line)) = 'S' THEN 'Orther Sales'
+		WHEN UPPER(TRIM(prd_line)) = 'T' THEN 'Touring'
+        ELSE 'n/a'
+    END AS prd_line,
 	prd_start_dt,
 	prd_end_dt
-from bronze.crm_prod_info
+from bronze.crm_prod_info;
 
