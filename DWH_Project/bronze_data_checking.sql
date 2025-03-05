@@ -43,9 +43,11 @@ from bronze.crm_prod_info
 where prd_cost is null 
 	or prd_cost< 0;
 
-select sls_sales, sls_quantity, sls_price
+select sls_sales, 
+	sls_quantity, 
+	sls_price
 from bronze.crm_sales_details
-where sls_sales is null 
+where sls_sales !=  sls_quantity * sls_price
 	or sls_quantity is null 
 	or sls_price is null 
 	or sls_sales< 0;
