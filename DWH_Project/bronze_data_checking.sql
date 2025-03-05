@@ -32,12 +32,23 @@ from bronze.crm_prod_info
 where prd_nm like ' %'  
 	or prd_nm like '% ';
 
+select 	sls_ord_num
+from bronze.crm_sales_details 
+where sls_ord_num != trim(sls_ord_num);  
+
 -- Check for nulls or negative numbers
 -- Expectation: No results
 select prd_cost
 from bronze.crm_prod_info
 where prd_cost is null 
 	or prd_cost< 0;
+
+select sls_sales, sls_quantity, sls_price
+from bronze.crm_sales_details
+where sls_sales is null 
+	or sls_quantity is null 
+	or sls_price is null 
+	or sls_sales< 0;
 
 -- Data Standardization & Consistency
 -- We expand abbreviations into their full forms. For example, 'F' becomes 'Female
@@ -51,9 +62,11 @@ select distinct prd_line
 from bronze.crm_prod_info;
 
 -- Check for invalid dates 
+select prd_end_dt, prd_start_dt
+from bronze.crm_prod_info
+where prd_end_dt < prd_start_dt;
 
-
--- Check if column cat_id from table crm_prod_info match with id from erp_px_cat_g1v2
+-- Check if column cat_id from table bronze.crm_prod_info match with id from bronze.erp_px_cat_g1v2
 select prd_id,
 	prd_key,
 	replace(left(prd_key,5),'-','_') as cat_id, 
@@ -66,7 +79,7 @@ from bronze.crm_prod_info
 where replace(left(prd_key,5),'-','_') not in (
 	select id from bronze.erp_px_cat_g1v2);
 
--- Check if column cat_id from table crm_prod_info match with sls_prd_key from crm_sales_details
+-- Check if column cat_id from table bronze.crm_prod_info match with sls_prd_key from bronze.crm_sales_details
 select prd_id,
 	prd_key,
 	replace(left(prd_key,5),'-','_') as cat_id, 
@@ -80,4 +93,18 @@ from bronze.crm_prod_info
 where replace(substring(prd_key from 7 for length(prd_key)),'-','_') not in (
 	select sls_prd_key from bronze.crm_sales_details);
 
+-- Check if column cat_id from table bronze.crm_sales_details  match with sls_prd_key from silver.crm_prod_info
+select
+	sls_prd_key
+from bronze.crm_sales_details 
+where sls_prd_key not in (
+	select prd_key from silver.crm_prod_info
+);
+
+-- Check if column sls_cust_id from table bronze match with id from silver.crm_cust_info
+select sls_cust_id
+from bronze.crm_sales_details 
+where sls_cust_id not in (
+	select cst_id from silver.crm_cust_info
+);
 

@@ -18,6 +18,7 @@ create table silver.crm_cust_info (
 drop table if exists silver.crm_prod_info;
 create table silver.crm_prod_info (
 	prd_id int,
+	cat_id varchar(50),
 	prd_key	varchar(50),
 	prd_nm	varchar(50),
 	prd_cost int,	
