@@ -50,6 +50,10 @@ from silver.crm_cust_info;
 select distinct prd_line
 from silver.crm_prod_info;
 
+select distinct gen
+from silver.erp_cust_az12;
+
+
 -- Check for invalid dates 
 select prd_end_dt, prd_start_dt
 from silver.crm_prod_info
@@ -61,24 +65,75 @@ from silver.crm_prod_info
 where cat_id not in (
 	select id from bronze.erp_px_cat_g1v2);
 
--- Check if column cat_id from table silver.crm_prod_info match with sls_prd_key from bronze.crm_sales_details
+-- Check if column cat_id from table silver.crm_prod_info match with sls_prd_key from silver.crm_sales_details
 select cat_id, 
 from silver.crm_prod_info
 where prd_key not in (
-	select sls_prd_key from bronze.crm_sales_details)
+	select sls_prd_key from silver.crm_sales_details)
 order by prd_key;
 
--- Check if column cat_id from table bronze.crm_sales_details  match with sls_prd_key from silver.crm_prod_info
+-- Check if column cat_id from table silver.crm_sales_details  match with sls_prd_key from silver.crm_prod_info
 select
 	sls_prd_key
-from bronze.crm_sales_details 
+from silver.crm_sales_details 
 where sls_prd_key not in (
 	select prd_key from silver.crm_prod_info
 );
 
 -- Check if column sls_cust_id from table bronze match with id from silver.crm_cust_info
 select sls_cust_id
-from bronze.crm_sales_details 
+from silver.crm_sales_details 
 where sls_cust_id not in (
 	select cst_id from silver.crm_cust_info
 );
+
+/*
+RULES:
+	- If Sales is negative, 0, or null, derive it using Quantity and Price
+	- If Prices is 0, or null, calculate it using Sales and Quantity 
+	- If Price is negative, convert it to a positive value 
+*/
+select distinct
+	sls_sales, 
+	sls_quantity, 
+	sls_price
+from silver.crm_sales_details
+where sls_sales !=  sls_quantity * sls_price
+	or sls_quantity is null 
+	or sls_price is null 
+	or sls_sales is null
+	or sls_quantity <=0 
+	or sls_price <=0  
+	or sls_sales <=0 
+order by sls_sales, sls_quantity, sls_price;
+
+-- Check if column cid from table bronze.erp_cust_az12 match with cst_id from silver.crm_cust_info
+select 
+	case 
+		when cid like 'NAS%' then substring(cid from 4) 
+		else cid
+	end as cid
+from silver.erp_cust_az12
+where case 
+		when cid like 'NAS%' then substring(cid from 4) 
+		else cid
+	end not in (
+	select distinct cst_key from silver.crm_cust_info
+);
+
+--  check outbound birthdate
+select bdate 
+from silver.erp_cust_az12
+where bdate >current_timestamp; 
+
+-- check cid from silver.erp_loc_a101 match with cst_ket from silver.crm_cust_info
+select replace(cid, '-','') as cid,
+	cntry
+from silver.erp_loc_a101
+where replace(cid, '-','') not in (
+	select cst_key from silver.crm_cust_info
+)
+
+-- check cntry value
+select distinct cntry 
+from silver.erp_loc_a101
