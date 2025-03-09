@@ -19,6 +19,7 @@ CREATE TABLE silver.hotels (
 	userCode int,
 	name varchar(50),
 	place varchar(50),
+	state text,
 	days int,
 	price float,
 	total float,
