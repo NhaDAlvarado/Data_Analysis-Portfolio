@@ -3,13 +3,14 @@ CREATE TABLE silver.flights (
     travelCode INT,
     userCode INT,
     from_location VARCHAR(50),
-    to_location VARCHAR(50),silver
+    to_location VARCHAR(50),
     flightType VARCHAR(50),
     price FLOAT,
     time FLOAT,  
     distance FLOAT,    
     agency VARCHAR(50),    
-    date DATE
+    date DATE,
+	dwh_create_date timestamp default current_timestamp
 );
 
 DROP TABLE IF EXISTS silver.hotels;
@@ -21,7 +22,8 @@ CREATE TABLE silver.hotels (
 	days int,
 	price float,
 	total float,
-	date DATE
+	date DATE,
+	dwh_create_date timestamp default current_timestamp
 );
 
 DROP TABLE IF EXISTS silver.users;
@@ -30,5 +32,6 @@ CREATE TABLE silver.users (
 	company	varchar(50),
 	name varchar(50),
 	gender varchar(50),
-	age int	
+	age int,
+	dwh_create_date timestamp default current_timestamp
 );
