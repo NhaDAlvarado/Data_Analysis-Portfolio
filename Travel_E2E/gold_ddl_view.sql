@@ -1,32 +1,33 @@
--- drop view if exists gold.dim_users;
--- create view gold.dim_users as 
--- select
--- 	code as user_code,
--- 	company,
--- 	name ,
--- 	gender,
--- 	age
--- from silver.users;	
+drop view if exists gold.dim_users;
+create view gold.dim_users as 
+select
+	code as user_code,
+	company,
+	name ,
+	gender,
+	age
+from silver.users;	
 
--- drop view if exists gold.fact_hotels;
--- create view gold.fact_hotels as 
--- select 
--- 	h.travelCode as travel_code,
--- 	h.userCode as user_code,
--- 	h.name as hotel_name,
--- 	h.place as city,
--- 	h.state,
--- 	h.days as stay_duration,
--- 	h.price,
--- 	h.total,
--- 	h.date as checkin_date,
--- 	f.date as checkout_date
--- from silver.hotels as h
--- left join silver.flights as f
--- on h.travelCode = f.travelCode
--- 	and h.date < f.date;
+drop view if exists gold.fact_hotels;
+create view gold.fact_hotels as 
+select 
+	h.travelCode as travel_code,
+	h.userCode as user_code,
+	h.name as hotel_name,
+	h.place as city,
+	h.state,
+	h.days as stay_duration,
+	h.price,
+	h.total,
+	h.date as checkin_date,
+	f.date as checkout_date
+from silver.hotels as h
+left join silver.flights as f
+on h.travelCode = f.travelCode
+	and h.date < f.date;
 
--- create view gold.fact_flights as 
+drop view if exists gold.fact_flights;
+create view gold.fact_flights as 
 with extract_info as (
 	select 
 		row_number() over (partition by travelCode order by date) as rn,
@@ -65,3 +66,7 @@ select travel_code,
 	return_date
 from extract_info
 where rn =1; 
+
+-- select * from gold.fact_hotels;
+-- select * from gold.fact_flights;
+-- select * from gold.dim_users;
