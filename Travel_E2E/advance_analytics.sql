@@ -66,13 +66,43 @@ select state,
 from gold.fact_hotels
 group by state, hotel_name;
 
+-- 11. How many users in each company
+select company, 
+	count(user_code) as users_cnt
+from gold.dim_users
+group by company;
+	
 /*===== MAGNITUDE ANALYSIS =====*/ 
--- - What are the top 10 most expensive and cheapest hotels booked?
--- - Which cities generate the highest revenue from hotel bookings?
--- - What is the total revenue generated from flights and hotels?
--- - Which agencies have the highest share of flight bookings?
--- - What is the total number of unique users who booked hotels and flights?
--- - What are the most frequently booked round-trip flight destinations?
+-- What are the top 5 most expensive and cheapest hotels booked?
+(select 'Top 5 expensive' as measure_name, 
+	hotel_name, 
+	round(avg(price)::numeric,2) as avg_price 
+from gold.fact_hotels
+group by hotel_name
+order by avg_price desc
+limit 5)
+
+union all
+
+(select 'Top 5 cheapest' as measure_name, 
+	hotel_name, 
+	round(avg(price)::numeric,2) as avg_price
+from gold.fact_hotels
+group by hotel_name 
+order by avg_price
+limit 5);
+
+-- Which cities generate the highest revenue from hotel bookings?
+select city, 
+	round(sum(total)::numeric,2) as total_rev
+from gold.fact_hotels
+group by city
+order by total_rev desc; 
+
+-- What is the total revenue generated from flights and hotels?
+-- Which agencies have the highest share of flight bookings?
+-- What is the total number of unique users who booked hotels and flights?
+-- What are the most frequently booked round-trip flight destinations?
 
 /*===== RANKING ANALYSIS =====*/ 
 -- - Which cities have the highest and lowest average hotel stay duration?
