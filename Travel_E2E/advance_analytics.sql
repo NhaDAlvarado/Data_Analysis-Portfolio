@@ -1,50 +1,134 @@
 
-/*===== MAGNITUDE ANALYSIS =====*/  
+/*===== EXPLORATORY DATA ANALYSIS (EDA) =====*/ 
+-- 1. How many unique users are in the dataset?
+select count(user_code) as users
+from gold.dim_users;
 
--- 1. What is the total revenue generated from hotel bookings?  
--- 2. What is the total revenue generated from flight bookings?  
--- 3. How many unique users have booked hotels and flights?  
--- 4. What is the total number of hotel stays booked?  
--- 5. What is the total number of flights booked?  
+-- 2. What are the most common departure and arrival cities for flights?
+(select 'Departure City' as measure_name,
+	departure_city as city, 
+	count(*) as depart_city_count 
+from gold.fact_flights
+group by departure_city)
+union all 
+(select 'Arrival City' as measure_name,
+	arrival_city as city, 
+	count(*) as arrival_city_count 
+from gold.fact_flights
+group by arrival_city);
+
+-- 3. What is the average stay duration in hotels per city?
+select city, 
+	round(avg(stay_duration),2) as avg_stay
+from gold.fact_hotels
+group by city;
+
+-- 4. What is the distribution of flight prices?
+select min(price) as min_price,
+	max(price) as max_price
+from gold.fact_flights;
+
+-- 5. What is the distribution of hotel prices?
+select min(price) as min_price,
+	max(price) as max_price
+from gold.fact_hotels;
+
+-- 6. How many flights are one-way vs. round-trip?
+select count(*) as round_trip_count
+from gold.fact_flights
+where round_trip = 'Yes';
+
+-- 7. What is the gender distribution of users in the dataset?
+select gender, count(*) as gen_cnt
+from gold.dim_users
+group by gender; 
+
+-- 8. What are the top 5 most frequently booked hotels?
+select hotel_name, count(*) as book_cnt
+from gold.fact_hotels
+group by hotel_name
+order by book_cnt desc
+limit 5;
+
+-- 9. What are the top 10 most frequently traveled routes?
+select departure_city, 
+	arrival_city, 
+	count(*) as routes_cnt
+from gold.fact_flights
+group by departure_city, arrival_city
+order by routes_cnt desc 
+limit 10;
+
+-- 10. How does hotel price vary by state?
+select state, 
+	hotel_name, 
+	round(avg(price)::numeric,2) as avg_price
+from gold.fact_hotels
+group by state, hotel_name;
+
+/*===== MAGNITUDE ANALYSIS =====*/ 
+-- - What are the top 10 most expensive and cheapest hotels booked?
+-- - Which cities generate the highest revenue from hotel bookings?
+-- - What is the total revenue generated from flights and hotels?
+-- - Which agencies have the highest share of flight bookings?
+-- - What is the total number of unique users who booked hotels and flights?
+-- - What are the most frequently booked round-trip flight destinations?
 
 /*===== RANKING ANALYSIS =====*/ 
--- 6. Which hotels have the highest total revenue?  
--- 7. Which cities have the most hotel bookings?  
--- 8. Which airlines (agencies) have the most flight bookings?  
--- 9. Which users have spent the most on travel?  
--- 10. What are the top 5 most popular destinations for hotel stays?  
+-- - Which cities have the highest and lowest average hotel stay duration?
+-- - What are the top 5 destinations with the highest flight demand?
+-- - Which hotels have the highest total revenue?
+-- - Which flight agencies have the best average pricing for flights?
+-- - What are the top 5 most popular hotels based on user bookings?
+-- - Which state has the most hotel bookings?
+-- - Which airlines or agencies have the highest customer retention rate?
 
 /*===== CHANGE OVER TIME ANALYSIS =====*/  
--- 11. How has hotel revenue changed over the past 12 months?  
--- 12. How has flight revenue changed over the past 12 months?  
--- 13. How has the number of bookings changed over time?  
--- 14. What is the trend of average hotel stay duration over time?  
--- 15. What is the trend of average flight distance over time?  
+-- - How has the average hotel price changed over the past year?
+-- - How do seasonal trends affect travel patterns for Argo’s customers?
+-- - How does flight demand change month over month?
+-- - What is the trend in customer preferences for round-trip vs. one-way flights?
+-- - Are customers booking hotels for longer stays compared to previous years?
+-- - How has the average flight duration changed over time?
+-- - How does user engagement vary by month?
 
 /*===== CUMULATIVE ANALYSIS =====*/ 
--- 16. What is the cumulative total revenue from hotels and flights over time?  
--- 17. What is the cumulative number of hotel nights booked over time?  
--- 18. What is the cumulative number of flight miles traveled by all users?  
--- 19. How many users have booked at least one hotel stay or flight over time?  
--- 20. How does the cumulative total spending of each user change over time?  
+-- - What is the cumulative revenue from hotel bookings over time?
+-- - What is the cumulative growth in unique customers booking hotels and flights?
+-- - How does cumulative flight revenue compare to cumulative hotel revenue?
+-- - What is the cumulative effect of discounts on total revenue?
+-- - How has the cumulative distance traveled by customers changed over time?
 
 /*===== PERFORMANCE ANALYSIS =====*/ 
--- 21. What is the average stay duration for hotel bookings?  
--- 22. What is the average price per night for hotel stays?  
--- 23. What is the average flight price for different flight types?  
--- 24. How does flight duration vary by airline (agency)?  
--- 25. What is the percentage of round-trip flights compared to one-way flights?  
+-- - Which hotels have the highest customer retention rate?
+-- - What percentage of flights arrive on time, and which agencies perform best?
+-- - How do hotels with higher prices compare in terms of customer retention?
+-- - What is the average flight duration per agency, and how does it impact bookings?
+-- - How do direct vs. connecting flights compare in terms of performance and price?
+-- - Which hotels have the highest repeat booking rate?
+-- - What is the correlation between flight price and customer satisfaction?
 
 /*===== PART TO WHOLE ANALYSIS =====*/
--- 26. What percentage of total revenue comes from hotels vs. flights?  
--- 27. What percentage of hotel bookings come from each state?  
--- 28. What percentage of flight bookings are international vs. domestic?  
--- 29. What percentage of users book both flights and hotels?  
--- 30. What is the distribution of hotel bookings by company?  
+-- - What percentage of total revenue comes from flights vs. hotels?
+-- - What proportion of customers book both flights and hotels?
+-- - What is the share of round-trip vs. one-way flights in total bookings?
+-- - What proportion of customers are repeat travelers?
+-- - What is the distribution of travel bookings by user age groups?
+-- - How does each agency contribute to total flight revenue?
 
 /*===== DATA SEGMENTATION =====*/ 
--- 31. How do hotel booking patterns vary by age group?  
--- 32. What is the average spending on travel by gender?  
--- 33. How do flight booking preferences vary by company?  
--- 34. What is the distribution of flight types (round-trip vs. one-way) by state?  
--- 35. How does the average stay duration vary by user company?
+-- - How do travel preferences differ by age group and gender?
+-- - What are the most preferred hotels for business travelers vs. leisure travelers?
+-- - How do travel patterns vary for high-spending vs. low-spending customers?
+-- - Are there differences in booking behavior between repeat and one-time customers?
+-- - How do hotel preferences vary by region?
+-- - What factors influence flight selection the most for different customer segments?
+
+/*=====  Key Insight Goal: 
+"How can Argo offer the best travel experience for its customers?" =====*/ 
+-- - Identify cost-effective yet high-quality travel options.
+-- - Optimize travel packages based on demand trends.
+-- - Improve customer retention by analyzing repeat booking behavior.
+-- - Personalize recommendations based on customer preferences.
+-- - Enhance partnerships with top-performing airlines and hotels.
+-- - Adjust pricing strategies to align with market demand and seasonality.
