@@ -100,9 +100,39 @@ group by city
 order by total_rev desc; 
 
 -- What is the total revenue generated from flights and hotels?
+(select 'hotel_revenue' as measure_name, 
+	round(sum(total)::numeric,2)
+from gold.fact_hotels)
+
+union all
+
+(select 'flight_revenue' as measure_name, 
+	round(sum(price)::numeric,2)
+from gold.fact_flights);
+
 -- Which agencies have the highest share of flight bookings?
+select agency, 
+	count(travel_code) as book_cnt 
+from gold.fact_flights
+group by agency 
+order by book_cnt desc;
+
 -- What is the total number of unique users who booked hotels and flights?
+(select 'user_book_hotels_cnt' as measure_name,
+	count(distinct user_code)
+from gold.fact_hotels)
+
+union all
+
+(select 'user_book_flights_cnt' as measure_name,
+	count(distinct user_code)
+from gold.fact_flights);
+
 -- What are the most frequently booked round-trip flight destinations?
+select arrival_city, count(*) as book_cnt
+from gold.fact_flights
+group by arrival_city
+order by book_cnt desc; 
 
 /*===== RANKING ANALYSIS =====*/ 
 -- - Which cities have the highest and lowest average hotel stay duration?
