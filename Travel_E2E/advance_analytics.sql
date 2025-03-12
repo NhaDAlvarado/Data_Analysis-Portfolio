@@ -135,13 +135,68 @@ group by arrival_city
 order by book_cnt desc; 
 
 /*===== RANKING ANALYSIS =====*/ 
--- - Which cities have the highest and lowest average hotel stay duration?
--- - What are the top 5 destinations with the highest flight demand?
--- - Which hotels have the highest total revenue?
--- - Which flight agencies have the best average pricing for flights?
--- - What are the top 5 most popular hotels based on user bookings?
--- - Which state has the most hotel bookings?
--- - Which airlines or agencies have the highest customer retention rate?
+-- Which cities have the highest and lowest average hotel stay duration?
+(select 'lowest_stay' as measure_name, 
+	city, 
+	round(avg(stay_duration)::numeric,2) as avg_stay
+from gold.fact_hotels 
+group by city 
+order by avg_stay 
+limit 1)
+
+union all 
+
+(select 'longest_stay' as measure_name, 
+	city, 
+	round(avg(stay_duration)::numeric,2) as avg_stay
+from gold.fact_hotels 
+group by city 
+order by avg_stay desc 
+limit 1);
+
+-- What are the top 5 destinations with the highest flight demand?
+select arrival_city, count(travel_code) as book_cnt
+from gold.fact_flights
+group by arrival_city
+order by book_cnt
+limit 5;
+
+-- Which hotels have the highest total revenue?
+select  hotel_name, 
+	round(sum(total)::numeric,2) as total_rev 
+from gold.fact_hotels 
+group by hotel_name
+order by total_rev desc 
+limit 1;
+
+-- Which flight agencies have the best average pricing for flights?
+select agency, 
+	round(avg(price),2) as avg_price
+from gold.fact_flights
+group by agency
+order by avg_price
+limit 1;
+
+-- What are the top 5 most popular hotels based on user bookings?
+select hotel_name, count(distinct user_code) as book_cnt
+from gold.fact_hotels
+group by hotel_name
+order by book_cnt desc
+limit 5;
+
+-- Which state has the most hotel bookings?
+select state, 
+	count(distinct hotel_name) as hotel_cnt
+from gold.fact_hotels
+group by state
+order by hotel_cnt desc; 
+
+-- Which airlines or agencies have the highest customer retention rate?
+select agency, 
+	extract(year from depart_date) as year,
+	count(distinct user_code) as num_users
+from gold.fact_flights 
+group by agency, year
 
 /*===== CHANGE OVER TIME ANALYSIS =====*/  
 -- - How has the average hotel price changed over the past year?
