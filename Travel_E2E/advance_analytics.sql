@@ -192,20 +192,48 @@ group by state
 order by hotel_cnt desc; 
 
 -- Which airlines or agencies have the highest customer retention rate?
-select agency, 
-	extract(year from depart_date) as year,
-	count(distinct user_code) as num_users
-from gold.fact_flights 
-group by agency, year
+with extract_info as (
+	select agency, 
+		extract(year from depart_date) as year,
+		count(distinct user_code) as num_users
+	from gold.fact_flights 
+	group by agency, year
+)
+select agency, year, 
+	round(
+		100.0*num_users/(
+		lag(num_users) over (partition by agency order by year)
+		)
+	,2) as retention_rate
+from extract_info
+order by year desc, retention_rate desc;
 
 /*===== CHANGE OVER TIME ANALYSIS =====*/  
--- - How has the average hotel price changed over the past year?
--- - How do seasonal trends affect travel patterns for Argo’s customers?
--- - How does flight demand change month over month?
--- - What is the trend in customer preferences for round-trip vs. one-way flights?
--- - Are customers booking hotels for longer stays compared to previous years?
--- - How has the average flight duration changed over time?
--- - How does user engagement vary by month?
+-- How has the average hotel price changed over the past year?
+select extract(year from checkin_date) as year,
+	round(avg(price)::numeric,2) as avg_price
+from gold.fact_hotels
+group by year 
+order by year; 
+
+-- How do seasonal trends affect travel patterns for Argo’s customers?
+select case 
+			when extract(month from depart_date) between 1 and 3 then 'Winter'
+			when extract(month from depart_date) between 4 and 6 then 'Spring'
+			when extract(month from depart_date) between 7 and 9 then 'Summer'
+			when extract(month from depart_date) between 10 and 12 then 'Fall'
+		else null
+	end as seasonal_trends,
+	count(travel_code) as flights_count
+from gold.fact_flights
+group by seasonal_trends
+order by flights_count desc; 
+
+-- How does flight demand change month over month?
+-- What is the trend in customer preferences for round-trip vs. one-way flights?
+-- Are customers booking hotels for longer stays compared to previous years?
+-- How has the average flight duration changed over time?
+-- How does user engagement vary by month?
 
 /*===== CUMULATIVE ANALYSIS =====*/ 
 -- - What is the cumulative revenue from hotel bookings over time?
