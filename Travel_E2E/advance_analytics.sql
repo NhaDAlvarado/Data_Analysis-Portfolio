@@ -230,10 +230,38 @@ group by seasonal_trends
 order by flights_count desc; 
 
 -- How does flight demand change month over month?
--- What is the trend in customer preferences for round-trip vs. one-way flights?
+select extract(month from depart_date) as month,
+	count(travel_code) as flights_count
+from gold.fact_flights
+group by month
+order by flights_count desc; 
+
 -- Are customers booking hotels for longer stays compared to previous years?
+with extract_info as (
+	select extract(year from checkin_date) as year,
+		round(avg(stay_duration)::numeric,2) as avg_stay
+	from gold.fact_hotels
+	group by year 
+)
+select year, avg_stay,
+	case 
+		when (lag(avg_stay) over (order by year)) - avg_stay < 0 then 'stay longer'
+		when (lag(avg_stay) over (order by year)) - avg_stay >= 0 then 'stay less'
+		else null
+	end as compare_to_prev_year
+from extract_info;
+
 -- How has the average flight duration changed over time?
+select extract(year from depart_date) as year,
+	round(avg(flight_duration)::numeric,2)
+from gold.fact_flights
+group by year;
+
 -- How does user engagement vary by month?
+select extract(month from checkin_date) as month,
+	count(distinct user_code) as users_engage
+from gold.fact_hotels 
+group by month;
 
 /*===== CUMULATIVE ANALYSIS =====*/ 
 -- - What is the cumulative revenue from hotel bookings over time?
