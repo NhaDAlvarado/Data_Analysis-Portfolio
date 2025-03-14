@@ -264,9 +264,66 @@ from gold.fact_hotels
 group by month;
 
 /*===== CUMULATIVE ANALYSIS =====*/ 
--- - What is the cumulative revenue from hotel bookings over time?
--- - What is the cumulative growth in unique customers booking hotels and flights?
--- - How does cumulative flight revenue compare to cumulative hotel revenue?
+-- What is the cumulative revenue from hotel bookings over time?
+with extract_info as (
+	select extract(year from checkin_date) as year,
+		round(sum(total)::numeric,2) as total_revenue
+	from gold.fact_hotels
+	group by year
+)
+select year, total_revenue, 
+	sum(total_revenue) over (order by year) as running_revenue
+from extract_info;
+
+-- What is the cumulative growth in unique customers booking hotels and flights?
+with combine_hotels_flights_users as (
+	(select extract(year from checkin_date) as year,
+		user_code 
+	from gold.fact_hotels)
+	
+	union
+	
+	(select extract(year from depart_date) as year,
+		user_code 
+	from gold.fact_flights)
+),
+count_users as (
+	select year, 
+		count(distinct user_code) as users_cnt
+	from combine_hotels_flights_users
+	group by year 
+)
+select year, users_cnt,
+	sum(users_cnt) over (order by year) as cum_cnt
+from count_users;
+
+-- How does cumulative flight revenue compare to cumulative hotel revenue?
+with hotels_info as (
+	select extract(year from checkin_date) as year,
+		round(sum(total)::numeric,2) as hotels_revenue
+	from gold.fact_hotels
+	group by year
+),
+flights_info as (
+	select extract(year from depart_date) as year,
+		round(sum(price)::numeric,2) as flights_revenue
+	from gold.fact_flights
+	group by year
+)
+select h.year, 
+	hotels_revenue, 
+	sum(hotels_revenue) over (order by h.year) as hotel_cum_revenue,
+	flights_revenue,
+	sum(flights_revenue) over (order by h.year) as flight_cum_revenue,
+	case 
+        when sum(hotels_revenue) over (order by h.year) = 0 THEN NULL 
+        ELSE ROUND(sum(flights_revenue) over (order by h.year) 
+					/ sum(hotels_revenue) over (order by h.year), 2) 
+    end as flight_to_hotel_ratio
+from hotels_info as h
+join flights_info as f
+on h.year = f.year;
+
 -- - What is the cumulative effect of discounts on total revenue?
 -- - How has the cumulative distance traveled by customers changed over time?
 
