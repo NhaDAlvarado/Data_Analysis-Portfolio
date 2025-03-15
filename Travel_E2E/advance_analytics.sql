@@ -324,13 +324,40 @@ from hotels_info as h
 join flights_info as f
 on h.year = f.year;
 
--- - What is the cumulative effect of discounts on total revenue?
--- - How has the cumulative distance traveled by customers changed over time?
+-- How has the cumulative distance traveled by customers changed over time?
+with extract_info as (
+	select extract(year from depart_date) as year,
+		user_code,
+		sum(distance) as total_distance
+	from gold.fact_flights
+	group by year, user_code 
+)
+select year, 
+	user_code,
+	sum(total_distance) over (partition by user_code order by year) as cum_distance
+from extract_info;
 
 /*===== PERFORMANCE ANALYSIS =====*/ 
--- - Which hotels have the highest customer retention rate?
--- - What percentage of flights arrive on time, and which agencies perform best?
--- - How do hotels with higher prices compare in terms of customer retention?
+-- Which hotels have the highest customer retention rate?
+with extract_info as (
+	select hotel_name, 
+		extract(year from checkin_date) as year,
+		count(distinct user_code) as num_users
+	from gold.fact_hotels 
+	group by hotel_name, year
+)
+select hotel_name, year, 
+	round(
+		100.0*num_users/(
+		lag(num_users) over (partition by hotel_name order by year)
+		)
+	,2) as retention_rate
+from extract_info
+order by year desc, retention_rate desc;
+
+-- How do hotels with higher prices compare in terms of customer retention?
+
+
 -- - What is the average flight duration per agency, and how does it impact bookings?
 -- - How do direct vs. connecting flights compare in terms of performance and price?
 -- - Which hotels have the highest repeat booking rate?
