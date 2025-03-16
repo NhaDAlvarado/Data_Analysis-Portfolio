@@ -356,34 +356,20 @@ from extract_info
 order by year desc, retention_rate desc;
 
 -- How do hotels with higher prices compare in terms of customer retention?
-
-
--- - What is the average flight duration per agency, and how does it impact bookings?
--- - How do direct vs. connecting flights compare in terms of performance and price?
--- - Which hotels have the highest repeat booking rate?
--- - What is the correlation between flight price and customer satisfaction?
+-- What is the average flight duration per agency, and how does it impact bookings?
+-- Which hotels have the highest repeat booking rate?
 
 /*===== PART TO WHOLE ANALYSIS =====*/
--- - What percentage of total revenue comes from flights vs. hotels?
--- - What proportion of customers book both flights and hotels?
--- - What is the share of round-trip vs. one-way flights in total bookings?
--- - What proportion of customers are repeat travelers?
--- - What is the distribution of travel bookings by user age groups?
--- - How does each agency contribute to total flight revenue?
+-- What percentage of total revenue comes from flights vs. hotels?
+-- What proportion of customers book both flights and hotels?
+-- What proportion of customers are repeat travelers?
+-- What is the distribution of travel bookings by user age groups?
+-- How does each agency contribute to total flight revenue?
 
 /*===== DATA SEGMENTATION =====*/ 
--- - How do travel preferences differ by age group and gender?
--- - What are the most preferred hotels for business travelers vs. leisure travelers?
--- - How do travel patterns vary for high-spending vs. low-spending customers?
--- - Are there differences in booking behavior between repeat and one-time customers?
--- - How do hotel preferences vary by region?
--- - What factors influence flight selection the most for different customer segments?
-
-/*=====  Key Insight Goal: 
-"How can Argo offer the best travel experience for its customers?" =====*/ 
--- - Identify cost-effective yet high-quality travel options.
--- - Optimize travel packages based on demand trends.
--- - Improve customer retention by analyzing repeat booking behavior.
--- - Personalize recommendations based on customer preferences.
--- - Enhance partnerships with top-performing airlines and hotels.
--- - Adjust pricing strategies to align with market demand and seasonality.
+-- How do travel preferences differ by age group and gender?
+-- What are the most preferred hotels for business travelers vs. leisure travelers?
+-- How do travel patterns vary for high-spending vs. low-spending customers?
+-- Are there differences in booking behavior between repeat and one-time customers?
+-- How do hotel preferences vary by region?
+-- What factors influence flight selection the most for different customer segments?
