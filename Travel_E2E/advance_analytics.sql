@@ -356,8 +356,52 @@ from extract_info
 order by year desc, retention_rate desc;
 
 -- How do hotels with higher prices compare in terms of customer retention?
+with extract_info as (
+	select hotel_name, 
+		extract(year from checkin_date) as year,
+		round(avg(price)::numeric,2) as avg_price,
+		count(distinct user_code) as num_users
+	from gold.fact_hotels 
+	group by hotel_name, year
+)
+select hotel_name, year, avg_price,
+	round(
+		100.0*num_users/(
+		lag(num_users) over (partition by hotel_name order by year)
+		)
+	,2) as retention_rate
+from extract_info
+order by year desc, retention_rate desc;
+
 -- What is the average flight duration per agency, and how does it impact bookings?
+select agency, 
+	round(avg(flight_duration)::numeric,2) as avg_duration, 
+	count(travel_code) as num_bookings
+from gold.fact_flights
+group by agency;
+
 -- Which hotels have the highest repeat booking rate?
+with repeat_bookings as (
+    select hotel_name, 
+           user_code, 
+           count(*) as booking_count
+    from gold.fact_hotels
+    group by hotel_name, user_code
+    having count(*) > 1
+),
+hotel_repeat_rate as (
+    select h.hotel_name, 
+           count(distinct r.user_code) as repeat_customers, 
+           count(distinct h.user_code) as total_customers,
+           round((count(distinct r.user_code)::numeric / count(distinct h.user_code)) * 100, 2) as repeat_rate
+    from gold.fact_hotels h
+    left join repeat_bookings r 
+    on h.hotel_name = r.hotel_name and h.user_code = r.user_code
+    group by h.hotel_name
+)
+select * 
+from hotel_repeat_rate
+order by repeat_rate desc; 
 
 /*===== PART TO WHOLE ANALYSIS =====*/
 -- What percentage of total revenue comes from flights vs. hotels?
@@ -368,8 +412,6 @@ order by year desc, retention_rate desc;
 
 /*===== DATA SEGMENTATION =====*/ 
 -- How do travel preferences differ by age group and gender?
--- What are the most preferred hotels for business travelers vs. leisure travelers?
 -- How do travel patterns vary for high-spending vs. low-spending customers?
 -- Are there differences in booking behavior between repeat and one-time customers?
--- How do hotel preferences vary by region?
 -- What factors influence flight selection the most for different customer segments?
