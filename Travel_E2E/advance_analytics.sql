@@ -405,10 +405,74 @@ order by repeat_rate desc;
 
 /*===== PART TO WHOLE ANALYSIS =====*/
 -- What percentage of total revenue comes from flights vs. hotels?
+with revenue as (
+	(select 'hotel revenue' as measurement_name, 
+		round(sum(total)::numeric,2) as revenue
+	from gold.fact_hotels)
+	
+	union all 
+	
+	(select 'flight revenue' as measurement_name, 
+		round(sum(price)::numeric,2) as revenue
+	from gold.fact_flights)
+)
+select measurement_name, 
+	revenue,
+	round(100.0* revenue/ (select sum(revenue) from revenue),2) as percentage
+from revenue; 
+
 -- What proportion of customers book both flights and hotels?
+with user_book_hotels_flights as (
+	select count(distinct h.user_code) as h_num_users
+	from gold.fact_hotels as h
+	join gold.fact_flights as f
+	on h.user_code = f.user_code 
+)
+select h_num_users as user_book_h_f,
+	round(100.0*h_num_users/(
+			select count(user_code) from gold.dim_users)
+	,2) as percentage
+from user_book_hotels_flights;
+
 -- What proportion of customers are repeat travelers?
+with repeated_users as (
+	select user_code, 
+		count(travel_code) as book_nums
+	from gold.fact_flights
+	group by user_code
+	having count(travel_code) >1
+)
+select count(user_code) as repeated_users, 
+	round(100.0 *count(user_code)/(
+			select count(user_code) from gold.dim_users)
+	,2) as percentage
+from repeated_users; 
+
 -- What is the distribution of travel bookings by user age groups?
+select 
+	case 
+		when age between 20 and 35 then '20 - 35'
+		when age between 36 and 50 then '36 - 50'
+		when age between 51 and 65 then '51 - 65'
+		else 'over 65'
+	end as age_group,
+	count(travel_code) as bookings_cnt,
+	round(100.0*count(travel_code)
+				/(select count(travel_code) from gold.fact_flights)
+	,2) as percentage
+from gold.dim_users as u
+join gold.fact_flights as f
+on u.user_code = f.user_code 
+group by age_group;
+
 -- How does each agency contribute to total flight revenue?
+select agency, 
+	sum(price) as revenue,
+	round(100.0* sum(price)
+			/(select sum(price) from gold.fact_flights)
+	,2) as percentage 
+from gold.fact_flights
+group by agency; 
 
 /*===== DATA SEGMENTATION =====*/ 
 -- How do travel preferences differ by age group and gender?
