@@ -8,9 +8,7 @@ Purpose:
 Highlights:
     1. Gathers essential fields such as names, ages, and transaction details.
 	2. Segments users into categories (VIP, Regular, New) and age groups.
-		- VIP: Customers with at least  2 years of history and spending more than $30000
-		- Regular: Customers with at least 2  years of history but spending $30000 or less
-		- New: Customers with a lifespan less than 2 years 
+		(divide tables into 3 base on life span and total spending) 
     3. Aggregates user-level metrics:
 		- total hotel books
 		- total flight books
