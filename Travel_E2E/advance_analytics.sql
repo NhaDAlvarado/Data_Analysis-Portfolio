@@ -476,6 +476,130 @@ group by agency;
 
 /*===== DATA SEGMENTATION =====*/ 
 -- How do travel preferences differ by age group and gender?
+select 
+	case 
+		when age between 20 and 35 then '20 - 35'
+		when age between 36 and 50 then '36 - 50'
+		when age between 51 and 65 then '51 - 65'
+		else 'over 65'
+	end as age_group,
+	gender,
+	count(travel_code) as bookings_cnt,
+	round(100.0*count(travel_code)
+				/(select count(travel_code) from gold.fact_flights)
+	,2) as percentage
+from gold.dim_users as u
+join gold.fact_flights as f
+on u.user_code = f.user_code 
+group by age_group, gender;
+
 -- How do travel patterns vary for high-spending vs. low-spending customers?
+with customer_spending as (
+    select 
+        u.user_code,
+        u.company,
+        u.age,
+        round(sum(h.total)::numeric + sum(f.price)::numeric, 2) as total_spending,
+        count(distinct h.travel_code) as hotel_bookings,
+        count(distinct f.travel_code) as flight_bookings
+    from gold.dim_users u
+    left join gold.fact_hotels h on u.user_code = h.user_code
+    left join gold.fact_flights f on u.user_code = f.user_code
+    group by u.user_code, u.company, u.age
+),
+customer_segments as (
+    select *, 
+        ntile(2) over (order by total_spending desc) as spending_segment
+    from customer_spending
+)
+select 
+    case when spending_segment = 1 then 'High-Spending Customers' 
+         else 'Low-Spending Customers' 
+    end as customer_type,
+    round(avg(hotel_bookings), 2) as avg_hotel_bookings,
+    round(avg(flight_bookings), 2) as avg_flight_bookings,
+    round(avg(total_spending), 2) as avg_total_spending
+from customer_segments cs
+group by customer_type;
+
 -- Are there differences in booking behavior between repeat and one-time customers?
+with booking_cnt as (
+    select 
+        user_code, 
+        count(travel_code) as bookings_cnt,
+        round(sum(total)::numeric,2) as hotel_spend,
+        0 as flight_spend
+    from gold.fact_hotels
+    group by user_code
+    union all
+    select 
+        user_code, 
+        count(travel_code) as bookings_cnt,
+        0 as hotel_spend,
+        round(sum(price)::numeric,2) as flight_spend
+    from gold.fact_flights
+    group by user_code
+),
+customer_summary as (
+    select 
+        user_code,
+        sum(bookings_cnt) as total_bookings,
+        sum(hotel_spend + flight_spend) as total_spend
+    from booking_cnt
+    group by user_code
+)
+select 
+    case when total_bookings = 1 then 'One-Time Customer' 
+         else 'Repeat Customer' 
+    end as customer_segment,
+    count(cs.user_code) as customer_count,
+    round(avg(total_spend),2) as avg_spending,
+    mode() within group (order by f.arrival_city) as top_flight_destination,
+    mode() within group (order by h.city) as top_hotel_city
+from customer_summary cs
+left join gold.fact_flights f on cs.user_code = f.user_code
+left join gold.fact_hotels h on cs.user_code = h.user_code
+group by customer_segment;
+
 -- What factors influence flight selection the most for different customer segments?
+with booking_cnt as (
+    select 
+        user_code, 
+        count(travel_code) as bookings_cnt,
+        round(sum(total)::numeric,2) as hotel_spend,
+        0 as flight_spend
+    from gold.fact_hotels
+    group by user_code
+    union all
+    select 
+        user_code, 
+        count(travel_code) as bookings_cnt,
+        0 as hotel_spend,
+        round(sum(price)::numeric,2) as flight_spend
+    from gold.fact_flights
+    group by user_code
+),
+customer_summary as (
+    select 
+        user_code,
+        sum(bookings_cnt) as total_bookings,
+        sum(hotel_spend) + sum(flight_spend) as total_spend,
+        ntile(2) over (order by (sum(hotel_spend) + sum(flight_spend)) desc) as spending_seg
+    from booking_cnt
+    group by user_code
+)
+select 
+    case when total_bookings = 1 then 'One-Time Customer' 
+         else 'Repeat Customer' 
+    end as customer_segment,
+    case when spending_seg = 1 then 'High-Spending Customers' 
+         else 'Low-Spending Customers' 
+    end as customer_type,
+    count(distinct cs.user_code) as customer_count,
+    round(avg(total_spend),2) as avg_spending,
+    mode() within group (order by f.arrival_city) FILTER (WHERE f.arrival_city IS NOT NULL) as top_flight_destination,
+    mode() within group (order by h.city) FILTER (WHERE h.city IS NOT NULL) as top_hotel_city
+from customer_summary cs
+left join gold.fact_flights f on cs.user_code = f.user_code
+left join gold.fact_hotels h on cs.user_code = h.user_code
+group by customer_segment, customer_type;
