@@ -51,6 +51,10 @@ With a clean dataset, I leveraged **Tableau** to build interactive dashboards fo
 - **Customer travel behavior analysis** to identify common travel patterns.
 - **Geospatial analysis** to highlight travel hotspots and trends.
 
+## How dashboard look like
+
+![Travel Dashboard](Travel_Dashboard.png)
+
 Explore my **Tableau visualizations** here: [Tableau Public - Nha Alvarado](https://public.tableau.com/app/profile/nha.alvarado/vizzes)
 
 ## Conclusion
