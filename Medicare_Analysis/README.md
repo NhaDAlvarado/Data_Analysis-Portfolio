@@ -1,8 +1,4 @@
-Here’s a personalized **README.md** template for your project using the `bigquery-public-data.cms_medicare.inpatient_charges_2015` dataset. You can customize it further based on your specific goals and analysis.
-
----
-
-# **Medicare Inpatient Charges Analysis (2015)**
+# **Medicare Inpatient Charges Analysis**
 
 ## **Project Overview**
 
