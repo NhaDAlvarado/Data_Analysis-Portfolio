@@ -1,7 +1,7 @@
 -- 1. Exploratory Data Analysis (EDA)
 -- What tables are available in the dataset, and what are their structures?
 select table_name
-FROM `bigquery-public-data.cms_medicare.INFORMATION_SCHEMA.TABLES`;
+from `bigquery-public-data.cms_medicare.INFORMATION_SCHEMA.TABLES`;
 
 -- Explore all columns in the database
 select * 
@@ -20,11 +20,9 @@ from `bigquery-public-data.cms_medicare.inpatient_charges_2015`;
 select distinct drg_definition
 from `bigquery-public-data.cms_medicare.inpatient_charges_2015`;
 
--- Explore total discharges for each drug code
-select drg_definition,
-  sum(total_discharges) as total_discharges
-from `bigquery-public-data.cms_medicare.inpatient_charges_2015`
-group by drg_definition;
+-- Explore total discharges 
+select sum(total_discharges) as total_discharges
+from `bigquery-public-data.cms_medicare.inpatient_charges_2015`;
 
 -- Explore total out of pocket and medicare cover
 select sum(average_total_payments) as out_of_pockets,
