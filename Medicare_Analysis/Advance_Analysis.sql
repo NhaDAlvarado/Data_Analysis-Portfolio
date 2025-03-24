@@ -63,5 +63,46 @@ select case
       case when total_discharge_2015 > total_discharge_2014 then 'increase'
           else 'decrease'
       end as comparison
-from combine_info
+from combine_info;
+
+-- 3. RANKING ANALYSIS
+-- Top 5 DRG
+select drg_definition,
+  sum(total_discharges) as total_discharges
+from `bigquery-public-data.cms_medicare.inpatient_charges_2015`
+group by drg_definition
+order by total_discharges desc
+limit 5;
+
+-- Top 5 states have the most provider
+select provider_state,
+      count(distinct provider_name) as provider_cnt
+from `bigquery-public-data.cms_medicare.inpatient_charges_2015`
+group by provider_state
+order by provider_cnt desc
+limit 5;
+
+-- Top 5 hospital get highest bill
+select provider_name,
+  sum(average_covered_charges) as total_bill,
+from `bigquery-public-data.cms_medicare.inpatient_charges_2015`
+group by provider_name
+order by total_bill desc
+limit 5;
+
+-- Top 5 hospitals have lowest avg charge
+select provider_name,
+  round(avg(average_covered_charges),2) as avg_charge
+from `bigquery-public-data.cms_medicare.inpatient_charges_2015`
+group by provider_name
+order by avg_charge
+limit 5;
+
+-- Top hospitals get visit the most
+select provider_name,
+      sum(total_discharges) as num_visits
+from `bigquery-public-data.cms_medicare.inpatient_charges_2015`
+group by provider_name
+order by num_visits desc
+limit 5;
 
