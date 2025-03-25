@@ -106,3 +106,39 @@ group by provider_name
 order by num_visits desc
 limit 5;
 
+-- TREND OVER TIME ANALYSIS
+-- compare drg discharge for each type of drg 2014 and 2015
+with drg_discharge_2015 as (
+  select fi.drg_definition as drg_2015,
+      sum(fi.total_discharges) as total_discharge_2015     
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2015` as fi
+  full join `bigquery-public-data.cms_medicare.inpatient_charges_2014` as fo
+  on fi.provider_name = fo.provider_city
+  and fi.drg_definition = fo.drg_definition
+  group by fi.drg_definition
+),
+drg_discharge_2014 as (
+  select fo.drg_definition as drg_2014,
+      sum(fo.total_discharges) as total_discharge_2014     
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2015` as fi
+  full join `bigquery-public-data.cms_medicare.inpatient_charges_2014` as fo
+  on fi.provider_name = fo.provider_city
+  and fi.drg_definition = fo.drg_definition
+  group by fo.drg_definition
+),
+combine_info as (
+  select drg_2015, total_discharge_2015, drg_2014, total_discharge_2014 
+  from drg_discharge_2015
+  full join drg_discharge_2014
+  on drg_2015 = drg_2014
+)
+select coalesce(drg_2015,drg_2014) as drg_2015,
+      coalesce(total_discharge_2015, 0) as total_discharge_2015,
+      coalesce(total_discharge_2014, 0) as total_discharge_2014,
+      case when total_discharge_2015 > total_discharge_2014 then 'increase'
+          else 'decrease'
+      end as comparison
+from combine_info;
+
+
+
