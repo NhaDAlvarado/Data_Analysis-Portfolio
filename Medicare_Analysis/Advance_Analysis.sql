@@ -112,18 +112,12 @@ with drg_discharge_2015 as (
   select fi.drg_definition as drg_2015,
       sum(fi.total_discharges) as total_discharge_2015     
   from `bigquery-public-data.cms_medicare.inpatient_charges_2015` as fi
-  full join `bigquery-public-data.cms_medicare.inpatient_charges_2014` as fo
-  on fi.provider_name = fo.provider_city
-  and fi.drg_definition = fo.drg_definition
   group by fi.drg_definition
 ),
 drg_discharge_2014 as (
   select fo.drg_definition as drg_2014,
       sum(fo.total_discharges) as total_discharge_2014     
-  from `bigquery-public-data.cms_medicare.inpatient_charges_2015` as fi
-  full join `bigquery-public-data.cms_medicare.inpatient_charges_2014` as fo
-  on fi.provider_name = fo.provider_city
-  and fi.drg_definition = fo.drg_definition
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2014` as fo
   group by fo.drg_definition
 ),
 combine_info as (
@@ -140,5 +134,30 @@ select coalesce(drg_2015,drg_2014) as drg_2015,
       end as comparison
 from combine_info;
 
-
+-- compare avg medicare cover for each drg 2014 and 2015
+with drg_medicare_2015 as (
+  select drg_definition as drg_2015,
+      sum(average_medicare_payments) as total_medicare_2015     
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2015` 
+  group by drg_definition
+),
+drg_medicare_2014 as (
+  select drg_definition as drg_2014,
+      sum(average_medicare_payments) as total_medicare_2014    
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2014` 
+  group by drg_definition
+),
+combine_info as (
+  select drg_2015, total_medicare_2015, drg_2014, total_medicare_2014
+  from drg_medicare_2015
+  full outer join drg_medicare_2014
+  on drg_2015 = drg_2014
+)
+select coalesce(drg_2015,drg_2014) as drg_2015,
+      coalesce(total_medicare_2015, 0) as total_medicare_2015,
+      coalesce(total_medicare_2014, 0) as total_medicare_2014,
+      case when total_medicare_2015 > total_medicare_2014 then 'increase'
+          else 'decrease'
+      end as comparison
+from combine_info;
 
