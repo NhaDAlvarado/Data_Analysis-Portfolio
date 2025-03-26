@@ -161,3 +161,42 @@ select coalesce(drg_2015,drg_2014) as drg_2015,
       end as comparison
 from combine_info;
 
+-- CUMULATIVE ANALYSIS
+-- total hospital bill per year and running total bill over time
+with yearly_bill_per_provider as (
+  select '2015' as year,
+          provider_name, 
+          sum(average_covered_charges) as hos_bill
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2015` 
+  group by provider_name 
+  union all 
+  select '2014' as year,
+          provider_name, 
+          sum(average_covered_charges) as hos_bill
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2014` 
+  group by provider_name 
+  union all 
+  select '2013' as year,
+          provider_name, 
+          sum(average_covered_charges) as hos_bill
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2013` 
+  group by provider_name 
+  union all 
+  select '2012' as year,
+          provider_name, 
+          sum(average_covered_charges) as hos_bill
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2012` 
+  group by provider_name 
+  union all 
+  select '2011' as year,
+          provider_name, 
+          sum(average_covered_charges) as hos_bill
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2011` 
+  group by provider_name 
+)
+select year,
+      provider_name, 
+      hos_bill,
+      sum(hos_bill) over (partition by provider_name order by year) as running_bill
+from yearly_bill_per_provider
+
