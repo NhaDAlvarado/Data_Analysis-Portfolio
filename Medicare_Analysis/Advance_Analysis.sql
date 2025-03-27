@@ -200,3 +200,58 @@ select year,
       sum(hos_bill) over (partition by provider_name order by year) as running_bill
 from yearly_bill_per_provider
 
+-- PERFORMANCE ANALYSIS
+-- compare DRG case discharge to its avg discharge and previous year DRG discharge
+with yearly_drg_discharges as (
+  select '2015' as year,
+          drg_definition, 
+          sum(total_discharges) as discharges
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2015` 
+  group by drg_definition 
+  union all 
+  select '2014' as year,
+          drg_definition, 
+          sum(total_discharges) as discharges
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2014` 
+  group by drg_definition 
+  union all 
+  select '2013' as year,
+          drg_definition, 
+          sum(total_discharges) as discharges
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2013` 
+  group by drg_definition 
+  union all 
+  select '2012' as year,
+          drg_definition, 
+          sum(total_discharges) as discharges
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2012` 
+  group by drg_definition
+  union all 
+  select '2011' as year,
+          drg_definition, 
+          sum(total_discharges) as discharges
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2011` 
+  group by drg_definition
+),
+cal_avg_and_prv_discharge as (
+  select year, 
+        drg_definition, 
+        discharges,
+        round(avg(discharges) over (partition by drg_definition),2) as      avg_discharges_over_year,
+        lag(discharges) over (partition by drg_definition order by year) as prv_year_discharge
+  from yearly_drg_discharges
+)
+select year, 
+      drg_definition, 
+      discharges,
+      avg_discharges_over_year,
+      case when discharges > avg_discharges_over_year then 'above avg'
+            else 'below avg'
+      end as avg_change,
+      prv_year_discharge,
+      case when discharges > prv_year_discharge then 'increase'
+          when discharges <= prv_year_discharge then 'decrease'
+            else null
+      end as prv_change 
+from cal_avg_and_prv_discharge
+
