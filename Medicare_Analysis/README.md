@@ -2,7 +2,7 @@
 
 ## **Project Overview**
 
-This project focuses on analyzing the **Medicare Inpatient Charges 2015** dataset, which is part of the **Google Cloud Public Datasets** under the healthcare section. The dataset contains detailed information about hospital charges, Medicare payments, and provider details for inpatient services across the United States.
+This project focuses on analyzing the **Medicare Inpatient Charges** dataset, which is part of the **Google Cloud Public Datasets** under the healthcare section. The dataset contains detailed information about hospital charges, Medicare payments, and provider details for inpatient services across the United States.
 
 The goal of this project is to explore and analyze healthcare data to uncover insights that can improve hospital performance, optimize Medicare payments, and inform policy decisions. By leveraging **Google BigQuery**, I aim to handle the large dataset efficiently and perform advanced analytics to answer key questions about healthcare costs and provider performance.
 
@@ -16,23 +16,6 @@ I chose this project for the following reasons:
 2. **Large Dataset**: The dataset is massive, making it an excellent opportunity to work with **Google BigQuery**, a powerful tool for handling big data.
 3. **Real-World Impact**: By analyzing Medicare charges and payments, I aim to identify trends and disparities that can help hospitals and policymakers make data-driven decisions.
 4. **Skill Development**: This project allows me to practice SQL, data visualization, and storytelling with data, which are essential skills for a healthcare analyst.
-
----
-
-## **Dataset Description**
-
-The dataset is sourced from the **Google Cloud Public Datasets** program under the healthcare section. It contains the following key columns:
-
-- **Provider ID**: Unique identifier for each hospital.
-- **Provider Name**: Name of the hospital or provider.
-- **Provider Street Address**: Address of the provider.
-- **Provider City**: City where the provider is located.
-- **Provider State**: State where the provider is located.
-- **DRG Definition**: Diagnosis-Related Group (DRG) code and description for the medical condition treated.
-- **Total Discharges**: Total number of discharges for the DRG.
-- **Average Covered Charges**: Average charges covered by Medicare for the DRG.
-- **Average Total Payments**: Average total payments made by Medicare for the DRG.
-- **Average Medicare Payments**: Average payments made by Medicare for the DRG.
 
 ---
 
@@ -95,26 +78,6 @@ To make the insights from this analysis more accessible and interactive, I creat
 2. **Analysis**: Perform exploratory data analysis (EDA) to answer key questions.
 3. **Visualization**: Create visualizations to communicate insights effectively.
 4. **Insights and Recommendations**: Summarize findings and provide actionable recommendations.
-
----
-
-## **How to Use This Repository**
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/medicare-inpatient-charges-analysis.git
-   ```
-2. **Set Up Google BigQuery**: Ensure you have access to the `bigquery-public-data.cms_medicare.inpatient_charges_2015` dataset.
-3. **Run Queries**: Use the provided SQL queries to explore the dataset.
-4. **Visualize Data**: Use your preferred tool to create visualizations based on the analysis.
-
----
-
-## **Future Work**
-
-- Expand the analysis to include multiple years of data for trend analysis.
-- Incorporate additional datasets (e.g., outpatient charges, provider quality metrics) for a more comprehensive view.
-- Build predictive models to forecast Medicare payments or identify outliers.
 
 ---
 
