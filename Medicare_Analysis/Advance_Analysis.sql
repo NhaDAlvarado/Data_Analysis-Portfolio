@@ -255,3 +255,27 @@ select year,
       end as prv_change 
 from cal_avg_and_prv_discharge
 
+-- PART TO WHOLE ANALYSIS
+-- How do medicare cover for each DRG vary by state in 2015
+with cover_per_drg_each_state as (
+  select provider_state, 
+        drg_definition, 
+        sum(average_medicare_payments) as medicare_cover_DRG_state
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2015` 
+  group by provider_state, drg_definition 
+),
+cover_per_drg as (
+  select drg_definition, 
+        sum(average_medicare_payments) as medicare_cover_DRG
+  from `bigquery-public-data.cms_medicare.inpatient_charges_2015` 
+  group by drg_definition 
+)
+select s.drg_definition, 
+      provider_state,
+      medicare_cover_DRG_state,
+      round(100.0*medicare_cover_DRG_state/medicare_cover_DRG,2) as percentage 
+from cover_per_drg_each_state as s
+join cover_per_drg as d 
+on s.drg_definition = d.drg_definition
+order by s.drg_definition, percentage desc
+
