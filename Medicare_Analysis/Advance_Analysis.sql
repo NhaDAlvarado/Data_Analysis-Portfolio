@@ -279,3 +279,10 @@ join cover_per_drg as d
 on s.drg_definition = d.drg_definition
 order by s.drg_definition, percentage desc
 
+-- Which conditions have the highest Medicare payments per discharge?
+select drg_definition, 
+    sum(average_medicare_payments)/sum(total_discharges) as medicare_cover
+from `bigquery-public-data.cms_medicare.inpatient_charges_2015` 
+group by drg_definition
+order by medicare_cover desc 
+
