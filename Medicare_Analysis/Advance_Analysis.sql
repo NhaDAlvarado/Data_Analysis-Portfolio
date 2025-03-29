@@ -305,4 +305,19 @@ group by provider_id,
         provider_state
 order by medicare_payment_ratio desc ;
 
+-- Segment DRG definitions by medicare payment ratio 
+select 
+  drg_definition,
+  round(avg(average_medicare_payments / average_total_payments),2) as medicare_payment_ratio,
+  case
+    when avg(average_medicare_payments / average_total_payments) > 0.8 then 'High Medicare Dependency'
+    when avg(average_medicare_payments / average_total_payments) > 0.5 then 'Moderate Medicare Dependency'
+    else 'Low Medicare Dependency'
+  end as medicare_segment
+from 
+  `bigquery-public-data.cms_medicare.inpatient_charges_2015`
+group by drg_definition
+order by drg_definition ;
+
+
 
