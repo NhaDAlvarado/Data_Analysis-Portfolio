@@ -277,12 +277,32 @@ select s.drg_definition,
 from cover_per_drg_each_state as s
 join cover_per_drg as d 
 on s.drg_definition = d.drg_definition
-order by s.drg_definition, percentage desc
+order by s.drg_definition, percentage desc;
 
 -- Which conditions have the highest Medicare payments per discharge?
 select drg_definition, 
     sum(average_medicare_payments)/sum(total_discharges) as medicare_cover
 from `bigquery-public-data.cms_medicare.inpatient_charges_2015` 
 group by drg_definition
-order by medicare_cover desc 
+order by medicare_cover desc; 
+
+-- DATA SEGMENTATION
+-- Segment providers by medicare payment ratio 
+select 
+  provider_id,
+  provider_name,
+  provider_state,
+  round(avg(average_medicare_payments / average_total_payments),2) as medicare_payment_ratio,
+  case
+    when avg(average_medicare_payments / average_total_payments) > 0.8 then 'High Medicare Dependency'
+    when avg(average_medicare_payments / average_total_payments) > 0.5 then 'Moderate Medicare Dependency'
+    else 'Low Medicare Dependency'
+  end as medicare_segment
+from 
+  `bigquery-public-data.cms_medicare.inpatient_charges_2015`
+group by provider_id, 
+        provider_name, 
+        provider_state
+order by medicare_payment_ratio desc ;
+
 
