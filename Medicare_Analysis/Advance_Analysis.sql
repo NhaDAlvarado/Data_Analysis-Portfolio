@@ -320,4 +320,3 @@ group by drg_definition
 order by drg_definition ;
 
 
-
