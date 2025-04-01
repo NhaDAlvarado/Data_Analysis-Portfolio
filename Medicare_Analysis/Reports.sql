@@ -14,7 +14,8 @@ Highlights:
        - total hospital bill
 ===============================================================================
 */
-
+drop view if exists drg_report;
+create view drg_report as 
 with yearly_info as (
   select '2015' as year,
         drg_definition, 
