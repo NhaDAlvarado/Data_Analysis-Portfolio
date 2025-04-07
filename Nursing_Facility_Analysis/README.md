@@ -1,4 +1,4 @@
-# 🏡 Medicare Nursing Facilities Analysis (2014)
+# 🏡 Medicare Nursing Facilities Analysis
 
 This project dives into the 2014 Medicare data on certified nursing facilities across the United States, hosted on **Google BigQuery’s Public Datasets**. Using SQL for data exploration and **Tableau** for storytelling, I aimed to uncover insights about facility quality, staffing, ownership, and resident care across different states and provider types.
 
