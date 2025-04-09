@@ -51,6 +51,18 @@ select round(100.0*sum(male_beneficiaries)
             ,2) as female_pct
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
+-- Explore dual, nondual percentage
+select round(100.0*sum(nondual_beneficiaries)
+              /sum(distinct_beneficiaries_per_provider)
+            ,2) as nondual_pct,
+      round(100.0*sum(dual_beneficiaries)
+              /sum(distinct_beneficiaries_per_provider)
+            ,2) as dual_pct
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
+
+-- Explore avg hcc score all over facilities
+select avg(average_hcc_score) as avg_hcc
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 
 
