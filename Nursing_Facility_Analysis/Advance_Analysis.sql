@@ -37,3 +37,21 @@ from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 -- Explore avg snf medicare standard payment amount all over facility
 select round(avg(total_snf_medicare_standard_payment_amount),2)
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
+
+-- Explore min and max age
+select min(average_age), max(average_age)
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
+
+-- Explore male, female percentage
+select round(100.0*sum(male_beneficiaries)
+              /sum(distinct_beneficiaries_per_provider)
+            ,2) as male_pct,
+      round(100.0*sum(female_beneficiaries)
+              /sum(distinct_beneficiaries_per_provider)
+            ,2) as female_pct
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
+
+
+
+
+
