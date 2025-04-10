@@ -64,71 +64,83 @@ from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 select avg(average_hcc_score) as avg_hcc
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
-select avg(average_hcc_score) as avg_hcc
-from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
-
+-- Explore number of beneficiaries with each descease
 select 
-      'atrial_fibrillation' as mesurementname,
-      sum(percent_of_beneficiaries_with_atrial_fibrillation*distinct_beneficiaries_per_provider) as atrial_fibrillation
+      'atrial_fibrillation' as measure_name,
+      sum(percent_of_beneficiaries_with_atrial_fibrillation*distinct_beneficiaries_per_provider) as num_beneficiaries
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+union all
+select 
+      'alzheimers' as measure_name,
+      sum(percent_of_beneficiaries_with_alzheimers*distinct_beneficiaries_per_provider) as num_beneficiaries
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+union all
+select 
+      'asthma' as measure_name,
+      sum(percent_of_beneficiaries_with_asthma*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_alzheimers*distinct_beneficiaries_per_provider) as alzheimers
-from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
-union all
-      sum(percent_of_beneficiaries_with_asthma*distinct_beneficiaries_per_provider) as asthma
-from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
-union all
-select
-      sum(percent_of_beneficiaries_with_cancer*distinct_beneficiaries_per_provider) as cancer
+      'cancer' as measure_name,
+      sum(percent_of_beneficiaries_with_cancer*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_chf*distinct_beneficiaries_per_provider) as chf
+      'chf' as measure_name,
+      sum(percent_of_beneficiaries_with_chf*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_chronic_kidney_disease*distinct_beneficiaries_per_provider) as chronic_kidney_disease
+      'chronic_kidney_disease' as measure_name,
+      sum(percent_of_beneficiaries_with_chronic_kidney_disease*distinct_beneficiaries_per_provider) as num_beneficiaries
       from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_copd*distinct_beneficiaries_per_provider) as copd
+      'copd' as measure_name,
+      sum(percent_of_beneficiaries_with_copd*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_depression*distinct_beneficiaries_per_provider) as depression
+      'depression' as measure_name,
+      sum(percent_of_beneficiaries_with_depression*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_diabetes*distinct_beneficiaries_per_provider) as diabetes
+      'diabetes' as measure_name,
+      sum(percent_of_beneficiaries_with_diabetes*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_hyperlipidemia*distinct_beneficiaries_per_provider) as hyperlipidemia
+      'hyperlipidemia' as measure_name,
+      sum(percent_of_beneficiaries_with_hyperlipidemia*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_hypertension*distinct_beneficiaries_per_provider) as hypertension
+      'hypertension' as measure_name,
+      sum(percent_of_beneficiaries_with_hypertension*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_ihd*distinct_beneficiaries_per_provider) as ihd
+      'ihd' as measure_name,
+      sum(percent_of_beneficiaries_with_ihd*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_osteoporosis*distinct_beneficiaries_per_provider) as osteoporosis
+      'osteoporosis' as measure_name,
+      sum(percent_of_beneficiaries_with_osteoporosis*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_ra_oa*distinct_beneficiaries_per_provider) as ra_oa
+      'ra_oa' as measure_name,
+      sum(percent_of_beneficiaries_with_ra_oa*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_schizophrenia*distinct_beneficiaries_per_provider) as schizophrenia
+      'schizophrenia' as measure_name,
+      sum(percent_of_beneficiaries_with_schizophrenia*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 union all
 select
-      sum(percent_of_beneficiaries_with_stroke*distinct_beneficiaries_per_provider) as stroke
-from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
-
-
+      'stroke' as measure_name,
+      sum(percent_of_beneficiaries_with_stroke*distinct_beneficiaries_per_provider) as num_beneficiaries
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
