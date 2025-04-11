@@ -181,3 +181,17 @@ select
       count(distinct provider_id) as num_facility                   
 from extract_info
 group by facilities_category;
+
+-- RANKING ANALYSIS
+-- Which nursing facilities have the highest total SNF Medicare payment amount?
+-- What are the top 10 nursing facilities by number of distinct beneficiaries served?
+-- Which providers have the highest average HCC risk scores?
+-- Who are the top 10 providers in terms of total SNF charges?
+-- Which providers receive the most standardized Medicare payments?
+-- Which states have the highest total Medicare payment amount?
+-- What ZIP codes rank highest in total SNF Medicare charges?
+-- Which counties have the most dual-eligible beneficiaries treated?
+-- What states have the highest average HCC score?
+-- Which providers have the highest Medicare payment per beneficiary?
+-- Which states have the lowest average Medicare payment per facility?
+-- Which facilities receive the highest Medicare allowed amount relative to SNF charges?
