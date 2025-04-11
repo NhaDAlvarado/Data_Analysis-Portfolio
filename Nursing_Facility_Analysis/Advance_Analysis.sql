@@ -1,4 +1,4 @@
--- EDA 
+--EDA 
 -- How many facility in the dataset
 select count(distinct facility_name) as num_facilities
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
@@ -10,6 +10,7 @@ from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 select distinct state
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
+-- MAGNITUDE ANALYSIS
 -- Explore total patitens from all nursing facility
 select sum(distinct_beneficiaries_per_provider)
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
@@ -144,3 +145,39 @@ select
       'stroke' as measure_name,
       sum(percent_of_beneficiaries_with_stroke*distinct_beneficiaries_per_provider) as num_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
+
+-- Total beneficiaries in state
+select state,
+      sum(distinct_beneficiaries_per_provider) as num_beneficiaries
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by state;
+
+-- What is the weighted average HCC score across all beneficiaries?
+select 
+      round(
+        sum(average_hcc_score*distinct_beneficiaries_per_provider)
+        /sum(distinct_beneficiaries_per_provider) 
+      ,2) as weighted_avg_hcc
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
+
+-- How many facilities are for-profit, non-profit, or government-owned?
+with extract_info as (
+  select n.provider_id, n.state, h.hospital_ownership
+  from `bigquery-public-data.cms_medicare.nursing_facilities_2014` as n 
+  left join `bigquery-public-data.cms_medicare.hospital_general_info` as h
+  on n.provider_id = h.provider_id 
+)
+select 
+      case 
+          when hospital_ownership in ('Proprietary', 'Physician') then 'For-Profit'
+          when hospital_ownership in ('Voluntary non-profit - Private', 
+                                      'Voluntary non-profit - Other', 
+                                      'Voluntary non-profit - Church') then 'Non-Profit'
+          when hospital_ownership in ('Government - Hospital District or Authority', 
+                                      'Government - Local', 
+                                      'Government - State') then 'Goverment'   
+          else 'N/A'
+      end as facilities_category,
+      count(distinct provider_id) as num_facility                   
+from extract_info
+group by facilities_category;
