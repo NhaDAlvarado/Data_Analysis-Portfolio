@@ -183,14 +183,6 @@ from extract_info
 group by facilities_category;
 
 -- RANKING ANALYSIS
--- Which nursing facilities have the highest total SNF Medicare payment amount?
-select provider_id, 
-      sum(total_snf_charge_amount) as total_medicare_SNF
-from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
-group by provider_id
-order by total_medicare_SNF desc
-limit 1;
-
 -- What are the top 10 nursing facilities by number of distinct beneficiaries served?
 select provider_id, 
       sum(distinct_beneficiaries_per_provider) as total_beneficiaries
@@ -198,6 +190,20 @@ from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 group by provider_id
 order by total_beneficiaries desc
 limit 10;
+
+-- Which providers have the highest average HCC risk scores?
+select provider_id, 
+      avg(average_hcc_score) as avg_hcc
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by provider_id
+order by avg_hcc desc;
+
+-- Who are the top 10 providers in terms of total SNF charges?
+select provider_id, 
+      sum(total_snf_charge_amount) as total_snf_charge
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by provider_id
+order by total_snf_charge desc;
 
 -- Which providers have the highest average HCC risk scores?
 -- Who are the top 10 providers in terms of total SNF charges?
