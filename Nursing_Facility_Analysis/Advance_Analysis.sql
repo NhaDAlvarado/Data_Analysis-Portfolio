@@ -203,12 +203,25 @@ select provider_id,
       sum(total_snf_charge_amount) as total_snf_charge
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 group by provider_id
-order by total_snf_charge desc;
+order by total_snf_charge desc
+limit 1;
 
--- Which providers have the highest average HCC risk scores?
--- Who are the top 10 providers in terms of total SNF charges?
 -- Which providers receive the most standardized Medicare payments?
+select provider_id, 
+      sum(total_snf_medicare_standard_payment_amount) as total_standardize_medicare 
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by provider_id
+order by total_standardize_medicare desc
+limit 1;
+
 -- Which states have the highest total Medicare payment amount?
+select state, 
+      sum(total_snf_medicare_payment_amount) as total_medicare_amount 
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by state
+order by total_medicare_amount  desc
+limit 1;
+
 -- What ZIP codes rank highest in total SNF Medicare charges?
 -- Which counties have the most dual-eligible beneficiaries treated?
 -- What states have the highest average HCC score?
