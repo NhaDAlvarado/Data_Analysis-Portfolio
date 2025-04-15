@@ -223,7 +223,20 @@ order by total_medicare_amount  desc
 limit 1;
 
 -- What ZIP codes rank highest in total SNF Medicare charges?
+select zip_code, 
+      sum(total_snf_charge_amount) as total_snf_amount 
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by zip_code
+order by total_snf_amount desc
+limit 1;
+
 -- Which counties have the most dual-eligible beneficiaries treated?
+select state, 
+      sum(dual_beneficiaries) as total_dual_beneficiaries 
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by state
+order by total_dual_beneficiaries desc
+limit 1;
 -- What states have the highest average HCC score?
 -- Which providers have the highest Medicare payment per beneficiary?
 -- Which states have the lowest average Medicare payment per facility?
