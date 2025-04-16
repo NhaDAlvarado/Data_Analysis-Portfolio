@@ -237,7 +237,25 @@ from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 group by state
 order by total_dual_beneficiaries desc
 limit 1;
+
 -- What states have the highest average HCC score?
+select state, 
+      round(avg(average_hcc_score),2) as avg_hcc_score
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by state
+order by avg_hcc_score desc
+limit 1;
+
 -- Which providers have the highest Medicare payment per beneficiary?
+select provider_id, 
+      round(
+            sum(total_snf_medicare_payment_amount)
+            /sum(distinct_beneficiaries_per_provider)
+      ,2) as medicare_payment_per_beneficiary
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by provider_id
+order by medicare_payment_per_beneficiary desc
+limit 1;
+
 -- Which states have the lowest average Medicare payment per facility?
 -- Which facilities receive the highest Medicare allowed amount relative to SNF charges?
