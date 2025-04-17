@@ -258,4 +258,23 @@ order by medicare_payment_per_beneficiary desc
 limit 1;
 
 -- Which states have the lowest average Medicare payment per facility?
+select state, 
+      round(
+            sum(total_snf_medicare_payment_amount)
+            /count(distinct provider_id)
+      ,2) as medicare_payment_per_facility
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by state
+order by medicare_payment_per_facility
+limit 1;
+
 -- Which facilities receive the highest Medicare allowed amount relative to SNF charges?
+select provider_id, 
+      round(
+            sum(total_snf_medicare_allowed_amount)
+            /sum(total_snf_charge_amount)
+      ,2) as ratio
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+group by provider_id 
+order by ratio desc 
+limit 1;
