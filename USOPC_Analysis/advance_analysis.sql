@@ -220,17 +220,164 @@ from extract_info
 where avg_membership_size >10000
 order by funding_per_member desc;
 
--- Compare funding efficiency (total_expenses/total_funding) between NGBs with staff_size <20 vs >50.
--- select * from gold.NGBHealthDataOutputExtract;
--- select * from gold.SportBenefitsStatementsDataByYear;
+-- Compare funding efficiency (total_expenses/total_funding) between NGBs with staff_size <10 vs >100.
+with extract_info as (
+	select overall_parent_ngb,
+		staff_bucket_def,
+		round(avg(total_expenses)::numeric,2) as avg_expenses,
+		round( sum(Athlete_360
+					+ Athlete_Stipends
+					+ Coaching_Education
+					+ COVID_Athlete_Assistance_Fund
+					+ Elite_Athlete_Health_Insurance
+					+ High_Performance_Grants
+					+ High_Performance_Special_Grants
+					+ National_Medical_Network
+					+ NGB_HPMO_COVID_Grants
+					+ Operation_Gold
+					+ Paralympic_Sport_Development_Grants
+					+ Restricted_Grants
+					+ Sport_Science_Services
+					+ Sports_Medicine_Clinics
+					+ Facilities_Chula_Vista_California
+					+ Facilities_Colorado_Springs_Colorado
+					+ Facilities_Lake_Placid_New_York
+					+ Facilities_Salt_Lake_City_Utah
+				)::numeric,2) as total_funding
+	from gold.NGBHealthDataOutputExtract as d 
+	join gold.SportBenefitsStatementsDataByYear as s
+	on s.ngb = d.overall_parent_ngb
+	where staff_bucket_def = '< 10'
+		or staff_bucket_def = '> 100'
+	group by overall_parent_ngb, staff_bucket_def
+)
+select staff_bucket_def,
+		round(sum(avg_expenses)/sum(total_funding),2) as funding_efficiency
+from extract_info 
+group by staff_bucket_def;
 
 -- PART-TO-WHOLE ANALYSIS
 -- What percentage of each NGB's total funding came from restricted_grants in 2020?
--- Break down the composition of funding (athlete support vs. facilities vs. admin) for Olympic vs Paralympic NGBs.
+with extract_info as (
+	select ngb,
+		sum(restricted_grants) as restricted_grants,
+		round( sum(Athlete_360
+						+ Athlete_Stipends
+						+ Coaching_Education
+						+ COVID_Athlete_Assistance_Fund
+						+ Elite_Athlete_Health_Insurance
+						+ High_Performance_Grants
+						+ High_Performance_Special_Grants
+						+ National_Medical_Network
+						+ NGB_HPMO_COVID_Grants
+						+ Operation_Gold
+						+ Paralympic_Sport_Development_Grants
+						+ Restricted_Grants
+						+ Sport_Science_Services
+						+ Sports_Medicine_Clinics
+						+ Facilities_Chula_Vista_California
+						+ Facilities_Colorado_Springs_Colorado
+						+ Facilities_Lake_Placid_New_York
+						+ Facilities_Salt_Lake_City_Utah
+					)::numeric,2) as total_funding
+	from gold.SportBenefitsStatementsDataByYear
+	where year =2020 
+	group by ngb
+)
+select ngb,
+	round(100.0*restricted_grants::numeric/nullif(total_funding,0)::numeric,2) as pct
+from extract_info;
+
+-- Break down the composition of funding (athlete support vs. facilities) for Olympic vs Paralympic NGBs.
+with extract_info as (
+	select olympic_paralympic_panamerican,
+		round(sum(Athlete_360
+					+ Athlete_Stipends
+					+ Coaching_Education
+					+ COVID_Athlete_Assistance_Fund
+				)::numeric,2) as athlete_support_funding,
+		round(sum(Facilities_Chula_Vista_California
+			+ Facilities_Colorado_Springs_Colorado
+			+ Facilities_Lake_Placid_New_York
+			+ Facilities_Salt_Lake_City_Utah
+			)::numeric,2) as facilities_funding,
+		round( sum(Athlete_360
+					+ Athlete_Stipends
+					+ Coaching_Education
+					+ COVID_Athlete_Assistance_Fund
+					+ Elite_Athlete_Health_Insurance
+					+ High_Performance_Grants
+					+ High_Performance_Special_Grants
+					+ National_Medical_Network
+					+ NGB_HPMO_COVID_Grants
+					+ Operation_Gold
+					+ Paralympic_Sport_Development_Grants
+					+ Restricted_Grants
+					+ Sport_Science_Services
+					+ Sports_Medicine_Clinics
+					+ Facilities_Chula_Vista_California
+					+ Facilities_Colorado_Springs_Colorado
+					+ Facilities_Lake_Placid_New_York
+					+ Facilities_Salt_Lake_City_Utah
+				)::numeric,2) as total_funding
+	from gold.SportBenefitsStatementsDataByYear
+	group by olympic_paralympic_panamerican
+)
+select olympic_paralympic_panamerican,
+		round(100.0*athlete_support_funding/total_funding,2) as athlete_support_funding_pct,
+		round(100.0*facilities_funding/total_funding,2) as facilities_funding_pct
+from extract_info;
 
 -- DATA SEGMENTATION
 -- Segment NGBs into quartiles based on total_revenue and compare their average athlete_stipends.
--- Analyze funding patterns for NGBs grouped by:
-	-- NCAA-affiliated vs non-NCAA
-	-- Revenue buckets (from NGBHealthData)
-	-- Staff size categories
+with revenue_quartiles as (
+  select overall_parent_ngb,
+    total_revenue,
+	membership_size,
+    ntile(4) over (order by total_revenue desc) as revenue_quartile
+  from gold.NGBHealthDataOutputExtract
+  where overall_year = 2019 -- that's mean year = 2020 in SportBenefitsStatementsDataByYear table
+)
+select
+  r.revenue_quartile,
+  count(ngb) as ngb_count,
+  round(avg(r.total_revenue::numeric), 2) as avg_revenue,
+  round(avg(s.athlete_stipends::numeric), 2) as avg_stipends,
+  round(avg(s.athlete_stipends::numeric / nullif(membership_size, 0)), 2) as avg_stipend_per_athlete
+from revenue_quartiles r
+join gold.SportBenefitsStatementsDataByYear s 
+on r.overall_parent_ngb = s.ngb
+group by r.revenue_quartile
+order by r.revenue_quartile;
+
+-- Analyze funding patterns for NGBs grouped by NCAA-affiliated vs non-NCAA
+with funding_per_ncaa_group as (
+	select ncaa_sport,
+		round( sum(Athlete_360
+				+ Athlete_Stipends
+				+ Coaching_Education
+				+ COVID_Athlete_Assistance_Fund
+				+ Elite_Athlete_Health_Insurance
+				+ High_Performance_Grants
+				+ High_Performance_Special_Grants
+				+ National_Medical_Network
+				+ NGB_HPMO_COVID_Grants
+				+ Operation_Gold
+				+ Paralympic_Sport_Development_Grants
+				+ Restricted_Grants
+				+ Sport_Science_Services
+				+ Sports_Medicine_Clinics
+				+ Facilities_Chula_Vista_California
+				+ Facilities_Colorado_Springs_Colorado
+				+ Facilities_Lake_Placid_New_York
+				+ Facilities_Salt_Lake_City_Utah
+			)::numeric,2) as funding_per_ncaa_group
+	from gold.SportBenefitsStatementsDataByYear
+	where year = 2020
+	group by ncaa_sport 
+)
+select ncaa_sport,
+	funding_per_ncaa_group,
+	sum(funding_per_ncaa_group) over () as total_funding,
+	round(100.0*funding_per_ncaa_group/sum(funding_per_ncaa_group) over (),2) as pct
+from funding_per_ncaa_group;
