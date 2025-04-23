@@ -37,7 +37,11 @@ Additional external data such as medal counts or financial records from the spor
 
 The final analysis and data story have been visualized using **Tableau Public**. This interactive dashboard highlights key trends, comparisons, and insights drawn from the provided datasets.
 
-👉 **[View the Tableau Project Here](https://public.tableau.com/app/profile/nha.alvarado/vizzes)**
+## How dashboard look like
+
+![USOPC Dashboard](USOPC%20Dashboard.png)
+
+👉 **[View my interactive dashboard Here](https://public.tableau.com/app/profile/nha.alvarado/viz/USOPC_Dahsboard/USOPCDashboard#1)**
 
 ---
 
@@ -46,16 +50,6 @@ The final analysis and data story have been visualized using **Tableau Public**.
 As part of the submission, I’ve created a clear and approachable educational resource focused on **[insert your chosen step: e.g. Data Cleaning / Tableau Calculations / Storytelling]** to help non-technical audiences understand the process.
 
 ## 👉 **[Link or Attachment to Part 2 Resource]**
-
-## ⚙️ Supplemental Files
-
-Included with this submission are the supplemental files and resources used:
-
-- Cleaned datasets (if applicable)
-- Any scripts or code snippets used for cleaning, transformation, or calculations
-- Notes on assumptions or external data sources (if any were used)
-
----
 
 ## 🔗 About Me
 

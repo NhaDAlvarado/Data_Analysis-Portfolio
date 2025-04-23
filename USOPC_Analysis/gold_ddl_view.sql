@@ -2,7 +2,11 @@ drop view if exists gold.SportBenefitsStatementsDataByYear;
 create view gold.SportBenefitsStatementsDataByYear as 
 	select 
 		NGB,
-		Olympic_Paralympic_PanAmerican,
+		case 
+			when Olympic_Paralympic_PanAmerican = 'USOPC manages the Paralympic sport program' 
+			then 'Manages the Paralympic sport program' 
+			else Olympic_Paralympic_PanAmerican
+		end as Olympic_Paralympic_PanAmerican,
 		Num_Events_At_Games,
 		NCAA_Sport,
 		Year,
