@@ -47,9 +47,9 @@ The final analysis and data story have been visualized using **Tableau Public**.
 
 ## 🧑‍🏫 Educational Resource
 
-As part of the submission, I’ve created a clear and approachable educational resource focused on **[insert your chosen step: e.g. Data Cleaning / Tableau Calculations / Storytelling]** to help non-technical audiences understand the process.
+As part of the submission, I’ve created a clear and approachable educational resource focused on **Data Cleaning** to help non-technical audiences understand the process.
 
-## 👉 **[Link or Attachment to Part 2 Resource]**
+👉 **[Link or Attachment to Part 2 Resource](https://docs.google.com/document/d/1dXoEqq45ogBqYoWyzE5eOwn21VJkW518ZUfI3tKKCi0/edit?usp=sharing)**
 
 ## 🔗 About Me
 
