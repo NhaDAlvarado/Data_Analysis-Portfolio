@@ -85,7 +85,11 @@ BEGIN
 			            replace(replace(replace(replace(Elite_Athlete_Health_Insurance, '(', ''), ')', ''), ',', ''), '$', '') AS numeric
 			        )
 			    else cast(
-						replace(replace(substring(Elite_Athlete_Health_Insurance from 2 for length(Elite_Athlete_Health_Insurance)), ',', ''), '$', '') AS numeric
+						replace(
+							replace(
+								substring(Elite_Athlete_Health_Insurance from 2 for length(Elite_Athlete_Health_Insurance))
+							, ',', '')
+						, '$', '') AS numeric
 						)
 			end) as Elite_Athlete_Health_Insurance,
 		
@@ -277,7 +281,10 @@ BEGIN
 			Total_Revenue
 		)
 		select 
-			Overall_Parent_NGB,
+			case when Overall_Parent_NGB = 'US Speed Skating' then 'US Speedskating'
+				when Overall_Parent_NGB = 'US Luge Association' then 'USA Luge'
+				else Overall_Parent_NGB
+			end as Overall_Parent_NGB,
 			Overall_Year,
 			coalesce (financial_year, 'n/a') as financial_year,
 			coalesce (Membership_Bucket_Def, 'n/a') as Membership_Bucket_Def,
@@ -292,7 +299,7 @@ BEGIN
 			coalesce (Staff_Bucket, 0) as Staff_Bucket,
 			coalesce (Staff_Size, 0) as Staff_Size,
 			coalesce (Total_Expenses, 0) as Total_Expenses,
-			coalesce (Total_Expenses, 0) as Total_Revenue
+			coalesce (Total_Revenue, 0) as Total_Revenue
 		from bronze.NGBHealthDataOutputExtract;
 
 	end_time := clock_timestamp();
