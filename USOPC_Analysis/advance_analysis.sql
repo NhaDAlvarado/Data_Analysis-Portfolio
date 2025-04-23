@@ -185,10 +185,44 @@ from cal_high_performance_grants_by_type;
 
 -- PERFORMANCE ANALYSIS
 -- Which NGBs with membership_size >10,000 had the highest funding per member (total funding/membership_size)?
--- select * from gold.NGBHealthDataOutputExtract;
--- select * from gold.SportBenefitsStatementsDataByYear;
+with extract_info as (
+	select ngb,
+		round(avg(membership_size)::numeric,2) as avg_membership_size,
+		round( sum(Athlete_360
+				+ Athlete_Stipends
+				+ Coaching_Education
+				+ COVID_Athlete_Assistance_Fund
+				+ Elite_Athlete_Health_Insurance
+				+ High_Performance_Grants
+				+ High_Performance_Special_Grants
+				+ National_Medical_Network
+				+ NGB_HPMO_COVID_Grants
+				+ Operation_Gold
+				+ Paralympic_Sport_Development_Grants
+				+ Restricted_Grants
+				+ Sport_Science_Services
+				+ Sports_Medicine_Clinics
+				+ Facilities_Chula_Vista_California
+				+ Facilities_Colorado_Springs_Colorado
+				+ Facilities_Lake_Placid_New_York
+				+ Facilities_Salt_Lake_City_Utah
+			)::numeric,2) as total_funding_by_ngb
+	from gold.SportBenefitsStatementsDataByYear as s
+	join gold.NGBHealthDataOutputExtract as d 
+	on s.ngb = d.overall_parent_ngb
+	group by ngb
+)
+select ngb, 
+	avg_membership_size,
+	total_funding_by_ngb,
+	round(total_funding_by_ngb/avg_membership_size,2) as funding_per_member
+from extract_info
+where avg_membership_size >10000
+order by funding_per_member desc;
 
 -- Compare funding efficiency (total_expenses/total_funding) between NGBs with staff_size <20 vs >50.
+-- select * from gold.NGBHealthDataOutputExtract;
+-- select * from gold.SportBenefitsStatementsDataByYear;
 
 -- PART-TO-WHOLE ANALYSIS
 -- What percentage of each NGB's total funding came from restricted_grants in 2020?
