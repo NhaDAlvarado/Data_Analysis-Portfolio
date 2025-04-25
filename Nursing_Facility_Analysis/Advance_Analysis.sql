@@ -278,3 +278,42 @@ from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
 group by provider_id 
 order by ratio desc 
 limit 1;
+
+-- CUMULATIVE ANALYSIS
+-- What is the cumulative total of total_snf_charge_amount by state, ordered by the highest charging facilities within each state?
+select facility_name,
+      state,
+      total_snf_charge_amount,
+      sum(total_snf_charge_amount) over (
+            partition by state order by total_snf_charge_amount desc 
+      ) as cum_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+
+-- How does the cumulative Medicare payment (total_snf_medicare_payment_amount) grow across all facilities when sorted by average HCC score descending?
+
+-- For each state, what is the cumulative total of dual beneficiaries across facilities, ordered by facility name?
+
+-- What is the cumulative number of total stays across all providers, ordered by the number of stays descending?
+
+-- How does the cumulative count of facilities with percent_of_beneficiaries_with_diabetes greater than a certain threshold grow by state?
+
+-- Within each city, what is the running total of total_snf_medicare_allowed_amount when facilities are ordered by average age of beneficiaries?
+
+-- What is the cumulative number of white beneficiaries by state, ordered by the number of white beneficiaries per facility descending?
+
+-- What is the cumulative percentage of beneficiaries with hypertension across all facilities, ordered by provider_id?
+
+-- How does the cumulative total Medicare standard payment (total_snf_medicare_standard_payment_amount) vary by zip code, sorted by payment amount?
+
+-- For each disease condition (like Alzheimer’s or CHF), what is the cumulative percentage of affected beneficiaries across all facilities, sorted by the condition prevalence?
+
+-- What is the cumulative male vs. female beneficiary count across all states, ordered by state alphabetically?
+
+-- Within each state, what is the cumulative total of average lengths of stay (in days), sorted by descending average length?
+
+-- How does the cumulative total charge amount vary with increasing average age across all facilities?
+
+-- What is the cumulative number of Asian/Pacific Islander beneficiaries grouped by city, ordered by total number in descending order?
+
+-- How does the cumulative number of dual beneficiaries increase by facility, ordered by percent of beneficiaries with depression?
+
