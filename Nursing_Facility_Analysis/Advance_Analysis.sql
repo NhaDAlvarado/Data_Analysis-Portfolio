@@ -287,11 +287,23 @@ select facility_name,
       sum(total_snf_charge_amount) over (
             partition by state order by total_snf_charge_amount desc 
       ) as cum_total
-from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
--- How does the cumulative Medicare payment (total_snf_medicare_payment_amount) grow across all facilities when sorted by average HCC score descending?
+-- How does the cumulative Medicare payment grow across all facilities when sorted by average HCC score descending?
+select facility_name,
+      average_hcc_score,
+      total_snf_medicare_payment_amount,
+      sum(total_snf_medicare_payment_amount) over ( order by average_hcc_score desc) as cum_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- For each state, what is the cumulative total of dual beneficiaries across facilities, ordered by facility name?
+select facility_name,
+      state,
+      dual_beneficiaries,
+      sum(dual_beneficiaries) over (
+            partition by state order by facility_name
+      ) as cum_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- What is the cumulative number of total stays across all providers, ordered by the number of stays descending?
 
