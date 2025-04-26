@@ -306,8 +306,34 @@ select facility_name,
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- What is the cumulative number of total stays across all providers, ordered by the number of stays descending?
+select facility_name,
+      total_stays,
+      sum(total_stays) over (order by total_stays desc) as cum_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- How does the cumulative count of facilities with percent_of_beneficiaries_with_diabetes greater than a certain threshold grow by state?
+with state_pct_beneficiaries_w_diabetes as (
+      select state, 
+            facility_name, 
+            percent_of_beneficiaries_with_diabetes,
+            avg(percent_of_beneficiaries_with_diabetes) over (partition by state) as avg_beneficiaries_w_diabetes
+      from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+),
+compare_to_theshold as (
+      select  n.state, 
+            n.facility_name, 
+            n.percent_of_beneficiaries_with_diabetes,
+            d.avg_beneficiaries_w_diabetes
+      from `bigquery-public-data.cms_medicare.nursing_facilities_2014` as n 
+      join state_pct_beneficiaries_w_diabetes as d 
+      on n.state = d.state
+      and n.facility_name = d.facility_name
+      where n.percent_of_beneficiaries_with_diabetes >d.avg_beneficiaries_w_diabetes
+)
+select state,
+      count(facility_name) as facility_w_pct_greater_than_avg
+from compare_to_theshold
+group by state;
 
 -- Within each city, what is the running total of total_snf_medicare_allowed_amount when facilities are ordered by average age of beneficiaries?
 
