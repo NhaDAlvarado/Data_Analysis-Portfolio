@@ -355,8 +355,23 @@ select facility_name,
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- What is the cumulative percentage of beneficiaries with hypertension across all facilities, ordered by provider_id?
+select facility_name,
+      percent_of_beneficiaries_with_hypertension,
+      sum(percent_of_beneficiaries_with_hypertension) over (
+            order by provider_id desc
+      ) as cum_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`
+where percent_of_beneficiaries_with_hypertension is not null;
 
 -- How does the cumulative total Medicare standard payment (total_snf_medicare_standard_payment_amount) vary by zip code, sorted by payment amount?
+select facility_name,
+      zip_code,
+      total_snf_medicare_standard_payment_amount,
+      sum(total_snf_medicare_standard_payment_amount) over (
+            partition by zip_code 
+            order by total_snf_medicare_standard_payment_amount desc
+      ) as cum_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- For each disease condition (like Alzheimer’s or CHF), what is the cumulative percentage of affected beneficiaries across all facilities, sorted by the condition prevalence?
 
