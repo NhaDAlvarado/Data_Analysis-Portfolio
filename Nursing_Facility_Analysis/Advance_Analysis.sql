@@ -373,9 +373,28 @@ select facility_name,
       ) as cum_total
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
--- For each disease condition (like Alzheimer’s or CHF), what is the cumulative percentage of affected beneficiaries across all facilities, sorted by the condition prevalence?
+-- For each disease condition (like Alzheimer’s or CHF), what is the cumulative number of affected beneficiaries across all facilities, sorted by the condition prevalence?
+select facility_name,
+      distinct_beneficiaries_per_provider,
+      percent_of_beneficiaries_with_alzheimers,
+      round(distinct_beneficiaries_per_provider*percent_of_beneficiaries_with_alzheimers/100.0) as num_beneficiaries_w_alzheimers,
+      round(sum(distinct_beneficiaries_per_provider*percent_of_beneficiaries_with_alzheimers/100.0) over (
+                  order by percent_of_beneficiaries_with_alzheimers desc
+      )) as running_sum
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- What is the cumulative male vs. female beneficiary count across all states, ordered by state alphabetically?
+select facility_name,
+      state,
+      male_beneficiaries,
+      sum(male_beneficiaries) over (
+            partition by state order by state 
+      ) as cum_total_male_beneficiaries,
+      female_beneficiaries,
+      sum(female_beneficiaries) over (
+            partition by state order by state 
+      ) as cum_total_female_beneficiaries
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- Within each state, what is the cumulative total of average lengths of stay (in days), sorted by descending average length?
 
