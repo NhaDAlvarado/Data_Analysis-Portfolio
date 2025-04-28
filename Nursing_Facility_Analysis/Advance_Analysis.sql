@@ -336,8 +336,23 @@ from compare_to_theshold
 group by state;
 
 -- Within each city, what is the running total of total_snf_medicare_allowed_amount when facilities are ordered by average age of beneficiaries?
+select city, 
+      facility_name,
+      average_age,
+      total_snf_medicare_allowed_amount,
+      sum(total_snf_medicare_allowed_amount) over (
+            partition by city order by average_age
+      ) as running_sum
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- What is the cumulative number of white beneficiaries by state, ordered by the number of white beneficiaries per facility descending?
+select facility_name,
+      state,
+      white_beneficiaries,
+      sum(white_beneficiaries) over (
+            partition by state order by white_beneficiaries desc
+      ) as cum_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- What is the cumulative percentage of beneficiaries with hypertension across all facilities, ordered by provider_id?
 
