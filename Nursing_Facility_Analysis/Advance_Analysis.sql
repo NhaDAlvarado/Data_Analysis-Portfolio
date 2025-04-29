@@ -396,11 +396,22 @@ select facility_name,
       ) as cum_total_female_beneficiaries
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
--- Within each state, what is the cumulative total of average lengths of stay (in days), sorted by descending average length?
-
 -- How does the cumulative total charge amount vary with increasing average age across all facilities?
+select facility_name,
+      total_snf_charge_amount,
+      average_age,
+      sum(total_snf_charge_amount) over (order by average_age) as running_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- What is the cumulative number of Asian/Pacific Islander beneficiaries grouped by city, ordered by total number in descending order?
+select facility_name,
+      city,
+      asian_pacific_islander_beneficiaries,
+      sum(asian_pacific_islander_beneficiaries) over (
+            partition by city
+            order by asian_pacific_islander_beneficiaries desc
+      ) as running_total
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- How does the cumulative number of dual beneficiaries increase by facility, ordered by percent of beneficiaries with depression?
 
