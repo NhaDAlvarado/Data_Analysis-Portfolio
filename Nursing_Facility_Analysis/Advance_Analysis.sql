@@ -414,4 +414,9 @@ select facility_name,
 from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
 -- How does the cumulative number of dual beneficiaries increase by facility, ordered by percent of beneficiaries with depression?
+select facility_name, 
+      percent_of_beneficiaries_with_depression,
+      dual_beneficiaries,
+      sum(dual_beneficiaries) over (order by percent_of_beneficiaries_with_depression desc) as running_cum
+from `bigquery-public-data.cms_medicare.nursing_facilities_2014`;
 
