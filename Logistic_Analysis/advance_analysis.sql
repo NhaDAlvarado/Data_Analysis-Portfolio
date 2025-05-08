@@ -1,0 +1,27 @@
+-- - What is the on-time delivery rate for each region? 
+select * from gold.table_combined;
+
+-- - How does the average delay time vary by vehicle type?  
+-- - Which suppliers or transport providers have the highest and lowest on-time delivery rates?  
+-- - What is the relationship between distance traveled and fixed costs?  
+-- - How do maintenance costs vary by vehicle type or age?  
+-- - Are there significant differences in costs between rural and urban deliveries?  
+-- - How does customer rating correlate with on-time delivery?  
+-- - Which regions or suppliers have the highest and lowest customer ratings?  
+-- - Does weather condition (e.g., sunny, rainy) impact customer ratings?  
+-- - Which origin-destination pairs have the longest delays, and why?  
+-- - Are there recurring delays on specific routes that need optimization?  
+-- - How does the distance of a trip correlate with actual vs. planned ETA?  
+-- - Which vehicle types are most efficient in terms of fuel or cost per kilometer?  
+-- - Do certain drivers consistently perform better in terms of on-time delivery or customer ratings?  
+-- - How does vehicle type impact delivery time and customer satisfaction?  
+-- - How do weather conditions (e.g., cloudy, rainy) affect delivery delays?  
+-- - Are certain regions more prone to weather-related delays?  
+-- - Which suppliers or transport partners have the highest frequency of delays?  
+-- - Are there differences in performance between market and regular bookings?  
+-- - Are there specific locations (e.g., hubs, cities) with higher congestion or delays?  
+-- - How do delivery times vary between rural and urban areas?   
+-- - What is the average trip duration for different vehicle types?  
+-- - How often do trips exceed the planned ETA, and by how much?  
+-- - Are there seasonal or monthly trends in delivery performance?  
+-- - How has on-time delivery performance changed over time?  
