@@ -72,16 +72,28 @@ join cal_delivery_on_time as t
 on d.region = t.region
 order by pct desc;
 
--- - How does the average delay time vary by vehicle type?  
-select booking_ID_date,
-	data_ping_time, 
-	planned_eta, 
-	actual_eta, 
-	trip_start_date, 
-	trip_end_date,
-	distance_in_km,
-	vehicle_type
-from gold.table_updated
+-- How does the average delay time vary by vehicle type? 
+-- select * from gold.table_updated
+
+with expected_times as (
+	select vehicle_type,
+		actual_eta,
+		planned_eta,
+		trip_start_date,
+		trip_end_date,
+		trip_start_date+planned_eta as expected_arrival,
+		round(extract(epoch from (actual_eta - (trip_start_date+planned_eta)))/(60*60),2) as delay_hours
+	from gold.table_updated
+	where actual_eta is not null
+		and planned_eta is not null
+		and trip_start_date is not null
+)
+select vehicle_type,
+	avg(delay_hours) as avg_delay_hours,
+	count(*) as trip_cnt
+from expected_times
+group by vehicle_type
+order by avg_delay_hours desc;
 
 -- - Which suppliers or transport providers have the highest and lowest on-time delivery rates?  
 -- - What is the relationship between distance traveled and fixed costs?  
