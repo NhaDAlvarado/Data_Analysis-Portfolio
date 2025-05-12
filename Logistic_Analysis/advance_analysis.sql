@@ -1,53 +1,72 @@
--- drop view if exists gold.table_updated;
--- create view gold.table_updated as 
--- select gps_provider,
--- 		booking_ID,
--- 		market_regular,
--- 		booking_ID_date,
--- 		vehicle_no,
--- 		origin_location,
--- 		destination_location,
--- 		case when region is null then trim(lower(substring(destination_location from '.*,(.*)')))
--- 			else trim(lower(region))
--- 		end as region,
--- 		org_lat,
--- 		org_lon,
--- 		des_lat,
--- 		des_lon,
--- 		data_ping_time,
--- 		planned_eta,
--- 		curr_location,
--- 		des_location,
--- 		actual_eta,
--- 		curr_lat,
--- 		curr_lon,
--- 		case when ontime = 'G' then true
--- 			else false
--- 		end as on_time_delivery,
--- 		customer_rating,
--- 		condition_text,
--- 		fixed_costs,
--- 		maintenance,
--- 		different,
--- 		area,
--- 		delivery_time,
--- 		origin_location_code,
--- 		destination_location_code,
--- 		trip_start_date,
--- 		trip_end_date,
--- 		distance_in_km,
--- 		vehicle_type,
--- 		minimum_kms_covered_in_day,
--- 		driver_name,
--- 		driver_phone_no,
--- 		customer_id,
--- 		customer_name_code,
--- 		supplier_id,
--- 		supplier_name_code,
--- 		material_shipper
--- from gold.table_combined
--- where (ontime is not null and delay is null)
--- or (ontime is null and delay is not null);
+drop view if exists gold.table_updated;
+create view gold.table_updated as 
+select gps_provider,
+		booking_ID,
+		market_regular,
+		booking_ID_date,
+		vehicle_no,
+	    case
+	        when upper(vehicle_no) like 'TN%BC%' or upper(vehicle_no) like 'TN%BD%' then 'Heavy Cargo Truck'
+	        when upper(vehicle_no) like 'TN%AQ%' or upper(vehicle_no) like 'HR47C%' then 'Large Container Truck'
+	        when upper(vehicle_no) like 'TN%BB%' or upper(vehicle_no) like 'TN60D%' then 'Medium Container Truck'
+	        when upper(vehicle_no) like 'HR55W%' or upper(vehicle_no) like 'KA27A%' then 'Small Container Truck'
+	        when upper(vehicle_no) like 'TN%AR%' or upper(vehicle_no) like 'TN13M%' then 'Mini Pickup Truck (Open)'
+	        when upper(vehicle_no) like 'TN%AP%' then 'Small Pickup Truck (Open)'
+	        when upper(vehicle_no) like 'TN%AM%' then 'Mini Pickup Truck (Closed)'
+	        when upper(vehicle_no) like 'TN%AE%' then 'Open-Bed Truck'
+	        when upper(vehicle_no) like 'TN%XL%' then 'Extra-Long Trailer Truck'
+	        when upper(vehicle_no) like 'TN%TA%' then 'Flatbed Truck'
+	        when upper(vehicle_no) like 'TN%CL%' then 'Box Truck'
+	        when upper(vehicle_no) like 'TN%OP%' then 'Small Utility Truck'
+	        when upper(vehicle_no) like 'TN%C%' then 'Car/SUV'
+	        when upper(vehicle_no) like 'TN%S%' then 'Bike/Scooter'
+	        when upper(vehicle_no) like 'TN%R%' then 'Auto Rickshaw'
+	        when upper(vehicle_no) like 'KA%B%' or  upper(vehicle_no) like 'RJ02GB%' then 'Bus'
+	        else 'Unknown - Check RTO'
+	    end as vehicle_type1,
+		vehicle_type,
+		origin_location,
+		destination_location,
+		case when region is null then trim(lower(substring(destination_location from '.*,(.*)')))
+			else trim(lower(region))
+		end as region,
+		org_lat,
+		org_lon,
+		des_lat,
+		des_lon,
+		data_ping_time,
+		planned_eta,
+		curr_location,
+		des_location,
+		actual_eta,
+		curr_lat,
+		curr_lon,
+		case when ontime = 'G' then true
+			else false
+		end as on_time_delivery,
+		customer_rating,
+		condition_text,
+		fixed_costs,
+		maintenance,
+		different,
+		area,
+		delivery_time,
+		origin_location_code,
+		destination_location_code,
+		trip_start_date,
+		trip_end_date,
+		distance_in_km,
+		minimum_kms_covered_in_day,
+		driver_name,
+		driver_phone_no,
+		customer_id,
+		customer_name_code,
+		supplier_id,
+		supplier_name_code,
+		material_shipper
+from gold.table_combined
+where (ontime is not null and delay is null)
+or (ontime is null and delay is not null);
 
 -- What is the on-time delivery rate for each region? 
 with cal_delivery_per_region as (
@@ -109,7 +128,6 @@ group by supplier_id, supplier_name_code
 order by on_time_pct desc, delivery_cnt desc;
 
 -- What is the relationship between distance traveled and fixed costs?  
--- select * from gold.table_updated
 with cost_data as (
 	select distance_in_km, 
 		fixed_costs,
@@ -131,10 +149,27 @@ select distance_group,
   round(avg(fixed_costs::numeric/distance_in_km::numeric), 2) as cost_per_km
 from cost_data
 group by distance_group
-order by distance_group;
+order by cost_per_km;
 
--- - How do maintenance costs vary by vehicle type or age?  
--- - Are there significant differences in costs between rural and urban deliveries?  
+-- How do maintenance costs vary by vehicle type vs usage?  
+select vehicle_type,
+	round(avg(maintenance)::numeric,2) as avg_maintenance,
+	round(avg(maintenance/ distance_in_km)::numeric,4) as maintenance_cost_per_km,
+	round(avg(distance_in_km)::numeric,2) as avg_distance_km,
+	count(*) as shipment_cnt
+from gold.table_updated
+where maintenance is not null
+	and distance_in_km is not null
+group by vehicle_type
+order by maintenance_cost_per_km desc;
+
+-- Are there significant differences in costs between rural and urban deliveries? 
+-- select * from gold.table_updated
+select vehicle_type,
+		vehicle_no
+from gold.table_updated
+
+
 -- - How does customer rating correlate with on-time delivery?  
 -- - Which regions or suppliers have the highest and lowest customer ratings?  
 -- - Does weather condition (e.g., sunny, rainy) impact customer ratings?  
@@ -154,31 +189,3 @@ order by distance_group;
 -- - How often do trips exceed the planned ETA, and by how much?  
 -- - Are there seasonal or monthly trends in delivery performance?  
 -- - How has on-time delivery performance changed over time?  
-
-
-
-
--- What is the average delivery delay time for late deliveries?
--- How many deliveries were completed on time vs. late per region?
--- What is the average delivery time per vehicle type?
--- Which day of the week has the most delayed deliveries?
--- What is the trend of on-time delivery rate over time (weekly/monthly)?
--- What is the maximum, minimum, and average delay per region?
--- How many deliveries exceeded their planned ETA?
--- What is the distribution of delivery delays across different vehicle types?
--- What percentage of deliveries have missing or null ETA values?
--- Which origin-destination pairs have the longest average delay?
--- Which region has the highest average delivery time?
--- What are the top 10 most delayed delivery routes by frequency?
--- Which areas have the highest number of late deliveries?
--- How does delivery time vary between market and regular deliveries (market_regular)?
--- What is the average distance traveled per delivery in each region?
--- Are there specific regions where the GPS provider is frequently missing or inconsistent?
--- Which routes show a consistent mismatch between planned and actual ETA?
--- Which vehicle types have the highest average maintenance costs?
--- How do fixed costs vary across suppliers or regions?
--- Is there a correlation between maintenance cost and delay frequency?
--- How many vehicles fail to meet their minimum kilometers per day?
--- What is the average cost (fixed + maintenance) per kilometer by vehicle type?
--- Which drivers have the highest on-time delivery rate?
--- Which customers have the lowest average customer ratings?
