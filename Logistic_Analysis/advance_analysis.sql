@@ -73,8 +73,6 @@ on d.region = t.region
 order by pct desc;
 
 -- How does the average delay time vary by vehicle type? 
--- select * from gold.table_updated
-
 with expected_times as (
 	select vehicle_type,
 		actual_eta,
@@ -95,8 +93,22 @@ from expected_times
 group by vehicle_type
 order by avg_delay_hours desc;
 
--- - Which suppliers or transport providers have the highest and lowest on-time delivery rates?  
--- - What is the relationship between distance traveled and fixed costs?  
+-- Which suppliers or transport providers have the highest and lowest on-time delivery rates?  
+select supplier_id, 
+	supplier_name_code,
+	sum(case when on_time_delivery = true then 1 else 0 end) as on_time_delivery_cnt,
+	count(*) as delivery_cnt,
+	round(100.0*sum(case when on_time_delivery = true then 1 else 0 end)
+			/count(*),2) as on_time_pct
+from gold.table_updated
+where actual_eta is not null
+	and planned_eta is not null
+	and trip_start_date is not null
+group by supplier_id, supplier_name_code;
+
+-- What is the relationship between distance traveled and fixed costs?  
+-- select * from gold.table_updated
+
 -- - How do maintenance costs vary by vehicle type or age?  
 -- - Are there significant differences in costs between rural and urban deliveries?  
 -- - How does customer rating correlate with on-time delivery?  
