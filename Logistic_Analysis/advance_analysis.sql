@@ -99,15 +99,39 @@ select supplier_id,
 	sum(case when on_time_delivery = true then 1 else 0 end) as on_time_delivery_cnt,
 	count(*) as delivery_cnt,
 	round(100.0*sum(case when on_time_delivery = true then 1 else 0 end)
-			/count(*),2) as on_time_pct
+			/count(*),2) as on_time_pct,
+	round(avg(extract(epoch from (actual_eta - (trip_start_date + planned_eta)))/(60*60)),2) as avg_delay_hours
 from gold.table_updated
 where actual_eta is not null
 	and planned_eta is not null
 	and trip_start_date is not null
-group by supplier_id, supplier_name_code;
+group by supplier_id, supplier_name_code
+order by on_time_pct desc, delivery_cnt desc;
 
 -- What is the relationship between distance traveled and fixed costs?  
 -- select * from gold.table_updated
+with cost_data as (
+	select distance_in_km, 
+		fixed_costs,
+		case when distance_in_km <=100 then '0-100 km'
+			when distance_in_km <=500 then '101-500 km'
+			when distance_in_km <=1000 then '501-1000 km'
+			when distance_in_km <=1500 then '1001-1500 km'
+			else '1500+ km'
+		end as distance_group
+	from gold.table_updated
+	where distance_in_km is not null
+		and fixed_costs is not null
+)
+select distance_group,
+	count(*) as shipments,
+	round(avg(fixed_costs), 2) as avg_fixed_cost,
+  round(min(fixed_costs), 2) as min_fixed_cost,
+  round(max(fixed_costs), 2) as max_fixed_cost,
+  round(avg(fixed_costs::numeric/distance_in_km::numeric), 2) as cost_per_km
+from cost_data
+group by distance_group
+order by distance_group;
 
 -- - How do maintenance costs vary by vehicle type or age?  
 -- - Are there significant differences in costs between rural and urban deliveries?  
