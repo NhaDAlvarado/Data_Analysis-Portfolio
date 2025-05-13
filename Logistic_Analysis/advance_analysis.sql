@@ -1,94 +1,24 @@
-drop view if exists gold.table_updated;
-create view gold.table_updated as 
-select gps_provider,
-		booking_ID,
-		market_regular,
-		booking_ID_date,
-		vehicle_no,
-	    case
-	        when upper(vehicle_no) like 'TN%BC%' or upper(vehicle_no) like 'TN%BD%' then 'Heavy Cargo Truck'
-	        when upper(vehicle_no) like 'TN%AQ%' or upper(vehicle_no) like 'HR47C%' then 'Large Container Truck'
-	        when upper(vehicle_no) like 'TN%BB%' or upper(vehicle_no) like 'TN60D%' then 'Medium Container Truck'
-	        when upper(vehicle_no) like 'HR55W%' or upper(vehicle_no) like 'KA27A%' then 'Small Container Truck'
-	        when upper(vehicle_no) like 'TN%AR%' or upper(vehicle_no) like 'TN13M%' then 'Mini Pickup Truck (Open)'
-	        when upper(vehicle_no) like 'TN%AP%' then 'Small Pickup Truck (Open)'
-	        when upper(vehicle_no) like 'TN%AM%' then 'Mini Pickup Truck (Closed)'
-	        when upper(vehicle_no) like 'TN%AE%' then 'Open-Bed Truck'
-	        when upper(vehicle_no) like 'TN%XL%' then 'Extra-Long Trailer Truck'
-	        when upper(vehicle_no) like 'TN%TA%' then 'Flatbed Truck'
-	        when upper(vehicle_no) like 'TN%CL%' then 'Box Truck'
-	        when upper(vehicle_no) like 'TN%OP%' then 'Small Utility Truck'
-	        when upper(vehicle_no) like 'TN%C%' then 'Car/SUV'
-	        when upper(vehicle_no) like 'TN%S%' then 'Bike/Scooter'
-	        when upper(vehicle_no) like 'TN%R%' then 'Auto Rickshaw'
-	        when upper(vehicle_no) like 'KA%B%' or  upper(vehicle_no) like 'RJ02GB%' then 'Bus'
-	        else 'Unknown - Check RTO'
-	    end as vehicle_type1,
-		vehicle_type,
-		origin_location,
-		destination_location,
-		case when region is null then trim(lower(substring(destination_location from '.*,(.*)')))
-			else trim(lower(region))
-		end as region,
-		org_lat,
-		org_lon,
-		des_lat,
-		des_lon,
-		data_ping_time,
-		planned_eta,
-		curr_location,
-		des_location,
-		actual_eta,
-		curr_lat,
-		curr_lon,
-		case when ontime = 'G' then true
-			else false
-		end as on_time_delivery,
-		customer_rating,
-		condition_text,
-		fixed_costs,
-		maintenance,
-		different,
-		area,
-		delivery_time,
-		origin_location_code,
-		destination_location_code,
-		trip_start_date,
-		trip_end_date,
-		distance_in_km,
-		minimum_kms_covered_in_day,
-		driver_name,
-		driver_phone_no,
-		customer_id,
-		customer_name_code,
-		supplier_id,
-		supplier_name_code,
-		material_shipper
-from gold.table_combined
-where (ontime is not null and delay is null)
-or (ontime is null and delay is not null);
-
 -- What is the on-time delivery rate for each region? 
 with cal_delivery_per_region as (
-		select region, 
+		select des_region, 
 		count(*) as num_delivery 
-	from gold.table_updated 
-	group by region
+	from gold.table_combined
+	group by des_region
 ),
 cal_delivery_on_time as (
-	select region,
+	select des_region,
 		count(*) as num_on_time
-	from gold.table_updated
+	from gold.table_combined
 	where on_time_delivery = true
-	group by region
+	group by des_region
 )
-select d.region, 
+select d.des_region, 
 	num_on_time,
 	num_delivery,
 	round(100.0*num_on_time/num_delivery ,2) as pct 
 from cal_delivery_per_region as d
 join cal_delivery_on_time as t
-on d.region = t.region
+on d.des_region = t.des_region
 order by pct desc;
 
 -- How does the average delay time vary by vehicle type? 
@@ -100,7 +30,7 @@ with expected_times as (
 		trip_end_date,
 		trip_start_date+planned_eta as expected_arrival,
 		round(extract(epoch from (actual_eta - (trip_start_date+planned_eta)))/(60*60),2) as delay_hours
-	from gold.table_updated
+	from gold.table_combined
 	where actual_eta is not null
 		and planned_eta is not null
 		and trip_start_date is not null
@@ -120,7 +50,7 @@ select supplier_id,
 	round(100.0*sum(case when on_time_delivery = true then 1 else 0 end)
 			/count(*),2) as on_time_pct,
 	round(avg(extract(epoch from (actual_eta - (trip_start_date + planned_eta)))/(60*60)),2) as avg_delay_hours
-from gold.table_updated
+from gold.table_combined
 where actual_eta is not null
 	and planned_eta is not null
 	and trip_start_date is not null
@@ -137,7 +67,7 @@ with cost_data as (
 			when distance_in_km <=1500 then '1001-1500 km'
 			else '1500+ km'
 		end as distance_group
-	from gold.table_updated
+	from gold.table_combined
 	where distance_in_km is not null
 		and fixed_costs is not null
 )
@@ -157,35 +87,64 @@ select vehicle_type,
 	round(avg(maintenance/ distance_in_km)::numeric,4) as maintenance_cost_per_km,
 	round(avg(distance_in_km)::numeric,2) as avg_distance_km,
 	count(*) as shipment_cnt
-from gold.table_updated
+from gold.table_combined
 where maintenance is not null
 	and distance_in_km is not null
 group by vehicle_type
 order by maintenance_cost_per_km desc;
 
--- Are there significant differences in costs between rural and urban deliveries? 
--- select * from gold.table_updated
-select vehicle_type,
-		vehicle_no
-from gold.table_updated
+-- What is the average delivery time for different distances (short, medium, long-haul)?
+select vehicle_type, 
+		case when distance_in_km <=500 then 'Short (≤500km)'
+			when distance_in_km <=1000 then 'Medium (501-1000km)'
+			else 'Long-haul'
+		end as distance_group,
+		round(avg(delivery_time)::numeric,2) as avg_delivery_time,
+		round(avg(distance_in_km/delivery_time)::numeric,2) as avg_speed_kmph
+from gold.table_combined
+where delivery_time is not null
+group by distance_group, vehicle_type
+order by distance_group desc, avg_delivery_time desc; 
+
+-- How does delivery performance vary by time of day, day of week, or season?
+-- select * from gold.table_combined;
 
 
--- - How does customer rating correlate with on-time delivery?  
--- - Which regions or suppliers have the highest and lowest customer ratings?  
--- - Does weather condition (e.g., sunny, rainy) impact customer ratings?  
--- - Which origin-destination pairs have the longest delays, and why?  
--- - Are there recurring delays on specific routes that need optimization?  
--- - How does the distance of a trip correlate with actual vs. planned ETA?   
--- - Which vehicle types are most efficient in terms of fuel or cost per kilometer?  
--- - Do certain drivers consistently perform better in terms of on-time delivery or customer ratings?  
--- - How does vehicle type impact delivery time and customer satisfaction?  
--- - How do weather conditions (e.g., cloudy, rainy) affect delivery delays?  
--- - Are certain regions more prone to weather-related delays?   
--- - Which suppliers or transport partners have the highest frequency of delays?  
--- - Are there differences in performance between market and regular bookings?  
--- - Are there specific locations (e.g., hubs, cities) with higher congestion or delays?  
--- - How do delivery times vary between rural and urban areas?  
--- - What is the average trip duration for different vehicle types?  
--- - How often do trips exceed the planned ETA, and by how much?  
--- - Are there seasonal or monthly trends in delivery performance?  
--- - How has on-time delivery performance changed over time?  
+-- What are the most common origin-destination pairs? Are there high-demand routes that need optimization?
+
+-- Is there a correlation between distance covered and on-time delivery?
+
+-- Are drivers consistently meeting the minimum daily km coverage? If not, why?
+
+-- How do actual routes (based on GPS pings) compare to optimal routes?
+-- Which vehicle types are most efficient (cost, time, distance) for different delivery types?
+
+-- How does driver performance (on-time delivery, distance covered) vary across regions?
+
+-- Are there specific drivers who consistently outperform or underperform?
+
+-- Does driver experience (based on historical trips) impact delivery success?
+-- Who are the top customers/suppliers by delivery volume?
+
+-- Are there frequent delays for specific customers/suppliers? If so, why?
+
+-- How does delivery performance vary by customer/supplier location?
+
+-- Are there high-value customers (frequent/reliable deliveries) that need priority handling?
+-- How do urban vs. rural vs. sub-urban deliveries differ in performance?
+
+-- Which regions have the highest delivery demand? Are there underserved areas?
+
+-- Are there seasonal trends in delivery volumes or delays?
+
+-- Do certain origin/destination clusters (based on lat/lon) have unique challenges?
+-- Are there gaps in GPS ping data? How does missing data affect ETA accuracy?
+
+-- How often do actual delivery locations (des_lat/des_lon) differ from planned destinations?
+
+-- Are there discrepancies between trip start/end times and GPS tracking data?
+-- Are there drivers/vehicles frequently involved in late deliveries?
+
+-- Do certain suppliers/materials consistently cause delays?
+
+-- Are there unusual patterns (e.g., long idle times, detours) that suggest operational issues?
