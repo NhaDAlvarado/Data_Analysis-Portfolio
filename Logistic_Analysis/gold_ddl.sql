@@ -6,13 +6,18 @@ create view gold.table_combined as
 			market_regular,
 			booking_ID_date,
 			vehicle_no,
-			p.origin_location,
+			-- trim 'india' out of origin location, delete numbers extra ','
+			case when trim(p.origin_location) = 'CUMMINS EMISSIONS SYSTEM,,SATARA,MAHARASHTRA' then 'CUMMINS EMISSIONS SYSTEM,SATARA,MAHARASHTRA'	
+				when trim(p.origin_location) like '%, India' then substring(trim(p.origin_location), 1, position(', India' in p.origin_location) - 1)
+				else trim(p.origin_location)
+			end as origin_location,
+
 		-- trim 'india' out of destination location, delete numbers extra ','
 			case when trim(p.destination_location) = 'CUMMINS EMISSIONS SYSTEM,,SATARA,MAHARASHTRA' then 'CUMMINS EMISSIONS SYSTEM,SATARA,MAHARASHTRA'	
 				when trim(p.destination_location) like '%, India' then substring(trim(p.destination_location), 1, position(', India' in p.destination_location) - 1)
 				else trim(p.destination_location)
 			end as destination_location,
-			r.region,
+			r.region as des_region,
 			org_lat,
 			org_lon,
 			des_lat,
@@ -129,12 +134,12 @@ create view gold.table_combined as
 			        else 'Unknown - Check RTO'
 			    end as vehicle_type,
 				origin_location,
+				trim(upper(substring(origin_location from '[^,]*$'))) as origin_region,
 				destination_location,
 				-- filling n/a value, and non-sense value in reion column with the part after the last ',' in destination_location
-				case when region is null or region = 'm' then trim(upper(substring(destination_location from '[^,]*$')))
-					-- '.*,\s*([^,]+)$')))
-					else trim(upper(region))
-				end as region,
+				case when des_region is null or des_region = 'm' then trim(upper(substring(destination_location from '[^,]*$')))
+					else trim(upper(des_region))
+				end as des_region,
 				org_lat,
 				org_lon,
 				des_lat,
@@ -181,12 +186,18 @@ create view gold.table_combined as
 				vehicle_no,
 				vehicle_type,
 				origin_location,
+				-- fix misspelling regions
+				case when origin_region = 'CHATTISGARH' then 'CHHATTISGARH'
+					when origin_region = 'PONDICHERY' then 'PONDICHERRY'
+					when origin_region = 'KARNATAKA 562114' then 'KARNATAKA'
+					else origin_region
+				end as origin_region,
 				destination_location,
 			-- fix misspelling regions
-				case when region = 'CHATTISGARH' then 'CHHATTISGARH'
-					when region = 'PONDICHERY' then 'PONDICHERRY'
-					else region
-				end as region,
+				case when des_region = 'CHATTISGARH' then 'CHHATTISGARH'
+					when des_region = 'PONDICHERY' then 'PONDICHERRY'
+					else des_region
+				end as des_region,
 				area,
 				org_lat,
 				org_lon,
@@ -227,26 +238,31 @@ create view gold.table_combined as
 				booking_ID_date,
 				vehicle_no,
 				vehicle_type,
-				origin_location,
-				destination_location,
-				region,
-				case 
-			        when lower(region) in ('delhi', 'chandigarh', 'puducherry', 'pondicherry', 'maharashtra', 'tamil nadu', 'karnataka', 'telangana', 'gujarat', 'west bengal', 'kerala', 'punjab', 'haryana', 'andhra pradesh') then 'Urban'
-			        when lower(region) in ('uttar pradesh', 'rajasthan', 'madhya pradesh', 'odisha', 'uttarakhand', 'goa', 'jharkhand', 'chhattisgarh') then 'Sub-urban'
-			        when lower(region) in ('bihar', 'assam', 'meghalaya', 'sikkim', 'himachal pradesh', 'dadra & nagar haveli', 'jammu & kashmir', 'central development region') then 'Rural'
-			        else 'Unknown'
-		    	end as area,
 				org_lat,
 				org_lon,
+				origin_location,
+				origin_region,
+				case 
+			        when lower(origin_region) in ('delhi', 'chandigarh', 'puducherry', 'pondicherry', 'maharashtra', 'tamil nadu', 'karnataka', 'telangana', 'gujarat', 'west bengal', 'kerala', 'punjab', 'haryana', 'andhra pradesh') then 'Urban'
+			        when lower(origin_region) in ('uttar pradesh', 'rajasthan', 'madhya pradesh', 'odisha', 'uttarakhand', 'goa', 'jharkhand', 'chhattisgarh') then 'Sub-urban'
+			        when lower(origin_region) in ('bihar', 'assam', 'meghalaya', 'sikkim', 'himachal pradesh', 'dadra & nagar haveli', 'jammu & kashmir', 'central development region') then 'Rural'
+			        else 'Unknown'
+		    	end as origin_area,
 				des_lat,
 				des_lon,
-				data_ping_time,
-				planned_eta,
-				curr_location,
-				des_location,
-				actual_eta,
+				destination_location,
+				des_region,
+				case 
+			        when lower(des_region) in ('delhi', 'chandigarh', 'puducherry', 'pondicherry', 'maharashtra', 'tamil nadu', 'karnataka', 'telangana', 'gujarat', 'west bengal', 'kerala', 'punjab', 'haryana', 'andhra pradesh') then 'Urban'
+			        when lower(des_region) in ('uttar pradesh', 'rajasthan', 'madhya pradesh', 'odisha', 'uttarakhand', 'goa', 'jharkhand', 'chhattisgarh') then 'Sub-urban'
+			        when lower(des_region) in ('bihar', 'assam', 'meghalaya', 'sikkim', 'himachal pradesh', 'dadra & nagar haveli', 'jammu & kashmir', 'central development region') then 'Rural'
+			        else 'Unknown'
+		    	end as des_area,
 				curr_lat,
 				curr_lon,
+				data_ping_time,
+				planned_eta,
+				actual_eta,
 				on_time_delivery,
 				customer_rating,
 				condition_text,
@@ -254,8 +270,8 @@ create view gold.table_combined as
 				maintenance,
 				different,
 				delivery_time,
-				origin_location_code,
-				destination_location_code,
+				-- origin_location_code,
+				-- destination_location_code,
 				trip_start_date,
 				trip_end_date,
 				distance_in_km,
