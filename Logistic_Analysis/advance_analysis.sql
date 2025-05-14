@@ -160,7 +160,37 @@ from delivery_metrics
 group by season
 order by measure_dimension, on_time_pct DESC;
 
-
+-- What are the most common origin-destination pairs? Are there high-demand routes that need optimization?
+-- select * from gold.table_combined;
+with routes_analysis as (
+	select least(origin_region, des_region) 
+			|| ' <-> ' 
+			||greatest(origin_region, des_region) as route,
+			origin_region, 
+			des_region,
+			count(*) as shipments_cnt,
+			round(avg(distance_in_km)::numeric,2) as avg_distance_km,
+			sum(case when on_time_delivery is true then 1 else 0 end) as on_time_cnt,
+			round(100.0*sum(case when on_time_delivery is true then 1 else 0 end)/count(*),2) as on_time_pct,
+			round(avg(distance_in_km::numeric/nullif(delivery_time,0)),2) as avg_speed_kmph
+	from gold.table_combined
+	where origin_region is not null 
+	and des_region is not null 
+	group by route, origin_region, des_region
+)
+select route,
+	shipments_cnt,
+	avg_distance_km,
+	on_time_pct,
+	avg_speed_kmph,
+	case  
+	    when shipments_cnt > 100 and on_time_pct < 80 then 'High Volume, Low Reliability'
+	    when avg_speed_kmph < 30 THEN 'Low Speed Alert'
+		when avg_speed_kmph is null then 'Need Information'
+	    else 'Normal'
+	end as optimization_priority
+from routes_analysis 
+order by optimization_priority desc, shipments_cnt desc;
 
 -- Is there a correlation between distance covered and on-time delivery?
 
