@@ -107,10 +107,60 @@ group by distance_group, vehicle_type
 order by distance_group desc, avg_delivery_time desc; 
 
 -- How does delivery performance vary by time of day, day of week, or season?
--- select * from gold.table_combined;
+with delivery_metrics as (
+  select 
+    case  -- Time of Day Analysis (Morning/Afternoon/Evening/Night)
+      when extract (hour from trip_start_date) between 5 and 11 then 'Morning (5-11 AM)'
+      when extract (hour from trip_start_date) between 12 and 17 then 'Afternoon (12-5 PM)'
+      when extract (hour from trip_start_date) between 18 and 23 then 'Evening (6-11 PM)'
+      else 'Night (12-4 AM)'
+    end as time_of_day,
+    -- Day of Week Analysis
+    to_char(trip_start_date, 'Day') as day_of_week,
+    -- Seasonal Analysis
+    case 
+      when extract (month from trip_start_date) in (12, 1, 2) THEN 'Winter'
+      when extract (month from trip_start_date) in (3, 4, 5) THEN 'Spring'
+      when extract (month from trip_start_date) in (6, 7, 8) THEN 'Summer'
+      else 'Fall'
+    end as season,
+    on_time_delivery
+  from gold.table_combined
+  where trip_start_date is not null
+)
+select -- Time of Day Performance
+  'Time of Day' as measure_dimension,
+  time_of_day as category,
+  count(*) as total_shipments,
+  sum(case when on_time_delivery then 1 else 0 end) as on_time_count,
+  round(100.0 * sum(case when on_time_delivery then 1 else 0 end) / count(*), 2) as on_time_pct
+from delivery_metrics
+group by time_of_day
+
+union all
+
+select -- Day of Week Performance
+  'Day of Week' as measure_dimension,
+  day_of_week as category,
+  count(*) as total_shipments,
+  sum(case when on_time_delivery then 1 else 0 end) as on_time_count,
+  round(100.0 * sum(case when on_time_delivery then 1 else 0 end) / count(*), 2) as on_time_pct
+from delivery_metrics
+group by day_of_week
+
+union all
+
+select -- Seasonal Performance
+  'Season' as measure_dimension,
+  season as category,
+  count(*) as total_shipments,
+  sum(case when on_time_delivery then 1 else 0 end) as on_time_count,
+  round(100.0 * sum(case when on_time_delivery then 1 else 0 end) / count(*), 2) as on_time_pct
+from delivery_metrics
+group by season
+order by measure_dimension, on_time_pct DESC;
 
 
--- What are the most common origin-destination pairs? Are there high-demand routes that need optimization?
 
 -- Is there a correlation between distance covered and on-time delivery?
 
