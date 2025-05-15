@@ -161,7 +161,6 @@ group by season
 order by measure_dimension, on_time_pct DESC;
 
 -- What are the most common origin-destination pairs? Are there high-demand routes that need optimization?
--- select * from gold.table_combined;
 with routes_analysis as (
 	select least(origin_region, des_region) 
 			|| ' <-> ' 
@@ -193,38 +192,22 @@ from routes_analysis
 order by optimization_priority desc, shipments_cnt desc;
 
 -- Is there a correlation between distance covered and on-time delivery?
+select case when distance_in_km <=100 then '0-100 km'
+			when distance_in_km <=500 then '101-500 km'
+			when distance_in_km <=1000 then '501-1000 km'
+			when distance_in_km <=1500 then '1001-1500 km'
+			else '1500+ km'
+		end as distance_group,
+		sum(case when on_time_delivery is true then 1 else 0 end) as on_time_cnt,
+		count(*) as shipments_cnt,
+		round(100.0*sum(case when on_time_delivery is true then 1 else 0 end)/count(*),2) as on_time_pct
+from gold.table_combined
+group by distance_group;
 
--- Are drivers consistently meeting the minimum daily km coverage? If not, why?
-
--- How do actual routes (based on GPS pings) compare to optimal routes?
--- Which vehicle types are most efficient (cost, time, distance) for different delivery types?
-
--- How does driver performance (on-time delivery, distance covered) vary across regions?
-
--- Are there specific drivers who consistently outperform or underperform?
-
--- Does driver experience (based on historical trips) impact delivery success?
--- Who are the top customers/suppliers by delivery volume?
-
--- Are there frequent delays for specific customers/suppliers? If so, why?
-
--- How does delivery performance vary by customer/supplier location?
-
--- Are there high-value customers (frequent/reliable deliveries) that need priority handling?
--- How do urban vs. rural vs. sub-urban deliveries differ in performance?
-
--- Which regions have the highest delivery demand? Are there underserved areas?
-
--- Are there seasonal trends in delivery volumes or delays?
-
--- Do certain origin/destination clusters (based on lat/lon) have unique challenges?
--- Are there gaps in GPS ping data? How does missing data affect ETA accuracy?
-
--- How often do actual delivery locations (des_lat/des_lon) differ from planned destinations?
 
 -- Are there discrepancies between trip start/end times and GPS tracking data?
 -- Are there drivers/vehicles frequently involved in late deliveries?
-
--- Do certain suppliers/materials consistently cause delays?
-
+-- Which regions have the highest delivery demand? Are there underserved areas?
+-- Do certain origin/destination clusters (based on lat/lon) have unique challenges?
+-- Are there gaps in GPS ping data? How does missing data affect ETA accuracy?
 -- Are there unusual patterns (e.g., long idle times, detours) that suggest operational issues?
