@@ -204,6 +204,39 @@ select case when distance_in_km <=100 then '0-100 km'
 from gold.table_combined
 group by distance_group;
 
+-- Are drivers consistently meeting the minimum daily km coverage? If not, why?
+with driver_daily_performance as (
+	select driver_name,
+		trip_start_date::date as delivery_date,
+		sum(distance_in_km) as actual_kms_covered, 
+		max(minimum_kms_covered_in_day) as target_kms,
+		sum(distance_in_km) - max(minimum_kms_covered_in_day) as kms_variance,
+		count(*) as shipments_completed,
+		round(100.0*sum(case when on_time_delivery is true then 1 else 0 end)/count(*),2) as on_time_pct,
+		count(distinct origin_region || ' -> ' || des_region) as unique_routes,
+		round(avg(distance_in_km)::numeric,2) as avg_shipment_distance
+	from gold.table_combined
+	where minimum_kms_covered_in_day >0
+	and distance_in_km > 0
+	and trip_start_date is not null 
+	group by driver_name, delivery_date
+	having max(minimum_kms_covered_in_day) >0 
+)
+select driver_name,
+		count(*) as days_worked,
+		sum(case when actual_kms_covered >= target_kms then 1 else 0 end) as days_met_target,
+		round(100.0*sum(case when actual_kms_covered >= target_kms then 1 else 0 end)/count(*),2) as target_compliance_pct,
+		round(avg(kms_variance)::numeric,2) as avg_daily_kms_variance,
+		round(avg(actual_kms_covered)::numeric,2) as avg_actual_kms,
+		round(avg(target_kms)::numeric,2) as avg_target_kms,
+		round(avg(on_time_pct), 2) as avg_on_time_pct,
+		round(avg(unique_routes), 2) as avg_unique_routes_per_day,
+		round(avg(avg_shipment_distance), 2) as avg_shipment_distance,
+		sum(case when shipments_completed <3 then 1 else 0 end) as low_shipment_days
+from driver_daily_performance
+group by driver_name
+order by target_compliance_pct desc,
+	avg_daily_kms_variance;
 
 -- Are there discrepancies between trip start/end times and GPS tracking data?
 -- Are there drivers/vehicles frequently involved in late deliveries?
