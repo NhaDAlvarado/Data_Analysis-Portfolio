@@ -238,6 +238,40 @@ group by driver_name
 order by target_compliance_pct desc,
 	avg_daily_kms_variance;
 
+-- Which vehicle types are most efficient (cost, time, distance) for different delivery types?
+with vehicle_stats as (
+	select vehicle_type, 
+	round(avg(fixed_costs)::numeric,2) as avg_fixed_costs,
+	round(avg(maintenance),2) as avg_maintenance,
+	round(avg(distance_in_km)::numeric,2) as avg_distance_in_km,
+	round(avg(delivery_time),2) as avg_delivery_time,
+	round(avg(distance_in_km::numeric/nullif((delivery_time/60),0)),2) as avg_speed_kmph,
+	avg(case when on_time_delivery is true then 1 else 0 end) as on_time_rate,
+	count(*) as shipments_cnt
+from gold.table_combined
+-- where fixed_costs is not null
+-- 	and delivery_time is not null 
+group by vehicle_type
+)
+select
+	vehicle_type,
+	avg_fixed_costs,
+	avg_maintenance,
+	round(avg_fixed_costs + avg_maintenance, 2) AS total_avg_cost,
+	avg_distance_in_km,
+	avg_delivery_time,
+	avg_speed_kmph,
+	round((avg_distance_in_km / nullif(avg_fixed_costs + avg_maintenance, 0)), 2) as km_per_cost_unit,
+	shipments_cnt,
+	round(100.0*on_time_rate, 2) as on_time_pct,
+	round(
+	0.3 * (avg_distance_in_km / nullif(avg_fixed_costs + avg_maintenance, 0))
+	+ 0.4 * avg_speed_kmph
+	+ 0.3 * on_time_rate
+	, 2) as efficiency_score
+from vehicle_stats
+order by efficiency_score desc, total_avg_cost asc;
+
 -- Are there discrepancies between trip start/end times and GPS tracking data?
 -- Are there drivers/vehicles frequently involved in late deliveries?
 -- Which regions have the highest delivery demand? Are there underserved areas?
