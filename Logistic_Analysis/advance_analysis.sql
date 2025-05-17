@@ -272,6 +272,76 @@ select
 from vehicle_stats
 order by efficiency_score desc, total_avg_cost asc;
 
+-- Who are the top customers/suppliers by delivery volume?
+with customer_metrics as (
+	select customer_id, 
+		customer_name_code,
+		count(*) as shipments_cnt,
+		round(100.0*sum(case when on_time_delivery is true then 1 else 0 end)/count(*),2) as on_time_pct,
+		count(distinct date_trunc('month', booking_id_date)) as active_months,
+		count(distinct origin_region) as origin_regions_covered,
+	    count(distinct des_region) as destination_regions_covered,
+	    max(booking_id_date) as last_shipment_date
+	from gold.table_combined
+	where customer_id is not null
+	group by customer_id, customer_name_code
+)
+select customer_id, 
+	customer_name_code,
+	shipments_cnt,
+	case when shipments_cnt > 100 then 'Platinum'
+	    when shipments_cnt > 50 then 'Gold'
+	    when shipments_cnt > 20 then 'Silver'
+		else 'Bronze'
+  	end as customer_tier,
+	on_time_pct,
+	round(shipments_cnt/nullif(active_months,0),2) as shipments_per_month,
+	origin_regions_covered,
+	destination_regions_covered,
+	last_shipment_date,
+	current_date - last_shipment_date ::date as date_since_last_shipment
+from customer_metrics
+order by shipments_cnt desc;
+
+-- Are there frequent delays for specific customers/suppliers? If so, why?
+with supplier_delays AS (
+  select
+    supplier_id,
+    supplier_name_code,
+    count(*) as total_shipments,
+    sum(case when on_time_delivery is false then 1 else 0 end) as delayed_shipments,
+    round(100.0 * sum(case when on_time_delivery is false then 1 else 0 end) / count(*), 2) as delay_percentage,
+    round(avg(distance_in_km)::numeric, 2) as avg_distance,
+    mode() within group (order by vehicle_type) as most_common_vehicle,
+    count(distinct driver_name) as driver_count,
+    round(avg(extract(epoch from (actual_eta - (planned_eta + trip_start_date))/3600)), 2) AS avg_eta_deviation_hours,
+    mode() within group (order by material_shipper) AS most_common_material
+  from gold.table_combined
+  where supplier_id is not null
+  group by supplier_id, supplier_name_code
+)
+select
+  supplier_id,
+  supplier_name_code,
+  total_shipments,
+  delayed_shipments,
+  delay_percentage,
+  avg_distance,
+  most_common_vehicle,
+  driver_count,
+  avg_eta_deviation_hours,
+  most_common_material,
+  case
+    when delay_percentage > 30 and avg_distance > 500 then 'Long-Haul Challenges'
+    when delay_percentage > 30 and driver_count < 3 then 'Limited Driver Pool'
+    when delay_percentage > 30 and most_common_vehicle in ('Small Truck', 'Van') then 'Vehicle Capacity Issues'
+    when delay_percentage > 30 and most_common_material in ('Perishable', 'Fragile') then 'Special Handling Delays'
+	when delay_percentage > 30 then 'General Performance Issues'
+    else 'Within Acceptable Thresholds'
+  end as delay_profile
+from supplier_delays
+order by delay_percentage;
+
 -- Are there discrepancies between trip start/end times and GPS tracking data?
 -- Are there drivers/vehicles frequently involved in late deliveries?
 -- Which regions have the highest delivery demand? Are there underserved areas?
