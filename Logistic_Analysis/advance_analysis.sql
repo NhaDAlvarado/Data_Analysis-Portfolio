@@ -342,6 +342,22 @@ select
 from supplier_delays
 order by delay_percentage;
 
+-- How do urban vs. rural vs. sub-urban deliveries differ in performance?
+-- select * from gold.table_combined;
+select des_area,
+	count(distinct booking_id) as booking_count,
+    sum(case when on_time_delivery is true then 1 else 0 end) as ontime_shipments,
+    round(100.0 * sum(case when on_time_delivery is true then 1 else 0 end) / count(*), 2) as on_time_pct,
+    round(avg(distance_in_km)::numeric, 2) as avg_distance,
+    round(avg(extract(epoch from (actual_eta - (planned_eta + trip_start_date))/3600)), 2) AS avg_eta_deviation_hours,
+	count(distinct supplier_name_code) as unique_supplier,
+	mode() within group (order by vehicle_type) as common_vehicle_type,
+    mode() within group (order by material_shipper) AS most_common_material
+from gold.table_combined
+where des_area is not null
+    and des_area != 'Unknown'
+group by des_area; 
+
 -- Are there discrepancies between trip start/end times and GPS tracking data?
 -- Are there drivers/vehicles frequently involved in late deliveries?
 -- Which regions have the highest delivery demand? Are there underserved areas?
