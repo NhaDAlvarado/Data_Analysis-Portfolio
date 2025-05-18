@@ -358,6 +358,44 @@ where des_area is not null
     and des_area != 'Unknown'
 group by des_area; 
 
+-- How often do actual delivery locations (curr_lat/curr_lon) differ from planned destinations?
+with delivery_deviations as (
+	select
+	    booking_ID,
+	    -- Calculate approximate distance using Pythagorean theorem (in km)
+	    sqrt( power((curr_lat - des_lat) * 111.32, 2)  -- 1 degree latitude ≈ 111.32 km
+	        + power((curr_lon - des_lon) * cos(radians(des_lat)) * 111.32, 2))* 1000 AS deviation_meters,
+	    des_area,
+	    vehicle_type,
+	    distance_in_km,
+	    delivery_time,
+	    on_time_delivery
+	from gold.table_combined
+	where curr_lat is not null 
+    and curr_lon is not null
+    and des_lat is not null
+    and des_lon is not null
+)
+select
+	case
+		when deviation_meters <= 50 then '(1) 10-50m (Exact)'
+		when deviation_meters <= 200 then '(2) 51-200m (Close)'
+		when deviation_meters <= 500 then '(3) 201-500m (Noticeable)'
+		when deviation_meters <= 1000 then '(4) 501m-1km (Significant)'
+    	else '(5) >1km (Major)'
+	end as deviation_range,
+  count(*) as shipments_count,
+  round(100.0 * count(*) / (select count(*) from delivery_deviations), 2) as pct_of_total,
+  round(avg(deviation_meters)::numeric, 2) as avg_deviation,
+  round(avg(distance_in_km)::numeric, 2) as avg_distance_km,
+  round(avg(delivery_time)::numeric, 2) as avg_delivery_hours,
+  round(100.0 * sum(case when on_time_delivery is true then 1 else 0 end) / count(*), 2) as on_time_pct,
+  mode() within group (order by des_area) as most_common_area,
+  mode() within group (order by vehicle_type) as most_common_vehicle
+from delivery_deviations
+group by deviation_range
+order by deviation_range;
+
 -- Are there discrepancies between trip start/end times and GPS tracking data?
 -- Are there drivers/vehicles frequently involved in late deliveries?
 -- Which regions have the highest delivery demand? Are there underserved areas?
