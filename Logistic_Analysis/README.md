@@ -43,6 +43,20 @@ Using **Python and Pandas**, I:
 
 ---
 
+## 🚧 Difficulties & Challenges
+
+This project wasn't without its challenges. Some of the key hurdles I encountered included:
+
+- ⚙️ **Understanding the column structure**: Column names lacked clear explanations and were inconsistently labeled.
+- 🔗 **Data integration**: Joining two tables required careful key matching and handling of nulls or mismatched IDs.
+- 🚛 **Vehicle type classification**: I had to infer vehicle types based on vehicle numbers, which weren't always standardized.
+- 🧹 **Messy data**: Location names appeared in various formats (upper/lowercase, with or without country), which required cleaning and standardization.
+- 🏷️ **Renaming vehicle types**: Many vehicle type codes needed to be mapped to user-friendly, readable labels for dashboard display.
+
+These issues taught me to be patient, meticulous, and creative in approaching real-world data problems.
+
+---
+
 ## 🔍 Insight Questions
 
 Some of the core questions I sought to answer:
@@ -58,10 +72,10 @@ These questions guided my SQL and Python analysis, shaping the structure of the 
 
 ## 📊 Dashboard
 
-**How my dashboard look like:**
-![Dashboard](dashboard.png)
+**How my dashboard looks like:**
+![Dashboard](Logistic%20Dashboard.png)
 
-**[View Interactive Dashboard](https://public.tableau.com/app/profile/nha.alvarado/vizzes)**
+**[View Interactive Dashboard](https://public.tableau.com/app/profile/nha.alvarado/viz/LogisticsDashboard_17474321140130/LogisticsDashboard)**
 
 **Dashboard Features:**
 
