@@ -73,7 +73,7 @@ These questions guided my SQL and Python analysis, shaping the structure of the 
 ## 📊 Dashboard
 
 **How my dashboard looks like:**
-![Dashboard](Logistic%20Dashboard.png)
+![Dashboard](Logistics%20Dashboard.png)
 
 **[View Interactive Dashboard](https://public.tableau.com/app/profile/nha.alvarado/viz/LogisticsDashboard_17474321140130/LogisticsDashboard)**
 
